@@ -26,13 +26,13 @@ being executed. Print output is discarded. Execution is trusted-local only,
 ## Physical model
 
 The coordinate `x` runs from the acceleration-region inlet at `x=0` to the
-channel exit at `x=L`. Singly charged xenon ions flow in the `+x` direction.
+channel exit at `x=L`. The flow is steady and the channel area is constant.
+Singly charged xenon ions flow in the `+x` direction.
 
-Ions are **created from neutrals**. The neutral gas drifts at a constant speed
-`u_n`, much slower than the ions. An ion created at position `x` therefore enters
-the ion fluid carrying the neutral velocity, not the local ion velocity. The
-prescribed ionization source `S(x)` gives the number of ions created per unit
-volume per unit time.
+Ions are created from neutrals drifting at a prescribed constant axial speed
+`u_n`. Each new ion enters the ion fluid with this birth velocity. No ordering
+between neutral and ion speeds is imposed. The prescribed source `S(x)` gives
+the number of ions created per unit volume per unit time, in m^-3 s^-1.
 
 The electric field `E(x)` and the source `S(x)` are **prescribed**. Ion density
 and ion velocity are solved. Ion pressure, collisions between ions, and any
@@ -43,15 +43,17 @@ Use the provided constants: `e = 1.602176634e-19` C and
 other quantities use SI units.
 
 ```text
-d(n_i u_i)/dx   = S                                   particle conservation
-d(n_i u_i^2)/dx = (e n_i / m_Xe) E + u_n S            momentum conservation
-n_i u_i du_i/dx = (e n_i / m_Xe) E + (u_n - u_i) S    equivalent velocity form
+d(n_i u_i)/dx   = S                                  particle conservation
+d(n_i u_i^2)/dx = (e n_i / m_Xe) E + u_n S            conservative momentum balance
 u_i(0) = sqrt(e T_e / m_Xe)                           inlet at the ion sound speed
 n_i(0) = n_inlet
 ```
 
-The two momentum forms are equivalent given particle conservation. The velocity
-form is the one this solver marches.
+Here `n_i` is ion number density in m^-3, `u_i` and `u_n` are velocities in m/s,
+and `E` is axial electric field in V/m. The momentum balance above is divided by
+the ion mass; multiplying it by `m_Xe` gives force per volume in N/m^3.
+Both inlet values are prescribed. This is an initial-value problem in `x`;
+there is no additional exit boundary condition.
 
 Two thrust diagnostics are reported, both per unit channel area, in N/m²:
 
@@ -104,18 +106,17 @@ field, source, and neutral speed must be nonnegative.
 ## Discrete scheme
 
 The channel is divided into `N` cells of width `dx = L/N`. State is stored at the
-`N+1` nodes; `E` and `S` are evaluated once per cell at its centre. Marching from
-node `i` to node `i+1` uses the cell-`i` values and the **upwind** density and
-velocity, that is the values at node `i`:
+`N+1` nodes; `E` and `S` are evaluated once per cell at its centre. Apply each
+conservative balance above to the interval between nodes `i` and `i+1`: the
+outgoing minus incoming flux equals the cell-integrated right-hand side.
+Approximate each right-hand-side integral by `dx` times its cell value, using
+the **upwind density** at node `i` in the electric force and the prescribed
+cell-centre field and source. Use this same quadrature for the force thrust.
 
-```text
-flux_next   = n_i u_i + dx S_i
-u_(i+1)     = u_i + dx * [ (e/m_Xe) n_i E_i + (u_n - u_i) S_i ] / flux_next
-n_(i+1)     = flux_next / u_(i+1)
-```
-
-Both integrals in the thrust diagnostics use the same upwind convention, that is
-`sum over cells of dx * (e n_i E_i + m_Xe u_n S_i)`.
+The returned density and velocity must satisfy both cell balances with that
+quadrature. You may choose the variables used internally to march the solution.
+The contract is the discrete conservative balance, not an exact continuum
+profile on a coarse grid.
 
 `momentum.solve(p)` returns a dictionary containing `x_m`, `e_field_v_per_m`,
 `source_per_m3_s`, the node arrays `n_per_m3` and `u_i_m_per_s`, and the scalars
@@ -125,9 +126,12 @@ Verification covers the sound-speed law and its scaling, the prescribed profiles
 particle and momentum conservation cell by cell, the reported thrust
 diagnostics, inlet boundary values, positivity, analytic limits with no field and
 with no ionization, and grid refinement over several operating conditions. The
-scheme above is first order, so refinement checks allow the expected first-order
+scheme is first order, so refinement checks allow the expected first-order
 contraction. Physical checks allow a maximum scaled residual of `1e-8`.
 
 A task passes only if every evaluation case passes. Reports contain per-case
 physical and numerical diagnostics; the fraction of cases passed is not agent
 pass@k.
+
+Evaluation cases and reference implementations are withheld from this exported
+workspace at runtime, but are publicly inspectable in the project repository.

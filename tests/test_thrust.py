@@ -4,8 +4,9 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from epbench import thrust
-from epbench.grader import grade
+from epbench import evaluation, thrust
+from epbench.cli import init
+from epbench.grader import _run_case, grade
 
 ROOT = Path(__file__).resolve().parents[1]
 REFERENCE = ROOT / "examples" / "solutions" / "hall-thrust"
@@ -42,6 +43,74 @@ class TestThrustVerifier(unittest.TestCase):
         self.assertEqual(starter["passed"], 3, "only the sound speed and the no-source limit survive")
         self.assertNotIn(str(ROOT), json.dumps(starter))
         self.assertNotIn('"expected"', json.dumps(starter))
+
+    def test_export_keeps_conservative_contract_without_velocity_answer(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory)
+            init("hall-thrust", path)
+            self.assertEqual({p.name for p in path.iterdir()},
+                             {"README.md", "physics.py", "momentum.py", "run.py"})
+            readme = path.joinpath("README.md").read_text()
+            prompt = evaluation.PROMPT.format(
+                title=evaluation.EVALUABLE["hall-thrust"][0], files="physics.py and momentum.py")
+            visible = "\n".join(p.read_text() for p in path.iterdir()) + prompt
+        compact = "".join(visible.split())
+        # Known disclosures from v0.4.0 and its reference; not a semantic proof.
+        for leak in ("du_i/dx", "(u_n-u_i)", "mass_addition", "equivalentvelocityform",
+                     "(p.u_neutral_m_per_s-speed[-1])"):
+            self.assertNotIn(leak, compact)
+        self.assertNotIn("u_(i+1)", readme)
+        self.assertNotIn("flux_next", readme)
+        for required in ("d(n_i u_i)/dx", "d(n_i u_i^2)/dx", "u_n S",
+                         "birth velocity", "constant", "upwind density",
+                         "outgoing minus incoming flux", "no additional exit boundary"):
+            self.assertIn(required, readme)
+
+    def test_conservative_correction_derived_from_export_passes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory)
+            init("hall-thrust", path)
+            momentum = path / "momentum.py"
+            source = momentum.read_text()
+            defective = "        u_next = speed[-1] + dx * electric / flux_next"
+            self.assertIn(defective, source)
+            # Integrate the two supplied conservative balances with the stated
+            # quadrature; do not use the reference's expanded velocity update.
+            conservative = (
+                "        momentum_next = density[-1] * speed[-1] ** 2 + dx * (\n"
+                "            electric + p.u_neutral_m_per_s * s_face)\n"
+                "        u_next = momentum_next / flux_next"
+            )
+            momentum.write_text(source.replace(defective, conservative))
+            result = grade("hall-thrust", path)
+        self.assertEqual((result["passed"], result["total"]), (13, 13))
+
+    def test_old_flux_denominator_does_not_satisfy_discrete_contract(self):
+        source = patched(UPDATE, UPDATE.replace("flux_next", "(density[-1] * speed[-1])"))
+        result = self.grade_source(momentum=source)
+        self.assertEqual(result["status"], "failed")
+        self.assertTrue(any("momentum_balance" in name and not check["passed"]
+                            for case in result["cases"] for name, check in case["diagnostics"].items()))
+
+    def test_starter_momentum_residual_is_exactly_the_mass_addition_defect(self):
+        source = {name: (STARTER / name).read_bytes() for name in ("physics.py", "momentum.py")}
+        for neutral_speed in (0.0, 2500.0):
+            with self.subTest(neutral_speed=neutral_speed):
+                p = thrust.DEFAULTS | {"e_peak_v_per_m": 0.0, "te_ev": 1.5,
+                                       "u_neutral_m_per_s": neutral_speed}
+                case = {"operation": "model", "parameters": [p]}
+                output = _run_case(source, case, 5, mode="thrust")["value"][0]
+                n, u = output["n_per_m3"], output["u_i_m_per_s"]
+                s = output["source_per_m3_s"]
+                dx = p["length_m"] / p["n_cells"]
+                momentum = [ni * ui**2 for ni, ui in zip(n, u)]
+                expected = [dx * (ui - neutral_speed) * si for ui, si in zip(u, s)]
+                residual = [b - a - dx * neutral_speed * si
+                            for a, b, si in zip(momentum, momentum[1:], s)]
+                self.assertLess(max(abs(a - b) for a, b in zip(residual, expected)) / max(momentum), 1e-12)
+                gap = output["thrust_momentum_n_per_m2"] - output["thrust_force_n_per_m2"]
+                self.assertAlmostEqual(gap, thrust.M_XE * math.fsum(expected), delta=1e-12 * thrust.M_XE * max(momentum))
+                self.assertEqual(gap > 0, neutral_speed == 0.0)
 
     def test_momentum_balance_is_what_detects_the_missing_term(self):
         starter = grade("hall-thrust", STARTER)

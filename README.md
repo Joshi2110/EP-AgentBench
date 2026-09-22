@@ -64,11 +64,12 @@ the substantive ones, and they probe different conservation laws:
 mass is added to the flow. Two further tasks, covering energy and mass
 conservation, are designed but not built.
 
-This is a reduced model, not a thruster simulator. Density, temperature,
-collision frequency, and magnetic field are prescribed. Ionization, sheaths,
+These are reduced models, not thruster simulators. In `hall-transport`, density,
+temperature, collision frequency, and magnetic field are prescribed. Ionization, sheaths,
 electron energy evolution, ion momentum sources, and self-consistent density
-evolution are excluded. No external simulator is used, and nothing here is
-validated against experimental data.
+evolution are excluded. `hall-thrust` instead solves ion density and velocity
+with a prescribed field and ionization source. No external simulator is used,
+and nothing here is validated against experimental data.
 
 There is no RL training, no reward model, and no demonstrated model improvement.
 
@@ -132,10 +133,17 @@ the verification strategy, and the intentional defects:
 [notes](docs/hall-thrust.md).
 
 `hall-thrust` solves ion density and velocity along the channel given a
-prescribed electric field and ionization source. Creating an ion costs momentum,
-because the new ion enters the flow at the slow neutral velocity and must be
-accelerated. Thrust is reported twice, as net momentum flux and as the integral
-of the applied force, and the two must agree.
+prescribed electric field and ionization source. Newly created ions bring
+momentum at their prescribed birth velocity; mixing slows the ion fluid when
+that velocity is below the local ion velocity. Thrust is reported twice, as net
+momentum flux and as the integral of the applied force, and the two must agree.
+
+In **v0.4.1**, the exported `hall-thrust` specification provides conservative
+balances and quadrature rules without the expanded velocity equation or a
+velocity-update formula. Pilot 02 used v0.4.0, which disclosed both formulas;
+its five successful attempts measure a different information condition and
+must not be pooled with future v0.4.1 results. This revision has not been
+evaluated with coding agents. See the [maintainer review](docs/hall-thrust.md).
 
 ## Running one agent evaluation
 
