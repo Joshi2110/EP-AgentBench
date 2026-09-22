@@ -160,7 +160,7 @@ def _scoring(execution: dict) -> tuple[bool, str | None]:
     """Only attempts where the agent actually worked belong in model-performance aggregates."""
     status, calls = execution["status"], execution.get("tool_calls")
     if status in ("not_started", "infrastructure_error"):
-        return False, "no_attempt"
+        return False, "infrastructure_error"
     if status == "interrupted":
         return False, "interrupted"
     if not calls:
@@ -193,7 +193,7 @@ def evaluate(task: str, out: Path, model: str, *, seconds: float = 300, backend=
         "budget": {"wall_seconds": seconds}, "status": "infrastructure_error",
         "execution": {"status": "not_started", "termination_reason": None, "tool_calls": None, "backend_error": None},
         "grading": {"status": "not_run", "result": None},
-        "scored": False, "exclusion_reason": "no_attempt", "score": None,
+        "scored": False, "exclusion_reason": "infrastructure_error", "score": None,
         "paths": {"workspace": str(attempt / "workspace"), "trace": str(trace), "diff": str(attempt / "changes.patch")},
         "limitations": [
             "Local CLI restrictions are not a comprehensive security boundary.",
@@ -258,6 +258,7 @@ def evaluate(task: str, out: Path, model: str, *, seconds: float = 300, backend=
         (attempt / "changes.patch").write_text(_redact("".join(changes), secrets))
     except (OSError, ValueError, RuntimeError) as exc:
         report["status"] = "infrastructure_error"
+        report["scored"], report["exclusion_reason"], report["score"] = False, "infrastructure_error", None
         report["error"] = _redact(str(exc), secrets)
     finally:
         report["ended_at"] = _now()

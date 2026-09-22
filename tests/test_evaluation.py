@@ -141,7 +141,7 @@ class TestEvaluation(unittest.TestCase):
     def test_failures_before_agent_work_are_excluded_from_aggregates(self):
         cases = [
             (MockBackend("quota"), "backend_error_before_agent_work", "mock provider quota exhausted"),
-            (RefusingBackend(), "no_attempt", None),
+            (RefusingBackend(), "infrastructure_error", None),
         ]
         for backend, reason, backend_error in cases:
             with self.subTest(reason=reason):

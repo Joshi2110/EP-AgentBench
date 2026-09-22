@@ -1,4 +1,4 @@
-"""Export task workspaces and grade trusted local submissions."""
+"""Export task workspaces, grade submissions, run agent attempts, and summarize them."""
 
 from __future__ import annotations
 
@@ -43,6 +43,9 @@ def main(argv: list[str] | None = None) -> int:
     attempt.add_argument("--out", type=Path, required=True, help="Directory that will hold the attempt record")
     attempt.add_argument("--model", required=True, help="Backend model identifier, passed through verbatim")
     attempt.add_argument("--seconds", type=float, default=300.0, help="Wall-clock budget for the agent (default: 300)")
+    report_summary = sub.add_parser("summarize", help="Aggregate attempt reports in a directory")
+    report_summary.add_argument("--attempts", type=Path, required=True, help="Directory holding attempt records")
+    report_summary.add_argument("--json-out", type=Path, help="Also save the summary JSON to this file")
     args = parser.parse_args(argv)
     try:
         if args.command == "list":
@@ -64,6 +67,16 @@ def main(argv: list[str] | None = None) -> int:
             print(f"{args.task}: {report['status']}, {score}", file=sys.stderr)
             print(f"Attempt record: {report['paths']['workspace']}", file=sys.stderr)
             return 0 if report["status"] == "success" else 1
+        elif args.command == "summarize":
+            from .summary import render, summarize
+            result = summarize(args.attempts)
+            text = json.dumps(result, indent=2, allow_nan=False) + "\n"
+            if args.json_out:
+                args.json_out.parent.mkdir(parents=True, exist_ok=True)
+                args.json_out.write_text(text, encoding="utf-8")
+            print(text, end="")
+            print(render(result), file=sys.stderr)
+            return 0
         else:
             if args.json_out:
                 output, solution = args.json_out.resolve(), args.solution.resolve()
@@ -92,6 +105,8 @@ def main(argv: list[str] | None = None) -> int:
         print(f"epbench: {exc}", file=sys.stderr)
         if args.command in ("grade", "evaluate"):
             print(json.dumps({"schema_version": 1, "task": args.task, "status": "error", "error": str(exc)}))
+        elif args.command == "summarize":
+            print(json.dumps({"schema_version": 1, "status": "error", "error": str(exc)}))
         return 2
     except KeyboardInterrupt:
         print("epbench: interrupted", file=sys.stderr)

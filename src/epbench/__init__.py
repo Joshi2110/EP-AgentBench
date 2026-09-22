@@ -1,6 +1,6 @@
 """Small electric propulsion coding tasks and local numerical grading."""
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 TASKS = {
     "ion-acceleration": "Xe+ acceleration from conservation of energy",
