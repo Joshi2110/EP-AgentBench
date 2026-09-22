@@ -14,10 +14,14 @@ independent verifier that checks physical relations rather than remembered
 outputs, and a reproducible runner that executes one isolated coding-agent
 attempt and grades only what the agent leaves behind.
 
-**No agent results are reported yet.** The runner and its isolation are
-implemented and tested; the first evaluation is specified in
-[docs/experiment-01.md](docs/experiment-01.md) and has not yet produced a valid
-attempt.
+**First result.** Experiment 01 collected 20 valid attempts against the Hall
+task with one requested model. All 20 repaired both injected defects and passed
+all 13 verifier cases. The same dataset shows that most attempts made closing
+verification claims their own recorded output could not substantiate, which the
+physics score does not see. Protocol:
+[docs/experiment-01.md](docs/experiment-01.md). Results and limitations,
+including the ceiling effect that makes this result undiscriminating:
+[docs/results/experiment-01.md](docs/results/experiment-01.md).
 
 ## What is actually here
 
@@ -286,7 +290,7 @@ src/epbench/
   tasks/<task>/     Agent-visible files only
 examples/solutions/ Public reference implementations
 tests/              Grading, CLI, physics, agent-runner, and live isolation tests
-docs/               Maintainer notes and the experiment protocol
+docs/               Maintainer notes, experiment protocol, and results
 ```
 
 The wheel ships public task files and evaluators, excluding references and

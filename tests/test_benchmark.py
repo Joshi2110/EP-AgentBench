@@ -24,8 +24,10 @@ class TestGrading(unittest.TestCase):
                 self.assertEqual(result["status"], "failed")
                 self.assertEqual(result["passed"], starter_passes[task])
                 self.assertEqual(result["success_rate"], result["passed"] / result["total"])
-                self.assertNotIn("inputs", json.dumps(result))
-                self.assertNotIn("expected", json.dumps(result))
+                # Match the report keys, not the substrings: a submission's own
+                # exception text may legitimately contain either word.
+                self.assertNotIn('"inputs"', json.dumps(result))
+                self.assertNotIn('"expected"', json.dumps(result))
                 self.assertNotIn(str(ROOT), json.dumps(result))
                 json.dumps(result, allow_nan=False)
 

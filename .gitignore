@@ -11,7 +11,7 @@ htmlcov/
 .DS_Store
 .env
 .env.*
-results/
+/results/
 my-first-task/
 my-hall-task/
 attempts/
