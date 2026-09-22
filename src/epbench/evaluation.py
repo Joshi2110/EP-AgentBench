@@ -17,11 +17,11 @@ import subprocess
 import time
 import uuid
 
-from . import TASK_FILES, __version__, codex_backend, hall
+from . import TASK_FILES, __version__, codex_backend, hall, thrust
 from .grader import grade
 
-PROMPT = """Repair the Hall Transport & Potential Closure task in this workspace.
-Read README.md and inspect the supplied files. Edit physics.py and model.py to
+PROMPT = """Repair the {title} task in this workspace.
+Read README.md and inspect the supplied files. Edit {files} to
 satisfy the documented interface, prescribed profiles, and physical relations.
 You may execute Python and create your own local checks. Python is available as
 python or python3. Use only the task materials in this directory. Do not access
@@ -29,6 +29,10 @@ external references, installed evaluators, previous attempts, or the network.
 The benchmark CLI and its grader are deliberately unavailable during this attempt.
 Finish by briefly describing your changes and the checks you actually ran.
 """
+EVALUABLE = {
+    "hall-transport": ("Hall Transport & Potential Closure", hall),
+    "hall-thrust": ("Ion Momentum & Thrust Closure", thrust),
+}
 TOOL_ITEMS = {"command_execution", "file_change", "mcp_tool_call", "web_search"}
 
 
@@ -51,7 +55,7 @@ def _stop(process: subprocess.Popen) -> None:
     process.wait()
 
 
-def _execute(launch: codex_backend.Launch, workspace: Path, trace: Path, seconds: float) -> dict:
+def _execute(launch: codex_backend.Launch, workspace: Path, trace: Path, seconds: float, prompt: str) -> dict:
     started = time.monotonic()
     calls = set()
     completed = False
@@ -68,7 +72,7 @@ def _execute(launch: codex_backend.Launch, workspace: Path, trace: Path, seconds
             start_new_session=True,
         ) as process:
             try:
-                process.stdin.write(PROMPT.encode())
+                process.stdin.write(prompt.encode())
                 process.stdin.close()
                 with selectors.DefaultSelector() as selector:
                     buffers = {}
@@ -148,11 +152,11 @@ def _execute(launch: codex_backend.Launch, workspace: Path, trace: Path, seconds
     }
 
 
-def _hashes(directory: Path) -> dict[str, str | None]:
+def _hashes(directory: Path, task: str) -> dict[str, str | None]:
     return {
         name: hashlib.sha256((directory / name).read_bytes()).hexdigest()
         if (directory / name).is_file() and not (directory / name).is_symlink() else None
-        for name in TASK_FILES["hall-transport"]
+        for name in TASK_FILES[task]
     }
 
 
@@ -173,13 +177,17 @@ def _scoring(execution: dict) -> tuple[bool, str | None]:
 
 def evaluate(task: str, out: Path, model: str, *, seconds: float = 300, backend=codex_backend) -> dict:
     """Preserve one attempt, including partial files after agent errors/timeouts."""
-    if task != "hall-transport":
-        raise ValueError("Agent evaluation currently supports hall-transport only")
+    if task not in EVALUABLE:
+        raise ValueError(f"Agent evaluation supports only: {', '.join(sorted(EVALUABLE))}")
     if not model.strip() or not math.isfinite(seconds) or seconds <= 0:
         raise ValueError("An explicit model and a positive finite time budget are required")
     if os.name != "posix":
         raise ValueError("The evaluation runner currently requires macOS or Linux")
     from .cli import init
+
+    title, verifier = EVALUABLE[task]
+    editable = [f for f in TASK_FILES[task] if f not in ("README.md", "run.py")]
+    prompt = PROMPT.format(title=title, files=" and ".join(editable))
 
     attempt_id = uuid.uuid4().hex
     attempt = out.resolve() / attempt_id
@@ -202,7 +210,7 @@ def evaluate(task: str, out: Path, model: str, *, seconds: float = 300, backend=
             "Attempts with scored=false are diagnostic only and must be kept out of model aggregates.",
         ],
     }
-    (attempt / "prompt.txt").write_text(PROMPT)
+    (attempt / "prompt.txt").write_text(prompt)
     (attempt / "report.json").write_text(json.dumps(report, indent=2) + "\n")
     secrets = ()
     try:
@@ -211,16 +219,16 @@ def evaluate(task: str, out: Path, model: str, *, seconds: float = 300, backend=
         control.mkdir(mode=0o700)
         init(task, live)
         shutil.copytree(live, attempt / "initial")
-        report["initial_sha256"] = _hashes(live)
+        report["initial_sha256"] = _hashes(live, task)
         launched = False
         try:
-            withheld = [Path(hall.__file__), Path(__file__).with_name("grader.py"), attempt / "initial" / "README.md"]
+            withheld = [Path(verifier.__file__), Path(__file__).with_name("grader.py"), attempt / "initial" / "README.md"]
             launch = backend.prepare(live, control, model, withheld)
             secrets = launch.secrets
             report["agent"] = {k: v for k, v in launch.metadata.items() if k != "config"}
             (attempt / "backend-config.toml").write_text(launch.metadata.get("config", ""))
             launched = True
-            report["execution"] = _execute(launch, live, trace, seconds)
+            report["execution"] = _execute(launch, live, trace, seconds, prompt)
         except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as exc:
             report["execution"] = {"status": "infrastructure_error", "termination_reason": _redact(str(exc), secrets), "tool_calls": None, "backend_error": None}
         except KeyboardInterrupt:
@@ -231,7 +239,7 @@ def evaluate(task: str, out: Path, model: str, *, seconds: float = 300, backend=
             # The control tree holds a copy of the Codex credentials; it must not outlive the run.
             for scratch in (live, control):
                 shutil.rmtree(scratch, ignore_errors=True)
-            report["final_sha256"] = _hashes(attempt / "workspace")
+            report["final_sha256"] = _hashes(attempt / "workspace", task)
         execution = report["execution"]["status"]
         if launched:
             try:

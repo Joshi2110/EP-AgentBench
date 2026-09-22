@@ -188,6 +188,21 @@ class TestEvaluation(unittest.TestCase):
         for path in backend.withheld:
             self.assertTrue(path.is_absolute())
 
+    def test_prompts_name_the_right_task_and_files(self):
+        from epbench import TASK_FILES
+        for task, (title, verifier) in evaluation.EVALUABLE.items():
+            with self.subTest(task=task):
+                edits = [f for f in TASK_FILES[task] if f not in ("README.md", "run.py")]
+                prompt = evaluation.PROMPT.format(title=title, files=" and ".join(edits))
+                self.assertIn(title, prompt)
+                for name in edits:
+                    self.assertIn(name, prompt)
+                self.assertNotIn("{", prompt, "every placeholder must be substituted")
+        hall = evaluation.PROMPT.format(title="Hall Transport & Potential Closure",
+                                        files="physics.py and model.py")
+        self.assertIn("Edit physics.py and model.py to", hall)
+        self.assertNotIn("momentum.py", hall)
+
     def test_invalid_requests_are_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
             for task, model, seconds in [

@@ -9,6 +9,7 @@ from pathlib import Path
 import sys
 
 from . import TASKS, TASK_FILES, __version__
+from .evaluation import EVALUABLE
 from .grader import TIMEOUT_SECONDS, grade
 
 
@@ -39,7 +40,7 @@ def main(argv: list[str] | None = None) -> int:
     evaluate.add_argument("--json-out", type=Path, help="Also save the JSON report to this file")
     evaluate.add_argument("--timeout", type=float, default=TIMEOUT_SECONDS, help="Seconds per case (default: 5)")
     attempt = sub.add_parser("evaluate", help="Run one isolated Codex attempt and grade what it leaves behind")
-    attempt.add_argument("task", choices=["hall-transport"])
+    attempt.add_argument("task", choices=sorted(EVALUABLE))
     attempt.add_argument("--out", type=Path, required=True, help="Directory that will hold the attempt record")
     attempt.add_argument("--model", required=True, help="Backend model identifier, passed through verbatim")
     attempt.add_argument("--seconds", type=float, default=300.0, help="Wall-clock budget for the agent (default: 300)")
