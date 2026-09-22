@@ -13,12 +13,16 @@ import tempfile
 from typing import Any, Iterator
 
 from . import TASKS, __version__
-from . import hall
+from . import hall, thrust
 from .physics import axial_electric_field, ideal_beam_thrust, ion_exit_speed
 
 TIMEOUT_SECONDS = 5.0
 REL_TOL = 1e-6
 ABS_TOL = {"ion-acceleration": 1e-8, "beam-thrust": 1e-12, "axial-field": 1e-8}
+WORKSPACES = {
+    "hall-transport": (("physics.py", "model.py"), hall, "hall"),
+    "hall-thrust": (("physics.py", "momentum.py"), thrust, "thrust"),
+}
 WARNING = "Trusted local execution only: Python -I and temporary directories are not a security sandbox."
 
 
@@ -91,7 +95,7 @@ def _run_case(
             if process.returncode:
                 return {"status": "runtime_error", "detail": f"Python exited with code {process.returncode}"}
         try:
-            limit = 2_000_000 if mode == "hall" else 4096
+            limit = 4096 if mode == "scalar" else 2_000_000
             with workspace.joinpath("result.json").open("rb") as result_file:
                 data = result_file.read(limit + 1)
             if len(data) > limit:
@@ -121,27 +125,28 @@ def grade(
     if not math.isfinite(timeout) or timeout <= 0:
         raise ValueError("Timeout must be a positive finite number")
     path = Path(solution_file).resolve()
-    if task == "hall-transport":
+    if task in WORKSPACES:
+        names, verifier, mode = WORKSPACES[task]
         if not path.is_dir():
-            raise ValueError("hall-transport requires a directory containing physics.py and model.py")
+            raise ValueError(f"{task} requires a directory containing {' and '.join(names)}")
         source = {}
-        for name in ("physics.py", "model.py"):
+        for name in names:
             member = path / name
             if member.is_symlink() or not member.is_file():
                 raise ValueError(f"Workspace requires a regular, non-symlink file: {name}")
             source[name] = member.read_bytes()
         results = []
-        for index, inputs in enumerate(hall.cases(), start=1):
-            outcome = _run_case(source, inputs, timeout, mode="hall")
+        for index, inputs in enumerate(verifier.cases(), start=1):
+            outcome = _run_case(source, inputs, timeout, mode=mode)
             if outcome["status"] == "ok":
-                outcome = hall.verify(inputs, outcome.get("value"))
+                outcome = verifier.verify(inputs, outcome.get("value"))
             results.append({
                 "case": f"case-{index:02d}", "kind": inputs["operation"],
                 "passed": outcome["status"] == "passed", "status": outcome["status"],
                 "relative_error": None, "detail": outcome["detail"],
                 "diagnostics": outcome.get("diagnostics", {}),
             })
-        return _report(task, results, timeout, hall.TOLERANCE)
+        return _report(task, results, timeout, verifier.TOLERANCE)
     source = path.read_bytes()
     results = []
     for index, (inputs, expected) in enumerate(_cases(task), start=1):

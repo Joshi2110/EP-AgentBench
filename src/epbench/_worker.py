@@ -12,14 +12,20 @@ def main() -> None:
     inputs = json.load(sys.stdin)
     mode = sys.argv[1]
     try:
-        if mode == "hall":
+        if mode in ("hall", "thrust"):
             # Only submitted modules run here; all verification stays in the parent.
             sys.path.insert(0, str(Path.cwd()))
             if inputs["operation"] == "mobility":
                 from physics import cross_field_mobility
                 value = [cross_field_mobility(b, inputs["nu_per_s"]) for b in inputs["b_t"]]
-            else:
+            elif inputs["operation"] == "bohm":
+                from physics import bohm_speed
+                value = [bohm_speed(t) for t in inputs["te_ev"]]
+            elif mode == "hall":
                 from model import Parameters, solve
+                value = [solve(Parameters(**parameters)) for parameters in inputs["parameters"]]
+            else:
+                from momentum import Parameters, solve
                 value = [solve(Parameters(**parameters)) for parameters in inputs["parameters"]]
         else:
             module = runpy.run_path("submission.py", run_name="epbench_submission")

@@ -62,7 +62,7 @@ class TestCLI(unittest.TestCase):
     def test_reference_grading(self):
         for task in TASKS:
             with self.subTest(task=task):
-                name = task if task == "hall-transport" else f"{task}.py"
+                name = task if task.startswith("hall-") else f"{task}.py"
                 result = self.run_cli("grade", task, "--solution", ROOT / "examples/solutions" / name)
                 self.assertEqual(result.returncode, 0, result.stderr)
                 self.assertEqual(json.loads(result.stdout)["status"], "passed")

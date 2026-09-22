@@ -47,19 +47,22 @@ workspace, a diff, and a machine-readable report.
 
 | Artifact | What it is | Expected result |
 | --- | --- | --- |
-| Reference implementation | A correct solution in `examples/solutions/` | 13/13 cases |
-| Starter | The exported task, deliberately defective | 2/13 cases |
+| Reference implementation | A correct solution in `examples/solutions/` | 13/13 on either Hall task |
+| Starter | The exported task, deliberately defective | 2/13 for `hall-transport`, 3/13 for `hall-thrust` |
 | Agent evaluation | One real agent attempt, graded after it terminates | Unknown; that is the experiment |
 
-The starter's 2/13 is the floor, not a baseline score for any model. Reporting
-it as an agent result would be wrong.
+A starter's score is the floor, not a baseline for any model. Reporting it as an
+agent result would be wrong.
 
 ## Scope
 
-Three analytic smoke tests and one reduced Hall-thruster modelling task. The
+Three analytic smoke tests and two reduced Hall-thruster modelling tasks. The
 smoke tests exist to check the harness end to end; they are single-formula
-problems and are not interesting as agent evaluations. The Hall task is the
-substantive one.
+problems and are not interesting as agent evaluations. The two Hall tasks are
+the substantive ones, and they probe different conservation laws:
+`hall-transport` the electron momentum closure, `hall-thrust` ion momentum when
+mass is added to the flow. Two further tasks, covering energy and mass
+conservation, are designed but not built.
 
 This is a reduced model, not a thruster simulator. Density, temperature,
 collision frequency, and magnetic field are prescribed. Ionization, sheaths,
@@ -101,6 +104,7 @@ The installed CLI works from any directory. `python -m epbench.cli` also works.
 | Task | Submission | Purpose |
 | --- | --- | --- |
 | `hall-transport` | Directory with `physics.py` and `model.py` | Coupled cross-field electron transport and potential closure |
+| `hall-thrust` | Directory with `physics.py` and `momentum.py` | Ion momentum with mass addition, and the thrust closure |
 | `ion-acceleration` | Python file | Xe+ kinetic-energy balance |
 | `beam-thrust` | Python file | Ideal beam thrust from current and charge state |
 | `axial-field` | Python file | Signed field from a linear potential |
@@ -120,9 +124,18 @@ analytic tasks keep a rounded `2.1801714e-25` kg. Both neglect electron mass and
 isotope variation. The elementary charge is the exact
 [NIST value](https://physics.nist.gov/cuu/Constants/Value/e.html).
 
-See the [task specification](src/epbench/tasks/hall-transport/README.md) and the
-[maintainer notes](docs/hall-transport.md) for the discrete contract, the
-verification strategy, and the intentional defects.
+See each task specification and its maintainer notes for the discrete contract,
+the verification strategy, and the intentional defects:
+[hall-transport](src/epbench/tasks/hall-transport/README.md) with
+[notes](docs/hall-transport.md), and
+[hall-thrust](src/epbench/tasks/hall-thrust/README.md) with
+[notes](docs/hall-thrust.md).
+
+`hall-thrust` solves ion density and velocity along the channel given a
+prescribed electric field and ionization source. Creating an ion costs momentum,
+because the new ion enters the flow at the slow neutral velocity and must be
+accelerated. Thrust is reported twice, as net momentum flux and as the integral
+of the applied force, and the two must agree.
 
 ## Running one agent evaluation
 
@@ -285,7 +298,8 @@ src/epbench/
   summary.py        Aggregation that never scores an excluded attempt
   grader.py         Execution and report construction
   _worker.py        Submission APIs and JSON result protocol
-  hall.py           Independent Hall cases and physical checks
+  hall.py           Independent transport cases and physical checks
+  thrust.py         Independent momentum cases and physical checks
   physics.py        Analytic smoke-test relations
   tasks/<task>/     Agent-visible files only
 examples/solutions/ Public reference implementations

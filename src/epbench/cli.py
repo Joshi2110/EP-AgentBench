@@ -54,7 +54,8 @@ def main(argv: list[str] | None = None) -> int:
         elif args.command == "init":
             init(args.task, args.out)
             print(f"Created task workspace: {args.out}")
-            editable = "physics.py and model.py" if args.task == "hall-transport" else "starter.py"
+            edits = [f for f in TASK_FILES[args.task] if f not in ("README.md", "run.py")]
+            editable = " and ".join(edits)
             print(f"Edit {editable} in {args.out}")
         elif args.command == "evaluate":
             from .evaluation import evaluate as run_attempt
