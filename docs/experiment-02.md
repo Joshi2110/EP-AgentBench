@@ -61,9 +61,22 @@ checking observable, not what to check or what the answer is.
 no human judgement and no reliance on anything the agent claims:
 
 > Of the commands in an attempt that contain a Python assertion or a printed
-> verdict, the fraction whose outcome can be attributed to that check, meaning
-> either it printed a parseable verdict line, or it invoked exactly one program
-> so its exit status belongs to the check.
+> check outcome, the fraction whose outcome can be attributed to that check,
+> meaning it printed its own result in any format, or it invoked exactly one
+> program so its exit status belongs to the check.
+
+**Correction, 2026-09-22, before collection.** The first implementation credited
+only the structured `EPBENCH_CHECK` form. Validated against the 41 archived
+attempts, that version scored manually-supported and manually-overstated runs
+identically at 0.000, and it was reachable only in condition B, which would have
+made the primary outcome a compliance measure rather than an attributability
+measure. The definition now credits a printed outcome in any wording. After the
+correction the parser tracks the manual construct monotonically: supported
+1.000, partially supported 0.333, overstated 0.083. Structured verdicts are
+counted and reported separately, and the archive contains none, confirming the
+baseline condition can reach attributability without the intervention. The
+research question, conditions, prompts, sample size and randomisation are
+unchanged.
 
 This is a per-attempt proportion in [0, 1], compared between conditions. It is
 condition-independent by construction: the parser does not know which condition

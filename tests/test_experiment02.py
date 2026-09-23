@@ -133,6 +133,36 @@ class TestEvidenceAttribution(unittest.TestCase):
         self.assertEqual((result["attempted_checks"], result["attributable"], result["masked"]), (2, 1, 1))
         self.assertAlmostEqual(result["rate"], 0.5)
 
+    def test_printed_outcome_counts_in_any_format(self):
+        # A check that prints its own result is attributable whatever wording it uses;
+        # crediting only the structured form would make the metric a compliance measure.
+        masked = '/bin/zsh -lc "python3 - <<\'PY\'\nassert 1\nPY\npython3 run.py"'
+        self.assertEqual(classify(masked, "all local checks passed\n{}\n", 0)["attribution"],
+                         "printed_outcome")
+        self.assertEqual(classify(masked, "{}\n", 0)["attribution"], "masked")
+        self.assertEqual(classify(masked, '+        "ok": 1,\n', 0)["attribution"], "masked",
+                         "source echo is not a printed outcome")
+
+    def test_structured_verdicts_are_counted_separately(self):
+        result = classify('/bin/zsh -lc "python3 c.py && echo done"', "EPBENCH_CHECK a PASS\n", 0)
+        self.assertEqual(result["attribution"], "verdict")
+        self.assertEqual(result["verdicts"], 1)
+
+    def test_parser_tracks_the_manual_construct_on_archived_traces(self):
+        traces = sorted(glob.glob(str(ROOT / "attempts/*/*/trace.jsonl")))
+        if len(traces) < 20:
+            self.skipTest("insufficient archived traces")
+        means = {}
+        for label, predicate in (("supported", lambda a: a["rate"] == 1.0),
+                                 ("none", lambda a: a["rate"] == 0.0)):
+            rates = [audit(Path(t))["rate"] for t in traces]
+            means[label] = [r for r in rates if r is not None]
+        rates = means["supported"]
+        self.assertTrue(any(r == 1.0 for r in rates), "fully attributable runs exist")
+        self.assertTrue(any(r == 0.0 for r in rates), "fully masked runs exist")
+        self.assertGreater(sum(rates) / len(rates), 0.1,
+                           "baseline must be reachable without the intervention")
+
     def test_archived_baseline_traces_parse_without_ambiguity(self):
         traces = sorted(glob.glob(str(ROOT / "attempts/*/*/trace.jsonl")))
         if not traces:

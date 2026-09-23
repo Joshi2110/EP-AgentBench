@@ -8,6 +8,10 @@ import re
 from typing import Any
 
 VERDICT = re.compile(r"(?m)^\s*EPBENCH_CHECK\s+(\S+)\s+(PASS|FAIL)\s*$")
+# Format-agnostic printed outcome. A check that prints its own result is attributable
+# whatever wording it uses; restricting this to the structured form would make the
+# primary outcome a compliance measure, reachable only in the structured condition.
+PRINTED = re.compile(r"(?m)^[A-Za-z0-9_\- ]{0,80}\b(passed|failed|PASS|FAIL|ok|OK)\b[^\n]{0,60}$")
 SHELL = re.compile(r"""^\s*\S*\b(?:sh|bash|zsh|dash)\b\s+-[a-zA-Z]*c\s+(['"])(?P<body>.*)\1\s*$""", re.S)
 HEREDOC = re.compile(r"<<-?\s*(['\"]?)([A-Za-z_][A-Za-z0-9_]*)\1")
 NESTED = re.compile(r"""\b(?:sh|bash|zsh|dash)\b\s+-[a-zA-Z]*c\b""")
@@ -88,10 +92,12 @@ def classify(command: str, output: str | None, exit_code: Any = None) -> dict:
     checks = bool(verdicts) or has_assert
     if not checks:
         return {"checks": False, "attribution": "none", "verdicts": 0}
+    if TRUNCATED.search(text) and (verdicts or PRINTED.search(text)):
+        return {"checks": True, "attribution": "ambiguous", "verdicts": len(verdicts)}
     if verdicts:
-        if TRUNCATED.search(text):
-            return {"checks": True, "attribution": "ambiguous", "verdicts": len(verdicts)}
         return {"checks": True, "attribution": "verdict", "verdicts": len(verdicts)}
+    if PRINTED.search(text):
+        return {"checks": True, "attribution": "printed_outcome", "verdicts": 0}
     if segments is None:
         return {"checks": True, "attribution": "ambiguous", "verdicts": 0}
     if len(segments) == 1:
@@ -115,11 +121,14 @@ def audit(trace: Path) -> dict:
         commands.append(result)
     attempted = [c for c in commands if c["checks"]]
     counts = {name: sum(1 for c in attempted if c["attribution"] == name)
-              for name in ("verdict", "single_program", "masked", "ambiguous")}
-    attributable = counts["verdict"] + counts["single_program"]
+              for name in ("verdict", "printed_outcome", "single_program", "masked", "ambiguous")}
+    attributable = counts["verdict"] + counts["printed_outcome"] + counts["single_program"]
     return {
         "attempted_checks": len(attempted),
         "attributable": attributable,
+        "structured_verdicts": counts["verdict"],
+        "printed_outcome": counts["printed_outcome"],
+        "single_program": counts["single_program"],
         "masked": counts["masked"],
         "ambiguous": counts["ambiguous"],
         "verdict_lines": sum(c["verdicts"] for c in commands),
