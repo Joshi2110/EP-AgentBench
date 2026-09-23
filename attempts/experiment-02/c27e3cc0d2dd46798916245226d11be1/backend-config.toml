@@ -1,0 +1,18 @@
+approval_policy = "never"
+default_permissions = "evaluation"
+web_search = "disabled"
+project_doc_max_bytes = 0
+[shell_environment_policy]
+inherit = "none"
+[shell_environment_policy.set]
+PATH = "/Users/josh/Desktop/EP-Bench/ep-agentbench/attempts/experiment-02/c27e3cc0d2dd46798916245226d11be1/control/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+HOME = "/Users/josh/Desktop/EP-Bench/ep-agentbench/attempts/experiment-02/c27e3cc0d2dd46798916245226d11be1/live"
+TMPDIR = "/Users/josh/Desktop/EP-Bench/ep-agentbench/attempts/experiment-02/c27e3cc0d2dd46798916245226d11be1/live"
+PYTHONNOUSERSITE = "1"
+[permissions.evaluation.filesystem]
+":minimal" = "read"
+":workspace_roots" = "write"
+"/opt/homebrew/Cellar/python@3.11/3.11.15/Frameworks/Python.framework/Versions/3.11" = "read"
+"/Users/josh/Desktop/EP-Bench/ep-agentbench/attempts/experiment-02/c27e3cc0d2dd46798916245226d11be1/control/bin" = "read"
+[permissions.evaluation.network]
+enabled = false

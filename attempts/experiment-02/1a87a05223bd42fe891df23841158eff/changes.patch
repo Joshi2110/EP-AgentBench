@@ -1,0 +1,64 @@
+--- initial/physics.py
++++ workspace/physics.py
+@@ -8,7 +8,7 @@
+ 
+ 
+ def bohm_speed(te_ev: float) -> float:
+-    """Ion sound speed at the acceleration-region inlet, m/s."""
++    """Return ``sqrt(e * T_e / m_Xe)`` for a temperature in eV."""
+     if isinstance(te_ev, bool) or not isinstance(te_ev, (int, float)) or not isfinite(te_ev) or te_ev <= 0:
+         raise ValueError("Electron temperature must be a finite positive number of eV")
+     return sqrt(ELEMENTARY_CHARGE * te_ev / XENON_ION_MASS)
+--- initial/momentum.py
++++ workspace/momentum.py
+@@ -51,24 +51,41 @@
+ 
+ 
+ def solve(p: Parameters) -> dict[str, object]:
++    """March the particle and momentum fluxes across the channel.
++
++    The state is represented by the conservative fluxes ``n*u`` and
++    ``n*u*u``.  This makes the mass added in a cell carry its prescribed
++    neutral birth velocity in the momentum balance as required by the model.
++    """
+     prescribed = sample_profiles(p)
+     dx = p.length_m / p.n_cells
+     field, source = prescribed["e_field_v_per_m"], prescribed["source_per_m3_s"]
+     charge_to_mass = ELEMENTARY_CHARGE / XENON_ION_MASS
++    inlet_speed = bohm_speed(p.te_ev)
++    particle_flux = p.n_inlet_per_m3 * inlet_speed
++    momentum_flux = p.n_inlet_per_m3 * inlet_speed**2
+     density = [p.n_inlet_per_m3]
+-    speed = [bohm_speed(p.te_ev)]
+-    for e_face, s_face in zip(field, source):
+-        flux_next = density[-1] * speed[-1] + dx * s_face
+-        electric = charge_to_mass * density[-1] * e_face
+-        u_next = speed[-1] + dx * electric / flux_next
+-        if u_next <= 0:
++    speed = [inlet_speed]
++    for e_cell, s_cell in zip(field, source):
++        # Use the upwind (left-node) density for both cell source terms.
++        n_upwind = density[-1]
++        particle_flux += dx * s_cell
++        momentum_flux += dx * (
++            charge_to_mass * n_upwind * e_cell + p.u_neutral_m_per_s * s_cell
++        )
++        u_next = momentum_flux / particle_flux
++        if not isfinite(u_next) or u_next <= 0:
+             raise ValueError("Ion velocity became nonpositive")
+         speed.append(u_next)
+-        density.append(flux_next / u_next)
++        density.append(particle_flux / u_next)
+     momentum = XENON_ION_MASS * (density[-1] * speed[-1] ** 2 - density[0] * speed[0] ** 2)
+     force = sum(
+-        dx * (ELEMENTARY_CHARGE * n * e + XENON_ION_MASS * p.u_neutral_m_per_s * s)
+-        for n, e, s in zip(density, field, source)
++        dx
++        * (
++            ELEMENTARY_CHARGE * density[i] * field[i]
++            + XENON_ION_MASS * p.u_neutral_m_per_s * source[i]
++        )
++        for i in range(p.n_cells)
+     )
+     return {
+         **prescribed,

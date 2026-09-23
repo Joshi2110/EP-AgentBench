@@ -14,7 +14,12 @@ htmlcov/
 /results/
 my-first-task/
 my-hall-task/
-attempts/
+# Ignore attempt collections by default, but git must be able to descend, so
+# exclude the contents rather than the directory itself.
+attempts/*
+# Experiment 02 raw records are preserved in-repo. Credential copies are deleted
+# by the runner on termination and stay ignored by the auth rules below.
+!attempts/experiment-02/
 .isolation-*/
 # Never commit agent attempt records or any copied backend credentials.
 **/codex-home/

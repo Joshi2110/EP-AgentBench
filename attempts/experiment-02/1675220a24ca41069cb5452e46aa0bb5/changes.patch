@@ -1,0 +1,52 @@
+--- initial/physics.py
++++ workspace/physics.py
+@@ -1,6 +1,6 @@
+ """Idealized electron-impact ionization with a prescribed energy distribution."""
+ 
+-from math import isfinite, sqrt
++from math import exp, isfinite, sqrt
+ 
+ ELEMENTARY_CHARGE = 1.602176634e-19
+ ELECTRON_MASS = 9.1093837139e-31
+@@ -19,11 +19,18 @@
+     cold = te_ev / (1 + hot_fraction * (hot_ratio - 1))
+     hot = hot_ratio * cold
+ 
+-    def collision_proxy(energy_ev):
+-        cross_section_shape = max(1 - THRESHOLD_EV / energy_ev, 0.0)
+-        speed = sqrt(2 * ELEMENTARY_CHARGE * energy_ev / ELECTRON_MASS)
+-        return cross_section_shape * speed
++    # For one Maxwellian, integrating P_M*sigma*v from the threshold upward
++    # gives sigma0*sqrt(2e/m_e)*(2/sqrt(pi))*sqrt(T)*exp(-I/T).
++    # The two-temperature population is a number-weighted mixture of these
++    # rates, while the calibration fixes the one common sigma0 normalization.
++    speed_scale = sqrt(2 * ELEMENTARY_CHARGE / ELECTRON_MASS)
+ 
+-    representative_energy = 1.5 * ((1 - hot_fraction) * cold + hot_fraction * hot)
+-    normalization = CALIBRATION_RATE_M3_PER_S / collision_proxy(1.5 * CALIBRATION_TE_EV)
+-    return normalization * collision_proxy(representative_energy)
++    def thermal_factor(temperature):
++        return (2 / sqrt(3.141592653589793) * sqrt(temperature) *
++                exp(-THRESHOLD_EV / temperature))
++
++    calibration_factor = speed_scale * thermal_factor(CALIBRATION_TE_EV)
++    sigma0 = CALIBRATION_RATE_M3_PER_S / calibration_factor
++    mixture_factor = ((1 - hot_fraction) * thermal_factor(cold) +
++                      hot_fraction * thermal_factor(hot))
++    return sigma0 * speed_scale * mixture_factor
+--- initial/continuity.py
++++ workspace/continuity.py
+@@ -60,10 +60,10 @@
+     for i, temperature in enumerate(profiles["te_ev"]):
+         k = rate_coefficient(temperature, p.hot_fraction, p.hot_ratio)
+         speed = p.ion_speed_m_per_s * (1 + p.velocity_rise * (i + 0.5) / p.n_cells)
++        # With coefficients frozen in a cell, dGi/dx = a Gi Gn and
++        # Gi+Gn=total.  Thus the ion/neutral flux odds grow exponentially.
+         exposure += dx * total * k / (speed * p.neutral_speed_m_per_s)
+-        if k == 0:
+-            ion, neutral = ions[-1], neutrals[-1]
+-        elif p.ion_flux_in_per_m2_s == 0:
++        if p.ion_flux_in_per_m2_s == 0:
+             ion, neutral = 0.0, total
+         else:
+             odds = exp(log(p.ion_flux_in_per_m2_s / p.neutral_flux_in_per_m2_s) + exposure)

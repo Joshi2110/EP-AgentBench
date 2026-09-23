@@ -1,0 +1,73 @@
+--- initial/physics.py
++++ workspace/physics.py
+@@ -1,6 +1,6 @@
+ """Idealized electron-impact ionization with a prescribed energy distribution."""
+ 
+-from math import isfinite, sqrt
++from math import exp, isfinite, sqrt
+ 
+ ELEMENTARY_CHARGE = 1.602176634e-19
+ ELECTRON_MASS = 9.1093837139e-31
+@@ -19,11 +19,15 @@
+     cold = te_ev / (1 + hot_fraction * (hot_ratio - 1))
+     hot = hot_ratio * cold
+ 
+-    def collision_proxy(energy_ev):
+-        cross_section_shape = max(1 - THRESHOLD_EV / energy_ev, 0.0)
+-        speed = sqrt(2 * ELEMENTARY_CHARGE * energy_ev / ELECTRON_MASS)
+-        return cross_section_shape * speed
++    # For one Maxwellian, integrating sigma(epsilon) v(epsilon) against
++    # P_M gives a common constant times
++    #       sqrt(T) * exp(-THRESHOLD_EV / T).
++    # The common cross-section normalization is fixed by the 20 eV
++    # calibration and then applies to both components of the mixture.
++    def maxwellian_collision_factor(temperature):
++        return sqrt(temperature) * exp(-THRESHOLD_EV / temperature)
+ 
+-    representative_energy = 1.5 * ((1 - hot_fraction) * cold + hot_fraction * hot)
+-    normalization = CALIBRATION_RATE_M3_PER_S / collision_proxy(1.5 * CALIBRATION_TE_EV)
+-    return normalization * collision_proxy(representative_energy)
++    calibration_factor = maxwellian_collision_factor(CALIBRATION_TE_EV)
++    mixture_factor = ((1 - hot_fraction) * maxwellian_collision_factor(cold)
++                      + hot_fraction * maxwellian_collision_factor(hot))
++    return CALIBRATION_RATE_M3_PER_S * mixture_factor / calibration_factor
+--- initial/continuity.py
++++ workspace/continuity.py
+@@ -56,19 +56,29 @@
+     total = p.ion_flux_in_per_m2_s + p.neutral_flux_in_per_m2_s
+     ions, neutrals = [p.ion_flux_in_per_m2_s], [p.neutral_flux_in_per_m2_s]
+     rates, sources = [], []
+-    exposure = 0.0
++    # The total particle flux is constant in each frozen cell.  The exact
++    # solution is most conveniently represented by the log of the flux odds.
++    # A cap only prevents underflow in the neutral tail; it is far below the
++    # precision relevant to the requested physical residuals.
++    log_odds = (log(p.ion_flux_in_per_m2_s / p.neutral_flux_in_per_m2_s)
++                if p.ion_flux_in_per_m2_s > 0 else None)
+     for i, temperature in enumerate(profiles["te_ev"]):
+         k = rate_coefficient(temperature, p.hot_fraction, p.hot_ratio)
+         speed = p.ion_speed_m_per_s * (1 + p.velocity_rise * (i + 0.5) / p.n_cells)
+-        exposure += dx * total * k / (speed * p.neutral_speed_m_per_s)
+-        if k == 0:
+-            ion, neutral = ions[-1], neutrals[-1]
+-        elif p.ion_flux_in_per_m2_s == 0:
++        if log_odds is None:
+             ion, neutral = 0.0, total
+         else:
+-            odds = exp(log(p.ion_flux_in_per_m2_s / p.neutral_flux_in_per_m2_s) + exposure)
+-            neutral = total / (1 + odds)
+-            ion = total * odds / (1 + odds)
++            log_odds += dx * total * k / (speed * p.neutral_speed_m_per_s)
++            if log_odds >= 0:
++                # Keep the neutral flux strictly positive for every valid
++                # input, including cases with an extremely large exposure.
++                neutral_odds = exp(-min(log_odds, 700.0))
++                neutral = total * neutral_odds / (1 + neutral_odds)
++                ion = total - neutral
++            else:
++                odds = exp(log_odds)
++                ion = total * odds / (1 + odds)
++                neutral = total - ion
+         rates.append(k)
+         sources.append((ion - ions[-1]) / dx)
+         ions.append(ion)

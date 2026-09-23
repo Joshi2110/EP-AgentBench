@@ -1,0 +1,32 @@
+--- initial/momentum.py
++++ workspace/momentum.py
+@@ -58,17 +58,23 @@
+     density = [p.n_inlet_per_m3]
+     speed = [bohm_speed(p.te_ev)]
+     for e_face, s_face in zip(field, source):
+-        flux_next = density[-1] * speed[-1] + dx * s_face
+-        electric = charge_to_mass * density[-1] * e_face
+-        u_next = speed[-1] + dx * electric / flux_next
++        # March the particle and momentum fluxes conservatively.  The
++        # density in both source terms is the upwind (left-node) density.
++        particle_flux_next = density[-1] * speed[-1] + dx * s_face
++        momentum_flux = density[-1] * speed[-1] ** 2
++        momentum_flux_next = momentum_flux + dx * (
++            charge_to_mass * density[-1] * e_face + p.u_neutral_m_per_s * s_face
++        )
++        u_next = momentum_flux_next / particle_flux_next
+         if u_next <= 0:
+             raise ValueError("Ion velocity became nonpositive")
+         speed.append(u_next)
+-        density.append(flux_next / u_next)
++        density.append(particle_flux_next / u_next)
+     momentum = XENON_ION_MASS * (density[-1] * speed[-1] ** 2 - density[0] * speed[0] ** 2)
+     force = sum(
+-        dx * (ELEMENTARY_CHARGE * n * e + XENON_ION_MASS * p.u_neutral_m_per_s * s)
+-        for n, e, s in zip(density, field, source)
++        dx * (ELEMENTARY_CHARGE * density[i] * field[i]
++              + XENON_ION_MASS * p.u_neutral_m_per_s * source[i])
++        for i in range(p.n_cells)
+     )
+     return {
+         **prescribed,

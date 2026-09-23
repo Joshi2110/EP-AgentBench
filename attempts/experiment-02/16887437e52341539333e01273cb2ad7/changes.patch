@@ -1,0 +1,73 @@
+--- initial/physics.py
++++ workspace/physics.py
+@@ -1,6 +1,6 @@
+ """Idealized electron-impact ionization with a prescribed energy distribution."""
+ 
+-from math import isfinite, sqrt
++from math import exp, isfinite, pi, sqrt
+ 
+ ELEMENTARY_CHARGE = 1.602176634e-19
+ ELECTRON_MASS = 9.1093837139e-31
+@@ -19,11 +19,17 @@
+     cold = te_ev / (1 + hot_fraction * (hot_ratio - 1))
+     hot = hot_ratio * cold
+ 
+-    def collision_proxy(energy_ev):
+-        cross_section_shape = max(1 - THRESHOLD_EV / energy_ev, 0.0)
+-        speed = sqrt(2 * ELEMENTARY_CHARGE * energy_ev / ELECTRON_MASS)
+-        return cross_section_shape * speed
++    # For one Maxwellian, integrating P_M*sigma*v from the threshold to
++    # infinity gives
++    #   sigma0 * 2*sqrt(2*e*T/(pi*m_e)) * exp(-I/T).
++    # The mixture is a number-weighted sum of these component averages.
++    def unit_cross_section_average(temperature):
++        return (2.0 * sqrt(2.0 * ELEMENTARY_CHARGE * temperature /
++                            (pi * ELECTRON_MASS)) *
++                exp(-THRESHOLD_EV / temperature))
+ 
+-    representative_energy = 1.5 * ((1 - hot_fraction) * cold + hot_fraction * hot)
+-    normalization = CALIBRATION_RATE_M3_PER_S / collision_proxy(1.5 * CALIBRATION_TE_EV)
+-    return normalization * collision_proxy(representative_energy)
++    calibration_average = unit_cross_section_average(CALIBRATION_TE_EV)
++    sigma0 = CALIBRATION_RATE_M3_PER_S / calibration_average
++    population_average = ((1.0 - hot_fraction) * unit_cross_section_average(cold) +
++                          hot_fraction * unit_cross_section_average(hot))
++    return sigma0 * population_average
+--- initial/continuity.py
++++ workspace/continuity.py
+@@ -56,19 +56,27 @@
+     total = p.ion_flux_in_per_m2_s + p.neutral_flux_in_per_m2_s
+     ions, neutrals = [p.ion_flux_in_per_m2_s], [p.neutral_flux_in_per_m2_s]
+     rates, sources = [], []
+-    exposure = 0.0
++    # The sum of the two fluxes is constant.  In a cell with frozen
++    # coefficients, dGi/dx = (K/(ui*un))*Gi*(total-Gi), whose exact solution
++    # advances the ion-to-neutral flux odds by exp(total*K*dx/(ui*un)).
++    log_odds = None if p.ion_flux_in_per_m2_s == 0 else log(
++        p.ion_flux_in_per_m2_s / p.neutral_flux_in_per_m2_s)
+     for i, temperature in enumerate(profiles["te_ev"]):
+         k = rate_coefficient(temperature, p.hot_fraction, p.hot_ratio)
+         speed = p.ion_speed_m_per_s * (1 + p.velocity_rise * (i + 0.5) / p.n_cells)
+-        exposure += dx * total * k / (speed * p.neutral_speed_m_per_s)
+-        if k == 0:
+-            ion, neutral = ions[-1], neutrals[-1]
+-        elif p.ion_flux_in_per_m2_s == 0:
++        log_odds_increment = dx * total * k / (speed * p.neutral_speed_m_per_s)
++        if log_odds is None:
+             ion, neutral = 0.0, total
+         else:
+-            odds = exp(log(p.ion_flux_in_per_m2_s / p.neutral_flux_in_per_m2_s) + exposure)
+-            neutral = total / (1 + odds)
+-            ion = total * odds / (1 + odds)
++            log_odds += log_odds_increment
++            # Evaluate the logistic function without overflowing exp().
++            if log_odds >= 0.0:
++                neutral = total * exp(-log_odds) / (1.0 + exp(-log_odds))
++                ion = total - neutral
++            else:
++                odds = exp(log_odds)
++                ion = total * odds / (1.0 + odds)
++                neutral = total - ion
+         rates.append(k)
+         sources.append((ion - ions[-1]) / dx)
+         ions.append(ion)

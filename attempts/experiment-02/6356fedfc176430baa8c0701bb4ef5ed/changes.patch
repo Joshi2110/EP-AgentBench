@@ -1,0 +1,33 @@
+--- initial/physics.py
++++ workspace/physics.py
+@@ -9,6 +9,8 @@
+ 
+ def bohm_speed(te_ev: float) -> float:
+     """Ion sound speed at the acceleration-region inlet, m/s."""
++    # Temperature is supplied in eV, so the elementary charge converts it to
++    # joules before dividing by the xenon ion mass.
+     if isinstance(te_ev, bool) or not isinstance(te_ev, (int, float)) or not isfinite(te_ev) or te_ev <= 0:
+         raise ValueError("Electron temperature must be a finite positive number of eV")
+     return sqrt(ELEMENTARY_CHARGE * te_ev / XENON_ION_MASS)
+--- initial/momentum.py
++++ workspace/momentum.py
+@@ -58,9 +58,16 @@
+     density = [p.n_inlet_per_m3]
+     speed = [bohm_speed(p.te_ev)]
+     for e_face, s_face in zip(field, source):
+-        flux_next = density[-1] * speed[-1] + dx * s_face
+-        electric = charge_to_mass * density[-1] * e_face
+-        u_next = speed[-1] + dx * electric / flux_next
++        # March the two conservative fluxes independently.  The source adds
++        # particles carrying the prescribed neutral birth velocity, not the
++        # velocity of the ions already in the cell.
++        particle_flux = density[-1] * speed[-1]
++        momentum_flux = density[-1] * speed[-1] ** 2
++        flux_next = particle_flux + dx * s_face
++        momentum_next = momentum_flux + dx * (
++            charge_to_mass * density[-1] * e_face + p.u_neutral_m_per_s * s_face
++        )
++        u_next = momentum_next / flux_next
+         if u_next <= 0:
+             raise ValueError("Ion velocity became nonpositive")
+         speed.append(u_next)

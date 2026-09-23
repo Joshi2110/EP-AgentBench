@@ -1,0 +1,23 @@
+--- initial/momentum.py
++++ workspace/momentum.py
+@@ -58,9 +58,17 @@
+     density = [p.n_inlet_per_m3]
+     speed = [bohm_speed(p.te_ev)]
+     for e_face, s_face in zip(field, source):
+-        flux_next = density[-1] * speed[-1] + dx * s_face
+-        electric = charge_to_mass * density[-1] * e_face
+-        u_next = speed[-1] + dx * electric / flux_next
++        # March the conservative particle and momentum fluxes.  The source
++        # adds particles carrying the neutral birth velocity, so its
++        # contribution to momentum flux must be retained explicitly.
++        flux = density[-1] * speed[-1]
++        flux_next = flux + dx * s_face
++        momentum_flux = density[-1] * speed[-1] ** 2
++        momentum_flux_next = momentum_flux + dx * (
++            charge_to_mass * density[-1] * e_face
++            + p.u_neutral_m_per_s * s_face
++        )
++        u_next = momentum_flux_next / flux_next
+         if u_next <= 0:
+             raise ValueError("Ion velocity became nonpositive")
+         speed.append(u_next)

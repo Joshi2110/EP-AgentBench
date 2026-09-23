@@ -1,0 +1,1401 @@
+{
+  "schema_version": 1,
+  "task": "hall-transport",
+  "benchmark_version": "0.5.0",
+  "protocol": "structured",
+  "attempt_id": "45ae1f8d39074921914e47cade294ccf",
+  "started_at": "2026-09-23T04:08:04.247547+00:00",
+  "ended_at": "2026-09-23T04:09:30.236107+00:00",
+  "agent": {
+    "name": "codex",
+    "version": "codex-cli 0.154.0-alpha.6.2",
+    "model_requested": "gpt-5.6-luna",
+    "model_observed": null,
+    "isolation": "codex permission profile; preflight verified"
+  },
+  "budget": {
+    "wall_seconds": 900.0
+  },
+  "status": "success",
+  "execution": {
+    "status": "completed",
+    "termination_reason": "turn_completed",
+    "returncode": 0,
+    "elapsed_seconds": 84.809,
+    "tool_calls": 10,
+    "tool_call_metric": "unique observed action-item IDs; excludes hidden/internal tool calls",
+    "backend_error": null
+  },
+  "grading": {
+    "status": "passed",
+    "result": {
+      "schema_version": 1,
+      "epbench_version": "0.5.0",
+      "task": "hall-transport",
+      "status": "passed",
+      "passed": 13,
+      "total": 13,
+      "success_rate": 1.0,
+      "tolerance": {
+        "scaled_residual": 1e-08,
+        "refinement_current_relative": 0.001,
+        "refinement_potential_v": 0.02,
+        "refinement_contraction": 0.4
+      },
+      "timeout_seconds": 5.0,
+      "cases": [
+        {
+          "case": "case-01",
+          "kind": "mobility",
+          "passed": true,
+          "status": "passed",
+          "relative_error": null,
+          "detail": "All physical and numerical checks passed",
+          "diagnostics": {
+            "mobility_law": {
+              "passed": true,
+              "error": 2.08910438683897e-16,
+              "tolerance": 1e-08
+            },
+            "unmagnetized_limit": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "magnetic_evenness": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "magnetic_suppression": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            }
+          }
+        },
+        {
+          "case": "case-02",
+          "kind": "mobility",
+          "passed": true,
+          "status": "passed",
+          "relative_error": null,
+          "detail": "All physical and numerical checks passed",
+          "diagnostics": {
+            "mobility_law": {
+              "passed": true,
+              "error": 3.1646907828943314e-16,
+              "tolerance": 1e-08
+            },
+            "unmagnetized_limit": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "magnetic_evenness": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "magnetic_suppression": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            }
+          }
+        },
+        {
+          "case": "case-03",
+          "kind": "mobility",
+          "passed": true,
+          "status": "passed",
+          "relative_error": null,
+          "detail": "All physical and numerical checks passed",
+          "diagnostics": {
+            "mobility_law": {
+              "passed": true,
+              "error": 3.0197150112734015e-16,
+              "tolerance": 1e-08
+            },
+            "unmagnetized_limit": {
+              "passed": true,
+              "error": 2.0199415869033975e-16,
+              "tolerance": 1e-08
+            },
+            "magnetic_evenness": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "magnetic_suppression": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            }
+          }
+        },
+        {
+          "case": "case-04",
+          "kind": "model",
+          "passed": true,
+          "status": "passed",
+          "relative_error": null,
+          "detail": "All physical and numerical checks passed",
+          "diagnostics": {
+            "model-1/x_m": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/n_per_m3": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/te_ev": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/b_t": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/nu_per_s": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/face_mobility": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/potential_boundaries": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/field_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/face_current": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/integrated_current": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/ion_energy": {
+              "passed": true,
+              "error": 2.3684757858670006e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/nonnegative_ion_speed": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            },
+            "model-1/uniform_potential": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/uniform_current": {
+              "passed": true,
+              "error": 1.7213417805876197e-16,
+              "tolerance": 1e-08
+            }
+          }
+        },
+        {
+          "case": "case-05",
+          "kind": "model",
+          "passed": true,
+          "status": "passed",
+          "relative_error": null,
+          "detail": "All physical and numerical checks passed",
+          "diagnostics": {
+            "model-1/x_m": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/n_per_m3": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/te_ev": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/b_t": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/nu_per_s": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/face_mobility": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/potential_boundaries": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/field_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/face_current": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/integrated_current": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/ion_energy": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/nonnegative_ion_speed": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            },
+            "model-1/uniform_potential": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/uniform_current": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            }
+          }
+        },
+        {
+          "case": "case-06",
+          "kind": "model",
+          "passed": true,
+          "status": "passed",
+          "relative_error": null,
+          "detail": "All physical and numerical checks passed",
+          "diagnostics": {
+            "model-1/x_m": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/n_per_m3": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/te_ev": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/b_t": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/nu_per_s": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/face_mobility": {
+              "passed": true,
+              "error": 5.035756036305285e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/potential_boundaries": {
+              "passed": true,
+              "error": 2.516505522483688e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/field_gradient": {
+              "passed": true,
+              "error": 7.48817304459711e-15,
+              "tolerance": 1e-08
+            },
+            "model-1/face_current": {
+              "passed": true,
+              "error": 2.593861923004134e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/integrated_current": {
+              "passed": true,
+              "error": 1.8947806286936006e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/ion_energy": {
+              "passed": true,
+              "error": 1.8947806286936006e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/nonnegative_ion_speed": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            }
+          }
+        },
+        {
+          "case": "case-07",
+          "kind": "model",
+          "passed": true,
+          "status": "passed",
+          "relative_error": null,
+          "detail": "All physical and numerical checks passed",
+          "diagnostics": {
+            "model-1/x_m": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/n_per_m3": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/te_ev": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/b_t": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/nu_per_s": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/face_mobility": {
+              "passed": true,
+              "error": 5.434509765131009e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/potential_boundaries": {
+              "passed": true,
+              "error": 1.973729821555834e-17,
+              "tolerance": 1e-08
+            },
+            "model-1/field_gradient": {
+              "passed": true,
+              "error": 2.6779566218869553e-15,
+              "tolerance": 1e-08
+            },
+            "model-1/face_current": {
+              "passed": true,
+              "error": 4.775595885543384e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/integrated_current": {
+              "passed": true,
+              "error": 1.5789838572446671e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/ion_energy": {
+              "passed": true,
+              "error": 3.1579677144893343e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/nonnegative_ion_speed": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            }
+          }
+        },
+        {
+          "case": "case-08",
+          "kind": "model",
+          "passed": true,
+          "status": "passed",
+          "relative_error": null,
+          "detail": "All physical and numerical checks passed",
+          "diagnostics": {
+            "model-1/x_m": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/n_per_m3": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/te_ev": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/b_t": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/nu_per_s": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/face_mobility": {
+              "passed": true,
+              "error": 5.048963616294124e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/potential_boundaries": {
+              "passed": true,
+              "error": 3.6859404417555195e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/field_gradient": {
+              "passed": true,
+              "error": 1.0507979671577536e-14,
+              "tolerance": 1e-08
+            },
+            "model-1/face_current": {
+              "passed": true,
+              "error": 5.047931837724655e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/integrated_current": {
+              "passed": true,
+              "error": 1.8814887606171677e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/ion_energy": {
+              "passed": true,
+              "error": 3.789561257387201e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/nonnegative_ion_speed": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            }
+          }
+        },
+        {
+          "case": "case-09",
+          "kind": "model",
+          "passed": true,
+          "status": "passed",
+          "relative_error": null,
+          "detail": "All physical and numerical checks passed",
+          "diagnostics": {
+            "model-1/x_m": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/n_per_m3": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/te_ev": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/b_t": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/nu_per_s": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/face_mobility": {
+              "passed": true,
+              "error": 3.538555232001074e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/potential_boundaries": {
+              "passed": true,
+              "error": 2.5376526277146434e-17,
+              "tolerance": 1e-08
+            },
+            "model-1/field_gradient": {
+              "passed": true,
+              "error": 1.5664285684322888e-15,
+              "tolerance": 1e-08
+            },
+            "model-1/face_current": {
+              "passed": true,
+              "error": 3.809844975984224e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/integrated_current": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/ion_energy": {
+              "passed": true,
+              "error": 2.0301221021717148e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/nonnegative_ion_speed": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            }
+          }
+        },
+        {
+          "case": "case-10",
+          "kind": "model",
+          "passed": true,
+          "status": "passed",
+          "relative_error": null,
+          "detail": "All physical and numerical checks passed",
+          "diagnostics": {
+            "model-1/x_m": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/n_per_m3": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/te_ev": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/b_t": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/nu_per_s": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/face_mobility": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/potential_boundaries": {
+              "passed": true,
+              "error": 3.9968028886505634e-17,
+              "tolerance": 1e-08
+            },
+            "model-1/field_gradient": {
+              "passed": true,
+              "error": 1.6889669553576213e-15,
+              "tolerance": 1e-08
+            },
+            "model-1/face_current": {
+              "passed": true,
+              "error": 2.50001828116083e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/integrated_current": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/ion_energy": {
+              "passed": true,
+              "error": 1.2079226507921704e-15,
+              "tolerance": 1e-08
+            },
+            "model-1/nonnegative_ion_speed": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            },
+            "model-1/analytic_pressure_potential": {
+              "passed": true,
+              "error": 2.1316282072803005e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/analytic_pressure_current": {
+              "passed": true,
+              "error": 5.0000365623216596e-17,
+              "tolerance": 1e-08
+            }
+          }
+        },
+        {
+          "case": "case-11",
+          "kind": "magnetic_reversal",
+          "passed": true,
+          "status": "passed",
+          "relative_error": null,
+          "detail": "All physical and numerical checks passed",
+          "diagnostics": {
+            "model-1/x_m": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/n_per_m3": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/te_ev": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/b_t": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/nu_per_s": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/face_mobility": {
+              "passed": true,
+              "error": 5.035756036305285e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/potential_boundaries": {
+              "passed": true,
+              "error": 2.516505522483688e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/field_gradient": {
+              "passed": true,
+              "error": 7.48817304459711e-15,
+              "tolerance": 1e-08
+            },
+            "model-1/face_current": {
+              "passed": true,
+              "error": 2.593861923004134e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/integrated_current": {
+              "passed": true,
+              "error": 1.8947806286936006e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/ion_energy": {
+              "passed": true,
+              "error": 1.8947806286936006e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/nonnegative_ion_speed": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            },
+            "model-2/x_m": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/n_per_m3": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/te_ev": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/b_t": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/nu_per_s": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/pressure": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/face_mobility": {
+              "passed": true,
+              "error": 5.035756036305285e-16,
+              "tolerance": 1e-08
+            },
+            "model-2/pressure_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/potential_boundaries": {
+              "passed": true,
+              "error": 2.516505522483688e-16,
+              "tolerance": 1e-08
+            },
+            "model-2/field_gradient": {
+              "passed": true,
+              "error": 7.48817304459711e-15,
+              "tolerance": 1e-08
+            },
+            "model-2/face_current": {
+              "passed": true,
+              "error": 2.593861923004134e-16,
+              "tolerance": 1e-08
+            },
+            "model-2/integrated_current": {
+              "passed": true,
+              "error": 1.8947806286936006e-16,
+              "tolerance": 1e-08
+            },
+            "model-2/ion_energy": {
+              "passed": true,
+              "error": 1.8947806286936006e-16,
+              "tolerance": 1e-08
+            },
+            "model-2/nonnegative_ion_speed": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            },
+            "reversed_potential": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "reversed_current": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            }
+          }
+        },
+        {
+          "case": "case-12",
+          "kind": "refinement",
+          "passed": true,
+          "status": "passed",
+          "relative_error": null,
+          "detail": "All physical and numerical checks passed",
+          "diagnostics": {
+            "model-1/x_m": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/n_per_m3": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/te_ev": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/b_t": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/nu_per_s": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/face_mobility": {
+              "passed": true,
+              "error": 5.035756036305285e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/potential_boundaries": {
+              "passed": true,
+              "error": 2.516505522483688e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/field_gradient": {
+              "passed": true,
+              "error": 7.48817304459711e-15,
+              "tolerance": 1e-08
+            },
+            "model-1/face_current": {
+              "passed": true,
+              "error": 2.593861923004134e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/integrated_current": {
+              "passed": true,
+              "error": 1.8947806286936006e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/ion_energy": {
+              "passed": true,
+              "error": 1.8947806286936006e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/nonnegative_ion_speed": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            },
+            "model-2/x_m": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/n_per_m3": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/te_ev": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/b_t": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/nu_per_s": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/pressure": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/face_mobility": {
+              "passed": true,
+              "error": 5.30446883664763e-16,
+              "tolerance": 1e-08
+            },
+            "model-2/pressure_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/potential_boundaries": {
+              "passed": true,
+              "error": 5.921189464667501e-16,
+              "tolerance": 1e-08
+            },
+            "model-2/field_gradient": {
+              "passed": true,
+              "error": 1.508794866822427e-14,
+              "tolerance": 1e-08
+            },
+            "model-2/face_current": {
+              "passed": true,
+              "error": 2.593791425481666e-16,
+              "tolerance": 1e-08
+            },
+            "model-2/integrated_current": {
+              "passed": true,
+              "error": 1.8947806286936006e-16,
+              "tolerance": 1e-08
+            },
+            "model-2/ion_energy": {
+              "passed": true,
+              "error": 1.8947806286936006e-16,
+              "tolerance": 1e-08
+            },
+            "model-2/nonnegative_ion_speed": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            },
+            "model-3/x_m": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-3/n_per_m3": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-3/te_ev": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-3/b_t": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-3/nu_per_s": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-3/pressure": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-3/face_mobility": {
+              "passed": true,
+              "error": 5.244607230643343e-16,
+              "tolerance": 1e-08
+            },
+            "model-3/pressure_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-3/potential_boundaries": {
+              "passed": true,
+              "error": 3.5453121919696666e-16,
+              "tolerance": 1e-08
+            },
+            "model-3/field_gradient": {
+              "passed": true,
+              "error": 2.999949325991717e-14,
+              "tolerance": 1e-08
+            },
+            "model-3/face_current": {
+              "passed": true,
+              "error": 3.4581740468205665e-16,
+              "tolerance": 1e-08
+            },
+            "model-3/integrated_current": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-3/ion_energy": {
+              "passed": true,
+              "error": 3.789561257387201e-16,
+              "tolerance": 1e-08
+            },
+            "model-3/nonnegative_ion_speed": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            },
+            "refinement_current": {
+              "passed": true,
+              "error": 0.00038384317326366706,
+              "tolerance": 0.001
+            },
+            "refinement_potential": {
+              "passed": true,
+              "error": 0.017930125955672338,
+              "tolerance": 0.02
+            },
+            "current_contraction": {
+              "passed": true,
+              "error": 0.2500114338246565,
+              "tolerance": 0.4
+            },
+            "potential_contraction": {
+              "passed": true,
+              "error": 0.2497135192371515,
+              "tolerance": 0.4
+            }
+          }
+        },
+        {
+          "case": "case-13",
+          "kind": "refinement",
+          "passed": true,
+          "status": "passed",
+          "relative_error": null,
+          "detail": "All physical and numerical checks passed",
+          "diagnostics": {
+            "model-1/x_m": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/n_per_m3": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/te_ev": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/b_t": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/nu_per_s": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/face_mobility": {
+              "passed": true,
+              "error": 5.192184083514896e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/pressure_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-1/potential_boundaries": {
+              "passed": true,
+              "error": 2.2870594307278225e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/field_gradient": {
+              "passed": true,
+              "error": 5.4569682106375695e-15,
+              "tolerance": 1e-08
+            },
+            "model-1/face_current": {
+              "passed": true,
+              "error": 3.713061840279588e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/integrated_current": {
+              "passed": true,
+              "error": 1.4144973633362272e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/ion_energy": {
+              "passed": true,
+              "error": 2.842170943040401e-16,
+              "tolerance": 1e-08
+            },
+            "model-1/nonnegative_ion_speed": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            },
+            "model-2/x_m": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/n_per_m3": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/te_ev": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/b_t": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/nu_per_s": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/pressure": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/face_mobility": {
+              "passed": true,
+              "error": 5.097522965646912e-16,
+              "tolerance": 1e-08
+            },
+            "model-2/pressure_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-2/potential_boundaries": {
+              "passed": true,
+              "error": 8.493206138382448e-17,
+              "tolerance": 1e-08
+            },
+            "model-2/field_gradient": {
+              "passed": true,
+              "error": 1.1323209037072956e-14,
+              "tolerance": 1e-08
+            },
+            "model-2/face_current": {
+              "passed": true,
+              "error": 5.187076541825322e-16,
+              "tolerance": 1e-08
+            },
+            "model-2/integrated_current": {
+              "passed": true,
+              "error": 4.243491523313519e-16,
+              "tolerance": 1e-08
+            },
+            "model-2/ion_energy": {
+              "passed": true,
+              "error": 4.263256414560601e-16,
+              "tolerance": 1e-08
+            },
+            "model-2/nonnegative_ion_speed": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            },
+            "model-3/x_m": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-3/n_per_m3": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-3/te_ev": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-3/b_t": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-3/nu_per_s": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-3/pressure": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-3/face_mobility": {
+              "passed": true,
+              "error": 5.187183418531909e-16,
+              "tolerance": 1e-08
+            },
+            "model-3/pressure_gradient": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 1e-08
+            },
+            "model-3/potential_boundaries": {
+              "passed": true,
+              "error": 6.342149028171207e-16,
+              "tolerance": 1e-08
+            },
+            "model-3/field_gradient": {
+              "passed": true,
+              "error": 2.271463017677888e-14,
+              "tolerance": 1e-08
+            },
+            "model-3/face_current": {
+              "passed": true,
+              "error": 5.181654717290867e-16,
+              "tolerance": 1e-08
+            },
+            "model-3/integrated_current": {
+              "passed": true,
+              "error": 5.657988508836904e-16,
+              "tolerance": 1e-08
+            },
+            "model-3/ion_energy": {
+              "passed": true,
+              "error": 2.842170943040401e-16,
+              "tolerance": 1e-08
+            },
+            "model-3/nonnegative_ion_speed": {
+              "passed": true,
+              "error": 0.0,
+              "tolerance": 0.0
+            },
+            "refinement_current": {
+              "passed": true,
+              "error": 0.0003773949602259627,
+              "tolerance": 0.001
+            },
+            "refinement_potential": {
+              "passed": true,
+              "error": 0.01934873545104665,
+              "tolerance": 0.02
+            },
+            "current_contraction": {
+              "passed": true,
+              "error": 0.2500199293830341,
+              "tolerance": 0.4
+            },
+            "potential_contraction": {
+              "passed": true,
+              "error": 0.2499450083499416,
+              "tolerance": 0.4
+            }
+          }
+        }
+      ],
+      "warning": "Trusted local execution only: Python -I and temporary directories are not a security sandbox."
+    }
+  },
+  "scored": true,
+  "exclusion_reason": null,
+  "score": {
+    "passed": 13,
+    "total": 13,
+    "success_rate": 1.0
+  },
+  "paths": {
+    "workspace": "/Users/josh/Desktop/EP-Bench/ep-agentbench/attempts/experiment-02/45ae1f8d39074921914e47cade294ccf/workspace",
+    "trace": "/Users/josh/Desktop/EP-Bench/ep-agentbench/attempts/experiment-02/45ae1f8d39074921914e47cade294ccf/trace.jsonl",
+    "diff": "/Users/josh/Desktop/EP-Bench/ep-agentbench/attempts/experiment-02/45ae1f8d39074921914e47cade294ccf/changes.patch"
+  },
+  "limitations": [
+    "Local CLI restrictions are not a comprehensive security boundary.",
+    "Public evaluation cases are withheld at runtime, not secret.",
+    "No token counts, costs, or model determinism are inferred.",
+    "Attempts with scored=false are diagnostic only and must be kept out of model aggregates."
+  ],
+  "initial_sha256": {
+    "README.md": "5a376206bfc6d173de74bed669fc6ec06055da85b79e329fec342e19802a0bd1",
+    "physics.py": "8399e77f19eb3d549e0cbf41cd06bd2f62e7600bd58225cf9a62606350d8a536",
+    "model.py": "6cea7569c4624a20e29791847b7da18e1d168bb02c373985db81e35972a251e8",
+    "run.py": "9a29ff2075ecf2743ecd8b99375843942216523e1fd696e6cc80fc01827d47b4"
+  },
+  "final_sha256": {
+    "README.md": "5a376206bfc6d173de74bed669fc6ec06055da85b79e329fec342e19802a0bd1",
+    "physics.py": "c9b433ab2ea7f601e3bf84bce9231bf7e911a98351b2c0660b1102bf00f693b0",
+    "model.py": "45ec1a5b8c359c4762e293c4f6060e49a6b0aed0aa4ae2564666816a4ea6402d",
+    "run.py": "9a29ff2075ecf2743ecd8b99375843942216523e1fd696e6cc80fc01827d47b4"
+  }
+}

@@ -1,0 +1,28 @@
+--- initial/momentum.py
++++ workspace/momentum.py
+@@ -57,14 +57,20 @@
+     charge_to_mass = ELEMENTARY_CHARGE / XENON_ION_MASS
+     density = [p.n_inlet_per_m3]
+     speed = [bohm_speed(p.te_ev)]
+-    for e_face, s_face in zip(field, source):
+-        flux_next = density[-1] * speed[-1] + dx * s_face
+-        electric = charge_to_mass * density[-1] * e_face
+-        u_next = speed[-1] + dx * electric / flux_next
++    particle_flux = density[0] * speed[0]
++    momentum_flux = density[0] * speed[0] ** 2
++    for e_cell, s_cell in zip(field, source):
++        # Both source terms use the upwind state and prescribed cell values.
++        particle_flux += dx * s_cell
++        momentum_flux += dx * (
++            charge_to_mass * density[-1] * e_cell
++            + p.u_neutral_m_per_s * s_cell
++        )
++        u_next = momentum_flux / particle_flux
+         if u_next <= 0:
+             raise ValueError("Ion velocity became nonpositive")
+         speed.append(u_next)
+-        density.append(flux_next / u_next)
++        density.append(particle_flux / u_next)
+     momentum = XENON_ION_MASS * (density[-1] * speed[-1] ** 2 - density[0] * speed[0] ** 2)
+     force = sum(
+         dx * (ELEMENTARY_CHARGE * n * e + XENON_ION_MASS * p.u_neutral_m_per_s * s)

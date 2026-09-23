@@ -1,0 +1,71 @@
+--- initial/physics.py
++++ workspace/physics.py
+@@ -1,6 +1,6 @@
+ """Idealized electron-impact ionization with a prescribed energy distribution."""
+ 
+-from math import isfinite, sqrt
++from math import exp, isfinite, pi, sqrt
+ 
+ ELEMENTARY_CHARGE = 1.602176634e-19
+ ELECTRON_MASS = 9.1093837139e-31
+@@ -19,11 +19,14 @@
+     cold = te_ev / (1 + hot_fraction * (hot_ratio - 1))
+     hot = hot_ratio * cold
+ 
+-    def collision_proxy(energy_ev):
+-        cross_section_shape = max(1 - THRESHOLD_EV / energy_ev, 0.0)
+-        speed = sqrt(2 * ELEMENTARY_CHARGE * energy_ev / ELECTRON_MASS)
+-        return cross_section_shape * speed
++    # For a Maxwellian energy density, the required collision average is
++    #   integral_I^inf P_M(E; T) (1-I/E) sqrt(2 e E / m_e) dE
++    # = sqrt(2 e / m_e) * 2 sqrt(T/pi) exp(-I/T).
++    def averaged_speed_shape(temperature):
++        return (2.0 * sqrt(ELEMENTARY_CHARGE / ELECTRON_MASS * temperature / pi)
++                * exp(-THRESHOLD_EV / temperature))
+ 
+-    representative_energy = 1.5 * ((1 - hot_fraction) * cold + hot_fraction * hot)
+-    normalization = CALIBRATION_RATE_M3_PER_S / collision_proxy(1.5 * CALIBRATION_TE_EV)
+-    return normalization * collision_proxy(representative_energy)
++    normalization = CALIBRATION_RATE_M3_PER_S / averaged_speed_shape(CALIBRATION_TE_EV)
++    average = ((1.0 - hot_fraction) * averaged_speed_shape(cold)
++               + hot_fraction * averaged_speed_shape(hot))
++    return normalization * average
+--- initial/continuity.py
++++ workspace/continuity.py
+@@ -56,21 +56,28 @@
+     total = p.ion_flux_in_per_m2_s + p.neutral_flux_in_per_m2_s
+     ions, neutrals = [p.ion_flux_in_per_m2_s], [p.neutral_flux_in_per_m2_s]
+     rates, sources = [], []
+-    exposure = 0.0
+     for i, temperature in enumerate(profiles["te_ev"]):
+         k = rate_coefficient(temperature, p.hot_fraction, p.hot_ratio)
+-        speed = p.ion_speed_m_per_s * (1 + p.velocity_rise * (i + 0.5) / p.n_cells)
+-        exposure += dx * total * k / (speed * p.neutral_speed_m_per_s)
+-        if k == 0:
+-            ion, neutral = ions[-1], neutrals[-1]
+-        elif p.ion_flux_in_per_m2_s == 0:
++        speed = 0.5 * (profiles["ion_speed_m_per_s"][i]
++                       + profiles["ion_speed_m_per_s"][i + 1])
++        # Within a cell, ui, un and K are frozen.  With F=Gi+Gn, the
++        # equation is dGi/dx = a Gi(F-Gi), a=K/(ui*un), whose exact map is
++        # the odds ratio multiplied by exp(a F dx).
++        old_ion = ions[-1]
++        old_neutral = neutrals[-1]
++        if total == 0.0:
++            ion, neutral = 0.0, 0.0
++        elif old_ion == 0.0:
+             ion, neutral = 0.0, total
++        elif old_neutral == 0.0:
++            ion, neutral = total, 0.0
+         else:
+-            odds = exp(log(p.ion_flux_in_per_m2_s / p.neutral_flux_in_per_m2_s) + exposure)
++            odds = (old_ion / old_neutral) * exp(dx * total * k
++                                                 / (speed * p.neutral_speed_m_per_s))
+             neutral = total / (1 + odds)
+             ion = total * odds / (1 + odds)
+         rates.append(k)
+-        sources.append((ion - ions[-1]) / dx)
++        sources.append((ion - old_ion) / dx)
+         ions.append(ion)
+         neutrals.append(neutral)
+     return {

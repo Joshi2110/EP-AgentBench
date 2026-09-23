@@ -1,0 +1,23 @@
+--- initial/physics.py
++++ workspace/physics.py
+@@ -16,5 +16,5 @@
+         raise ValueError("Field must be finite and collision frequency finite and positive")
+     omega_ce = ELEMENTARY_CHARGE * b_tesla / ELECTRON_MASS
+     return ELEMENTARY_CHARGE * nu_per_s / (
+-        ELECTRON_MASS * (nu_per_s**2 + abs(omega_ce * nu_per_s))
++        ELECTRON_MASS * (nu_per_s**2 + omega_ce**2)
+     )
+--- initial/model.py
++++ workspace/model.py
+@@ -86,9 +86,9 @@
+     pressure_integral = sum(
+         dx * gradp / (ELEMENTARY_CHARGE * nf) for nf, _, gradp in faces
+     )
+-    j_e = (p.voltage_v - pressure_integral) / resistive_integral
++    j_e = (p.voltage_v + pressure_integral) / resistive_integral
+     e_face = [
+-        j_e / (ELEMENTARY_CHARGE * nf * mu) + gradp / (ELEMENTARY_CHARGE * nf)
++        j_e / (ELEMENTARY_CHARGE * nf * mu) - gradp / (ELEMENTARY_CHARGE * nf)
+         for nf, mu, gradp in faces
+     ]
+ 

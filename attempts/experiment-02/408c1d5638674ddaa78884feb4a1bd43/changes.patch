@@ -1,0 +1,42 @@
+--- initial/physics.py
++++ workspace/physics.py
+@@ -8,7 +8,7 @@
+ 
+ 
+ def bohm_speed(te_ev: float) -> float:
+-    """Ion sound speed at the acceleration-region inlet, m/s."""
++    """Return ``sqrt(e * T_e / m_Xe)`` for ``T_e`` in eV."""
+     if isinstance(te_ev, bool) or not isinstance(te_ev, (int, float)) or not isfinite(te_ev) or te_ev <= 0:
+         raise ValueError("Electron temperature must be a finite positive number of eV")
+     return sqrt(ELEMENTARY_CHARGE * te_ev / XENON_ION_MASS)
+--- initial/momentum.py
++++ workspace/momentum.py
+@@ -57,14 +57,25 @@
+     charge_to_mass = ELEMENTARY_CHARGE / XENON_ION_MASS
+     density = [p.n_inlet_per_m3]
+     speed = [bohm_speed(p.te_ev)]
++
++    # March the two conservative fluxes directly.  In particular, newly
++    # created ions carry the prescribed neutral momentum u_n*S; applying the
++    # electric term only to the velocity would violate the momentum balance.
++    particle_flux = density[0] * speed[0]
++    momentum_flux = particle_flux * speed[0]
+     for e_face, s_face in zip(field, source):
+-        flux_next = density[-1] * speed[-1] + dx * s_face
+-        electric = charge_to_mass * density[-1] * e_face
+-        u_next = speed[-1] + dx * electric / flux_next
++        density_upwind = density[-1]
++        flux_next = particle_flux + dx * s_face
++        momentum_next = momentum_flux + dx * (
++            charge_to_mass * density_upwind * e_face + p.u_neutral_m_per_s * s_face
++        )
++        u_next = momentum_next / flux_next
+         if u_next <= 0:
+             raise ValueError("Ion velocity became nonpositive")
+         speed.append(u_next)
+         density.append(flux_next / u_next)
++        particle_flux = flux_next
++        momentum_flux = momentum_next
+     momentum = XENON_ION_MASS * (density[-1] * speed[-1] ** 2 - density[0] * speed[0] ** 2)
+     force = sum(
+         dx * (ELEMENTARY_CHARGE * n * e + XENON_ION_MASS * p.u_neutral_m_per_s * s)

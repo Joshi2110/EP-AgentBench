@@ -1,0 +1,13 @@
+Repair the Ion Momentum & Thrust Closure task in this workspace.
+Read README.md and inspect the supplied files. Edit physics.py and momentum.py to
+satisfy the documented interface, prescribed profiles, and physical relations.
+You may execute Python and create your own local checks. Python is available as
+python or python3. Use only the task materials in this directory. Do not access
+external references, installed evaluators, previous attempts, or the network.
+The benchmark CLI and its grader are deliberately unavailable during this attempt.
+Finish by briefly describing your changes and the checks you actually ran.
+
+Run each verification check as its own shell command, not chained after another
+command. Make each check print one line of the form
+EPBENCH_CHECK <name> PASS or EPBENCH_CHECK <name> FAIL.
+In your final message, report only checks that printed such a line.

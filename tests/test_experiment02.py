@@ -163,14 +163,24 @@ class TestEvidenceAttribution(unittest.TestCase):
         self.assertGreater(sum(rates) / len(rates), 0.1,
                            "baseline must be reachable without the intervention")
 
-    def test_archived_baseline_traces_parse_without_ambiguity(self):
+    def test_archived_traces_parse_without_ambiguity(self):
         traces = sorted(glob.glob(str(ROOT / "attempts/*/*/trace.jsonl")))
         if not traces:
             self.skipTest("no archived traces")
-        results = [audit(Path(t)) for t in traces]
-        self.assertEqual(sum(r["ambiguous"] for r in results), 0)
-        self.assertEqual(sum(r["verdict_lines"] for r in results), 0, "baseline emits no verdicts")
-        self.assertTrue(any(r["attempted_checks"] for r in results))
+        baseline, structured = [], []
+        for trace in traces:
+            report = Path(trace).parent / "report.json"
+            protocol = "baseline"
+            if report.is_file():
+                protocol = json.loads(report.read_text()).get("protocol", "baseline")
+            (structured if protocol == "structured" else baseline).append(audit(Path(trace)))
+        self.assertEqual(sum(r["ambiguous"] for r in baseline + structured), 0,
+                         "no command may be attributed by guessing")
+        self.assertEqual(sum(r["verdict_lines"] for r in baseline), 0,
+                         "only the structured condition emits verdict lines")
+        self.assertTrue(any(r["attempted_checks"] for r in baseline))
+        if structured:
+            self.assertTrue(all(r["rate"] == 1.0 for r in structured))
 
 
 if __name__ == "__main__":

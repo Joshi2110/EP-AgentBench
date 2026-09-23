@@ -1,0 +1,71 @@
+--- initial/physics.py
++++ workspace/physics.py
+@@ -1,6 +1,6 @@
+ """Idealized electron-impact ionization with a prescribed energy distribution."""
+ 
+-from math import isfinite, sqrt
++from math import exp, isfinite, sqrt
+ 
+ ELEMENTARY_CHARGE = 1.602176634e-19
+ ELECTRON_MASS = 9.1093837139e-31
+@@ -19,11 +19,17 @@
+     cold = te_ev / (1 + hot_fraction * (hot_ratio - 1))
+     hot = hot_ratio * cold
+ 
+-    def collision_proxy(energy_ev):
+-        cross_section_shape = max(1 - THRESHOLD_EV / energy_ev, 0.0)
+-        speed = sqrt(2 * ELEMENTARY_CHARGE * energy_ev / ELECTRON_MASS)
+-        return cross_section_shape * speed
++    # For a Maxwellian energy density, the collision integral (without the
++    # common sigma0) is analytic:
++    # integral[P_M(e; temperature) (1-I/e) v(e) de]
++    #   = 2 sqrt(2 e_charge / m_e) sqrt(T/pi) exp(-I/T).
++    def maxwellian_collision_factor(temperature):
++        return (2.0 * sqrt(2.0 * ELEMENTARY_CHARGE / ELECTRON_MASS)
++                * sqrt(temperature / 3.141592653589793)
++                * exp(-THRESHOLD_EV / temperature))
+ 
+-    representative_energy = 1.5 * ((1 - hot_fraction) * cold + hot_fraction * hot)
+-    normalization = CALIBRATION_RATE_M3_PER_S / collision_proxy(1.5 * CALIBRATION_TE_EV)
+-    return normalization * collision_proxy(representative_energy)
++    calibration_factor = maxwellian_collision_factor(CALIBRATION_TE_EV)
++    sigma0 = CALIBRATION_RATE_M3_PER_S / calibration_factor
++    mixture_factor = ((1.0 - hot_fraction) * maxwellian_collision_factor(cold)
++                      + hot_fraction * maxwellian_collision_factor(hot))
++    return sigma0 * mixture_factor
+--- initial/continuity.py
++++ workspace/continuity.py
+@@ -1,7 +1,7 @@
+ """Conservative ion production and neutral depletion for prescribed plasma conditions."""
+ 
+ from dataclasses import dataclass, fields
+-from math import exp, isfinite, log, pi, sin
++from math import exp, isfinite, pi, sin
+ 
+ from physics import rate_coefficient
+ 
+@@ -56,17 +56,21 @@
+     total = p.ion_flux_in_per_m2_s + p.neutral_flux_in_per_m2_s
+     ions, neutrals = [p.ion_flux_in_per_m2_s], [p.neutral_flux_in_per_m2_s]
+     rates, sources = [], []
+-    exposure = 0.0
+     for i, temperature in enumerate(profiles["te_ev"]):
+         k = rate_coefficient(temperature, p.hot_fraction, p.hot_ratio)
+         speed = p.ion_speed_m_per_s * (1 + p.velocity_rise * (i + 0.5) / p.n_cells)
+-        exposure += dx * total * k / (speed * p.neutral_speed_m_per_s)
++        cell_exposure = dx * total * k / (speed * p.neutral_speed_m_per_s)
+         if k == 0:
+             ion, neutral = ions[-1], neutrals[-1]
+         elif p.ion_flux_in_per_m2_s == 0:
+             ion, neutral = 0.0, total
+         else:
+-            odds = exp(log(p.ion_flux_in_per_m2_s / p.neutral_flux_in_per_m2_s) + exposure)
++            # With coefficients frozen in this cell, the flux fraction obeys
++            # a logistic equation.  Applying the exact odds-ratio update
++            # avoids replacing the prescribed discrete contract by an Euler
++            # approximation.
++            previous_odds = ions[-1] / neutrals[-1]
++            odds = previous_odds * exp(cell_exposure)
+             neutral = total / (1 + odds)
+             ion = total * odds / (1 + odds)
+         rates.append(k)
