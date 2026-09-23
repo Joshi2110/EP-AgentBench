@@ -58,6 +58,18 @@ def main(argv: list[str]) -> int:
         with log_path.open("a") as handle:
             handle.write(f"{time.strftime('%H:%M:%S')} {message}\n")
 
+    # Fail loudly on a broken environment rather than silently collecting nothing.
+    # macOS can set UF_HIDDEN on .pth files, which makes site skip an editable install.
+    try:
+        probe = subprocess.run([epbench, "--version"], capture_output=True, text=True)
+    except OSError as error:
+        log(f"PREFLIGHT FAILED: cannot run {epbench}: {error}")
+        return 2
+    if probe.returncode or "epbench" not in probe.stdout:
+        log(f"PREFLIGHT FAILED: {epbench} is not runnable: "
+            f"{(probe.stderr or probe.stdout).strip().splitlines()[-1:] or ['no output']}")
+        return 2
+    log(f"preflight ok: {probe.stdout.strip()} via {epbench}")
     if not dry:
         log(f"warmup {WARMUP}s: verify sleep prevention before the first attempt")
         time.sleep(WARMUP)
