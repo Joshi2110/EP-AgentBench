@@ -43,6 +43,25 @@ Codex session against a pristine export, under a filesystem and network boundary
 that is re-verified before every launch, and preserves the trace, the final
 workspace, a diff, and a machine-readable report.
 
+**EP-Agent v0.1.** The private research checkout also includes a minimal local
+open-weight coding agent. On Apple Silicon, install the optional inference
+dependencies, download the pinned 880 MB Qwen model, and run one episode:
+
+```bash
+python3.11 -m venv .venv
+.venv/bin/python -m pip install '.[agent]'
+.venv/bin/epagent download --out .epagent-models/qwen2.5-coder-1.5b-4bit
+.venv/bin/epagent run hall-thrust \
+  --model-dir .epagent-models/qwen2.5-coder-1.5b-4bit \
+  --out attempts/ep-agent --steps 12 --seconds 300
+```
+
+The printed report gives paths to the complete trajectory, final workspace,
+diff, and terminal grading result. This uses constrained macOS Python execution
+and local MLX inference; it is not production-grade isolation. Installation,
+limits, trajectory/reward semantics, and the next SFT step are documented in
+[docs/ep-agent.md](docs/ep-agent.md). No training is implemented.
+
 ### Three things that are easy to confuse
 
 | Artifact | What it is | Expected result |

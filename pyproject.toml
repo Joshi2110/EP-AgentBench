@@ -27,8 +27,12 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Physics",
 ]
 
+[project.optional-dependencies]
+agent = ["mlx-lm==0.31.3"]
+
 [project.scripts]
 epbench = "epbench.cli:main"
+epagent = "epagent.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

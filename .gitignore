@@ -1,6 +1,7 @@
 __pycache__/
 *.py[cod]
 .venv/
+.epagent-models/
 venv/
 build/
 dist/
