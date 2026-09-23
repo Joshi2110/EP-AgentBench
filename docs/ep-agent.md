@@ -45,9 +45,13 @@ Inspect the files named by `paths.report`, `paths.trace`, `paths.conversation`,
 cat attempts/ep-agent/EPISODE_ID/changes.diff
 ```
 
-Model files and new attempt collections are ignored by Git. Keep the entire
-attempt directory when archiving a run; the terminal report is not a substitute
-for the trajectory and final files.
+Model files and new attempt collections are ignored by Git. The first failed
+episode also has a byte-identical, allowlisted archive in the private repository
+under [artifacts/ep-agent](../artifacts/ep-agent/README.md). Its raw local directory
+remains unchanged. The archive policy excludes weights, credentials, control
+directories, and unrelated machine state; it is not permission to commit all
+future attempts. The terminal report is not a substitute for the trajectory and
+final files.
 
 ## Model and decision provenance
 
@@ -89,10 +93,19 @@ The system prompt describes the scientific coding role and exactly five tools:
 | `finish` | `summary` | End the policy loop and submit the current workspace |
 
 The policy emits one JSON object, `{"tool": ..., "arguments": {...}}`, per
-turn. Tool results become user messages. Malformed calls, unavailable files,
+turn. Bare JSON and one complete Markdown code fence (unlabelled or labelled
+`json`, with opening/closing fences on their own lines) are accepted. Surrounding
+whitespace is allowed. Explanatory text outside the fence, multiple/incomplete
+blocks, invalid JSON, duplicate keys, and invalid tool schemas are rejected.
+Unwrapping a fence never bypasses tool or workspace validation. Syntax, wrapper,
+tool-name, missing-argument, and schema errors have separate feedback categories,
+with an explanation of the problem and the accepted format. The prompt lists
+field names and semantics without copyable placeholder arguments or toy code.
+
+Tool results become user messages. Malformed calls, unavailable files,
 Python errors, and Python timeouts are observations, not hidden retries. They
-consume turns. The JSON protocol deliberately has no schema-constrained decoder
-or automatic repair of model output.
+consume turns. The JSON protocol has no schema-constrained decoder, arbitrary
+JSON extraction, or automatic repair of malformed JSON.
 
 Defaults: 12 turns, 300 seconds for model startup and the agent loop, 8 seconds
 per Python tool, 8,192 output bytes, 8,192 context tokens, 768 generated tokens
@@ -201,6 +214,9 @@ agent, grader, and total durations are recorded independently.
 The [first real smoke result](results/ep-agent-v0.1-smoke.md) is preserved as a
 failed interaction: 12 malformed responses, zero accepted tools, unchanged
 starter. It does not establish successful real-model scientific repair.
+The [focused audit corrections](results/ep-agent-v0.1-audit-fixes.md) separately
+document fence parsing, prompt changes, the real-tokenizer check, and replay
+results. The replay does not change the first episode's outcome.
 
 ```bash
 PATH="$PWD/.venv/bin:$PATH" PYTHONPATH=src \

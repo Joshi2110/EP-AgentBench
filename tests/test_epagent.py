@@ -16,7 +16,7 @@ from epagent.episode import Config, run_episode
 from epagent.execution import preflight, run_python
 from epagent.mlx_backend import BackendError, ContextLimit, configure_stop_tokens
 from epagent.reward import grade_submission
-from epagent.tools import execute, parse_call, safe_path, snapshot
+from epagent.tools import ARGUMENTS, SYSTEM_PROMPT, CallError, decode_call, execute, parse_call, safe_path, snapshot
 
 ROOT = Path(__file__).resolve().parents[1]
 MACOS = sys.platform == 'darwin' and Path('/usr/bin/sandbox-exec').exists()
@@ -61,12 +61,66 @@ class ToolTests(unittest.TestCase):
             configure_stop_tokens(tokenizer)
 
     def test_json_protocol_rejects_malformed_unknown_and_extra_arguments(self):
-        for text in ['oops', '[]', '{}', '```json\n{}\n```',
+        for text in ['oops', '[]', '{}',
                      call('shell', command='pwd'), call('read_file', path=123),
                      call('finish', summary='done', reward=1)]:
             with self.subTest(text=text), self.assertRaises(ValueError):
                 parse_call(text)
         self.assertEqual(parse_call(call('list_files')), ('list_files', {}))
+
+    def test_bare_and_single_complete_fences(self):
+        text = call('read_file', path='README.md')
+        for response in [text, '  ' + text + '\n', '```json\n' + text + '\n```',
+                         '```\n' + text + '\n```', '\n ```json\n' + text + '\n``` \n']:
+            with self.subTest(response=response):
+                self.assertEqual(parse_call(response), ('read_file', {'path': 'README.md'}))
+        # JSON syntax acceptance does not imply tool-schema acceptance.
+        self.assertEqual(decode_call('```json\n{}\n```'), {})
+        with self.assertRaises(CallError):
+            parse_call('```json\n{}\n```')
+
+    def test_fences_do_not_extract_or_bypass_schema(self):
+        valid = call('list_files')
+        fenced = '```json\n' + valid + '\n```'
+        for response in [fenced + '\n' + fenced, 'Explanation\n' + fenced,
+                         fenced + '\nDone', '```json\n' + valid, valid + '\n```',
+                         '```python\n' + valid + '\n```', '```json\n{broken}\n```',
+                         fenced + '<|im_end|>', '```json\n' + call('shell', code='bad') + '\n```',
+                         '```\n' + call('read_file', path=123) + '\n```',
+                         '```\n' + call('finish', summary='done', reward=1) + '\n```',
+                         '{"tool":"list_files","arguments":{},"tool":"finish"}',
+                         '{"tool":"read_file","arguments":{"path":"README.md","path":"../private"}}',
+                         '{"tool":"run_python","arguments":{"code":NaN}}']:
+            with self.subTest(response=response), self.assertRaises(CallError):
+                parse_call(response)
+
+    def test_actionable_error_categories(self):
+        for text, category, explanation in [
+            ('{broken}', 'json_syntax', 'line 1'),
+            (call('shell'), 'invalid_tool', 'Allowed tools'),
+            ('{"tool":"read_file"}', 'missing_arguments', 'Missing arguments object'),
+            (call('read_file'), 'missing_arguments', 'path'),
+            (call('read_file', path=42), 'schema_violation', 'strings'),
+            (call('list_files', surprise='x'), 'schema_violation', 'exactly'),
+            ('```json\n{}', 'invalid_wrapper', 'complete fence')]:
+            with self.subTest(text=text), self.assertRaises(CallError) as caught:
+                parse_call(text)
+            self.assertEqual(caught.exception.category, category)
+            self.assertIn(explanation, str(caught.exception))
+            self.assertIn('Return one JSON object', str(caught.exception))
+            self.assertNotIn(str(ROOT), str(caught.exception))
+
+    def test_prompt_schema_without_copyable_placeholder_actions_or_answers(self):
+        for name, arguments in ARGUMENTS.items():
+            self.assertIn(name + ':', SYSTEM_PROMPT)
+            for argument in arguments:
+                self.assertIn(argument, SYSTEM_PROMPT)
+        self.assertIn('Copy old_text from an observed file', SYSTEM_PROMPT)
+        self.assertIn('one complete Markdown fence', SYSTEM_PROMPT)
+        for copied_or_answer in ['exact existing text', 'print(2 + 2)', '"replacement"',
+                                 '"path":', '"code":', 'mass_addition', 'flux_next',
+                                 'u_neutral_m_per_s', 'du_i/dx', 'hall-thrust']:
+            self.assertNotIn(copied_or_answer, SYSTEM_PROMPT)
 
     def test_paths_links_and_exact_edits(self):
         with tempfile.TemporaryDirectory() as d:
@@ -177,7 +231,8 @@ class ExecutionTests(unittest.TestCase):
                 grade_submission('hall-thrust', workspace)
 
     def test_full_fake_episode_repair_run_finish_grade_save(self):
-        outputs = [call('list_files'), call('read_file', path='momentum.py'),
+        outputs = ['```json\n' + call('list_files') + '\n```',
+                   '```\n' + call('read_file', path='momentum.py') + '\n```',
                    call('edit_file', path='momentum.py',
                         old_text='u_next = speed[-1] + dx * electric / flux_next',
                         new_text='u_next = speed[-1] + dx * (electric + s_face * (p.u_neutral_m_per_s - speed[-1])) / flux_next'),
@@ -195,6 +250,13 @@ class ExecutionTests(unittest.TestCase):
             self.assertEqual(report['reward'], 1)
             self.assertEqual(report['grading']['passed'], 13)
             self.assertEqual(report['tool_calls'], 5)
+            listing = json.loads(model.requests[1][-1]['content'])['tool_result']['files']
+            self.assertIn('momentum.py', listing)
+            source = json.loads(model.requests[2][-1]['content'])['tool_result']['content']
+            self.assertIn('def solve(', source)
+            diagnostic = json.loads(model.requests[4][-1]['content'])['tool_result']
+            self.assertEqual(diagnostic['status'], 'completed')
+            self.assertTrue(diagnostic['stdout'].strip())
             self.assertEqual(report['modified_files'], ['momentum.py'])
             self.assertIsNone(report['usage']['generation_tokens'])
             self.assertEqual(json.loads(Path(report['paths']['report']).read_text()), report)
@@ -211,6 +273,26 @@ class ExecutionTests(unittest.TestCase):
             self.assertEqual(second['grading']['passed'], 3)
             self.assertEqual(second['reward'], 0)
 
+    def test_feedback_recovery_and_fenced_calls_keep_confinement_and_reward(self):
+        outputs = ['{broken}', '```json\n' + call('read_file', path='README.md') + '\n```',
+                   '```\n' + call('read_file', path='../control/private-canary.txt') + '\n```',
+                   call('finish', summary='No changes')]
+        with tempfile.TemporaryDirectory() as d:
+            model = FakeModel(outputs)
+            report = run_episode('hall-thrust', d, model, Config(steps=4))
+            error = json.loads(model.requests[1][-1]['content'])['tool_result']
+            self.assertEqual(error['error'], 'json_syntax')
+            self.assertIn('Return one JSON object', error['detail'])
+            observed = json.loads(model.requests[2][-1]['content'])['tool_result']['content']
+            self.assertIn('momentum', observed.lower())
+            denial = json.loads(model.requests[3][-1]['content'])['tool_result']
+            self.assertEqual(denial['error'], 'ValueError')
+            self.assertNotIn('EP-Agent private preflight canary', json.dumps(model.requests))
+            self.assertEqual(report['tool_calls'], 3)
+            self.assertEqual(report['modified_files'], [])
+            self.assertEqual(report['reward'], 0)
+            self.assertEqual(report['grading']['passed'], 3)
+
     def test_bad_calls_and_python_failures_are_observations(self):
         outputs = ['not json', call('read_file', path='missing'),
                    call('run_python', code='raise ValueError("intentional")'),
@@ -221,7 +303,7 @@ class ExecutionTests(unittest.TestCase):
             self.assertTrue(report['scored'])
             self.assertEqual(report['reward'], 0)
             trace = Path(report['paths']['trace']).read_text()
-            for marker in ['JSONDecodeError', 'FileNotFoundError', 'python_error', 'timeout']:
+            for marker in ['json_syntax', 'FileNotFoundError', 'python_error', 'timeout']:
                 self.assertIn(marker, trace)
 
     def test_inference_failures_context_limit_and_wall_timeout(self):

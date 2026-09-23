@@ -12,22 +12,18 @@ You can access only the task workspace. Read README.md and the source, edit code
 and use Python to check your work. Do not seek external files, credentials,
 reference solutions, graders, prior attempts, or the network.
 
-Return one JSON object with exactly two keys: tool (a name below) and arguments
-(an object). Bare JSON or one complete Markdown fence labelled json or unlabelled
-is accepted. No text outside the object/fence and no additional blocks.
-All listed arguments are required strings; additional keys are not allowed.
-Available tools and argument fields:
-list_files: no arguments -- list workspace files.
-read_file: path -- read a UTF-8 file at a relative workspace path.
-edit_file: path, old_text, new_text -- replace exactly one occurrence of old_text
-  with new_text. Copy old_text from an observed file; choose new_text for your
-  intended edit. Empty old_text creates a new file only.
-run_python: code -- execute your diagnostic Python in the workspace; no shell,
-  network or subprocesses; Python standard library and local modules only.
-finish: summary -- describe changes and checks actually observed, submit and stop.
+Return exactly ONE JSON object per turn, without markdown fences or other text:
+{"tool": "tool_name", "arguments": {...}}
+Available tools:
+list_files: {} -- list workspace files.
+read_file: {"path": "README.md"} -- read a UTF-8 file (relative path).
+edit_file: {"path": "physics.py", "old_text": "exact existing text", "new_text": "replacement"}
+  Replace exactly one occurrence. To create a new file, use empty old_text.
+run_python: {"code": "print(2 + 2)"} -- execute Python in the workspace; no shell,
+  no network or subprocesses; Python standard library and local modules only.
+finish: {"summary": "Changes made and checks actually observed"} -- submit and stop.
 Tool results arrive as user messages. Errors consume a step; correct the call.
-Use observations to decide your next action. Do not invent file contents or claim
-checks passed without observing their output. Finish within budget.
+Do not claim checks passed unless you observed their output. Finish within budget.
 '''
 
 ARGUMENTS = {"list_files": set(), "read_file": {"path"},
@@ -35,68 +31,15 @@ ARGUMENTS = {"list_files": set(), "read_file": {"path"},
              "finish": {"summary"}}
 
 
-FORMAT_HELP = ('Return one JSON object with exactly tool and arguments, bare or inside '
-               'one complete ```json or unlabelled ``` fence, with no outside text.')
-
-
-class CallError(ValueError):
-    """An agent-facing protocol error, without internal execution details."""
-    def __init__(self, category, problem):
-        self.category = category
-        super().__init__(problem + ' ' + FORMAT_HELP)
-
-
-def decode_call(text):
-    """Decode the entire permitted envelope; never extract a JSON substring."""
-    text = text.strip()
-    if text.startswith('```'):
-        lines = text.splitlines()
-        if (len(lines) < 3 or lines[0].strip() not in ('```', '```json')
-                or lines[-1].strip() != '```'
-                or any(line.strip().startswith('```') for line in lines[1:-1])):
-            raise CallError('invalid_wrapper', 'Use one complete fence with only an optional json label; '
-                            'multiple/incomplete blocks or text outside the fence are not accepted.')
-        text = '\n'.join(lines[1:-1])
-
-    def unique_keys(pairs):
-        result = {}
-        for key, value in pairs:
-            if key in result:
-                raise CallError('schema_violation', 'Duplicate JSON keys are not allowed.')
-            result[key] = value
-        return result
-
-    def invalid_constant(value):
-        raise CallError('json_syntax', 'Non-finite constants are not valid JSON.')
-
-    try:
-        return json.loads(text, object_pairs_hook=unique_keys, parse_constant=invalid_constant)
-    except json.JSONDecodeError as exc:
-        raise CallError('json_syntax', f'Invalid JSON at line {exc.lineno}, column {exc.colno}: {exc.msg}.') from exc
-
-
 def parse_call(text):
-    call = decode_call(text)
-    if not isinstance(call, dict):
-        raise CallError('schema_violation', 'The top-level JSON value must be an object.')
-    if 'tool' not in call:
-        raise CallError('invalid_tool', 'Missing tool name. Allowed tools: ' + ', '.join(ARGUMENTS) + '.')
-    name = call['tool']
-    if not isinstance(name, str) or name not in ARGUMENTS:
-        raise CallError('invalid_tool', 'Unknown or non-string tool name. Allowed tools: ' + ', '.join(ARGUMENTS) + '.')
-    if 'arguments' not in call:
-        raise CallError('missing_arguments', 'Missing arguments object; use an empty object for list_files.')
-    if set(call) != {'tool', 'arguments'}:
-        raise CallError('schema_violation', 'Extra top-level keys are not allowed.')
-    args = call['arguments']
-    if not isinstance(args, dict):
-        raise CallError('schema_violation', 'arguments must be a JSON object.')
-    missing = ARGUMENTS[name] - args.keys()
-    if missing:
-        raise CallError('missing_arguments', f'Missing required arguments for {name}: ' + ', '.join(sorted(missing)) + '.')
+    call = json.loads(text)
+    if not isinstance(call, dict) or set(call) != {"tool", "arguments"}:
+        raise ValueError("Return one JSON object with tool and arguments")
+    name, args = call['tool'], call['arguments']
+    if not isinstance(name, str) or name not in ARGUMENTS or not isinstance(args, dict):
+        raise ValueError("Unknown tool or invalid arguments")
     if set(args) != ARGUMENTS[name] or any(not isinstance(v, str) for v in args.values()):
-        raise CallError('schema_violation', f'Arguments for {name} must be strings with exactly these keys: '
-                        + ', '.join(sorted(ARGUMENTS[name])) + '.')
+        raise ValueError(f"Arguments for {name} must be strings with keys {sorted(ARGUMENTS[name])}")
     return name, args
 
 

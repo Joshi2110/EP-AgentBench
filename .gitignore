@@ -22,6 +22,7 @@ attempts/*
 # by the runner on termination and stay ignored by the auth rules below.
 !attempts/experiment-02/
 .isolation-*/
-# Never commit agent attempt records or any copied backend credentials.
+# Curated private evidence follows artifacts/ep-agent/README.md; raw attempts stay ignored.
+# Never commit copied backend credentials.
 **/codex-home/
 auth.json

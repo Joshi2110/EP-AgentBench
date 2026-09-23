@@ -1,0 +1,27 @@
+{
+  "episode_id": "cc94d8972f2641ebb4f971d91fa21d57",
+  "policy": "byte-identical allowlisted private archive; no sanitization",
+  "files": {
+    "changes.diff": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "conversation.json": "04936f2e5142996b138b2f9ea70f3a555a7fd0eb4d8c79d6f19850da5d8d2372",
+    "initial/README.md": "e06f896eaa7222a26025c09545608928c2df9e9fc9e13346389cd7f61db2f516",
+    "initial/momentum.py": "c17f736131c64d9eb7e54b0d7d92d2d2afb8690072eec64dfcfc92aaff1bad7c",
+    "initial/physics.py": "3f514609814b0a7bc728a8d47b33d303c99e99f62e7b2db98937b720d73ffe5b",
+    "initial/run.py": "d98df46d8bda335469a9fb5c8c1e4b84c609815721064c716da08486a11678ce",
+    "report.json": "836c8db143fec2a05f55c1252543b8bfb8af229520c65d1c8996963efd1ab132",
+    "runner-source/__init__.py": "86469b89bdeea855e0a3cc6fcd833ea042097e798629d9006ddf4dda67398fff",
+    "runner-source/cli.py": "cf4b5069be253a957b10c406ba33406c11d8d3b3bce8f244230e8567e077b0de",
+    "runner-source/episode.py": "b7784dbe79f1742f790c15847b345d6eb5ea64507689df7b76a19b994180c436",
+    "runner-source/execution.py": "0520b515605afcd86365d8a4704764bbcd077018ad48e4be9098271cb0433ad6",
+    "runner-source/mlx_backend.py": "ebb3c8899a0411eed35f419506554b806b1002e6f40fbc5b90997d68faa5708a",
+    "runner-source/reward.py": "f961dbc3d8ff0cb09e94e8929ca975e0902c568cb6e59fed01f07d8b185d2b57",
+    "runner-source/tools.py": "2b7292a19bea2d0809439017a582d8a280f709dd9514759e0ccbdd42d9e19b5f",
+    "trajectory.jsonl": "a67fe423864d7f86c6136eac38446ce98689ef73941b464056e7168ad84427d9",
+    "workspace/README.md": "e06f896eaa7222a26025c09545608928c2df9e9fc9e13346389cd7f61db2f516",
+    "workspace/momentum.py": "c17f736131c64d9eb7e54b0d7d92d2d2afb8690072eec64dfcfc92aaff1bad7c",
+    "workspace/physics.py": "3f514609814b0a7bc728a8d47b33d303c99e99f62e7b2db98937b720d73ffe5b",
+    "workspace/run.py": "d98df46d8bda335469a9fb5c8c1e4b84c609815721064c716da08486a11678ce"
+  },
+  "audited_commit": "360f1914ddb7dda54fd4a6fa600d7ada7a5ce025",
+  "runner_provenance": "Exact pre-stop-fix source preserved under runner-source/ and verified by original report runner_sha256; the audited commit includes a later stop-token correction."
+}

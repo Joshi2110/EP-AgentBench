@@ -1,0 +1,7 @@
+{
+  "protected_files_checked": 1683,
+  "protected_files_changed": [],
+  "raw_payload_files_unchanged": 19,
+  "original_real_episode_count": 1,
+  "allowlist_and_credential_pattern_review": "passed; no control directories, weights, auth files, or credential patterns"
+}

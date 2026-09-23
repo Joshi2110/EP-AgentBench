@@ -17,7 +17,7 @@ from . import __version__
 from .execution import preflight
 from .mlx_backend import BackendError, ContextLimit
 from .reward import grade_submission
-from .tools import CallError, SYSTEM_PROMPT, changes, execute, parse_call, snapshot
+from .tools import SYSTEM_PROMPT, changes, execute, parse_call, snapshot
 
 SCHEMA = 'epagent.episode.v1'
 
@@ -145,8 +145,7 @@ def run_episode(task, out, backend, config=Config()):
                     if isinstance(exc, TimeoutError):
                         raise
                     name = None
-                    observation = {'error': exc.category if isinstance(exc, CallError) else type(exc).__name__,
-                                   'detail': str(exc)[:1000]}
+                    observation = {'error': type(exc).__name__, 'detail': str(exc)[:1000]}
                     report['errors'].append({'step': step, **observation})
                 after = snapshot(workspace)
                 patch = changes(before, after)

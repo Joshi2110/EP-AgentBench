@@ -1,0 +1,1226 @@
+{
+  "schema": "epagent.episode.v1",
+  "epagent_version": "0.1.0",
+  "benchmark_version": "0.5.0",
+  "episode_id": "cc94d8972f2641ebb4f971d91fa21d57",
+  "task_id": "hall-thrust",
+  "instance_id": "hall-thrust:default:0ea3bc96bd0cc5f94b4b4c7b378d3109212011f15bf20a6b1d9647de64ca4eae",
+  "start_time": "2026-09-23T19:10:02.087782+00:00",
+  "end_time": "2026-09-23T19:10:21.263180+00:00",
+  "config": {
+    "steps": 12,
+    "seconds": 300.0,
+    "tool_seconds": 8.0,
+    "output_bytes": 8192,
+    "context_tokens": 8192,
+    "max_tokens": 768,
+    "temperature": 0.0,
+    "seed": 0
+  },
+  "model": {
+    "model_id": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+    "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+    "license": "apache-2.0",
+    "download_bytes": 880170581,
+    "sha256": {
+      "README.md": "f164287c8bb0d595f172a4be0329660c35208249f360e0c84780e1fcc251e29b",
+      "added_tokens.json": "58b54bbe36fc752f79a24a271ef66a0a0830054b4dfad94bde757d851968060b",
+      "config.json": "0708e236aa7b7db3c01bf8a46200e1a92d57f20fa668a7c430154bd6a21cdba5",
+      "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "model.safetensors": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+      "model.safetensors.index.json": "6b98634d5044f0e2ad45228a374f8445904e571f1082392d08a6ce54f5d517ca",
+      "special_tokens_map.json": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+      "tokenizer.json": "a8506e7111b80c6d8635951a02eab0f4e1a8e4e5772da83846579e97b16f61bf",
+      "tokenizer_config.json": "dced901d401aa828f313a2baec70d0ce164653285812237b5285c7efd5b9e760",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "backend": "mlx-lm",
+    "mlx_lm_version": "0.31.3",
+    "mlx_version": "0.32.2",
+    "transformers_version": "5.17.0",
+    "chat_template_sha256": "89d726e7795b101935db5c909c75a7d403a47deedad53a64947e9b079ba94def",
+    "inference": "local MLX; offline; no proprietary model"
+  },
+  "host": {
+    "system": "Darwin",
+    "release": "25.6.0",
+    "machine": "arm64",
+    "python": "3.11.15"
+  },
+  "runner_sha256": {
+    "__init__.py": "86469b89bdeea855e0a3cc6fcd833ea042097e798629d9006ddf4dda67398fff",
+    "cli.py": "cf4b5069be253a957b10c406ba33406c11d8d3b3bce8f244230e8567e077b0de",
+    "episode.py": "b7784dbe79f1742f790c15847b345d6eb5ea64507689df7b76a19b994180c436",
+    "execution.py": "0520b515605afcd86365d8a4704764bbcd077018ad48e4be9098271cb0433ad6",
+    "mlx_backend.py": "ebb3c8899a0411eed35f419506554b806b1002e6f40fbc5b90997d68faa5708a",
+    "reward.py": "f961dbc3d8ff0cb09e94e8929ca975e0902c568cb6e59fed01f07d8b185d2b57",
+    "tools.py": "2b7292a19bea2d0809439017a582d8a280f709dd9514759e0ccbdd42d9e19b5f"
+  },
+  "status": "unfinished",
+  "termination_reason": "step_limit",
+  "steps": 12,
+  "tool_calls": 0,
+  "errors": [
+    {
+      "step": 1,
+      "error": "JSONDecodeError",
+      "detail": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "step": 2,
+      "error": "JSONDecodeError",
+      "detail": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "step": 3,
+      "error": "JSONDecodeError",
+      "detail": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "step": 4,
+      "error": "JSONDecodeError",
+      "detail": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "step": 5,
+      "error": "JSONDecodeError",
+      "detail": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "step": 6,
+      "error": "JSONDecodeError",
+      "detail": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "step": 7,
+      "error": "JSONDecodeError",
+      "detail": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "step": 8,
+      "error": "JSONDecodeError",
+      "detail": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "step": 9,
+      "error": "JSONDecodeError",
+      "detail": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "step": 10,
+      "error": "JSONDecodeError",
+      "detail": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "step": 11,
+      "error": "JSONDecodeError",
+      "detail": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "step": 12,
+      "error": "JSONDecodeError",
+      "detail": "Expecting value: line 1 column 1 (char 0)"
+    }
+  ],
+  "reward": 0,
+  "grading": {
+    "schema_version": 1,
+    "epbench_version": "0.5.0",
+    "task": "hall-thrust",
+    "status": "failed",
+    "passed": 3,
+    "total": 13,
+    "success_rate": 0.23076923076923078,
+    "tolerance": {
+      "scaled_residual": 1e-08,
+      "refinement_relative": 0.003,
+      "refinement_contraction": 0.62
+    },
+    "timeout_seconds": 5,
+    "cases": [
+      {
+        "case": "case-01",
+        "kind": "bohm",
+        "passed": true,
+        "status": "passed",
+        "relative_error": null,
+        "detail": "All physical and numerical checks passed",
+        "diagnostics": {
+          "sound_speed_law": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "square_root_scaling": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "monotonic_in_temperature": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          }
+        }
+      },
+      {
+        "case": "case-02",
+        "kind": "bohm",
+        "passed": true,
+        "status": "passed",
+        "relative_error": null,
+        "detail": "All physical and numerical checks passed",
+        "diagnostics": {
+          "sound_speed_law": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "square_root_scaling": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "monotonic_in_temperature": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          }
+        }
+      },
+      {
+        "case": "case-03",
+        "kind": "model",
+        "passed": false,
+        "status": "mismatch",
+        "relative_error": null,
+        "detail": "Failed checks: model-1/momentum_balance, model-1/thrust_routes_agree",
+        "diagnostics": {
+          "model-1/x_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/e_field_v_per_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/source_per_m3_s": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_density": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_speed": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/positive_state": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          },
+          "model-1/continuity": {
+            "passed": true,
+            "error": 1.6629397538780487e-16,
+            "tolerance": 1e-08
+          },
+          "model-1/momentum_balance": {
+            "passed": false,
+            "error": 0.0023663493234549783,
+            "tolerance": 1e-08
+          },
+          "model-1/thrust_routes_agree": {
+            "passed": false,
+            "error": 0.09355031857427648,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_momentum_thrust": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_force_thrust": {
+            "passed": true,
+            "error": 3.3085954290653705e-16,
+            "tolerance": 1e-08
+          }
+        }
+      },
+      {
+        "case": "case-04",
+        "kind": "model",
+        "passed": false,
+        "status": "mismatch",
+        "relative_error": null,
+        "detail": "Failed checks: model-1/momentum_balance, model-1/thrust_routes_agree",
+        "diagnostics": {
+          "model-1/x_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/e_field_v_per_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/source_per_m3_s": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_density": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_speed": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/positive_state": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          },
+          "model-1/continuity": {
+            "passed": true,
+            "error": 1.7736478614077569e-16,
+            "tolerance": 1e-08
+          },
+          "model-1/momentum_balance": {
+            "passed": false,
+            "error": 0.011986510000964196,
+            "tolerance": 1e-08
+          },
+          "model-1/thrust_routes_agree": {
+            "passed": false,
+            "error": 0.025890587752752308,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_momentum_thrust": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_force_thrust": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          }
+        }
+      },
+      {
+        "case": "case-05",
+        "kind": "model",
+        "passed": false,
+        "status": "mismatch",
+        "relative_error": null,
+        "detail": "Failed checks: model-1/momentum_balance, model-1/thrust_routes_agree",
+        "diagnostics": {
+          "model-1/x_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/e_field_v_per_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/source_per_m3_s": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_density": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_speed": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/positive_state": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          },
+          "model-1/continuity": {
+            "passed": true,
+            "error": 8.206446972243392e-17,
+            "tolerance": 1e-08
+          },
+          "model-1/momentum_balance": {
+            "passed": false,
+            "error": 0.014522201462799167,
+            "tolerance": 1e-08
+          },
+          "model-1/thrust_routes_agree": {
+            "passed": false,
+            "error": 0.40158939826035256,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_momentum_thrust": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_force_thrust": {
+            "passed": true,
+            "error": 2.018881286097618e-16,
+            "tolerance": 1e-08
+          }
+        }
+      },
+      {
+        "case": "case-06",
+        "kind": "model",
+        "passed": false,
+        "status": "mismatch",
+        "relative_error": null,
+        "detail": "Failed checks: model-1/momentum_balance, model-1/thrust_routes_agree",
+        "diagnostics": {
+          "model-1/x_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/e_field_v_per_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/source_per_m3_s": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_density": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_speed": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/positive_state": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          },
+          "model-1/continuity": {
+            "passed": true,
+            "error": 1.986464588100635e-16,
+            "tolerance": 1e-08
+          },
+          "model-1/momentum_balance": {
+            "passed": false,
+            "error": 0.0037866041649317872,
+            "tolerance": 1e-08
+          },
+          "model-1/thrust_routes_agree": {
+            "passed": false,
+            "error": 0.04053192355275063,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_momentum_thrust": {
+            "passed": true,
+            "error": 1.3911066890767617e-16,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_force_thrust": {
+            "passed": true,
+            "error": 1.3911066890767617e-16,
+            "tolerance": 1e-08
+          }
+        }
+      },
+      {
+        "case": "case-07",
+        "kind": "model",
+        "passed": false,
+        "status": "mismatch",
+        "relative_error": null,
+        "detail": "Failed checks: model-1/momentum_balance, model-1/thrust_routes_agree",
+        "diagnostics": {
+          "model-1/x_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/e_field_v_per_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/source_per_m3_s": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_density": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_speed": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/positive_state": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          },
+          "model-1/continuity": {
+            "passed": true,
+            "error": 1.985126347909798e-16,
+            "tolerance": 1e-08
+          },
+          "model-1/momentum_balance": {
+            "passed": false,
+            "error": 0.009907946108900254,
+            "tolerance": 1e-08
+          },
+          "model-1/thrust_routes_agree": {
+            "passed": false,
+            "error": 0.3626360852853205,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_momentum_thrust": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_force_thrust": {
+            "passed": true,
+            "error": 9.680711107142492e-17,
+            "tolerance": 1e-08
+          }
+        }
+      },
+      {
+        "case": "case-08",
+        "kind": "model",
+        "passed": false,
+        "status": "mismatch",
+        "relative_error": null,
+        "detail": "Failed checks: model-1/momentum_balance, model-1/thrust_routes_agree",
+        "diagnostics": {
+          "model-1/x_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/e_field_v_per_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/source_per_m3_s": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_density": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_speed": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/positive_state": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          },
+          "model-1/continuity": {
+            "passed": true,
+            "error": 1.705612952812012e-16,
+            "tolerance": 1e-08
+          },
+          "model-1/momentum_balance": {
+            "passed": false,
+            "error": 0.008392609485713269,
+            "tolerance": 1e-08
+          },
+          "model-1/thrust_routes_agree": {
+            "passed": false,
+            "error": 0.26976166010216085,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_momentum_thrust": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_force_thrust": {
+            "passed": true,
+            "error": 1.0605389313431965e-16,
+            "tolerance": 1e-08
+          }
+        }
+      },
+      {
+        "case": "case-09",
+        "kind": "model",
+        "passed": false,
+        "status": "mismatch",
+        "relative_error": null,
+        "detail": "Failed checks: model-1/momentum_balance, model-1/thrust_routes_agree",
+        "diagnostics": {
+          "model-1/x_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/e_field_v_per_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/source_per_m3_s": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_density": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_speed": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/positive_state": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          },
+          "model-1/continuity": {
+            "passed": true,
+            "error": 1.192453754909857e-16,
+            "tolerance": 1e-08
+          },
+          "model-1/momentum_balance": {
+            "passed": false,
+            "error": 0.06511781044652964,
+            "tolerance": 1e-08
+          },
+          "model-1/thrust_routes_agree": {
+            "passed": false,
+            "error": 0.11892426898126829,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_momentum_thrust": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_force_thrust": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          }
+        }
+      },
+      {
+        "case": "case-10",
+        "kind": "zero_field",
+        "passed": false,
+        "status": "mismatch",
+        "relative_error": null,
+        "detail": "Failed checks: model-1/momentum_balance, model-1/thrust_routes_agree, constant_momentum_flux",
+        "diagnostics": {
+          "model-1/x_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/e_field_v_per_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/source_per_m3_s": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_density": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_speed": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/positive_state": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          },
+          "model-1/continuity": {
+            "passed": true,
+            "error": 1.069366550562708e-16,
+            "tolerance": 1e-08
+          },
+          "model-1/momentum_balance": {
+            "passed": false,
+            "error": 0.016996598973776398,
+            "tolerance": 1e-08
+          },
+          "model-1/thrust_routes_agree": {
+            "passed": false,
+            "error": 0.9348371168673001,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_momentum_thrust": {
+            "passed": true,
+            "error": 1.4449409718180983e-16,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_force_thrust": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "constant_momentum_flux": {
+            "passed": false,
+            "error": 14.346159530166396,
+            "tolerance": 1e-08
+          }
+        }
+      },
+      {
+        "case": "case-11",
+        "kind": "no_source",
+        "passed": true,
+        "status": "passed",
+        "relative_error": null,
+        "detail": "All physical and numerical checks passed",
+        "diagnostics": {
+          "model-1/x_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/e_field_v_per_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/source_per_m3_s": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_density": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_speed": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/positive_state": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          },
+          "model-1/continuity": {
+            "passed": true,
+            "error": 1.3675558067632554e-16,
+            "tolerance": 1e-08
+          },
+          "model-1/momentum_balance": {
+            "passed": true,
+            "error": 2.43299052718486e-16,
+            "tolerance": 1e-08
+          },
+          "model-1/thrust_routes_agree": {
+            "passed": true,
+            "error": 1.9433744348726247e-16,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_momentum_thrust": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_force_thrust": {
+            "passed": true,
+            "error": 1.9433744348726247e-16,
+            "tolerance": 1e-08
+          },
+          "constant_particle_flux": {
+            "passed": true,
+            "error": 5.470223227053022e-16,
+            "tolerance": 1e-08
+          }
+        }
+      },
+      {
+        "case": "case-12",
+        "kind": "refinement",
+        "passed": false,
+        "status": "mismatch",
+        "relative_error": null,
+        "detail": "Failed checks: model-1/momentum_balance, model-1/thrust_routes_agree, model-2/momentum_balance, model-2/thrust_routes_agree, model-3/momentum_balance, model-3/thrust_routes_agree",
+        "diagnostics": {
+          "model-1/x_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/e_field_v_per_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/source_per_m3_s": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_density": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_speed": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/positive_state": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          },
+          "model-1/continuity": {
+            "passed": true,
+            "error": 1.740164160562553e-16,
+            "tolerance": 1e-08
+          },
+          "model-1/momentum_balance": {
+            "passed": false,
+            "error": 0.0012098898490585197,
+            "tolerance": 1e-08
+          },
+          "model-1/thrust_routes_agree": {
+            "passed": false,
+            "error": 0.09486303342139484,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_momentum_thrust": {
+            "passed": true,
+            "error": 1.6600006165001825e-16,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_force_thrust": {
+            "passed": true,
+            "error": 3.320001233000365e-16,
+            "tolerance": 1e-08
+          },
+          "model-2/x_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-2/e_field_v_per_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-2/source_per_m3_s": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-2/inlet_density": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-2/inlet_speed": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-2/positive_state": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          },
+          "model-2/continuity": {
+            "passed": true,
+            "error": 1.7384777650305234e-16,
+            "tolerance": 1e-08
+          },
+          "model-2/momentum_balance": {
+            "passed": false,
+            "error": 0.0006116400602079303,
+            "tolerance": 1e-08
+          },
+          "model-2/thrust_routes_agree": {
+            "passed": false,
+            "error": 0.0955255416073546,
+            "tolerance": 1e-08
+          },
+          "model-2/reported_momentum_thrust": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-2/reported_force_thrust": {
+            "passed": true,
+            "error": 1.6628063154153202e-16,
+            "tolerance": 1e-08
+          },
+          "model-3/x_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-3/e_field_v_per_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-3/source_per_m3_s": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-3/inlet_density": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-3/inlet_speed": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-3/positive_state": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          },
+          "model-3/continuity": {
+            "passed": true,
+            "error": 1.7078426654064301e-16,
+            "tolerance": 1e-08
+          },
+          "model-3/momentum_balance": {
+            "passed": false,
+            "error": 0.0003074943106023976,
+            "tolerance": 1e-08
+          },
+          "model-3/thrust_routes_agree": {
+            "passed": false,
+            "error": 0.09585834072518724,
+            "tolerance": 1e-08
+          },
+          "model-3/reported_momentum_thrust": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-3/reported_force_thrust": {
+            "passed": true,
+            "error": 1.664197731011819e-16,
+            "tolerance": 1e-08
+          },
+          "refinement_speed": {
+            "passed": true,
+            "error": 0.0016811021995087412,
+            "tolerance": 0.003
+          },
+          "refinement_thrust": {
+            "passed": true,
+            "error": 0.0024751994155153274,
+            "tolerance": 0.003
+          },
+          "speed_contraction": {
+            "passed": true,
+            "error": 0.4959986786074443,
+            "tolerance": 0.62
+          },
+          "thrust_contraction": {
+            "passed": true,
+            "error": 0.49660865845265206,
+            "tolerance": 0.62
+          }
+        }
+      },
+      {
+        "case": "case-13",
+        "kind": "refinement",
+        "passed": false,
+        "status": "mismatch",
+        "relative_error": null,
+        "detail": "Failed checks: model-1/momentum_balance, model-1/thrust_routes_agree, model-2/momentum_balance, model-2/thrust_routes_agree, model-3/momentum_balance, model-3/thrust_routes_agree",
+        "diagnostics": {
+          "model-1/x_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/e_field_v_per_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/source_per_m3_s": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_density": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/inlet_speed": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/positive_state": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          },
+          "model-1/continuity": {
+            "passed": true,
+            "error": 1.4917819257482688e-16,
+            "tolerance": 1e-08
+          },
+          "model-1/momentum_balance": {
+            "passed": false,
+            "error": 0.004157282804092401,
+            "tolerance": 1e-08
+          },
+          "model-1/thrust_routes_agree": {
+            "passed": false,
+            "error": 0.3580727876253155,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_momentum_thrust": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-1/reported_force_thrust": {
+            "passed": true,
+            "error": 3.791501058001482e-16,
+            "tolerance": 1e-08
+          },
+          "model-2/x_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-2/e_field_v_per_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-2/source_per_m3_s": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-2/inlet_density": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-2/inlet_speed": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-2/positive_state": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          },
+          "model-2/continuity": {
+            "passed": true,
+            "error": 1.6182059923678494e-16,
+            "tolerance": 1e-08
+          },
+          "model-2/momentum_balance": {
+            "passed": false,
+            "error": 0.002081492357578232,
+            "tolerance": 1e-08
+          },
+          "model-2/thrust_routes_agree": {
+            "passed": false,
+            "error": 0.3592868241084293,
+            "tolerance": 1e-08
+          },
+          "model-2/reported_momentum_thrust": {
+            "passed": true,
+            "error": 1.2640282578299363e-16,
+            "tolerance": 1e-08
+          },
+          "model-2/reported_force_thrust": {
+            "passed": true,
+            "error": 1.2640282578299363e-16,
+            "tolerance": 1e-08
+          },
+          "model-3/x_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-3/e_field_v_per_m": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-3/source_per_m3_s": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-3/inlet_density": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-3/inlet_speed": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 1e-08
+          },
+          "model-3/positive_state": {
+            "passed": true,
+            "error": 0.0,
+            "tolerance": 0.0
+          },
+          "model-3/continuity": {
+            "passed": true,
+            "error": 1.60556422178078e-16,
+            "tolerance": 1e-08
+          },
+          "model-3/momentum_balance": {
+            "passed": false,
+            "error": 0.0010414616682488046,
+            "tolerance": 1e-08
+          },
+          "model-3/thrust_routes_agree": {
+            "passed": false,
+            "error": 0.3598946241734549,
+            "tolerance": 1e-08
+          },
+          "model-3/reported_momentum_thrust": {
+            "passed": true,
+            "error": 1.2641190705954e-16,
+            "tolerance": 1e-08
+          },
+          "model-3/reported_force_thrust": {
+            "passed": true,
+            "error": 1.2641190705954e-16,
+            "tolerance": 1e-08
+          },
+          "refinement_speed": {
+            "passed": true,
+            "error": 0.00015279818285720127,
+            "tolerance": 0.003
+          },
+          "refinement_thrust": {
+            "passed": true,
+            "error": 0.0020721103590097207,
+            "tolerance": 0.003
+          },
+          "speed_contraction": {
+            "passed": true,
+            "error": 0.46826453398473195,
+            "tolerance": 0.62
+          },
+          "thrust_contraction": {
+            "passed": true,
+            "error": 0.49798355708502395,
+            "tolerance": 0.62
+          }
+        }
+      }
+    ],
+    "warning": "Trusted local execution only: Python -I and temporary directories are not a security sandbox."
+  },
+  "scored": true,
+  "paths": {
+    "report": "/Users/josh/Desktop/EP-Bench/ep-agentbench/attempts/ep-agent/cc94d8972f2641ebb4f971d91fa21d57/report.json",
+    "trace": "/Users/josh/Desktop/EP-Bench/ep-agentbench/attempts/ep-agent/cc94d8972f2641ebb4f971d91fa21d57/trajectory.jsonl",
+    "workspace": "/Users/josh/Desktop/EP-Bench/ep-agentbench/attempts/ep-agent/cc94d8972f2641ebb4f971d91fa21d57/workspace",
+    "initial_workspace": "/Users/josh/Desktop/EP-Bench/ep-agentbench/attempts/ep-agent/cc94d8972f2641ebb4f971d91fa21d57/initial",
+    "patch": "/Users/josh/Desktop/EP-Bench/ep-agentbench/attempts/ep-agent/cc94d8972f2641ebb4f971d91fa21d57/changes.diff",
+    "conversation": "/Users/josh/Desktop/EP-Bench/ep-agentbench/attempts/ep-agent/cc94d8972f2641ebb4f971d91fa21d57/conversation.json",
+    "control": "/Users/josh/Desktop/EP-Bench/ep-agentbench/attempts/ep-agent/cc94d8972f2641ebb4f971d91fa21d57/control"
+  },
+  "initial_sha256": {
+    "README.md": "e06f896eaa7222a26025c09545608928c2df9e9fc9e13346389cd7f61db2f516",
+    "momentum.py": "c17f736131c64d9eb7e54b0d7d92d2d2afb8690072eec64dfcfc92aaff1bad7c",
+    "physics.py": "3f514609814b0a7bc728a8d47b33d303c99e99f62e7b2db98937b720d73ffe5b",
+    "run.py": "d98df46d8bda335469a9fb5c8c1e4b84c609815721064c716da08486a11678ce"
+  },
+  "execution_boundary": {
+    "mode": "macos-constrained-development",
+    "verified": true,
+    "private_reads": "denied",
+    "network": "denied",
+    "fork": "denied",
+    "limitations": "System runtime reads and file metadata remain available; not a production security boundary."
+  },
+  "agent_seconds": 18.5317779580364,
+  "final_sha256": {
+    "README.md": "e06f896eaa7222a26025c09545608928c2df9e9fc9e13346389cd7f61db2f516",
+    "momentum.py": "c17f736131c64d9eb7e54b0d7d92d2d2afb8690072eec64dfcfc92aaff1bad7c",
+    "physics.py": "3f514609814b0a7bc728a8d47b33d303c99e99f62e7b2db98937b720d73ffe5b",
+    "run.py": "d98df46d8bda335469a9fb5c8c1e4b84c609815721064c716da08486a11678ce"
+  },
+  "modified_files": [],
+  "reward_definition": "all verifier cases passed",
+  "case_fraction_for_analysis_only": 0.23076923076923078,
+  "grading_seconds": 0.6078875000821427,
+  "usage": {
+    "completed_generations": 12,
+    "prompt_tokens": 9116,
+    "generation_tokens": 402,
+    "scope": "completed generations; prompt includes repeated history",
+    "peak_mlx_bytes": 1649016392,
+    "peak_rss_bytes": 926826496,
+    "token_logprobs_recorded": false,
+    "cost": null
+  },
+  "total_seconds": 19.175392125034705,
+  "evaluation_status": "scored"
+}
