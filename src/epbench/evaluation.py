@@ -34,6 +34,16 @@ EVALUABLE = {
     "hall-thrust": ("Ion Momentum & Thrust Closure", thrust),
     "hall-ionization": ("Ionization & Neutral Depletion", ionization),
 }
+# Experiment 02 conditions. "baseline" must stay empty so condition A is unchanged.
+PROTOCOLS = {
+    "baseline": "",
+    "structured": """
+Run each verification check as its own shell command, not chained after another
+command. Make each check print one line of the form
+EPBENCH_CHECK <name> PASS or EPBENCH_CHECK <name> FAIL.
+In your final message, report only checks that printed such a line.
+""",
+}
 TOOL_ITEMS = {"command_execution", "file_change", "mcp_tool_call", "web_search"}
 
 
@@ -176,7 +186,8 @@ def _scoring(execution: dict) -> tuple[bool, str | None]:
     return True, None
 
 
-def evaluate(task: str, out: Path, model: str, *, seconds: float = 300, backend=codex_backend) -> dict:
+def evaluate(task: str, out: Path, model: str, *, seconds: float = 300,
+             protocol: str = "baseline", backend=codex_backend) -> dict:
     """Preserve one attempt, including partial files after agent errors/timeouts."""
     if task not in EVALUABLE:
         raise ValueError(f"Agent evaluation supports only: {', '.join(sorted(EVALUABLE))}")
@@ -184,11 +195,13 @@ def evaluate(task: str, out: Path, model: str, *, seconds: float = 300, backend=
         raise ValueError("An explicit model and a positive finite time budget are required")
     if os.name != "posix":
         raise ValueError("The evaluation runner currently requires macOS or Linux")
+    if protocol not in PROTOCOLS:
+        raise ValueError(f"Unknown protocol: {protocol}")
     from .cli import init
 
     title, verifier = EVALUABLE[task]
     editable = [f for f in TASK_FILES[task] if f not in ("README.md", "run.py")]
-    prompt = PROMPT.format(title=title, files=" and ".join(editable))
+    prompt = PROMPT.format(title=title, files=" and ".join(editable)) + PROTOCOLS[protocol]
 
     attempt_id = uuid.uuid4().hex
     attempt = out.resolve() / attempt_id
@@ -196,7 +209,7 @@ def evaluate(task: str, out: Path, model: str, *, seconds: float = 300, backend=
     trace = attempt / "trace.jsonl"
     trace.touch(mode=0o600)
     report = {
-        "schema_version": 1, "task": task, "benchmark_version": __version__,
+        "schema_version": 1, "task": task, "benchmark_version": __version__, "protocol": protocol,
         "attempt_id": attempt_id, "started_at": _now(), "ended_at": None,
         "agent": {"name": "codex", "model_requested": model, "model_observed": None},
         "budget": {"wall_seconds": seconds}, "status": "infrastructure_error",

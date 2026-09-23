@@ -9,7 +9,7 @@ from pathlib import Path
 import sys
 
 from . import TASKS, TASK_FILES, __version__
-from .evaluation import EVALUABLE
+from .evaluation import EVALUABLE, PROTOCOLS
 from .grader import TIMEOUT_SECONDS, grade
 
 
@@ -44,6 +44,8 @@ def main(argv: list[str] | None = None) -> int:
     attempt.add_argument("--out", type=Path, required=True, help="Directory that will hold the attempt record")
     attempt.add_argument("--model", required=True, help="Backend model identifier, passed through verbatim")
     attempt.add_argument("--seconds", type=float, default=300.0, help="Wall-clock budget for the agent (default: 300)")
+    attempt.add_argument("--protocol", choices=sorted(PROTOCOLS), default="baseline",
+                         help="Experiment 02 condition (default: baseline)")
     report_summary = sub.add_parser("summarize", help="Aggregate attempt reports in a directory")
     report_summary.add_argument("--attempts", type=Path, required=True, help="Directory holding attempt records")
     report_summary.add_argument("--json-out", type=Path, help="Also save the summary JSON to this file")
@@ -60,7 +62,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"Edit {editable} in {args.out}")
         elif args.command == "evaluate":
             from .evaluation import evaluate as run_attempt
-            report = run_attempt(args.task, args.out, args.model, seconds=args.seconds)
+            report = run_attempt(args.task, args.out, args.model, seconds=args.seconds, protocol=args.protocol)
             print(json.dumps(report, indent=2, allow_nan=False))
             grading = report["grading"]["result"]
             score = f"{grading['passed']}/{grading['total']} cases passed" if grading else "not graded"

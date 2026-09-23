@@ -1,0 +1,310 @@
+{
+  "seed": 20260922,
+  "benchmark_version": "0.5.0",
+  "model_requested": "gpt-5.6-luna",
+  "seconds": 900,
+  "valid_per_cell": 10,
+  "total_valid": 60,
+  "order": [
+    {
+      "index": 1,
+      "task": "hall-transport",
+      "protocol": "structured"
+    },
+    {
+      "index": 2,
+      "task": "hall-transport",
+      "protocol": "structured"
+    },
+    {
+      "index": 3,
+      "task": "hall-thrust",
+      "protocol": "structured"
+    },
+    {
+      "index": 4,
+      "task": "hall-transport",
+      "protocol": "structured"
+    },
+    {
+      "index": 5,
+      "task": "hall-transport",
+      "protocol": "structured"
+    },
+    {
+      "index": 6,
+      "task": "hall-ionization",
+      "protocol": "structured"
+    },
+    {
+      "index": 7,
+      "task": "hall-transport",
+      "protocol": "structured"
+    },
+    {
+      "index": 8,
+      "task": "hall-thrust",
+      "protocol": "baseline"
+    },
+    {
+      "index": 9,
+      "task": "hall-thrust",
+      "protocol": "baseline"
+    },
+    {
+      "index": 10,
+      "task": "hall-ionization",
+      "protocol": "structured"
+    },
+    {
+      "index": 11,
+      "task": "hall-transport",
+      "protocol": "structured"
+    },
+    {
+      "index": 12,
+      "task": "hall-ionization",
+      "protocol": "baseline"
+    },
+    {
+      "index": 13,
+      "task": "hall-thrust",
+      "protocol": "structured"
+    },
+    {
+      "index": 14,
+      "task": "hall-thrust",
+      "protocol": "baseline"
+    },
+    {
+      "index": 15,
+      "task": "hall-transport",
+      "protocol": "baseline"
+    },
+    {
+      "index": 16,
+      "task": "hall-transport",
+      "protocol": "baseline"
+    },
+    {
+      "index": 17,
+      "task": "hall-ionization",
+      "protocol": "baseline"
+    },
+    {
+      "index": 18,
+      "task": "hall-transport",
+      "protocol": "structured"
+    },
+    {
+      "index": 19,
+      "task": "hall-thrust",
+      "protocol": "baseline"
+    },
+    {
+      "index": 20,
+      "task": "hall-ionization",
+      "protocol": "baseline"
+    },
+    {
+      "index": 21,
+      "task": "hall-thrust",
+      "protocol": "baseline"
+    },
+    {
+      "index": 22,
+      "task": "hall-ionization",
+      "protocol": "baseline"
+    },
+    {
+      "index": 23,
+      "task": "hall-ionization",
+      "protocol": "baseline"
+    },
+    {
+      "index": 24,
+      "task": "hall-transport",
+      "protocol": "structured"
+    },
+    {
+      "index": 25,
+      "task": "hall-thrust",
+      "protocol": "baseline"
+    },
+    {
+      "index": 26,
+      "task": "hall-transport",
+      "protocol": "structured"
+    },
+    {
+      "index": 27,
+      "task": "hall-thrust",
+      "protocol": "structured"
+    },
+    {
+      "index": 28,
+      "task": "hall-ionization",
+      "protocol": "baseline"
+    },
+    {
+      "index": 29,
+      "task": "hall-transport",
+      "protocol": "baseline"
+    },
+    {
+      "index": 30,
+      "task": "hall-thrust",
+      "protocol": "structured"
+    },
+    {
+      "index": 31,
+      "task": "hall-transport",
+      "protocol": "baseline"
+    },
+    {
+      "index": 32,
+      "task": "hall-thrust",
+      "protocol": "baseline"
+    },
+    {
+      "index": 33,
+      "task": "hall-thrust",
+      "protocol": "structured"
+    },
+    {
+      "index": 34,
+      "task": "hall-ionization",
+      "protocol": "structured"
+    },
+    {
+      "index": 35,
+      "task": "hall-ionization",
+      "protocol": "baseline"
+    },
+    {
+      "index": 36,
+      "task": "hall-thrust",
+      "protocol": "structured"
+    },
+    {
+      "index": 37,
+      "task": "hall-transport",
+      "protocol": "baseline"
+    },
+    {
+      "index": 38,
+      "task": "hall-transport",
+      "protocol": "structured"
+    },
+    {
+      "index": 39,
+      "task": "hall-ionization",
+      "protocol": "structured"
+    },
+    {
+      "index": 40,
+      "task": "hall-transport",
+      "protocol": "baseline"
+    },
+    {
+      "index": 41,
+      "task": "hall-thrust",
+      "protocol": "baseline"
+    },
+    {
+      "index": 42,
+      "task": "hall-thrust",
+      "protocol": "baseline"
+    },
+    {
+      "index": 43,
+      "task": "hall-thrust",
+      "protocol": "structured"
+    },
+    {
+      "index": 44,
+      "task": "hall-ionization",
+      "protocol": "structured"
+    },
+    {
+      "index": 45,
+      "task": "hall-ionization",
+      "protocol": "structured"
+    },
+    {
+      "index": 46,
+      "task": "hall-transport",
+      "protocol": "baseline"
+    },
+    {
+      "index": 47,
+      "task": "hall-thrust",
+      "protocol": "structured"
+    },
+    {
+      "index": 48,
+      "task": "hall-ionization",
+      "protocol": "structured"
+    },
+    {
+      "index": 49,
+      "task": "hall-ionization",
+      "protocol": "baseline"
+    },
+    {
+      "index": 50,
+      "task": "hall-thrust",
+      "protocol": "structured"
+    },
+    {
+      "index": 51,
+      "task": "hall-transport",
+      "protocol": "baseline"
+    },
+    {
+      "index": 52,
+      "task": "hall-ionization",
+      "protocol": "structured"
+    },
+    {
+      "index": 53,
+      "task": "hall-transport",
+      "protocol": "baseline"
+    },
+    {
+      "index": 54,
+      "task": "hall-thrust",
+      "protocol": "structured"
+    },
+    {
+      "index": 55,
+      "task": "hall-transport",
+      "protocol": "baseline"
+    },
+    {
+      "index": 56,
+      "task": "hall-thrust",
+      "protocol": "baseline"
+    },
+    {
+      "index": 57,
+      "task": "hall-ionization",
+      "protocol": "structured"
+    },
+    {
+      "index": 58,
+      "task": "hall-ionization",
+      "protocol": "baseline"
+    },
+    {
+      "index": 59,
+      "task": "hall-ionization",
+      "protocol": "baseline"
+    },
+    {
+      "index": 60,
+      "task": "hall-ionization",
+      "protocol": "structured"
+    }
+  ]
+}
