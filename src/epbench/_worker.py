@@ -12,7 +12,7 @@ def main() -> None:
     inputs = json.load(sys.stdin)
     mode = sys.argv[1]
     try:
-        if mode in ("hall", "thrust"):
+        if mode in ("hall", "thrust", "ionization"):
             # Only submitted modules run here; all verification stays in the parent.
             sys.path.insert(0, str(Path.cwd()))
             if inputs["operation"] == "mobility":
@@ -21,6 +21,12 @@ def main() -> None:
             elif inputs["operation"] == "bohm":
                 from physics import bohm_speed
                 value = [bohm_speed(t) for t in inputs["te_ev"]]
+            elif inputs["operation"] == "rate":
+                from physics import rate_coefficient
+                value = [rate_coefficient(*d) for d in inputs["distributions"]]
+            elif mode == "ionization":
+                from continuity import Parameters, solve
+                value = [solve(Parameters(**parameters)) for parameters in inputs["parameters"]]
             elif mode == "hall":
                 from model import Parameters, solve
                 value = [solve(Parameters(**parameters)) for parameters in inputs["parameters"]]

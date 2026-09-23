@@ -13,7 +13,7 @@ import tempfile
 from typing import Any, Iterator
 
 from . import TASKS, __version__
-from . import hall, thrust
+from . import hall, ionization, thrust
 from .physics import axial_electric_field, ideal_beam_thrust, ion_exit_speed
 
 TIMEOUT_SECONDS = 5.0
@@ -22,6 +22,7 @@ ABS_TOL = {"ion-acceleration": 1e-8, "beam-thrust": 1e-12, "axial-field": 1e-8}
 WORKSPACES = {
     "hall-transport": (("physics.py", "model.py"), hall, "hall"),
     "hall-thrust": (("physics.py", "momentum.py"), thrust, "thrust"),
+    "hall-ionization": (("physics.py", "continuity.py"), ionization, "ionization"),
 }
 WARNING = "Trusted local execution only: Python -I and temporary directories are not a security sandbox."
 

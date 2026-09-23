@@ -17,7 +17,7 @@ import subprocess
 import time
 import uuid
 
-from . import TASK_FILES, __version__, codex_backend, hall, thrust
+from . import TASK_FILES, __version__, codex_backend, hall, ionization, thrust
 from .grader import grade
 
 PROMPT = """Repair the {title} task in this workspace.
@@ -32,6 +32,7 @@ Finish by briefly describing your changes and the checks you actually ran.
 EVALUABLE = {
     "hall-transport": ("Hall Transport & Potential Closure", hall),
     "hall-thrust": ("Ion Momentum & Thrust Closure", thrust),
+    "hall-ionization": ("Ionization & Neutral Depletion", ionization),
 }
 TOOL_ITEMS = {"command_execution", "file_change", "mcp_tool_call", "web_search"}
 

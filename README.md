@@ -47,8 +47,8 @@ workspace, a diff, and a machine-readable report.
 
 | Artifact | What it is | Expected result |
 | --- | --- | --- |
-| Reference implementation | A correct solution in `examples/solutions/` | 13/13 on either Hall task |
-| Starter | The exported task, deliberately defective | 2/13 for `hall-transport`, 3/13 for `hall-thrust` |
+| Reference implementation | A correct solution in `examples/solutions/` | 13/13 on each Hall task |
+| Starter | The exported task, deliberately defective | 2/13 for `hall-transport` and `hall-ionization`, 3/13 for `hall-thrust` |
 | Agent evaluation | One real agent attempt, graded after it terminates | Unknown; that is the experiment |
 
 A starter's score is the floor, not a baseline for any model. Reporting it as an
@@ -56,20 +56,22 @@ agent result would be wrong.
 
 ## Scope
 
-Three analytic smoke tests and two reduced Hall-thruster modelling tasks. The
+Three analytic smoke tests and three reduced Hall-thruster modelling tasks. The
 smoke tests exist to check the harness end to end; they are single-formula
-problems and are not interesting as agent evaluations. The two Hall tasks are
-the substantive ones, and they probe different conservation laws:
+problems and are not interesting as agent evaluations. The Hall tasks cover
+different physical relations:
 `hall-transport` the electron momentum closure, `hall-thrust` ion momentum when
-mass is added to the flow. Two further tasks, covering energy and mass
-conservation, are designed but not built.
+mass is added to the flow, and `hall-ionization` collision kinetics coupled to
+ion production and neutral depletion. An energy task is proposed but not built.
 
 These are reduced models, not thruster simulators. In `hall-transport`, density,
 temperature, collision frequency, and magnetic field are prescribed. Ionization, sheaths,
 electron energy evolution, ion momentum sources, and self-consistent density
 evolution are excluded. `hall-thrust` instead solves ion density and velocity
-with a prescribed field and ionization source. No external simulator is used,
-and nothing here is validated against experimental data.
+with a prescribed field and ionization source. `hall-ionization` prescribes
+electron energy distributions and velocities, then solves coupled continuity
+with an idealized collision model. No external simulator is used, and nothing
+here is validated against experimental data.
 
 There is no RL training, no reward model, and no demonstrated model improvement.
 
@@ -106,6 +108,7 @@ The installed CLI works from any directory. `python -m epbench.cli` also works.
 | --- | --- | --- |
 | `hall-transport` | Directory with `physics.py` and `model.py` | Coupled cross-field electron transport and potential closure |
 | `hall-thrust` | Directory with `physics.py` and `momentum.py` | Ion momentum with mass addition, and the thrust closure |
+| `hall-ionization` | Directory with `physics.py` and `continuity.py` | Calibrated collision kinetics and neutral depletion under varied electron distributions |
 | `ion-acceleration` | Python file | Xe+ kinetic-energy balance |
 | `beam-thrust` | Python file | Ideal beam thrust from current and charge state |
 | `axial-field` | Python file | Signed field from a linear potential |
@@ -130,7 +133,9 @@ the verification strategy, and the intentional defects:
 [hall-transport](src/epbench/tasks/hall-transport/README.md) with
 [notes](docs/hall-transport.md), and
 [hall-thrust](src/epbench/tasks/hall-thrust/README.md) with
-[notes](docs/hall-thrust.md).
+[notes](docs/hall-thrust.md), and
+[hall-ionization](src/epbench/tasks/hall-ionization/README.md) with
+[notes](docs/hall-ionization.md).
 
 `hall-thrust` solves ion density and velocity along the channel given a
 prescribed electric field and ionization source. Newly created ions bring
@@ -142,8 +147,26 @@ In **v0.4.1**, the exported `hall-thrust` specification provides conservative
 balances and quadrature rules without the expanded velocity equation or a
 velocity-update formula. Pilot 02 used v0.4.0, which disclosed both formulas;
 its five successful attempts measure a different information condition and
-must not be pooled with future v0.4.1 results. This revision has not been
-evaluated with coding agents. See the [maintainer review](docs/hall-thrust.md).
+must not be pooled with v0.4.1 results. Pilot 03 subsequently produced five
+successful v0.4.1 attempts through specification-to-code translation before
+numerical evidence. Those artifacts remain unchanged. See the historical
+[maintainer review](docs/hall-thrust.md).
+
+**New in v0.5.0:** `hall-ionization` supplies microscopic collision probabilities,
+electron distributions, and synthetic response observations, without an evaluated
+rate formula. Its starter exactly matches the nominal calibration but fails
+temperature and fixed-mean distribution-shape sweeps. The independent verifier
+uses energy quadrature and conservative transport checks. No coding-agent pilot
+of this task has been run; analytical diagnosis is valid and difficulty is unknown.
+
+```bash
+epbench init hall-ionization --out ./my-ionization-task
+python ./my-ionization-task/run.py
+epbench grade hall-ionization --solution ./my-ionization-task --json-out results/ionization.json
+```
+
+The defective starter returns exit code 1 from grading. The specification's
+observations are synthetic, not experimental validation.
 
 ## Running one agent evaluation
 

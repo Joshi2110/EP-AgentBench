@@ -36,7 +36,7 @@ def main(argv: list[str] | None = None) -> int:
     make.add_argument("--out", type=Path, required=True)
     evaluate = sub.add_parser("grade", help="Execute a trusted Python submission locally (not sandboxed)")
     evaluate.add_argument("task", choices=TASKS)
-    evaluate.add_argument("--solution", type=Path, required=True, help="Python file, or directory for hall-transport")
+    evaluate.add_argument("--solution", type=Path, required=True, help="Python file, or directory for a Hall task")
     evaluate.add_argument("--json-out", type=Path, help="Also save the JSON report to this file")
     evaluate.add_argument("--timeout", type=float, default=TIMEOUT_SECONDS, help="Seconds per case (default: 5)")
     attempt = sub.add_parser("evaluate", help="Run one isolated Codex attempt and grade what it leaves behind")
