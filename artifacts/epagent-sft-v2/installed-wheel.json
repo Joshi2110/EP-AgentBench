@@ -1,0 +1,29 @@
+{
+  "cwd": "/var/folders/vr/4b0xhmsn53d5d6r3qsg80zc00000gn/T/epagent-sft-amend-ypxp1967/outside",
+  "PYTHONPATH": null,
+  "EPAGENT_TEST_MLX": "1",
+  "commands": [
+    [
+      "/Users/josh/Desktop/EP-Bench/ep-agentbench/.venv/bin/python",
+      "-m",
+      "pip",
+      "install",
+      "--no-index",
+      "--no-deps",
+      "--force-reinstall",
+      "/var/folders/vr/4b0xhmsn53d5d6r3qsg80zc00000gn/T/epagent-sft-amend-ypxp1967/wheels/ep_agentbench-0.5.0-py3-none-any.whl"
+    ],
+    [
+      "/Users/josh/Desktop/EP-Bench/ep-agentbench/.venv/bin/python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/Users/josh/Desktop/EP-Bench/ep-agentbench/tests",
+      "-v"
+    ]
+  ],
+  "exit_code": 0,
+  "real_model_generations": 0,
+  "optimizer_updates": 0
+}

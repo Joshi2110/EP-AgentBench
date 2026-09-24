@@ -1,0 +1,49 @@
+{
+  "checks": {
+    "full-tests.log": {
+      "tests": 159,
+      "seconds": 103.056,
+      "skips": 0,
+      "passed": true
+    },
+    "installed-wheel-tests.log": {
+      "tests": 159,
+      "seconds": 105.578,
+      "skips": 0,
+      "passed": true
+    },
+    "hall-transport": {
+      "passed": 13,
+      "total": 13
+    },
+    "hall-thrust": {
+      "passed": 13,
+      "total": 13
+    },
+    "hall-ionization": {
+      "passed": 13,
+      "total": 13
+    }
+  },
+  "dataset": {
+    "train": {
+      "episodes": 8,
+      "examples": 72,
+      "supervised_tokens": 1980,
+      "max_tokens": 1430
+    },
+    "valid": {
+      "episodes": 3,
+      "examples": 28,
+      "supervised_tokens": 822,
+      "max_tokens": 1447
+    }
+  },
+  "effective_training_passes": 0.5555555555555556,
+  "protocol_sha256": "32da3a32b46c3df1ae117c0f59f40f1a32a7abb8f0029a1a334d30bb8a77e8dd",
+  "adapter_verification": "actual native loader with tiny untrained surrogate tensors; no forward pass or generation",
+  "runner_verification": "scripted test trajectories only",
+  "baseline_collected": false,
+  "adapted_model_evaluated": false,
+  "backward_training_steps": 0
+}

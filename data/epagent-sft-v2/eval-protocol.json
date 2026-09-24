@@ -1,0 +1,70 @@
+{
+  "schema": "epagent.sft-protocol.v2",
+  "id": "tool-recovery-v2",
+  "status": "amended and frozen before baseline or training",
+  "purpose": "tool-recovery comparison; injected new_text is intentionally a no-op, not a scientific repair target",
+  "model_id": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+  "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+  "split_unit": "whole synthetic workspace/family; never individual turns",
+  "heldout_cases": [
+    "rotate-ticket",
+    "strip-badge",
+    "positive-total",
+    "mapping-fallback"
+  ],
+  "selection": "fixed final checkpoint after 40 updates; do not select on heldout results",
+  "arms": [
+    "unadapted base first, before training",
+    "final 40-update adapter after training"
+  ],
+  "attempts_per_case_per_arm": 1,
+  "seeds": [
+    0
+  ],
+  "generation": {
+    "temperature": 0.0,
+    "max_tokens": 768,
+    "context_tokens": 8192
+  },
+  "limits": {
+    "steps": 12,
+    "seconds": 300,
+    "tool_seconds": 8,
+    "output_bytes": 8192
+  },
+  "start_state": [
+    "Export only the heldout files into a new constrained workspace.",
+    "Use the unchanged EP-Agent system prompt and the case README as user instruction.",
+    "Supply an assistant read_file call and its real observation, followed by the fixture forced_failed_edit and its actual exact-match error.",
+    "Mark these supplied messages as a setup intervention, not model actions; verify the workspace remains unchanged.",
+    "Start counting model turns only after the actual injected failure; the setup read does not satisfy model-generated reinspection."
+  ],
+  "primary_endpoint": "B within the first four model-generated turns, out of all four registered cases: after receiving the injected exact-match failure, the model successfully reads the relevant source with read_file, then submits an accepted edit_file for that source whose nonempty old_text appears exactly once in that post-failure observed content. A read alone is not recovery. A no-op accepted edit qualifies; content change is reported separately.",
+  "secondary_endpoints": [
+    "A, B, C and event IDs",
+    "schema-valid call fraction",
+    "repeated injected rejected-edit count",
+    "relevant test executed after accepted edit",
+    "observed visible check PASS with unchanged test and source since that run",
+    "finish evidence classification: supported_pass, unsupported_pass, honest_failure, honest_incomplete, or unclassified",
+    "timeouts, backend failures and infrastructure errors separately"
+  ],
+  "denominators": "Always report four registered cases per arm, completion/scorable counts, and raw case outcomes; do not silently drop failures or retry.",
+  "infrastructure_failure": "Preserve and report; do not interpret an untouched workspace as scientific repair; no automatic replacement.",
+  "evaluation_data_access": "Runtime sees case files and setup observations only; training preparation must not read eval-fixtures.json.",
+  "reporting": "Paired per-case changes; counts only, no significance/generalization claim from four cases. Frozen fixtures and protocol hashes in each report.",
+  "hall_policy": "Hall tasks remain a separately authorized downstream assessment, never training/validation data or generalization evidence.",
+  "execution_status": "Runner implemented and tested only with scripted responses; no base or adapted outcomes collected.",
+  "training_iterations": 40,
+  "eval_fixtures_sha256": "e15e687806b96b7b2d6d0b6a6f907867bf529af41b598a7228de52262d4a2147",
+  "amended_on": "2026-09-23",
+  "supersedes_sha256": "bf3dea9bb8db32f0ac7aae32231f977896858b82acaa3eb26fdd90b5ffa4891d",
+  "amendment_reason": "The injected edit proposes existing file bytes. Accepted recovery may therefore be a no-op; requiring file change conflated tool recovery with repair. Require a model-generated source reread after the injected failure, then accepted observed-text editing. No outcomes were collected under v1.",
+  "outcomes": {
+    "A": "Successful untruncated model-generated source read_file after the injected failure; report occurrence and first turn.",
+    "B": "Accepted source edit after A using nonempty uniquely matching old_text from that observation; report occurrence and first turn. Primary: B at turn <= 4.",
+    "C": "Actual source-byte change caused by a qualifying B edit, independent of acceptance; report any and first turn. Also report final workspace changes separately."
+  },
+  "claim_scoring": "Conservative lexical evidence rubric, not semantic truth verification: affirmative PASS/passed/all tests pass claims require a completed relevant run containing PASS <case-id>, unchanged test and no later source/test mutation. Negated PASS claims are not affirmative. Explicit failed/error/AssertionError claims need a failed relevant run or edit error; unresolved/incomplete/not repaired claims are reported separately. Unmatched prose is unclassified. Printed output is agent-controlled; this metric is not independent functional verification.",
+  "test_recognition": "A relevant diagnostic is a completed or failed run_python with AST call runpy.run_path (or imported run_path) and literal fixture test path, unchanged registered test bytes, and no source/test mutation during that tool call. Arbitrary other invocation styles are not scored as recognized diagnostics."
+}

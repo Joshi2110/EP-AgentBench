@@ -1,223 +1,194 @@
-# EP-Agent: first SFT pipeline, prepared but not trained
+# EP-Agent SFT: amended protocol and integration, not trained
 
-This milestone implements reviewed trajectory conversion, real-template
-assistant-only supervision, and a small local MLX-LM LoRA training entry point.
-No optimizer update, policy generation, baseline evaluation, or SFT training run
-was performed. The existing agent loop, prompt, tools, Hall tasks, graders,
-references, Experiment 02, and publication snapshot are unchanged.
+The focused corrections to the SFT audit at `2a3b6c65f4987e2032d9d58a45702d1033ed4897`
+are ready for targeted independent review. No baseline or adapted-model evaluation,
+backward training, or new real-model episode has been run. The second authorized
+Hall smoke episode already occurred: 12 accepted calls, two reads, ten rejected
+edits, no source changes, reward zero, and unchanged-starter 3/13. It was not repeated.
 
-## Data and role preservation
+The audited assistant-only loss and LoRA design are unchanged. Hall tasks,
+verifiers, references, historical experiments, original smoke artifacts, the
+publication snapshot, and the original SFT v1 data/evidence remain unchanged.
 
-The [demonstration set](../data/epagent-sft-v1/README.md) contains six training and
-two validation workspaces, yielding 57 and 19 assistant-turn examples. They are
-new inspectable synthetic fixtures, authored with assistant help and checked
-by executing the tools. They are not harvested proprietary-model successes.
-Human/Claude Code review is pending; this delivery requests that review before
-training. Four additional workspace families are reserved for behavioral probes.
+## Revised demonstrations and provenance
 
-The existing trajectory format already separates `model_request.messages`,
-`assistant`, `tool_call`, and `tool_result`. Tool observations are **user-role
-messages** in EP-Agent's actual conversation format. The converter preserves
-those roles and contents verbatim; it does not convert an observation into an
-assistant response. For each explicitly selected assistant step it exports:
+[Dataset v2](../data/epagent-sft-v2/README.md) contains 11 newly authored/scripted
+synthetic episodes: eight training and three validation workspaces. They yield
+**72 training examples / 1,980 supervised tokens** and **28 validation examples /
+822 supervised tokens**, using the actual local Qwen tokenizer. Longest sequences
+are 1,430 and 1,447 tokens. No sequence is truncated.
 
-```json
-{
-  "schema": "epagent.sft-example.v1",
-  "episode_id": "bound-count",
-  "family": "bounds",
-  "step": 8,
-  "source_trace_sha256": "...",
-  "messages": ["the exact context messages, then one assistant target"],
-  "message_kinds": ["system_instruction", "user_instruction", "assistant_history", "tool_observation", "assistant_tool_call"]
-}
-```
+Eight episodes retain successful edits, relevant checks, recovery, and supported
+finish claims. Three add accurate failure endings: a failed check with no repair,
+a rejected edit left unresolved, and an accepted partial repair whose rerun still
+fails. The five rejected edit actions are context only, never positive targets.
+The four evaluation fixtures retain their original bytes and remain excluded
+from both training and validation.
 
-The example above shows structure, not an executable row; generated JSONL has
-full role/content objects and an aligned kind for every message. A terminal
-`finish` call has kind `assistant_finish` and remains an assistant target. There
-is no separate free-form final response in the current five-tool protocol.
-Terminal grader feedback is never converted into context or targets.
+Actual scripted episode lengths are 7, 9, or 11 turns; declared budgets vary from
+10 to 15. Each observation uses `steps_remaining = budget - executed_turns`, as
+in the runtime. Finish targets have **3, 4, 5, or 6** turns remaining; values
+4–6 also occur before non-finish actions. Completion is no longer perfectly
+identified by `steps_remaining == 1`. This small, patterned corpus does not
+establish statistical independence between all contextual features and actions.
 
-Each row ends at one selected assistant message. All earlier instructions,
-assistant actions, and tool observations form its **masked context**. An earlier
-assistant turn can be supervised in its own row, not again as part of later
-prefixes. Four intentionally failed edit calls are never selected, but their
-errors and subsequent recovery are retained. Origin, review selection, hashes,
-message-history consistency, and whole-family splits are validated. Phase 1
-rejects Hall episodes and external-provider trajectories altogether.
+Fixtures, traces, review selections and hashes are inspectable. Tool outputs are
+executed, not invented. The builder removes elapsed time and normalizes temporary
+workspace prefixes in stdout/stderr to `<workspace>/`; it preserves exception
+types, messages, source lines, test outcomes and all other observation content.
+Independent human review remains pending. No proprietary-model trajectories,
+Hall solutions or reserved verifier cases were imported. The prior dataset and
+its evidence remain under `data/epagent-sft-v1` and `artifacts/epagent-sft-v1`;
+use their original commit to reproduce the original builder.
 
-## Actual tokenizer and loss masking
+## Roles, tokenization, and the audited loss
 
-Preparation uses the supplied Qwen chat template through the installed real
-MLX-LM tokenizer. It tokenizes the context with `add_generation_prompt=True`
-and the full conversation with `False`, then verifies that the former is an
-exact token prefix of the latter. A mismatch fails preparation. The target is
-the final assistant's content plus its actual end token, 151645 (`<|im_end|>`).
-The template newline after that token is excluded. Inference stopping remains
-the previously verified union `[151643, 151645]`.
+One JSONL row contains an episode/step identifier, source trace hash, exact
+conversation prefix, one selected assistant target, and aligned `message_kinds`.
+System/user instructions, prior assistant actions, tool observations, tool calls,
+and terminal `finish` calls remain distinguishable. EP-Agent's observations are
+user-role JSON envelopes; they are not relabelled as assistant messages.
 
-For a token sequence of length `L` and assistant offset `o`, shifted prediction
-positions `j` contribute exactly when `o <= j < L`. This includes the first
-assistant token and end-of-turn token and excludes every prompt/observation and
-padding target. Oversize examples are rejected, never silently truncated. The
-real prepared examples are at most 1,425 tokens, below the 2,048 cap.
+Preparation uses the actual chat template, verifies that the generation prefix
+is an exact prefix of the full tokenization, and supervises only final assistant
+content plus EOS 151645. The inference stop union remains `[151643, 151645]`.
+For target token position `j`, assistant offset `o`, and sequence length `L`, the
+unchanged loss uses `o <= j < L`. Instructions, observations, earlier assistant
+history, padding and the post-EOS template newline contribute no loss.
 
-[MLX-LM's official LoRA guide](https://github.com/ml-explore/mlx-lm/blob/main/mlx_lm/LORA.md)
-documents Qwen2/QLoRA and final-message prompt masking. Inspection of installed
-MLX-LM **0.31.3** showed that its default loss uses `position <= length`, while
-its batch iterator adds padding beyond the real sequence. That can supervise
-the first padding target. EP-Agent supplies a small custom half-open masked loss
-to the native trainer and evaluator; it does not fork or modify MLX-LM. Tests
-change prompt and padding logits and confirm that loss stays identical, then
-change the first assistant/EOS logits and confirm that loss changes.
+## Adapter selection and reproducibility
 
-## Training implementation and fixed configuration
+`epagent run ... --adapter-dir DIR` and `epagent synthetic ... --adapter-dir DIR`
+pass selection through CLI, `Config`, the worker, `MLXBackend`, and
+`mlx_lm.load(adapter_path=...)`. Omitting the flag selects the base model.
 
-The model is the existing local
-`mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit`, revision
-`b3252a2f97102b1fb1571fec2c9b27219a8536be`. Files are hash-verified before use;
-loading is local/offline and remote tokenizer code is disabled. The existing
-[Apple Silicon dependency constraints](../requirements/epagent-macos-py311.txt)
-apply; no new framework or system dependency is needed.
+Both `model_ready` and the final report identify the base model/revision and
+record `adapter.requested`, `adapter.loaded`, canonical path, configuration,
+configuration/weight SHA-256 hashes, and a content-derived adapter ID. An adapter
+requested but failing to load remains distinguishable from a base episode.
+Selection hashes are checked across worker loading; all configured LoRA matrices
+must be present and match the selected file. This also catches silently ignored
+or incomplete weight files under MLX-LM's `strict=False` adapter loader. A suite
+rejects changed model/adapter selection between cases.
 
-[The registered configuration](../data/epagent-sft-v1/lora-config.json) uses:
+Tests use an untrained one-layer, eight-hidden-unit surrogate and two distinct
+constant adapter files through the real MLX-LM loading path. They perform **no
+forward pass, response generation, or optimizer update**. This verifies loading
+and provenance, not learned behavior of the real Qwen model.
 
-- Frozen 4-bit base weights; LoRA on `self_attn.q_proj` and `self_attn.v_proj` in
-  the last four blocks (24–27).
-- Rank 8, **MLX scale 16 directly** (not an assertion that another library's
-  `alpha` convention is identical), dropout 0, gradient checkpointing enabled.
-- Batch size 1, sequence cap 2,048, Adam learning rate 0.0001, seed 0.
-- 40 updates, train-loss reports every 5, validation and saves every 20;
-  full validation set each time. No automatic restart or resume.
+Training remains the existing pinned Qwen 1.5B 4-bit base, rank-8 query/value
+LoRA on the last four layers, 155,648 trainable parameters, batch size one,
+2,048-token cap, Adam learning rate 0.0001 and 40 updates. The NumPy iterator RNG
+is now seeded immediately before entering the native trainer, after model and
+optimizer construction. A regression consumes RNG during mocked loading and
+checks the first draw at trainer entry. MLX initialization still receives its seed.
 
-Read-only inspection of the actual quantized model successfully attached those
-layers in memory: **155,648 trainable parameters**, all adapter matrices. No
-optimizer was constructed by that inspection and no checkpoint was written.
-Initialization allocated a measured peak **872,180,852 MLX bytes**; this is not
-a measurement of training memory. Model weights on disk remain unchanged.
+The effective sample-equivalent passes are **40 × 1 / 72 = 0.555556**. This is
+reported in preparation and run manifests; duration was not increased. Native
+validation can consume RNG too, so reproducibility also requires the recorded
+library versions and validation schedule. Adapter-weight checkpoints, losses,
+hashes and failure reports follow the audited pipeline. Checkpoints do not
+include optimizer state for exact interrupted-run resumption.
 
-The implementation reuses `mlx_lm.tuner.trainer.train/evaluate`, native LoRA
-conversion, and native checkpoint saving. It freezes all base weights and
-checks that only `lora_a`/`lora_b` remain trainable. MLX and NumPy seeds are fixed;
-versions, model/dataset/template/config/protocol hashes, and source hashes are
-recorded. Bitwise equality across hardware/library versions is not promised.
+## Protocol amendment: tool-recovery-v2
 
-Output includes compatible `adapter_config.json`, final `adapters.safetensors`,
-numbered checkpoints at updates 20 and 40, `metrics.jsonl`, and `run.json` with
-status, timing, memory, and checkpoint hashes. Failed/interrupted training keeps
-its report and existing checkpoints. These are **adapter-weight checkpoints**,
-not saved optimizer state; exact interrupted-run resumption is not implemented.
-The trainer reports validation before update 1 and at its configured boundaries;
-a final evaluation explicitly runs after update 40. The final checkpoint is
-preselected, not chosen by held-out probe performance. Train loss averages
-per-example means at batch size 1; validation aggregates supervised-token loss.
+The [protocol](../data/epagent-sft-v2/eval-protocol.json) was amended on
+**2026-09-23**, before any outcomes were collected. It records its predecessor's
+hash and the reason: injected `new_text` is intentionally equal to current file
+bytes, so an accepted recovery edit can be a no-op. Requiring byte changes would
+conflate tool recovery and repair.
 
-## Commands: preparation is safe to run now; training is not yet authorized
+Each fresh workspace receives its task instruction and two explicitly labelled
+setup interventions: a real source read, then the registered rejected edit and
+actual error observation. The runner checks that setup leaves bytes unchanged.
+Neither setup turn counts as model-generated; the model then has 12 turns and
+300 seconds including model loading, with the same generation/tool limits in
+both arms. Initial/final workspaces, diff, conversation, responses, observations,
+usage, status and reports are preserved by the existing loop. There are no retries.
 
-Install the optional dependencies in the existing private venv if needed:
+The scorer distinguishes:
 
-```bash
-.venv/bin/python -m pip install -c requirements/epagent-macos-py311.txt '.[agent]'
-```
+- **A — Reinspection:** a successful, untruncated model-generated source read
+  after the injected failure. The setup read does not count.
+- **B — Accepted correction:** after A, an accepted edit to that source with
+  nonempty `old_text` appearing exactly once in the observed content.
+- **C — Byte change:** a qualifying B edit actually changes source bytes.
+  C can be false when B is true; final workspace differences are also reported.
 
-Prepare into a **new** directory (the reviewed local preparation already exists
-at `sft-runs/reviewed-prepared`):
+**Primary endpoint: B within four model-generated turns, divided by all four
+registered cases.** Reading alone fails. A later B is recorded but misses the
+primary window. Event IDs identify the first A/B/C. This is an observable
+copy/match criterion, not proof of the model's internal reasoning.
+
+Secondary reporting includes schema acceptance, repeated identical rejected
+edits, recognized checks after edits, finish evidence, and infrastructure/backend
+failures/timeouts. The mechanical claim rubric recognizes literal fixture-test
+`runpy.run_path` calls through AST inspection. A supported PASS requires the
+registered marker from a completed recognized run, unchanged test bytes, and no
+subsequent source/test mutation. Failed checks/edits can support honest failure
+reports; incomplete or unrecognized prose is classified separately.
+
+This narrow rubric does not understand all valid Python invocation styles or
+all natural language. Agent-controlled output can be misleading, so observed
+PASS support is **not independent functional verification**. Raw evidence remains
+available for manual review. Synthetic episodes receive no Hall reward and never
+call the Hall graders. Independent Hall physics success remains separate.
+
+## Proposed commands: do not execute model runs before approval
+
+The reviewed preparation already exists at `sft-runs/reviewed-prepared-v2`.
+For reproduction, select a new output directory:
 
 ```bash
 PYTHONPATH=src .venv/bin/python -m epagent.sft prepare \
-  --trajectories data/epagent-sft-v1/trajectories \
+  --trajectories data/epagent-sft-v2/trajectories \
   --model-dir .epagent-models/qwen2.5-coder-1.5b-4bit \
-  --config data/epagent-sft-v1/lora-config.json \
-  --protocol data/epagent-sft-v1/eval-protocol.json \
-  --out sft-runs/reviewed-prepared
+  --config data/epagent-sft-v2/lora-config.json \
+  --protocol data/epagent-sft-v2/eval-protocol.json \
+  --out sft-runs/reviewed-prepared-v2
 ```
 
-The exact proposed **training command, not executed**, is:
+After targeted review and explicit authorization, the proposed order is baseline,
+SFT, then the adapted arm. **None of these three commands has been executed.**
 
 ```bash
+.venv/bin/epagent synthetic --arm base \
+  --fixtures data/epagent-sft-v2/eval-fixtures.json \
+  --protocol data/epagent-sft-v2/eval-protocol.json \
+  --model-dir .epagent-models/qwen2.5-coder-1.5b-4bit \
+  --out attempts/tool-recovery-v2-base
+
 PYTHONPATH=src .venv/bin/python -m epagent.sft train \
-  --prepared sft-runs/reviewed-prepared \
+  --prepared sft-runs/reviewed-prepared-v2 \
   --model-dir .epagent-models/qwen2.5-coder-1.5b-4bit \
-  --out sft-runs/tool-use-lora-v1
+  --out sft-runs/tool-use-lora-v2
+
+.venv/bin/epagent synthetic --arm adapted \
+  --fixtures data/epagent-sft-v2/eval-fixtures.json \
+  --protocol data/epagent-sft-v2/eval-protocol.json \
+  --model-dir .epagent-models/qwen2.5-coder-1.5b-4bit \
+  --adapter-dir sft-runs/tool-use-lora-v2 \
+  --out attempts/tool-recovery-v2-adapted
 ```
 
-Run that only after independent review, user authorization, and the registered
-base-model evaluation. The CLI's explicit `train` subcommand performs updates;
-it does not itself enforce a human-approval or baseline-collection gate.
-Prepared files and all training outputs are Git-ignored. The committed
-[preparation/compatibility evidence](../artifacts/epagent-sft-v1/) contains no
-trained weights or fabricated loss history.
+Inspect `suite.json` and each case's linked report/trajectory. Exit zero means
+all cases were mechanically scorable, not that recovery or repair succeeded.
+A suite output directory must be new. Failed/partial attempts are retained and
+remain in the four-case denominator. Operator review enforces baseline-before-
+training; the CLI does not implement an authorization gate or campaign scheduler.
 
-**Planning estimate, not a training benchmark:** allow roughly **3–8 GB** of
-training working memory and **2–20 minutes** for this 40-update run plus full
-validation on the M4. The bound is deliberately broad: activation/logit memory,
-compilation, checkpointing, and competing unified-memory use are unmeasured.
-The 0.872 GB initialization measurement is a lower bound, not an assurance that
-training fits. There is no hard memory cap. The first authorized training run
-must report actual loss, memory, runtime, and any failure without retries.
+## Verification and limits
 
-## Registered baseline evaluation
+See [the verification record](../artifacts/epagent-sft-v2/README.md) for actual
+commands, test logs, native surrogate checks, installed-wheel checks, reference
+grades, dataset hashes and preservation checks. All runner trajectories used
+for infrastructure tests are scripted, never real-model baseline evidence.
+The full real-model backward path remains unexecuted.
 
-The [protocol](../data/epagent-sft-v1/eval-protocol.json) and
-[four held-out fixtures](../data/epagent-sft-v1/eval-fixtures.json) are fixed
-before any weight update. First evaluate the unadapted base, then the final
-40-update adapter, one attempt per case per arm, seed 0, temperature 0, and the
-unchanged EP-Agent inference/tool budgets. No selection on these results.
-
-Each fresh workspace starts with a real source-read observation and a supplied
-exact-match edit failure. These are explicitly labelled setup interventions,
-not actions attributed to the model. The model then has 12 turns. The primary
-metric is recovery within four model turns: a successful source edit using
-nonempty `old_text` copied from a prior real source observation and producing a
-file change. A reread is welcome but is not required if the observed file is
-unchanged. This avoids penalizing a valid immediate correction.
-
-Report the primary result out of all four registered cases, plus schema
-acceptance, repeated failed edits, reads before edits, relevant test execution,
-test outcomes, and supported finishing claims. Visible tests must remain
-unchanged. Report infrastructure failures and timeouts separately, preserve all
-attempts, and do not silently replace or remove them from the registered count.
-A tool-operation success is separate from functional correctness.
-
-This milestone **defines the protocol and checks its setup, but does not collect
-baseline/model results or add a synthetic-task evaluation runner**. The baseline
-must be collected under a separately authorized execution step before training.
-The existing Hall tasks remain a separately authorized downstream check; no
-Hall score is evidence of generalization from these tool-use demonstrations.
-
-## Verification and limitations
-
-```bash
-EPAGENT_TEST_MLX=1 PATH="$PWD/.venv/bin:$PATH" PYTHONPATH=src \
-  .venv/bin/python -m unittest discover -s tests -v
-```
-
-MLX-enabled tests use the actual local tokenizer and numerical loss, but all
-optimizer/trainer calls in orchestration tests are mocked. Standard CI can run
-without MLX and skips those explicitly labelled checks. No test performs a
-training update. Tests cover split integrity, trace provenance, exclusion of
-failed-edit targets, role preservation, exact EOS/prefix masking, padding
-boundaries, config constraints, prepared-data tampering, checkpoint wiring,
-and all four frozen failure setups. The full model backward/optimizer path
-remains unexecuted until the first authorized training run.
-
-The completed local verification passed **146 tests with no skips** (the prior
-138 plus eight SFT tests), including the real-tokenizer and numerical masking
-checks. A fresh wheel passed outside-checkout CLI checks; preparation through
-the installed MLX environment produced byte-identical data and metadata.
-All eight scripted demonstrations rebuilt byte-for-byte. See the
-[verification record](../artifacts/epagent-sft-v1/README.md) for commands,
-logs, compatibility results, and protected-artifact checks.
-
-Only **1,624 supervised training tokens** support 155,648 adapter parameters.
-Overfitting and weak coverage are major risks; 76 prefix examples are not 76
-independent tasks. The validation families differ, but the tool grammar and
-simple Python idioms overlap heavily. Runtime use of tools with synthetic
-recovery prompts may not transfer to long autonomous investigations. Cases are
-inspectable source, not secret; no assertion about base-model pretraining
-contamination is possible. A smaller validation loss alone will not establish
-recovery, truthful diagnostics, scientific reasoning, or generalization. No
-training or evaluation result is claimed in this implementation milestone.
-The 40-update run samples less than one full pass through the 57 training rows;
-it is a small first training check, with no promised behavioral improvement.
+The earlier planning estimates remain unmeasured: roughly 3–8 GB and 2–20 minutes
+for 40 updates plus validation. The earlier 872 MB initialization measurement
+was not training memory. No memory cap or successful training result is claimed.
+A corpus with 1,980 training tokens and 155,648 trainable parameters has severe
+overfitting risk. Repeated prefixes are not independent tasks; four held-out
+probes cannot establish generalization. The inspectable cases are not secret.
+The local process/confinement boundary is not a secure isolation guarantee.

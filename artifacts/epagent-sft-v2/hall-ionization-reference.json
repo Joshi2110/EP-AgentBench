@@ -1,0 +1,1073 @@
+{
+  "schema_version": 1,
+  "epbench_version": "0.5.0",
+  "task": "hall-ionization",
+  "status": "passed",
+  "passed": 13,
+  "total": 13,
+  "success_rate": 1.0,
+  "tolerance": {
+    "scaled_residual": 1e-08,
+    "refinement_absolute": 0.002,
+    "refinement_contraction": 0.35
+  },
+  "timeout_seconds": 5.0,
+  "cases": [
+    {
+      "case": "case-01",
+      "kind": "rate",
+      "passed": true,
+      "status": "passed",
+      "relative_error": null,
+      "detail": "All physical and numerical checks passed",
+      "diagnostics": {
+        "distribution-0": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "distribution-1": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "distribution-2": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "distribution-3": {
+          "passed": true,
+          "error": 1.8084694498090893e-16,
+          "tolerance": 1e-08
+        },
+        "distribution-4": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "distribution-5": {
+          "passed": true,
+          "error": 3.97426553865224e-16,
+          "tolerance": 1e-08
+        },
+        "distribution-6": {
+          "passed": true,
+          "error": 2.196777639077659e-16,
+          "tolerance": 1e-08
+        }
+      }
+    },
+    {
+      "case": "case-02",
+      "kind": "rate",
+      "passed": true,
+      "status": "passed",
+      "relative_error": null,
+      "detail": "All physical and numerical checks passed",
+      "diagnostics": {
+        "distribution-0": {
+          "passed": true,
+          "error": 1.622062431114518e-16,
+          "tolerance": 1e-08
+        },
+        "distribution-1": {
+          "passed": true,
+          "error": 3.752428957780057e-16,
+          "tolerance": 1e-08
+        },
+        "distribution-2": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "distribution-3": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "distribution-4": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "distribution-5": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "distribution-6": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "distribution-7": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        }
+      }
+    },
+    {
+      "case": "case-03",
+      "kind": "rate",
+      "passed": true,
+      "status": "passed",
+      "relative_error": null,
+      "detail": "All physical and numerical checks passed",
+      "diagnostics": {
+        "distribution-0": {
+          "passed": true,
+          "error": 2.0866275578752425e-16,
+          "tolerance": 1e-08
+        },
+        "distribution-1": {
+          "passed": true,
+          "error": 4.413847335817315e-16,
+          "tolerance": 1e-08
+        },
+        "distribution-2": {
+          "passed": true,
+          "error": 2.0397184988648698e-16,
+          "tolerance": 1e-08
+        },
+        "distribution-3": {
+          "passed": true,
+          "error": 2.099348793927349e-16,
+          "tolerance": 1e-08
+        },
+        "distribution-4": {
+          "passed": true,
+          "error": 1.9691771983009612e-16,
+          "tolerance": 1e-08
+        },
+        "distribution-5": {
+          "passed": true,
+          "error": 1.8212840841245655e-16,
+          "tolerance": 1e-08
+        },
+        "distribution-6": {
+          "passed": true,
+          "error": 1.1280174242115787e-16,
+          "tolerance": 1e-08
+        },
+        "distribution-7": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "distribution-8": {
+          "passed": true,
+          "error": 1.1127829708472446e-16,
+          "tolerance": 1e-08
+        },
+        "distribution-9": {
+          "passed": true,
+          "error": 1.9801370287075238e-16,
+          "tolerance": 1e-08
+        },
+        "distribution-10": {
+          "passed": true,
+          "error": 1.656313682513923e-16,
+          "tolerance": 1e-08
+        },
+        "distribution-11": {
+          "passed": true,
+          "error": 1.8664716443165883e-16,
+          "tolerance": 1e-08
+        }
+      }
+    },
+    {
+      "case": "case-04",
+      "kind": "model",
+      "passed": true,
+      "status": "passed",
+      "relative_error": null,
+      "detail": "All physical and numerical checks passed",
+      "diagnostics": {
+        "model-0/x_m": {
+          "passed": true,
+          "error": 1.1564823173178715e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_speed": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/temperature": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/rate_law": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/physical_state": {
+          "passed": true,
+          "error": 0,
+          "tolerance": 0
+        },
+        "model-0/inlet_fluxes": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/particle_conservation": {
+          "passed": true,
+          "error": 1.6777216000000002e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_source": {
+          "passed": true,
+          "error": 2.0971520000000002e-17,
+          "tolerance": 1e-08
+        },
+        "model-0/neutral_sink": {
+          "passed": true,
+          "error": 2.5165824e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/kinetic_source": {
+          "passed": true,
+          "error": 1.2386304e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/reported_conversion": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        }
+      }
+    },
+    {
+      "case": "case-05",
+      "kind": "model",
+      "passed": true,
+      "status": "passed",
+      "relative_error": null,
+      "detail": "All physical and numerical checks passed",
+      "diagnostics": {
+        "model-0/x_m": {
+          "passed": true,
+          "error": 1.1564823173178715e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_speed": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/temperature": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/rate_law": {
+          "passed": true,
+          "error": 2.065253525788052e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/physical_state": {
+          "passed": true,
+          "error": 0,
+          "tolerance": 0
+        },
+        "model-0/inlet_fluxes": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/particle_conservation": {
+          "passed": true,
+          "error": 1.6777216000000002e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_source": {
+          "passed": true,
+          "error": 1.0485760000000001e-17,
+          "tolerance": 1e-08
+        },
+        "model-0/neutral_sink": {
+          "passed": true,
+          "error": 3.5651584000000003e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/kinetic_source": {
+          "passed": true,
+          "error": 3.129344e-17,
+          "tolerance": 1e-08
+        },
+        "model-0/reported_conversion": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        }
+      }
+    },
+    {
+      "case": "case-06",
+      "kind": "model",
+      "passed": true,
+      "status": "passed",
+      "relative_error": null,
+      "detail": "All physical and numerical checks passed",
+      "diagnostics": {
+        "model-0/x_m": {
+          "passed": true,
+          "error": 6.938893903907228e-17,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_speed": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/temperature": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/rate_law": {
+          "passed": true,
+          "error": 1.8084694498090893e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/physical_state": {
+          "passed": true,
+          "error": 0,
+          "tolerance": 0
+        },
+        "model-0/inlet_fluxes": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/particle_conservation": {
+          "passed": true,
+          "error": 2.2075284210526314e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_source": {
+          "passed": true,
+          "error": 7.114105263157894e-18,
+          "tolerance": 1e-08
+        },
+        "model-0/neutral_sink": {
+          "passed": true,
+          "error": 2.897381052631579e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/kinetic_source": {
+          "passed": true,
+          "error": 4.074442105263158e-17,
+          "tolerance": 1e-08
+        },
+        "model-0/reported_conversion": {
+          "passed": true,
+          "error": 1.1102230246251565e-16,
+          "tolerance": 1e-08
+        }
+      }
+    },
+    {
+      "case": "case-07",
+      "kind": "model",
+      "passed": true,
+      "status": "passed",
+      "relative_error": null,
+      "detail": "All physical and numerical checks passed",
+      "diagnostics": {
+        "model-0/x_m": {
+          "passed": true,
+          "error": 1.1564823173178715e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_speed": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/temperature": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/rate_law": {
+          "passed": true,
+          "error": 3.97426553865224e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/physical_state": {
+          "passed": true,
+          "error": 0,
+          "tolerance": 0
+        },
+        "model-0/inlet_fluxes": {
+          "passed": true,
+          "error": 1.6384e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/particle_conservation": {
+          "passed": true,
+          "error": 1.6384e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_source": {
+          "passed": true,
+          "error": 4.096e-17,
+          "tolerance": 1e-08
+        },
+        "model-0/neutral_sink": {
+          "passed": true,
+          "error": 2.2528e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/kinetic_source": {
+          "passed": true,
+          "error": 1.024e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/reported_conversion": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        }
+      }
+    },
+    {
+      "case": "case-08",
+      "kind": "model",
+      "passed": true,
+      "status": "passed",
+      "relative_error": null,
+      "detail": "All physical and numerical checks passed",
+      "diagnostics": {
+        "model-0/x_m": {
+          "passed": true,
+          "error": 1.1564823173178715e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_speed": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/temperature": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/rate_law": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/physical_state": {
+          "passed": true,
+          "error": 0,
+          "tolerance": 0
+        },
+        "model-0/inlet_fluxes": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/particle_conservation": {
+          "passed": true,
+          "error": 3.3554432000000004e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_source": {
+          "passed": true,
+          "error": 1.0485760000000001e-17,
+          "tolerance": 1e-08
+        },
+        "model-0/neutral_sink": {
+          "passed": true,
+          "error": 3.9845888e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/kinetic_source": {
+          "passed": true,
+          "error": 6.012928000000001e-17,
+          "tolerance": 1e-08
+        },
+        "model-0/reported_conversion": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        }
+      }
+    },
+    {
+      "case": "case-09",
+      "kind": "model",
+      "passed": true,
+      "status": "passed",
+      "relative_error": null,
+      "detail": "All physical and numerical checks passed",
+      "diagnostics": {
+        "model-0/x_m": {
+          "passed": true,
+          "error": 1.1564823173178715e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_speed": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/temperature": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/rate_law": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/physical_state": {
+          "passed": true,
+          "error": 0,
+          "tolerance": 0
+        },
+        "model-0/inlet_fluxes": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/particle_conservation": {
+          "passed": true,
+          "error": 1.6777216000000002e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_source": {
+          "passed": true,
+          "error": 5.2428800000000006e-18,
+          "tolerance": 1e-08
+        },
+        "model-0/neutral_sink": {
+          "passed": true,
+          "error": 3.5651584000000003e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/kinetic_source": {
+          "passed": true,
+          "error": 4.734976e-17,
+          "tolerance": 1e-08
+        },
+        "model-0/reported_conversion": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        }
+      }
+    },
+    {
+      "case": "case-10",
+      "kind": "model",
+      "passed": true,
+      "status": "passed",
+      "relative_error": null,
+      "detail": "All physical and numerical checks passed",
+      "diagnostics": {
+        "model-0/x_m": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_speed": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/temperature": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/rate_law": {
+          "passed": true,
+          "error": 1.0080851014234035e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/physical_state": {
+          "passed": true,
+          "error": 0,
+          "tolerance": 0
+        },
+        "model-0/inlet_fluxes": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/particle_conservation": {
+          "passed": true,
+          "error": 1.6777216000000002e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_source": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/neutral_sink": {
+          "passed": true,
+          "error": 1.6777216000000002e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/kinetic_source": {
+          "passed": true,
+          "error": 4.980736e-17,
+          "tolerance": 1e-08
+        },
+        "model-0/reported_conversion": {
+          "passed": true,
+          "error": 1.1102230246251565e-16,
+          "tolerance": 1e-08
+        }
+      }
+    },
+    {
+      "case": "case-11",
+      "kind": "no_seed",
+      "passed": true,
+      "status": "passed",
+      "relative_error": null,
+      "detail": "All physical and numerical checks passed",
+      "diagnostics": {
+        "model-0/x_m": {
+          "passed": true,
+          "error": 1.1564823173178715e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_speed": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/temperature": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/rate_law": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/physical_state": {
+          "passed": true,
+          "error": 0,
+          "tolerance": 0
+        },
+        "model-0/inlet_fluxes": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/particle_conservation": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_source": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/neutral_sink": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/kinetic_source": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/reported_conversion": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        }
+      }
+    },
+    {
+      "case": "case-12",
+      "kind": "refinement",
+      "passed": true,
+      "status": "passed",
+      "relative_error": null,
+      "detail": "All physical and numerical checks passed",
+      "diagnostics": {
+        "model-0/x_m": {
+          "passed": true,
+          "error": 1.1564823173178715e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_speed": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/temperature": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/rate_law": {
+          "passed": true,
+          "error": 3.868648156157615e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/physical_state": {
+          "passed": true,
+          "error": 0,
+          "tolerance": 0
+        },
+        "model-0/inlet_fluxes": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/particle_conservation": {
+          "passed": true,
+          "error": 1.6777216000000002e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_source": {
+          "passed": true,
+          "error": 1.0485760000000001e-17,
+          "tolerance": 1e-08
+        },
+        "model-0/neutral_sink": {
+          "passed": true,
+          "error": 1.9922944e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/kinetic_source": {
+          "passed": true,
+          "error": 4.7513600000000006e-17,
+          "tolerance": 1e-08
+        },
+        "model-0/reported_conversion": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-1/x_m": {
+          "passed": true,
+          "error": 1.1564823173178715e-16,
+          "tolerance": 1e-08
+        },
+        "model-1/ion_speed": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-1/temperature": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-1/rate_law": {
+          "passed": true,
+          "error": 3.865524202992938e-16,
+          "tolerance": 1e-08
+        },
+        "model-1/physical_state": {
+          "passed": true,
+          "error": 0,
+          "tolerance": 0
+        },
+        "model-1/inlet_fluxes": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-1/particle_conservation": {
+          "passed": true,
+          "error": 1.6777216000000002e-16,
+          "tolerance": 1e-08
+        },
+        "model-1/ion_source": {
+          "passed": true,
+          "error": 2.0971520000000002e-17,
+          "tolerance": 1e-08
+        },
+        "model-1/neutral_sink": {
+          "passed": true,
+          "error": 3.0408704e-16,
+          "tolerance": 1e-08
+        },
+        "model-1/kinetic_source": {
+          "passed": true,
+          "error": 6.242304000000001e-17,
+          "tolerance": 1e-08
+        },
+        "model-1/reported_conversion": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-2/x_m": {
+          "passed": true,
+          "error": 2.312964634635743e-16,
+          "tolerance": 1e-08
+        },
+        "model-2/ion_speed": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-2/temperature": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-2/rate_law": {
+          "passed": true,
+          "error": 2.5764958304099596e-16,
+          "tolerance": 1e-08
+        },
+        "model-2/physical_state": {
+          "passed": true,
+          "error": 0,
+          "tolerance": 0
+        },
+        "model-2/inlet_fluxes": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-2/particle_conservation": {
+          "passed": true,
+          "error": 3.3554432000000004e-16,
+          "tolerance": 1e-08
+        },
+        "model-2/ion_source": {
+          "passed": true,
+          "error": 2.105344e-17,
+          "tolerance": 1e-08
+        },
+        "model-2/neutral_sink": {
+          "passed": true,
+          "error": 3.9845888e-16,
+          "tolerance": 1e-08
+        },
+        "model-2/kinetic_source": {
+          "passed": true,
+          "error": 8.003584000000001e-17,
+          "tolerance": 1e-08
+        },
+        "model-2/reported_conversion": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "refinement_fraction": {
+          "passed": true,
+          "error": 1.9288366612732477e-05,
+          "tolerance": 0.002
+        },
+        "contraction": {
+          "passed": true,
+          "error": 0.24991401545053002,
+          "tolerance": 0.35
+        }
+      }
+    },
+    {
+      "case": "case-13",
+      "kind": "refinement",
+      "passed": true,
+      "status": "passed",
+      "relative_error": null,
+      "detail": "All physical and numerical checks passed",
+      "diagnostics": {
+        "model-0/x_m": {
+          "passed": true,
+          "error": 1.1564823173178715e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_speed": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/temperature": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/rate_law": {
+          "passed": true,
+          "error": 4.2522116730964877e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/physical_state": {
+          "passed": true,
+          "error": 0,
+          "tolerance": 0
+        },
+        "model-0/inlet_fluxes": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-0/particle_conservation": {
+          "passed": true,
+          "error": 1.6777216000000002e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/ion_source": {
+          "passed": true,
+          "error": 1.1141120000000001e-17,
+          "tolerance": 1e-08
+        },
+        "model-0/neutral_sink": {
+          "passed": true,
+          "error": 3.6700160000000005e-16,
+          "tolerance": 1e-08
+        },
+        "model-0/kinetic_source": {
+          "passed": true,
+          "error": 7.077888e-17,
+          "tolerance": 1e-08
+        },
+        "model-0/reported_conversion": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-1/x_m": {
+          "passed": true,
+          "error": 1.1564823173178715e-16,
+          "tolerance": 1e-08
+        },
+        "model-1/ion_speed": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-1/temperature": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-1/rate_law": {
+          "passed": true,
+          "error": 4.25021189334962e-16,
+          "tolerance": 1e-08
+        },
+        "model-1/physical_state": {
+          "passed": true,
+          "error": 0,
+          "tolerance": 0
+        },
+        "model-1/inlet_fluxes": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-1/particle_conservation": {
+          "passed": true,
+          "error": 3.3554432000000004e-16,
+          "tolerance": 1e-08
+        },
+        "model-1/ion_source": {
+          "passed": true,
+          "error": 8.388608000000001e-17,
+          "tolerance": 1e-08
+        },
+        "model-1/neutral_sink": {
+          "passed": true,
+          "error": 3.7748736000000003e-16,
+          "tolerance": 1e-08
+        },
+        "model-1/kinetic_source": {
+          "passed": true,
+          "error": 1.5990784000000001e-16,
+          "tolerance": 1e-08
+        },
+        "model-1/reported_conversion": {
+          "passed": true,
+          "error": 1.1102230246251565e-16,
+          "tolerance": 1e-08
+        },
+        "model-2/x_m": {
+          "passed": true,
+          "error": 2.312964634635743e-16,
+          "tolerance": 1e-08
+        },
+        "model-2/ion_speed": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-2/temperature": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-2/rate_law": {
+          "passed": true,
+          "error": 5.666282773418654e-16,
+          "tolerance": 1e-08
+        },
+        "model-2/physical_state": {
+          "passed": true,
+          "error": 0,
+          "tolerance": 0
+        },
+        "model-2/inlet_fluxes": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "model-2/particle_conservation": {
+          "passed": true,
+          "error": 1.6777216000000002e-16,
+          "tolerance": 1e-08
+        },
+        "model-2/ion_source": {
+          "passed": true,
+          "error": 2.0971520000000002e-17,
+          "tolerance": 1e-08
+        },
+        "model-2/neutral_sink": {
+          "passed": true,
+          "error": 2.9360128000000004e-16,
+          "tolerance": 1e-08
+        },
+        "model-2/kinetic_source": {
+          "passed": true,
+          "error": 1.6384000000000002e-16,
+          "tolerance": 1e-08
+        },
+        "model-2/reported_conversion": {
+          "passed": true,
+          "error": 0.0,
+          "tolerance": 1e-08
+        },
+        "refinement_fraction": {
+          "passed": true,
+          "error": 3.112448775163812e-05,
+          "tolerance": 0.002
+        },
+        "contraction": {
+          "passed": true,
+          "error": 0.2500952648370082,
+          "tolerance": 0.35
+        }
+      }
+    }
+  ],
+  "warning": "Trusted local execution only: Python -I and temporary directories are not a security sandbox."
+}

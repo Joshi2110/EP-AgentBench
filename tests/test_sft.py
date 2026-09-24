@@ -12,16 +12,16 @@ from epagent.sft import config_at, load_prepared, main
 from epagent.sft_data import assistant_loss, digest, reviewed_examples, tokenize_example
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / 'data/epagent-sft-v1'
+DATA = ROOT / 'data/epagent-sft-v2'
 MLX_CHECKS = os.environ.get('EPAGENT_TEST_MLX') == '1'
 
 
 class DataTests(unittest.TestCase):
     def test_counts_roles_loss_targets_and_grouped_split(self):
         sets = reviewed_examples(DATA / 'trajectories')
-        self.assertEqual({k: len(v) for k, v in sets.items()}, {'train': 57, 'valid': 19})
-        self.assertEqual(len({r['episode_id'] for r in sets['train']}), 6)
-        self.assertEqual(len({r['episode_id'] for r in sets['valid']}), 2)
+        self.assertEqual({k: len(v) for k, v in sets.items()}, {'train': 72, 'valid': 28})
+        self.assertEqual(len({r['episode_id'] for r in sets['train']}), 8)
+        self.assertEqual(len({r['episode_id'] for r in sets['valid']}), 3)
         self.assertFalse({r['family'] for r in sets['train']} & {r['family'] for r in sets['valid']})
         heldout = json.loads((DATA / 'eval-fixtures.json').read_text())
         self.assertFalse({r['family'] for rows in sets.values() for r in rows} & {r['family'] for r in heldout})
@@ -36,11 +36,32 @@ class DataTests(unittest.TestCase):
                         self.assertIn('tool_result', json.loads(message['content']))
                 self.assertNotIn('hall-', row['episode_id'])
         finishes = [r for rows in sets.values() for r in rows if r['message_kinds'][-1] == 'assistant_finish']
-        self.assertEqual(len(finishes), 8)
+        self.assertEqual(len(finishes), 11)
+        fixtures = {c['id']: c for c in json.loads((DATA / 'fixtures.json').read_text())}
+        finish_counters, other_counters = [], []
         for row in finishes:
-            observation = json.loads(row['messages'][-2]['content'])['tool_result']
-            self.assertEqual(observation['status'], 'completed')
-            self.assertEqual(observation['stdout'].strip(), 'PASS ' + row['episode_id'])
+            case = fixtures[row['episode_id']]
+            counter = json.loads(row['messages'][-2]['content'])['steps_remaining']
+            self.assertEqual(counter, case['budget_steps'] - row['step'] + 1)
+            finish_counters.append(counter)
+            summary = json.loads(row['messages'][-1]['content'])['arguments']['summary']
+            if case['outcome'] == 'success':
+                observation = json.loads(row['messages'][-2]['content'])['tool_result']
+                self.assertEqual(observation['status'], 'completed')
+                self.assertEqual(observation['stdout'].strip(), 'PASS ' + row['episode_id'])
+            else:
+                self.assertNotIn('PASS', summary)
+                self.assertIn('failed', summary)
+        for rows in sets.values():
+            for row in rows:
+                if row['step'] > 1:
+                    expected = fixtures[row['episode_id']]['budget_steps'] - row['step'] + 1
+                    self.assertEqual(json.loads(row['messages'][-2]['content'])['steps_remaining'], expected)
+                if row['step'] > 1 and row['message_kinds'][-1] != 'assistant_finish':
+                    other_counters.append(json.loads(row['messages'][-2]['content'])['steps_remaining'])
+        self.assertGreater(len(set(finish_counters)), 1)
+        self.assertTrue(all(c > 1 for c in finish_counters))
+        self.assertTrue(set(finish_counters) & set(other_counters))
 
     def test_failure_recovery_has_observed_error_but_no_failed_edit_target(self):
         sets = reviewed_examples(DATA / 'trajectories')
@@ -53,6 +74,8 @@ class DataTests(unittest.TestCase):
                 error = json.loads(recovery['messages'][-2]['content'])['tool_result']
                 self.assertEqual(error['detail'], 'old_text must match exactly once')
                 self.assertEqual(json.loads(recovery['messages'][-1]['content'])['tool'], 'read_file')
+                if review['outcome'] == 'unresolved_edit':
+                    continue
                 edit = next(r for r in examples if r['step'] == 9)
                 observed = json.loads(edit['messages'][-2]['content'])['tool_result']['content']
                 old = json.loads(edit['messages'][-1]['content'])['arguments']['old_text']
@@ -173,13 +196,20 @@ class MLXTests(unittest.TestCase):
                                    DATA / 'eval-protocol.json', directory / 'prepared')
                 optimizer_loop.assert_not_called()
             self.assertFalse(metadata['training_performed'])
-            self.assertEqual(metadata['counts']['train']['examples'], 57)
+            self.assertEqual(metadata['counts']['train']['examples'], 72)
             original_hash = digest(self.model_dir / 'model.safetensors')
-            with patch('epagent.sft.adapt', return_value=(Mock(), {'trainable_parameters': 1})), \
+            def loading_consumes_rng(*args):
+                import numpy as np
+                np.random.seed(918)
+                np.random.rand(13)
+                return Mock(), {'trainable_parameters': 1}
+            with patch('epagent.sft.adapt', side_effect=loading_consumes_rng), \
                  patch('mlx_lm.tuner.trainer.train') as optimizer_loop, \
                  patch('mlx_lm.tuner.trainer.evaluate', return_value=0.5), \
                  patch('mlx.optimizers.Adam') as optimizer:
                 def simulated_checkpoint(**kwargs):
+                    import numpy as np
+                    self.assertEqual(np.random.randint(1000000), np.random.RandomState(0).randint(1000000))
                     kwargs['args'].adapter_file.write_bytes(b'test-only mocked checkpoint; no model weights')
                 optimizer_loop.side_effect = simulated_checkpoint
                 result = train(directory / 'prepared', self.model_dir, directory / 'run')
@@ -187,6 +217,7 @@ class MLXTests(unittest.TestCase):
                 self.assertEqual(optimizer_loop.call_args.kwargs['args'].iters, 40)
                 optimizer.return_value.update.assert_not_called()
                 self.assertEqual(result['final_validation_loss'], 0.5)
+                self.assertAlmostEqual(result['effective_training_passes'], 40 / 72)
                 self.assertEqual(set(result['checkpoint_sha256']), {'adapters.safetensors'})
                 self.assertTrue((directory / 'run/adapter_config.json').is_file())
             self.assertEqual(digest(self.model_dir / 'model.safetensors'), original_hash)

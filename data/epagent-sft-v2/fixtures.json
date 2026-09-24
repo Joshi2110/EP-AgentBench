@@ -1,0 +1,189 @@
+[
+  {
+    "id": "bound-count",
+    "split": "train",
+    "family": "bounds",
+    "requirement": "Return the value clamped inclusively to low and high.",
+    "source": "numeric/counts.py",
+    "test": "checks/check_bounds.py",
+    "files": {
+      "README.md": "# bound-count\n\nReturn the value clamped inclusively to low and high.\nRepair numeric/counts.py; keep the function interface. Check using checks/check_bounds.py.\n",
+      "numeric/counts.py": "def bound_count(value, low, high):\n    return min(low, max(high, value))\n",
+      "checks/check_bounds.py": "from numeric.counts import bound_count\n\nassert bound_count(-2, 0, 5) == 0\nassert bound_count(3, 0, 5) == 3\nassert bound_count(9, 0, 5) == 5\nprint('PASS bound-count')\n"
+    },
+    "replacement": "def bound_count(value, low, high):\n    return min(high, max(low, value))\n",
+    "recovery": true,
+    "budget_steps": 13,
+    "outcome": "success"
+  },
+  {
+    "id": "suffix-token",
+    "split": "train",
+    "family": "suffix",
+    "requirement": "Return the part after the final colon; leave labels without colons unchanged.",
+    "source": "textops.py",
+    "test": "test_suffix.py",
+    "files": {
+      "README.md": "# suffix-token\n\nReturn the part after the final colon; leave labels without colons unchanged.\nRepair textops.py; keep the function interface. Check using test_suffix.py.\n",
+      "textops.py": "def last_part(label):\n    return label.split(':')[0]\n",
+      "test_suffix.py": "from textops import last_part\n\nassert last_part('a:b:c') == 'c'\nassert last_part('solo') == 'solo'\nassert last_part('a:') == ''\nprint('PASS suffix-token')\n"
+    },
+    "replacement": "def last_part(label):\n    return label.split(':')[-1]\n",
+    "recovery": false,
+    "budget_steps": 12,
+    "outcome": "success"
+  },
+  {
+    "id": "ordered-unique",
+    "split": "train",
+    "family": "stable-deduplication",
+    "requirement": "Remove repeated hashable values while preserving first-occurrence order.",
+    "source": "collections_local/order.py",
+    "test": "checks/unique.py",
+    "files": {
+      "README.md": "# ordered-unique\n\nRemove repeated hashable values while preserving first-occurrence order.\nRepair collections_local/order.py; keep the function interface. Check using checks/unique.py.\n",
+      "collections_local/order.py": "def unique_in_order(items):\n    return sorted(set(items))\n",
+      "checks/unique.py": "from collections_local.order import unique_in_order\n\nassert unique_in_order([3, 1, 3, 2]) == [3, 1, 2]\nassert unique_in_order([]) == []\nprint('PASS ordered-unique')\n"
+    },
+    "replacement": "def unique_in_order(items):\n    return list(dict.fromkeys(items))\n",
+    "recovery": true,
+    "budget_steps": 15,
+    "outcome": "success"
+  },
+  {
+    "id": "batch-count",
+    "split": "train",
+    "family": "ceiling-division",
+    "requirement": "For nonnegative item counts and positive integer capacity, return batches required.",
+    "source": "packing.py",
+    "test": "tests/check_packing.py",
+    "files": {
+      "README.md": "# batch-count\n\nFor nonnegative item counts and positive integer capacity, return batches required.\nRepair packing.py; keep the function interface. Check using tests/check_packing.py.\n",
+      "packing.py": "def batches_needed(count, capacity):\n    return count // capacity\n",
+      "tests/check_packing.py": "from packing import batches_needed\n\nassert batches_needed(7, 3) == 3\nassert batches_needed(6, 3) == 2\nassert batches_needed(0, 3) == 0\nprint('PASS batch-count')\n"
+    },
+    "replacement": "def batches_needed(count, capacity):\n    return (count + capacity - 1) // capacity\n",
+    "recovery": false,
+    "budget_steps": 14,
+    "outcome": "success"
+  },
+  {
+    "id": "enabled-flag",
+    "split": "train",
+    "family": "boolean-parsing",
+    "requirement": "Strings true, yes, and 1 enable the flag, ignoring case and surrounding whitespace; others disable it.",
+    "source": "settings/flags.py",
+    "test": "verify_flags.py",
+    "files": {
+      "README.md": "# enabled-flag\n\nStrings true, yes, and 1 enable the flag, ignoring case and surrounding whitespace; others disable it.\nRepair settings/flags.py; keep the function interface. Check using verify_flags.py.\n",
+      "settings/flags.py": "def is_enabled(text):\n    return bool(text)\n",
+      "verify_flags.py": "from settings.flags import is_enabled\n\nassert is_enabled('false') is False\nassert is_enabled(' YES ') is True\nassert is_enabled('1') is True\nassert is_enabled('') is False\nprint('PASS enabled-flag')\n"
+    },
+    "replacement": "def is_enabled(text):\n    return text.strip().lower() in ('true', 'yes', '1')\n",
+    "recovery": true,
+    "budget_steps": 14,
+    "outcome": "success"
+  },
+  {
+    "id": "pair-changes",
+    "split": "train",
+    "family": "adjacent-transitions",
+    "requirement": "Count changes between adjacent entries, returning zero for empty and single-entry sequences.",
+    "source": "sequences/changes.py",
+    "test": "tests/check_changes.py",
+    "files": {
+      "README.md": "# pair-changes\n\nCount changes between adjacent entries, returning zero for empty and single-entry sequences.\nRepair sequences/changes.py; keep the function interface. Check using tests/check_changes.py.\n",
+      "sequences/changes.py": "def count_changes(values):\n    return len(set(values))\n",
+      "tests/check_changes.py": "from sequences.changes import count_changes\n\nassert count_changes([1, 1, 2, 1]) == 2\nassert count_changes([1]) == 0\nassert count_changes([]) == 0\nprint('PASS pair-changes')\n"
+    },
+    "replacement": "def count_changes(values):\n    return sum(a != b for a, b in zip(values, values[1:]))\n",
+    "recovery": false,
+    "budget_steps": 12,
+    "outcome": "success"
+  },
+  {
+    "id": "midpoint-order",
+    "split": "valid",
+    "family": "median",
+    "requirement": "Return the median of a nonempty numeric list, including the average of middle values for even lengths.",
+    "source": "stats_local.py",
+    "test": "validation/check_middle.py",
+    "files": {
+      "README.md": "# midpoint-order\n\nReturn the median of a nonempty numeric list, including the average of middle values for even lengths.\nRepair stats_local.py; keep the function interface. Check using validation/check_middle.py.\n",
+      "stats_local.py": "def middle_value(values):\n    return values[len(values) // 2]\n",
+      "validation/check_middle.py": "from stats_local import middle_value\n\nassert middle_value([9, 1, 3]) == 3\nassert middle_value([8, 2]) == 5\nassert middle_value([4]) == 4\nprint('PASS midpoint-order')\n"
+    },
+    "replacement": "def middle_value(values):\n    ordered = sorted(values)\n    n = len(ordered)\n    return (ordered[(n - 1) // 2] + ordered[n // 2]) / 2\n",
+    "recovery": true,
+    "budget_steps": 13,
+    "outcome": "success"
+  },
+  {
+    "id": "longest-label",
+    "split": "valid",
+    "family": "stable-maximum",
+    "requirement": "For a nonempty list of labels, return the longest, keeping the first on a length tie.",
+    "source": "labels/choose.py",
+    "test": "check_labels.py",
+    "files": {
+      "README.md": "# longest-label\n\nFor a nonempty list of labels, return the longest, keeping the first on a length tie.\nRepair labels/choose.py; keep the function interface. Check using check_labels.py.\n",
+      "labels/choose.py": "def longest_label(labels):\n    return max(labels)\n",
+      "check_labels.py": "from labels.choose import longest_label\n\nassert longest_label(['z', 'alphabet', 'cat']) == 'alphabet'\nassert longest_label(['bb', 'aa']) == 'bb'\nprint('PASS longest-label')\n"
+    },
+    "replacement": "def longest_label(labels):\n    return max(labels, key=len)\n",
+    "recovery": false,
+    "budget_steps": 11,
+    "outcome": "success"
+  },
+  {
+    "id": "average-empty",
+    "split": "train",
+    "family": "empty-average",
+    "source": "metrics/average.py",
+    "test": "checks/average.py",
+    "requirement": "Return the arithmetic mean, or zero for an empty list.",
+    "files": {
+      "README.md": "Return the arithmetic mean, or zero for an empty list.\nRepair metrics/average.py; check using checks/average.py.\n",
+      "metrics/average.py": "def average_or_zero(items):\n    return sum(items) / len(items)\n",
+      "checks/average.py": "from metrics.average import average_or_zero\nassert average_or_zero([]) == 0\nprint('PASS average-empty')\n"
+    },
+    "replacement": "def average_or_zero(items):\n    return sum(items) / len(items)\n",
+    "recovery": false,
+    "outcome": "failed_check",
+    "budget_steps": 10
+  },
+  {
+    "id": "join-separator",
+    "split": "train",
+    "family": "separator-join",
+    "source": "strings/joiner.py",
+    "test": "check_joiner.py",
+    "requirement": "Join string items with a comma separator.",
+    "files": {
+      "README.md": "Join string items with a comma separator.\nRepair strings/joiner.py; check using check_joiner.py.\n",
+      "strings/joiner.py": "def comma_join(items):\n    return \"\".join(items)\n",
+      "check_joiner.py": "from strings.joiner import comma_join\nassert comma_join(['a','b']) == 'a,b'\nprint('PASS join-separator')\n"
+    },
+    "replacement": "def comma_join(items):\n    return \",\".join(items)\n",
+    "recovery": false,
+    "outcome": "unresolved_edit",
+    "budget_steps": 12
+  },
+  {
+    "id": "inclusive-total",
+    "split": "valid",
+    "family": "inclusive-range",
+    "source": "intervals.py",
+    "test": "checks/intervals.py",
+    "requirement": "Sum all integers from low through high, including both endpoints.",
+    "files": {
+      "README.md": "Sum all integers from low through high, including both endpoints.\nRepair intervals.py; check using checks/intervals.py.\n",
+      "intervals.py": "def interval_total(low, high):\n    return sum(range(low + 1, high))\n",
+      "checks/intervals.py": "from intervals import interval_total\nassert interval_total(1,3) == 6\nassert interval_total(2,2) == 2\nprint('PASS inclusive-total')\n"
+    },
+    "replacement": "def interval_total(low, high):\n    return sum(range(low, high))\n",
+    "recovery": false,
+    "outcome": "incomplete",
+    "budget_steps": 13
+  }
+]

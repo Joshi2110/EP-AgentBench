@@ -1,0 +1,82 @@
+[
+  {
+    "id": "rotate-ticket",
+    "family": "rotation",
+    "source": "queue_ops.py",
+    "test": "tests/check_rotation.py",
+    "files": {
+      "README.md": "Rotate a list right by one place and preserve empty lists.\n",
+      "queue_ops.py": "def rotate_right(items):\n    return items[1:] + items[:1]\n",
+      "tests/check_rotation.py": "from queue_ops import rotate_right\nassert rotate_right([1,2,3]) == [3,1,2]\nassert rotate_right([]) == []\nprint('PASS rotate-ticket')\n"
+    },
+    "forced_failed_edit": {
+      "tool": "edit_file",
+      "arguments": {
+        "path": "queue_ops.py",
+        "old_text": "def rotate_right(items):\n  return items[1:] + items[:1]\n",
+        "new_text": "def rotate_right(items):\n    return items[1:] + items[:1]\n"
+      }
+    },
+    "expected_failure": "old_text must match exactly once"
+  },
+  {
+    "id": "strip-badge",
+    "family": "prefix-removal",
+    "source": "badges/clean.py",
+    "test": "check_badges.py",
+    "files": {
+      "README.md": "Remove exactly one leading ID: prefix, leaving internal occurrences unchanged.\n",
+      "badges/clean.py": "def strip_badge(label):\n    return label.replace('ID:', '')\n",
+      "check_badges.py": "from badges.clean import strip_badge\nassert strip_badge('ID:aID:b') == 'aID:b'\nassert strip_badge('aID:b') == 'aID:b'\nprint('PASS strip-badge')\n"
+    },
+    "forced_failed_edit": {
+      "tool": "edit_file",
+      "arguments": {
+        "path": "badges/clean.py",
+        "old_text": "def strip_badge(label):\n  return label.replace('ID:', '')\n",
+        "new_text": "def strip_badge(label):\n    return label.replace('ID:', '')\n"
+      }
+    },
+    "expected_failure": "old_text must match exactly once"
+  },
+  {
+    "id": "positive-total",
+    "family": "filtered-aggregation",
+    "source": "totals.py",
+    "test": "checks/positive.py",
+    "files": {
+      "README.md": "Sum strictly positive values, returning zero for an empty list.\n",
+      "totals.py": "def positive_total(values):\n    return sum(values)\n",
+      "checks/positive.py": "from totals import positive_total\nassert positive_total([-4,2,3]) == 5\nassert positive_total([]) == 0\nprint('PASS positive-total')\n"
+    },
+    "forced_failed_edit": {
+      "tool": "edit_file",
+      "arguments": {
+        "path": "totals.py",
+        "old_text": "def positive_total(values):\n  return sum(values)\n",
+        "new_text": "def positive_total(values):\n    return sum(values)\n"
+      }
+    },
+    "expected_failure": "old_text must match exactly once"
+  },
+  {
+    "id": "mapping-fallback",
+    "family": "mapping-absence",
+    "source": "maps/access.py",
+    "test": "checks/check_access.py",
+    "files": {
+      "README.md": "Return the mapped value whenever a key exists, including falsey values; use default only for absent keys.\n",
+      "maps/access.py": "def lookup_or_default(mapping, key, default):\n    return mapping.get(key) or default\n",
+      "checks/check_access.py": "from maps.access import lookup_or_default\nassert lookup_or_default({'a': 0}, 'a', 9) == 0\nassert lookup_or_default({}, 'a', 9) == 9\nprint('PASS mapping-fallback')\n"
+    },
+    "forced_failed_edit": {
+      "tool": "edit_file",
+      "arguments": {
+        "path": "maps/access.py",
+        "old_text": "def lookup_or_default(mapping, key, default):\n  return mapping.get(key) or default\n",
+        "new_text": "def lookup_or_default(mapping, key, default):\n    return mapping.get(key) or default\n"
+      }
+    },
+    "expected_failure": "old_text must match exactly once"
+  }
+]

@@ -15,6 +15,7 @@ def build(fixtures, out):
     out.mkdir(parents=True, exist_ok=False)
     reviews = []
     for case in cases:
+        outcome = case.get('outcome', 'success')
         with tempfile.TemporaryDirectory(prefix='epagent-demo-') as directory:
             workspace = Path(directory)
             for name, content in case['files'].items():
@@ -28,23 +29,32 @@ def build(fixtures, out):
                        ('read_file', {'path': case['source']}, True),
                        ('run_python', {'code': check}, True),
                        ('read_file', {'path': case['test']}, True)]
-            if case['recovery']:
+            if case['recovery'] or outcome == 'unresolved_edit':
                 # A controlled exact-match failure. It remains context, never a target.
                 actions += [('edit_file', {'path': case['source'],
                              'old_text': case['files'][case['source']].replace('    ', '  '),
                              'new_text': case['replacement']}, False),
                             ('read_file', {'path': case['source']}, True)]
-            actions += [('edit_file', {'path': case['source'], 'old_text': case['files'][case['source']],
-                         'new_text': case['replacement']}, True),
-                        ('run_python', {'code': check}, True),
-                        ('finish', {'summary': f"Updated {case['source']}. The final check printed PASS {case['id']}."}, True)]
+            if outcome in ('success', 'incomplete'):
+                actions += [('edit_file', {'path': case['source'], 'old_text': case['files'][case['source']],
+                             'new_text': case['replacement']}, True), ('run_python', {'code': check}, True)]
+            summaries = {
+                'success': f"Updated {case['source']}. The final check printed PASS {case['id']}.",
+                'failed_check': 'The check failed with ZeroDivisionError. I made no changes; the repair is incomplete.',
+                'unresolved_edit': 'The check failed and my edit was rejected: old_text must match exactly once. The reread confirms the original source remains. This is unresolved.',
+                'incomplete': 'I changed the source, but the rerun still failed with AssertionError. The repair is incomplete.'}
+            actions.append(('finish', {'summary': summaries[outcome]}, True))
+            budget = case.get('budget_steps', 12)
+            assert len(actions) <= budget
             messages = [{'role': 'system', 'content': SYSTEM_PROMPT},
-                        {'role': 'user', 'content': 'Repair this synthetic Python workspace. ' + case['requirement']}]
+                        {'role': 'user', 'content': 'Repair this synthetic Python workspace. ' + case['requirement']
+                         + f' You have at most {budget} tool turns. Finish when you can report the observed outcome honestly.'}]
             events, selected = [], []
             def emit(kind, data):
                 events.append({'schema': 'epagent.episode.v1', 'episode_id': case['id'],
                                'sequence': len(events) + 1, 'event': kind, 'data': data})
             emit('episode_start', {'task_id': 'synthetic:' + case['id'],
+                                  'config': {'steps': budget},
                                   'model': {'backend': 'scripted-demonstration', 'model_id': None},
                                   'provenance': 'New task-author fixture; no harvested model trajectory'})
             for step, (name, args, learn) in enumerate(actions, 1):
@@ -59,15 +69,20 @@ def build(fixtures, out):
                     observation = execute(workspace, name, args, 8, 8192)
                 except ValueError as exc:
                     observation = {'error': 'ValueError', 'detail': str(exc)}
-                # Runtime is not a learning target and varies on every replay.
+                # Normalize only nondeterministic runtime metadata. Imported
+                # modules can put the temporary workspace prefix in tracebacks.
                 observation.pop('elapsed_seconds', None)
+                for key in ['stdout', 'stderr']:
+                    if key in observation:
+                        for prefix in [str(workspace.resolve()), str(workspace)]:
+                            observation[key] = observation[key].replace(prefix + '/', '<workspace>/')
                 if name == 'run_python':
-                    expected = 'python_error' if step == 5 else 'completed'
+                    expected = 'completed' if outcome == 'success' and step != 5 else 'python_error'
                     assert observation['status'] == expected, observation
                     if expected == 'completed':
                         assert observation['stdout'].strip() == 'PASS ' + case['id']
                     else:
-                        assert 'AssertionError' in observation['stderr']
+                        assert 'AssertionError' in observation['stderr'] or 'ZeroDivisionError' in observation['stderr']
                 if not learn:
                     assert observation == {'error': 'ValueError', 'detail': 'old_text must match exactly once'}
                 elif 'error' in observation:
@@ -75,18 +90,22 @@ def build(fixtures, out):
                 emit('tool_result', {'step': step, 'observation': observation,
                                      'patch': changes(before, snapshot(workspace))})
                 messages.append({'role': 'user', 'content': json.dumps({'tool_result': observation,
-                                 'steps_remaining': len(actions) - step})})
+                                 'steps_remaining': budget - step})})
                 if learn:
                     selected.append(step)
-            assert (workspace / case['source']).read_text() == case['replacement']
+            expected_source = case['replacement'] if outcome in ('success', 'incomplete') else case['files'][case['source']]
+            assert (workspace / case['source']).read_text() == expected_source
             path = out / (case['id'] + '.jsonl')
             path.write_text(''.join(json.dumps(e) + '\n' for e in events))
             reviews.append({'episode_id': case['id'], 'split': case['split'], 'family': case['family'],
                             'trace': path.name, 'trace_sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
                             'origin': 'authored-synthetic-fixture', 'rights': 'project-authored; no imported provider trajectories',
-                            'review': 'Inspected fixture, executed observations, exact-match recovery and final checks verified; maintainer review pending',
-                            'selected_assistant_steps': selected, 'excluded_failed_edit_steps': [7] if case['recovery'] else []})
+                            'review': 'Inspected fixture, executed observations and terminal claims verified; maintainer review pending',
+                            'outcome': outcome, 'budget_steps': budget,
+                            'selected_assistant_steps': selected,
+                            'excluded_failed_edit_steps': [7] if case['recovery'] or outcome == 'unresolved_edit' else []})
     (out / 'reviews.json').write_text(json.dumps({'schema': 'epagent.sft-review.v1',
+        'observation_normalization': 'elapsed_seconds omitted; temporary workspace prefixes in stdout/stderr replaced with <workspace>/',
         'fixtures_sha256': hashlib.sha256(fixtures.read_bytes()).hexdigest(), 'episodes': reviews}, indent=2) + '\n')
     return reviews
 

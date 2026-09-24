@@ -74,15 +74,52 @@ def configure_stop_tokens(tokenizer):
     return sorted(tokenizer.eos_token_ids)
 
 
+def adapter_manifest(directory, loaded=False):
+    """Fingerprint precisely the two files MLX-LM loads, not incidental checkpoints."""
+    if directory is None:
+        return {'requested': False, 'loaded': False, 'path': None, 'id': None, 'config': None, 'sha256': {}}
+    path = Path(directory).resolve()
+    hashes = {}
+    for name in ['adapter_config.json', 'adapters.safetensors']:
+        member = path / name
+        if member.is_symlink() or not member.is_file():
+            raise ValueError('Adapter requires regular config and weight files')
+        hashes[name] = hashlib.sha256(member.read_bytes()).hexdigest()
+    config = json.loads((path / 'adapter_config.json').read_text())
+    if config.get('fine_tune_type') != 'lora':
+        raise ValueError('Only LoRA adapters are supported')
+    ident = hashlib.sha256(json.dumps(hashes, sort_keys=True).encode()).hexdigest()
+    return {'requested': True, 'loaded': loaded, 'path': str(path), 'id': ident,
+            'config': config, 'sha256': hashes}
+
+
+def verify_loaded_adapter(model, adapter):
+    # MLX-LM loads adapters with strict=False. Reject silently ignored/incomplete
+    # weight files before reporting success or generating any response.
+    if not adapter['requested']:
+        return
+    import mlx.core as mx
+    from mlx.utils import tree_flatten
+    weights = mx.load(str(Path(adapter['path']) / 'adapters.safetensors'))
+    actual = {n: v for n, v in tree_flatten(model.parameters()) if n.endswith(('.lora_a', '.lora_b'))}
+    if not actual or set(weights) != set(actual):
+        raise ValueError('Adapter weights must cover exactly the configured LoRA matrices')
+    if any(v.shape != actual[n].shape or not mx.array_equal(v, actual[n]).item() for n, v in weights.items()):
+        raise ValueError('Loaded adapter matrices do not match the selected weights')
+
+
 class MLXBackend:
     def __init__(self, model_dir, config):
-        self.model_dir, self.config = Path(model_dir).resolve(), config
+        self.model_dir, self.config = Path(model_dir).resolve(), dict(config)
         self.process = None
         self.stderr = None
         self.metadata = json.loads((self.model_dir / 'epagent-model.json').read_text())
         self.metadata['backend'] = 'mlx-lm'
         if self.metadata['model_id'] != MODEL_ID or self.metadata['revision'] != REVISION:
             raise ValueError("This v0.1 backend requires the reviewed pinned model")
+        self.metadata['adapter'] = adapter_manifest(config.get('adapter_dir'))
+        self.config['adapter_dir'] = self.metadata['adapter']['path']
+        self.config['adapter_expected'] = self.metadata['adapter']
 
     def start(self, control):
         self.stderr = (control / 'inference.stderr').open('wb')
@@ -163,10 +200,19 @@ def worker(model_dir, config):
         if digest.hexdigest() != expected:
             raise ValueError('Model digest mismatch: ' + name)
     mx.random.seed(config['seed'])
-    model, tokenizer = load(str(model_dir), tokenizer_config={'trust_remote_code': False})
+    adapter = adapter_manifest(config.get('adapter_dir'))
+    if adapter != config.get('adapter_expected', adapter):
+        raise ValueError('Adapter changed between episode selection and worker loading')
+    model, tokenizer = load(str(model_dir), tokenizer_config={'trust_remote_code': False},
+                            adapter_path=adapter['path'])
+    verify_loaded_adapter(model, adapter)
+    if adapter_manifest(config.get('adapter_dir')) != adapter:
+        raise ValueError('Adapter changed during loading')
+    adapter['loaded'] = adapter['requested']
     stop_token_ids = configure_stop_tokens(tokenizer)
     mx.set_cache_limit(256 * 1024 * 1024)
-    emit('ready', metadata={'mlx_lm_version': importlib.metadata.version('mlx-lm'),
+    emit('ready', metadata={'model_id': manifest['model_id'], 'revision': manifest['revision'],
+                           'adapter': adapter, 'mlx_lm_version': importlib.metadata.version('mlx-lm'),
                            'mlx_version': importlib.metadata.version('mlx'),
                            'transformers_version': importlib.metadata.version('transformers'),
                            'chat_template_sha256': hashlib.sha256(tokenizer.chat_template.encode()).hexdigest(),

@@ -1,0 +1,11 @@
+{
+  "protected_files_unchanged": 2273,
+  "protected_file_set_unchanged": true,
+  "base_model_hashes_unchanged": true,
+  "evaluation_fixture_bytes_unchanged": true,
+  "new_real_model_episodes": 0,
+  "backward_training_steps": 0,
+  "trained_adapters_saved": 0,
+  "original_smoke_episodes_preserved": true,
+  "publication_snapshot_unchanged": true
+}

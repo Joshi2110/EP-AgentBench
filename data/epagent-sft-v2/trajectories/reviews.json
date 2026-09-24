@@ -1,0 +1,282 @@
+{
+  "schema": "epagent.sft-review.v1",
+  "observation_normalization": "elapsed_seconds omitted; temporary workspace prefixes in stdout/stderr replaced with <workspace>/",
+  "fixtures_sha256": "840044ddae97de7ef37d63574c6ce6c98fc64d662aa7894d8fcedfbc0b32cd2e",
+  "episodes": [
+    {
+      "episode_id": "bound-count",
+      "split": "train",
+      "family": "bounds",
+      "trace": "bound-count.jsonl",
+      "trace_sha256": "ef78f95fda2265784f5ba03b3dc1708435307125a41948558fae8fee22f38148",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations and terminal claims verified; maintainer review pending",
+      "outcome": "success",
+      "budget_steps": 13,
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "excluded_failed_edit_steps": [
+        7
+      ]
+    },
+    {
+      "episode_id": "suffix-token",
+      "split": "train",
+      "family": "suffix",
+      "trace": "suffix-token.jsonl",
+      "trace_sha256": "158c83cc3c31be83a5487603da509316100b14c724d7328c686315c7e1f13c1a",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations and terminal claims verified; maintainer review pending",
+      "outcome": "success",
+      "budget_steps": 12,
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "excluded_failed_edit_steps": []
+    },
+    {
+      "episode_id": "ordered-unique",
+      "split": "train",
+      "family": "stable-deduplication",
+      "trace": "ordered-unique.jsonl",
+      "trace_sha256": "8c15cbc3c6b54dd673829f2d8457d455e5af4f462039aeb14bd33b1dc89da6c2",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations and terminal claims verified; maintainer review pending",
+      "outcome": "success",
+      "budget_steps": 15,
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "excluded_failed_edit_steps": [
+        7
+      ]
+    },
+    {
+      "episode_id": "batch-count",
+      "split": "train",
+      "family": "ceiling-division",
+      "trace": "batch-count.jsonl",
+      "trace_sha256": "032ca6d56cbb346890532796bb525f4a7bd2763c0d60dd2c0258d01f13c6d5c4",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations and terminal claims verified; maintainer review pending",
+      "outcome": "success",
+      "budget_steps": 14,
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "excluded_failed_edit_steps": []
+    },
+    {
+      "episode_id": "enabled-flag",
+      "split": "train",
+      "family": "boolean-parsing",
+      "trace": "enabled-flag.jsonl",
+      "trace_sha256": "e78fa9886a6415b159cadf903dcb455ff42c7715b23820fca2521e105dd3e3c5",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations and terminal claims verified; maintainer review pending",
+      "outcome": "success",
+      "budget_steps": 14,
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "excluded_failed_edit_steps": [
+        7
+      ]
+    },
+    {
+      "episode_id": "pair-changes",
+      "split": "train",
+      "family": "adjacent-transitions",
+      "trace": "pair-changes.jsonl",
+      "trace_sha256": "a83064ddd5a6385e89a220ad938ed1b3bb8a7a6c02b26637d657ffdbf1610067",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations and terminal claims verified; maintainer review pending",
+      "outcome": "success",
+      "budget_steps": 12,
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "excluded_failed_edit_steps": []
+    },
+    {
+      "episode_id": "midpoint-order",
+      "split": "valid",
+      "family": "median",
+      "trace": "midpoint-order.jsonl",
+      "trace_sha256": "f1c421d9ad4f980cd3e5380ba803339cd7470b89582d5aef10ff250a49133c70",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations and terminal claims verified; maintainer review pending",
+      "outcome": "success",
+      "budget_steps": 13,
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "excluded_failed_edit_steps": [
+        7
+      ]
+    },
+    {
+      "episode_id": "longest-label",
+      "split": "valid",
+      "family": "stable-maximum",
+      "trace": "longest-label.jsonl",
+      "trace_sha256": "c5a2d79fdec6d12f2537486b421268c19e530af697e2f4c1a12c0bd85c9a6997",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations and terminal claims verified; maintainer review pending",
+      "outcome": "success",
+      "budget_steps": 11,
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "excluded_failed_edit_steps": []
+    },
+    {
+      "episode_id": "average-empty",
+      "split": "train",
+      "family": "empty-average",
+      "trace": "average-empty.jsonl",
+      "trace_sha256": "51aee537ec89091a97c569b3983e0c7282b0df7fd75ff3b7432e275741db27e7",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations and terminal claims verified; maintainer review pending",
+      "outcome": "failed_check",
+      "budget_steps": 10,
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "excluded_failed_edit_steps": []
+    },
+    {
+      "episode_id": "join-separator",
+      "split": "train",
+      "family": "separator-join",
+      "trace": "join-separator.jsonl",
+      "trace_sha256": "e895b2562919c0c6f8b1d957b38619fdab5d8009e039478fad160b75a0b1b40c",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations and terminal claims verified; maintainer review pending",
+      "outcome": "unresolved_edit",
+      "budget_steps": 12,
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9
+      ],
+      "excluded_failed_edit_steps": [
+        7
+      ]
+    },
+    {
+      "episode_id": "inclusive-total",
+      "split": "valid",
+      "family": "inclusive-range",
+      "trace": "inclusive-total.jsonl",
+      "trace_sha256": "f886b855970883c57f133dc14f40ee8d6b14a0698030705193e8c82538ff4071",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations and terminal claims verified; maintainer review pending",
+      "outcome": "incomplete",
+      "budget_steps": 13,
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "excluded_failed_edit_steps": []
+    }
+  ]
+}

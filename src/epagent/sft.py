@@ -53,7 +53,7 @@ def prepare(trajectories, model_dir, config_file, protocol_file, out):
     from mlx_lm.utils import load_tokenizer
     config = config_at(config_file)
     protocol = json.loads(Path(protocol_file).read_text())
-    if (protocol.get('schema') != 'epagent.sft-protocol.v1'
+    if (protocol.get('schema') not in ('epagent.sft-protocol.v1', 'epagent.sft-protocol.v2')
             or protocol['training_iterations'] != config['iterations']
             or protocol['model_id'] != MODEL_ID or protocol['revision'] != REVISION):
         raise ValueError('Training configuration and registered evaluation protocol disagree')
@@ -81,8 +81,9 @@ def prepare(trajectories, model_dir, config_file, protocol_file, out):
         'review_manifest_sha256': digest(Path(trajectories) / 'reviews.json'),
         'files': files, 'counts': counts, 'stop_token_ids': stops,
         'chat_template_sha256': hashlib.sha256(tokenizer.chat_template.encode()).hexdigest(),
-        'versions': {name: importlib.metadata.version(name) for name in ['mlx-lm', 'mlx', 'transformers']},
+        'versions': {name: importlib.metadata.version(name) for name in ['mlx-lm', 'mlx', 'transformers', 'numpy']},
         'python': platform.python_version(), 'loss': 'final assistant content and EOS only; half-open token interval',
+        'effective_training_passes': config['iterations'] * config['batch_size'] / len(examples['train']),
         'truncation': 'forbidden', 'training_performed': False}
     write_json(out / 'manifest.json', metadata)
     return metadata
@@ -146,13 +147,13 @@ def train(prepared, model_dir, out):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=False)
     config = metadata['config']
-    np.random.seed(config['seed'])
     model, adapter_info = adapt(model_dir, config)
     write_json(out / 'adapter_config.json', {'fine_tune_type': 'lora', 'num_layers': config['num_layers'],
                                            'lora_parameters': config['lora_parameters']})
     manifest = {'schema': 'epagent.sft-run.v1', 'status': 'running', 'prepared': metadata,
                 'prepared_manifest_sha256': digest(Path(prepared) / 'manifest.json'),
                 'adapter': adapter_info, 'updates_requested': config['iterations'],
+                'effective_training_passes': config['iterations'] * config['batch_size'] / len(sets['train']),
                 'source_sha256': {p.name: digest(p) for p in Path(__file__).parent.glob('sft*.py')},
                 'host': {'system': platform.system(), 'machine': platform.machine(), 'python': platform.python_version()}}
     write_json(out / 'run.json', manifest)
@@ -172,7 +173,11 @@ def train(prepared, model_dir, out):
             adapter_file=out / 'adapters.safetensors', grad_checkpoint=config['grad_checkpoint'],
             clear_cache_threshold=256 * 1024 * 1024)
         try:
-            mlx_train(model=model, optimizer=optim.Adam(learning_rate=config['learning_rate']),
+            optimizer = optim.Adam(learning_rate=config['learning_rate'])
+            # Native iterate_batches uses NumPy's global RNG. Seed after loading
+            # and optimizer construction, immediately before entering the trainer.
+            np.random.seed(config['seed'])
+            mlx_train(model=model, optimizer=optimizer,
                       train_dataset=sets['train'], val_dataset=sets['valid'], args=args,
                       loss=assistant_loss, training_callback=Metrics())
             if not (out / 'adapters.safetensors').is_file():

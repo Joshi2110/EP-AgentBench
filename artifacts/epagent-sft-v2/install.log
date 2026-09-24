@@ -1,0 +1,16 @@
+WARNING: The directory '/Users/josh/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Processing ./.
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: ep-agentbench
+  Building wheel for ep-agentbench (pyproject.toml): started
+  Building wheel for ep-agentbench (pyproject.toml): finished with status 'done'
+  Created wheel for ep-agentbench: filename=ep_agentbench-0.5.0-py3-none-any.whl size=89593 sha256=bf84c7817f1c5ee9b459d9979015ec2f1b44213af6353441fb51eb54618868de
+  Stored in directory: /private/var/folders/vr/4b0xhmsn53d5d6r3qsg80zc00000gn/T/pip-ephem-wheel-cache-vr0xq3jn/wheels/12/8c/9a/e276a3c96d390f9cd9ad1d88f7f9abf5c8719cd685e4df6416
+Successfully built ep-agentbench
+Installing collected packages: ep-agentbench
+  Attempting uninstall: ep-agentbench
+    Found existing installation: ep-agentbench 0.5.0
+    Uninstalling ep-agentbench-0.5.0:
+      Successfully uninstalled ep-agentbench-0.5.0
+Successfully installed ep-agentbench-0.5.0

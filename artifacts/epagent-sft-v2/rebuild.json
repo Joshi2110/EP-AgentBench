@@ -1,0 +1,9 @@
+{
+  "episodes": 11,
+  "selected_assistant_targets": 100,
+  "byte_identical_traces": 11,
+  "byte_identical_review_manifest": true,
+  "normalization": "elapsed_seconds omitted; workspace path prefixes normalized in stdout/stderr",
+  "real_model_generations": 0,
+  "optimizer_steps": 0
+}
