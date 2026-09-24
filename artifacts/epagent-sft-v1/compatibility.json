@@ -1,0 +1,28 @@
+{
+  "training_performed": false,
+  "optimizer_steps": 0,
+  "trainable_parameters": 155648,
+  "trainable_names": [
+    "model.layers.24.self_attn.q_proj.lora_a",
+    "model.layers.24.self_attn.q_proj.lora_b",
+    "model.layers.24.self_attn.v_proj.lora_a",
+    "model.layers.24.self_attn.v_proj.lora_b",
+    "model.layers.25.self_attn.q_proj.lora_a",
+    "model.layers.25.self_attn.q_proj.lora_b",
+    "model.layers.25.self_attn.v_proj.lora_a",
+    "model.layers.25.self_attn.v_proj.lora_b",
+    "model.layers.26.self_attn.q_proj.lora_a",
+    "model.layers.26.self_attn.q_proj.lora_b",
+    "model.layers.26.self_attn.v_proj.lora_a",
+    "model.layers.26.self_attn.v_proj.lora_b",
+    "model.layers.27.self_attn.q_proj.lora_a",
+    "model.layers.27.self_attn.q_proj.lora_b",
+    "model.layers.27.self_attn.v_proj.lora_a",
+    "model.layers.27.self_attn.v_proj.lora_b"
+  ],
+  "stop_token_ids": [
+    151643,
+    151645
+  ],
+  "peak_mlx_bytes_before_training": 872180852
+}

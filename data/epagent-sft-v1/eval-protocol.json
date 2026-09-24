@@ -1,0 +1,60 @@
+{
+  "schema": "epagent.sft-protocol.v1",
+  "id": "tool-recovery-v1",
+  "status": "registered before any SFT updates; baseline not yet run",
+  "purpose": "paired base versus final LoRA adapter tool-use smoke comparison, not scientific generalization",
+  "model_id": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+  "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+  "split_unit": "whole synthetic workspace/family; never individual turns",
+  "heldout_cases": [
+    "rotate-ticket",
+    "strip-badge",
+    "positive-total",
+    "mapping-fallback"
+  ],
+  "selection": "fixed final checkpoint after 40 updates; do not select on heldout results",
+  "arms": [
+    "unadapted base first, before training",
+    "final 40-update adapter after training"
+  ],
+  "attempts_per_case_per_arm": 1,
+  "seeds": [
+    0
+  ],
+  "generation": {
+    "temperature": 0.0,
+    "max_tokens": 768,
+    "context_tokens": 8192
+  },
+  "limits": {
+    "steps": 12,
+    "seconds": 300,
+    "tool_seconds": 8,
+    "output_bytes": 8192
+  },
+  "start_state": [
+    "Export only the heldout files into a new constrained workspace.",
+    "Use the unchanged EP-Agent system prompt and the case README as user instruction.",
+    "Supply an assistant read_file call and its real observation, followed by the fixture forced_failed_edit and its actual exact-match error.",
+    "Mark these supplied messages as a setup intervention, not model actions; verify the workspace remains unchanged.",
+    "Start counting model turns only after this error; never supply a correction or expected edit."
+  ],
+  "primary_endpoint": "Fraction of all four registered cases with recovery within four model turns: a successful source edit whose nonempty old_text appears exactly once in a prior real source observation and whose file content changes. Rereading is encouraged but not required while the observed file is unchanged.",
+  "secondary_endpoints": [
+    "schema-valid call fraction",
+    "repeated identical failed-edit count",
+    "source read before edit",
+    "relevant test executed after edit",
+    "visible test result PASS with unchanged test file",
+    "finish claims supported by observed test output",
+    "timeouts and infrastructure errors separately"
+  ],
+  "denominators": "Always report four registered cases per arm, completion/scorable counts, and raw case outcomes; do not silently drop failures or retry.",
+  "infrastructure_failure": "Preserve and report; do not interpret an untouched workspace as scientific repair; no automatic replacement.",
+  "evaluation_data_access": "Runtime sees case files and setup observations only; training preparation must not read eval-fixtures.json.",
+  "reporting": "Paired per-case changes; counts only, no significance/generalization claim from four cases. Frozen fixtures and protocol hashes in each report.",
+  "hall_policy": "Hall tasks remain a separately authorized downstream assessment, never training/validation data or generalization evidence.",
+  "execution_status": "Protocol only in this milestone; no baseline generation, adapted evaluation, or training has been executed.",
+  "training_iterations": 40,
+  "eval_fixtures_sha256": "e15e687806b96b7b2d6d0b6a6f907867bf529af41b598a7228de52262d4a2147"
+}

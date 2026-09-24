@@ -1,0 +1,194 @@
+{
+  "schema": "epagent.sft-review.v1",
+  "fixtures_sha256": "f185433deeacb49b1943b51402316333778c0d801025bb44358d31775b5b01e3",
+  "episodes": [
+    {
+      "episode_id": "bound-count",
+      "split": "train",
+      "family": "bounds",
+      "trace": "bound-count.jsonl",
+      "trace_sha256": "598f5c9d2faca19713cb0eaaa7d011addcb650af918e8827d80818ce7d9f1b8c",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations, exact-match recovery and final checks verified; maintainer review pending",
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "excluded_failed_edit_steps": [
+        7
+      ]
+    },
+    {
+      "episode_id": "suffix-token",
+      "split": "train",
+      "family": "suffix",
+      "trace": "suffix-token.jsonl",
+      "trace_sha256": "96d90dd76b0d94f232f2ec20d4aeff282290a8ab48fb5f4d4850b8c35989753d",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations, exact-match recovery and final checks verified; maintainer review pending",
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "excluded_failed_edit_steps": []
+    },
+    {
+      "episode_id": "ordered-unique",
+      "split": "train",
+      "family": "stable-deduplication",
+      "trace": "ordered-unique.jsonl",
+      "trace_sha256": "9d2c20810d8af498d588af98f62ca95c17ed2abfda2219e520d248817680a8a2",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations, exact-match recovery and final checks verified; maintainer review pending",
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "excluded_failed_edit_steps": [
+        7
+      ]
+    },
+    {
+      "episode_id": "batch-count",
+      "split": "train",
+      "family": "ceiling-division",
+      "trace": "batch-count.jsonl",
+      "trace_sha256": "23d7b8d436d3e1d7fae62c12e7c513d1a3b7cb012832891848d524c690df6966",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations, exact-match recovery and final checks verified; maintainer review pending",
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "excluded_failed_edit_steps": []
+    },
+    {
+      "episode_id": "enabled-flag",
+      "split": "train",
+      "family": "boolean-parsing",
+      "trace": "enabled-flag.jsonl",
+      "trace_sha256": "42e3f41ef98945f062a0c09a8cdd2c8646357de07cbce1a27a36e4afae367657",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations, exact-match recovery and final checks verified; maintainer review pending",
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "excluded_failed_edit_steps": [
+        7
+      ]
+    },
+    {
+      "episode_id": "pair-changes",
+      "split": "train",
+      "family": "adjacent-transitions",
+      "trace": "pair-changes.jsonl",
+      "trace_sha256": "5c15684006e1ee70b2c497c0ad853ad375e9b29e5d6bed11329d980d8ca09c3c",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations, exact-match recovery and final checks verified; maintainer review pending",
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "excluded_failed_edit_steps": []
+    },
+    {
+      "episode_id": "midpoint-order",
+      "split": "valid",
+      "family": "median",
+      "trace": "midpoint-order.jsonl",
+      "trace_sha256": "3667724ec9b0501e0ce1ec6f5e833d2224126aab93e0e2cf54289911bedddacd",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations, exact-match recovery and final checks verified; maintainer review pending",
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "excluded_failed_edit_steps": [
+        7
+      ]
+    },
+    {
+      "episode_id": "longest-label",
+      "split": "valid",
+      "family": "stable-maximum",
+      "trace": "longest-label.jsonl",
+      "trace_sha256": "fc43d6b1e43d16da9acbf2799a5d21ed89810d66202bac1b3bbad559ecf35266",
+      "origin": "authored-synthetic-fixture",
+      "rights": "project-authored; no imported provider trajectories",
+      "review": "Inspected fixture, executed observations, exact-match recovery and final checks verified; maintainer review pending",
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "excluded_failed_edit_steps": []
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "protected_files_verified_unchanged": 1710,
+  "protected_roots": [
+    "src/epbench",
+    "examples/solutions",
+    "attempts/experiment-02",
+    "artifacts/ep-agent",
+    "../ep-agentbench-public"
+  ],
+  "base_model_hashes_verified_unchanged": true,
+  "sft_checkpoints_on_disk": 0,
+  "optimizer_updates": 0,
+  "model_generations": 0
+}

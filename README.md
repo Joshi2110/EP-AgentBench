@@ -60,7 +60,9 @@ The printed report gives paths to the complete trajectory, final workspace,
 diff, and terminal grading result. This uses constrained macOS Python execution
 and local MLX inference; it is not production-grade isolation. Installation,
 limits, trajectory/reward semantics, and the next SFT step are documented in
-[docs/ep-agent.md](docs/ep-agent.md). No training is implemented.
+[docs/ep-agent.md](docs/ep-agent.md). A small, reviewed synthetic-data SFT
+pipeline is now implemented in [docs/ep-agent-sft.md](docs/ep-agent-sft.md); no
+training has been run.
 
 ### Three things that are easy to confuse
 

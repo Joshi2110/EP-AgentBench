@@ -2,6 +2,7 @@ __pycache__/
 *.py[cod]
 .venv/
 .epagent-models/
+sft-runs/
 venv/
 build/
 dist/

@@ -1,0 +1,17 @@
+{
+  "episodes": 8,
+  "reviewed_assistant_targets": 76,
+  "byte_identical_files": [
+    "batch-count.jsonl",
+    "bound-count.jsonl",
+    "enabled-flag.jsonl",
+    "longest-label.jsonl",
+    "midpoint-order.jsonl",
+    "ordered-unique.jsonl",
+    "pair-changes.jsonl",
+    "reviews.json",
+    "suffix-token.jsonl"
+  ],
+  "model_inference": false,
+  "training_performed": false
+}
