@@ -1,0 +1,40 @@
+{
+  "stage": "adapted",
+  "command": [
+    ".venv/bin/epagent",
+    "synthetic",
+    "--arm",
+    "adapted",
+    "--fixtures",
+    "data/epagent-sft-v3/eval-fixtures.json",
+    "--protocol",
+    "data/epagent-sft-v3/eval-protocol.json",
+    "--model-dir",
+    ".epagent-models/qwen2.5-coder-1.5b-4bit",
+    "--adapter-dir",
+    "sft-runs/tool-use-lora-v3",
+    "--out",
+    "attempts/tool-recovery-v3-adapted"
+  ],
+  "cwd": "<REPOSITORY>",
+  "environment_overrides": {
+    "PYTHONPATH": null
+  },
+  "started": "2026-09-24T20:23:49.879264+00:00",
+  "wrapper_pid": 2992,
+  "status": "complete",
+  "pid": 2994,
+  "caffeinate_pid": 2995,
+  "caffeinate_command": [
+    "/usr/bin/caffeinate",
+    "-i",
+    "-s",
+    "-w",
+    "2994"
+  ],
+  "exit_code": 0,
+  "ended": "2026-09-24T20:25:55.341504+00:00",
+  "wall_seconds": 125.4651927499799,
+  "child_reaped": true,
+  "caffeinate_reaped": true
+}

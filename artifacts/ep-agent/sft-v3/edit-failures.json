@@ -1,0 +1,3734 @@
+{
+  "schema": "epagent.offline-edit-forensics.v1",
+  "scope": "Recorded edits only. No model, scorer, tool or edited program was executed.",
+  "rejections": [
+    {
+      "arm": "base",
+      "fixture": "exclusive-members",
+      "episode_id": "b6fdcafd20084765b4b859ba34e83054",
+      "turn": 2,
+      "call_event": 105,
+      "observation_event": 106,
+      "path": "collections_ops.py",
+      "latest_source_observation": {
+        "call_event": 32,
+        "observation_event": 33,
+        "setup_intervention": false,
+        "content": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "truncated": false
+      },
+      "old_text": "def only_left(left, right):\n  return set(left) | set(right)\n",
+      "new_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+      "old_text_characters": 60,
+      "old_text_utf8_bytes": 60,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 130,
+      "subsequent_edit_event": 203,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "start": 0,
+          "end": 62,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "exclusive-members",
+      "episode_id": "b6fdcafd20084765b4b859ba34e83054",
+      "turn": 4,
+      "call_event": 203,
+      "observation_event": 204,
+      "path": "collections_ops.py",
+      "latest_source_observation": {
+        "call_event": 130,
+        "observation_event": 131,
+        "setup_intervention": false,
+        "content": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "truncated": false
+      },
+      "old_text": "def only_left(left, right):\n  return set(left) | set(right)\n",
+      "new_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+      "old_text_characters": 60,
+      "old_text_utf8_bytes": 60,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 228,
+      "subsequent_edit_event": 301,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "start": 0,
+          "end": 62,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "exclusive-members",
+      "episode_id": "b6fdcafd20084765b4b859ba34e83054",
+      "turn": 6,
+      "call_event": 301,
+      "observation_event": 302,
+      "path": "collections_ops.py",
+      "latest_source_observation": {
+        "call_event": 228,
+        "observation_event": 229,
+        "setup_intervention": false,
+        "content": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "truncated": false
+      },
+      "old_text": "def only_left(left, right):\n  return set(left) | set(right)\n",
+      "new_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+      "old_text_characters": 60,
+      "old_text_utf8_bytes": 60,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 326,
+      "subsequent_edit_event": 399,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "start": 0,
+          "end": 62,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "exclusive-members",
+      "episode_id": "b6fdcafd20084765b4b859ba34e83054",
+      "turn": 8,
+      "call_event": 399,
+      "observation_event": 400,
+      "path": "collections_ops.py",
+      "latest_source_observation": {
+        "call_event": 326,
+        "observation_event": 327,
+        "setup_intervention": false,
+        "content": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "truncated": false
+      },
+      "old_text": "def only_left(left, right):\n  return set(left) | set(right)\n",
+      "new_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+      "old_text_characters": 60,
+      "old_text_utf8_bytes": 60,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 424,
+      "subsequent_edit_event": 497,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "start": 0,
+          "end": 62,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "exclusive-members",
+      "episode_id": "b6fdcafd20084765b4b859ba34e83054",
+      "turn": 10,
+      "call_event": 497,
+      "observation_event": 498,
+      "path": "collections_ops.py",
+      "latest_source_observation": {
+        "call_event": 424,
+        "observation_event": 425,
+        "setup_intervention": false,
+        "content": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "truncated": false
+      },
+      "old_text": "def only_left(left, right):\n  return set(left) | set(right)\n",
+      "new_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+      "old_text_characters": 60,
+      "old_text_utf8_bytes": 60,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 522,
+      "subsequent_edit_event": 595,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "start": 0,
+          "end": 62,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "exclusive-members",
+      "episode_id": "b6fdcafd20084765b4b859ba34e83054",
+      "turn": 12,
+      "call_event": 595,
+      "observation_event": 596,
+      "path": "collections_ops.py",
+      "latest_source_observation": {
+        "call_event": 522,
+        "observation_event": 523,
+        "setup_intervention": false,
+        "content": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "truncated": false
+      },
+      "old_text": "def only_left(left, right):\n  return set(left) | set(right)\n",
+      "new_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+      "old_text_characters": 60,
+      "old_text_utf8_bytes": 60,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "budget_end",
+      "next_call_event": null,
+      "subsequent_edit_event": null,
+      "subsequent_edit_arguments_changed": null,
+      "meaningful_response": "No subsequent action: budget exhausted.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "start": 0,
+          "end": 62,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "version-numbers",
+      "episode_id": "f040bf9694564ab391e75cda30607361",
+      "turn": 2,
+      "call_event": 102,
+      "observation_event": 103,
+      "path": "versions/parse.py",
+      "latest_source_observation": {
+        "call_event": 33,
+        "observation_event": 34,
+        "setup_intervention": false,
+        "content": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "truncated": false
+      },
+      "old_text": "def version_parts(text):\n    return tuple(text.split(\".\"))\n",
+      "new_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+      "old_text_characters": 59,
+      "old_text_utf8_bytes": 59,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "quoting",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 128,
+      "subsequent_edit_event": 197,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "start": 0,
+          "end": 59,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "version-numbers",
+      "episode_id": "f040bf9694564ab391e75cda30607361",
+      "turn": 4,
+      "call_event": 197,
+      "observation_event": 198,
+      "path": "versions/parse.py",
+      "latest_source_observation": {
+        "call_event": 128,
+        "observation_event": 129,
+        "setup_intervention": false,
+        "content": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "truncated": false
+      },
+      "old_text": "def version_parts(text):\n    return tuple(text.split(\".\"))\n",
+      "new_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+      "old_text_characters": 59,
+      "old_text_utf8_bytes": 59,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "quoting",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 223,
+      "subsequent_edit_event": 292,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "start": 0,
+          "end": 59,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "version-numbers",
+      "episode_id": "f040bf9694564ab391e75cda30607361",
+      "turn": 6,
+      "call_event": 292,
+      "observation_event": 293,
+      "path": "versions/parse.py",
+      "latest_source_observation": {
+        "call_event": 223,
+        "observation_event": 224,
+        "setup_intervention": false,
+        "content": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "truncated": false
+      },
+      "old_text": "def version_parts(text):\n    return tuple(text.split(\".\"))\n",
+      "new_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+      "old_text_characters": 59,
+      "old_text_utf8_bytes": 59,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "quoting",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 318,
+      "subsequent_edit_event": 387,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "start": 0,
+          "end": 59,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "version-numbers",
+      "episode_id": "f040bf9694564ab391e75cda30607361",
+      "turn": 8,
+      "call_event": 387,
+      "observation_event": 388,
+      "path": "versions/parse.py",
+      "latest_source_observation": {
+        "call_event": 318,
+        "observation_event": 319,
+        "setup_intervention": false,
+        "content": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "truncated": false
+      },
+      "old_text": "def version_parts(text):\n    return tuple(text.split(\".\"))\n",
+      "new_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+      "old_text_characters": 59,
+      "old_text_utf8_bytes": 59,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "quoting",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 413,
+      "subsequent_edit_event": 482,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "start": 0,
+          "end": 59,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "version-numbers",
+      "episode_id": "f040bf9694564ab391e75cda30607361",
+      "turn": 10,
+      "call_event": 482,
+      "observation_event": 483,
+      "path": "versions/parse.py",
+      "latest_source_observation": {
+        "call_event": 413,
+        "observation_event": 414,
+        "setup_intervention": false,
+        "content": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "truncated": false
+      },
+      "old_text": "def version_parts(text):\n    return tuple(text.split(\".\"))\n",
+      "new_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+      "old_text_characters": 59,
+      "old_text_utf8_bytes": 59,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "quoting",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 508,
+      "subsequent_edit_event": 577,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "start": 0,
+          "end": 59,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "version-numbers",
+      "episode_id": "f040bf9694564ab391e75cda30607361",
+      "turn": 12,
+      "call_event": 577,
+      "observation_event": 578,
+      "path": "versions/parse.py",
+      "latest_source_observation": {
+        "call_event": 508,
+        "observation_event": 509,
+        "setup_intervention": false,
+        "content": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "truncated": false
+      },
+      "old_text": "def version_parts(text):\n    return tuple(text.split(\".\"))\n",
+      "new_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+      "old_text_characters": 59,
+      "old_text_utf8_bytes": 59,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "quoting",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "budget_end",
+      "next_call_event": null,
+      "subsequent_edit_event": null,
+      "subsequent_edit_arguments_changed": null,
+      "meaningful_response": "No subsequent action: budget exhausted.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "start": 0,
+          "end": 59,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "record-priority",
+      "episode_id": "094a823187814645a28b43e0947c7888",
+      "turn": 2,
+      "call_event": 109,
+      "observation_event": 110,
+      "path": "records.py",
+      "latest_source_observation": {
+        "call_event": 31,
+        "observation_event": 32,
+        "setup_intervention": false,
+        "content": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "truncated": false
+      },
+      "old_text": "def order_records(records):\n  return sorted(records, key=lambda row: row['name'])\n",
+      "new_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+      "old_text_characters": 82,
+      "old_text_utf8_bytes": 82,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 133,
+      "subsequent_edit_event": 211,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "start": 0,
+          "end": 84,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "record-priority",
+      "episode_id": "094a823187814645a28b43e0947c7888",
+      "turn": 4,
+      "call_event": 211,
+      "observation_event": 212,
+      "path": "records.py",
+      "latest_source_observation": {
+        "call_event": 133,
+        "observation_event": 134,
+        "setup_intervention": false,
+        "content": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "truncated": false
+      },
+      "old_text": "def order_records(records):\n  return sorted(records, key=lambda row: row['name'])\n",
+      "new_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+      "old_text_characters": 82,
+      "old_text_utf8_bytes": 82,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 235,
+      "subsequent_edit_event": 313,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "start": 0,
+          "end": 84,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "record-priority",
+      "episode_id": "094a823187814645a28b43e0947c7888",
+      "turn": 6,
+      "call_event": 313,
+      "observation_event": 314,
+      "path": "records.py",
+      "latest_source_observation": {
+        "call_event": 235,
+        "observation_event": 236,
+        "setup_intervention": false,
+        "content": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "truncated": false
+      },
+      "old_text": "def order_records(records):\n  return sorted(records, key=lambda row: row['name'])\n",
+      "new_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+      "old_text_characters": 82,
+      "old_text_utf8_bytes": 82,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 337,
+      "subsequent_edit_event": 415,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "start": 0,
+          "end": 84,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "record-priority",
+      "episode_id": "094a823187814645a28b43e0947c7888",
+      "turn": 8,
+      "call_event": 415,
+      "observation_event": 416,
+      "path": "records.py",
+      "latest_source_observation": {
+        "call_event": 337,
+        "observation_event": 338,
+        "setup_intervention": false,
+        "content": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "truncated": false
+      },
+      "old_text": "def order_records(records):\n  return sorted(records, key=lambda row: row['name'])\n",
+      "new_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+      "old_text_characters": 82,
+      "old_text_utf8_bytes": 82,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 439,
+      "subsequent_edit_event": 517,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "start": 0,
+          "end": 84,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "record-priority",
+      "episode_id": "094a823187814645a28b43e0947c7888",
+      "turn": 10,
+      "call_event": 517,
+      "observation_event": 518,
+      "path": "records.py",
+      "latest_source_observation": {
+        "call_event": 439,
+        "observation_event": 440,
+        "setup_intervention": false,
+        "content": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "truncated": false
+      },
+      "old_text": "def order_records(records):\n  return sorted(records, key=lambda row: row['name'])\n",
+      "new_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+      "old_text_characters": 82,
+      "old_text_utf8_bytes": 82,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 541,
+      "subsequent_edit_event": 619,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "start": 0,
+          "end": 84,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "record-priority",
+      "episode_id": "094a823187814645a28b43e0947c7888",
+      "turn": 12,
+      "call_event": 619,
+      "observation_event": 620,
+      "path": "records.py",
+      "latest_source_observation": {
+        "call_event": 541,
+        "observation_event": 542,
+        "setup_intervention": false,
+        "content": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "truncated": false
+      },
+      "old_text": "def order_records(records):\n  return sorted(records, key=lambda row: row['name'])\n",
+      "new_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+      "old_text_characters": 82,
+      "old_text_utf8_bytes": 82,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "budget_end",
+      "next_call_event": null,
+      "subsequent_edit_event": null,
+      "subsequent_edit_arguments_changed": null,
+      "meaningful_response": "No subsequent action: budget exhausted.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "start": 0,
+          "end": 84,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "true-streak",
+      "episode_id": "717b6e36bf84413fa0568c5ae2e6d1ee",
+      "turn": 1,
+      "call_event": 74,
+      "observation_event": 75,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 3,
+        "observation_event": 4,
+        "setup_intervention": true,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "repeat_same_rejected_edit",
+      "next_call_event": 141,
+      "subsequent_edit_event": 141,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "No adaptation: immediate repeat.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "true-streak",
+      "episode_id": "717b6e36bf84413fa0568c5ae2e6d1ee",
+      "turn": 2,
+      "call_event": 141,
+      "observation_event": 142,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 3,
+        "observation_event": 4,
+        "setup_intervention": true,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "repeat_same_rejected_edit",
+      "next_call_event": 208,
+      "subsequent_edit_event": 208,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "No adaptation: immediate repeat.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "true-streak",
+      "episode_id": "717b6e36bf84413fa0568c5ae2e6d1ee",
+      "turn": 3,
+      "call_event": 208,
+      "observation_event": 209,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 3,
+        "observation_event": 4,
+        "setup_intervention": true,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "repeat_same_rejected_edit",
+      "next_call_event": 275,
+      "subsequent_edit_event": 275,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "No adaptation: immediate repeat.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "true-streak",
+      "episode_id": "717b6e36bf84413fa0568c5ae2e6d1ee",
+      "turn": 4,
+      "call_event": 275,
+      "observation_event": 276,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 3,
+        "observation_event": 4,
+        "setup_intervention": true,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "repeat_same_rejected_edit",
+      "next_call_event": 342,
+      "subsequent_edit_event": 342,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "No adaptation: immediate repeat.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "true-streak",
+      "episode_id": "717b6e36bf84413fa0568c5ae2e6d1ee",
+      "turn": 5,
+      "call_event": 342,
+      "observation_event": 343,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 3,
+        "observation_event": 4,
+        "setup_intervention": true,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "repeat_same_rejected_edit",
+      "next_call_event": 409,
+      "subsequent_edit_event": 409,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "No adaptation: immediate repeat.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "true-streak",
+      "episode_id": "717b6e36bf84413fa0568c5ae2e6d1ee",
+      "turn": 6,
+      "call_event": 409,
+      "observation_event": 410,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 3,
+        "observation_event": 4,
+        "setup_intervention": true,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "repeat_same_rejected_edit",
+      "next_call_event": 476,
+      "subsequent_edit_event": 476,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "No adaptation: immediate repeat.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "true-streak",
+      "episode_id": "717b6e36bf84413fa0568c5ae2e6d1ee",
+      "turn": 7,
+      "call_event": 476,
+      "observation_event": 477,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 3,
+        "observation_event": 4,
+        "setup_intervention": true,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "repeat_same_rejected_edit",
+      "next_call_event": 543,
+      "subsequent_edit_event": 543,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "No adaptation: immediate repeat.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "true-streak",
+      "episode_id": "717b6e36bf84413fa0568c5ae2e6d1ee",
+      "turn": 8,
+      "call_event": 543,
+      "observation_event": 544,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 3,
+        "observation_event": 4,
+        "setup_intervention": true,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "repeat_same_rejected_edit",
+      "next_call_event": 610,
+      "subsequent_edit_event": 610,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "No adaptation: immediate repeat.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "true-streak",
+      "episode_id": "717b6e36bf84413fa0568c5ae2e6d1ee",
+      "turn": 9,
+      "call_event": 610,
+      "observation_event": 611,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 3,
+        "observation_event": 4,
+        "setup_intervention": true,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "repeat_same_rejected_edit",
+      "next_call_event": 677,
+      "subsequent_edit_event": 677,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "No adaptation: immediate repeat.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "true-streak",
+      "episode_id": "717b6e36bf84413fa0568c5ae2e6d1ee",
+      "turn": 10,
+      "call_event": 677,
+      "observation_event": 678,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 3,
+        "observation_event": 4,
+        "setup_intervention": true,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "repeat_same_rejected_edit",
+      "next_call_event": 744,
+      "subsequent_edit_event": 744,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "No adaptation: immediate repeat.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "true-streak",
+      "episode_id": "717b6e36bf84413fa0568c5ae2e6d1ee",
+      "turn": 11,
+      "call_event": 744,
+      "observation_event": 745,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 3,
+        "observation_event": 4,
+        "setup_intervention": true,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "repeat_same_rejected_edit",
+      "next_call_event": 811,
+      "subsequent_edit_event": 811,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "No adaptation: immediate repeat.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "base",
+      "fixture": "true-streak",
+      "episode_id": "717b6e36bf84413fa0568c5ae2e6d1ee",
+      "turn": 12,
+      "call_event": 811,
+      "observation_event": 812,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 3,
+        "observation_event": 4,
+        "setup_intervention": true,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "budget_end",
+      "next_call_event": null,
+      "subsequent_edit_event": null,
+      "subsequent_edit_arguments_changed": null,
+      "meaningful_response": "No subsequent action: budget exhausted.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "exclusive-members",
+      "episode_id": "6b8427e73d1e4ca9ba54fbedf6691d24",
+      "turn": 2,
+      "call_event": 105,
+      "observation_event": 106,
+      "path": "collections_ops.py",
+      "latest_source_observation": {
+        "call_event": 32,
+        "observation_event": 33,
+        "setup_intervention": false,
+        "content": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "truncated": false
+      },
+      "old_text": "def only_left(left, right):\n  return set(left) | set(right)\n",
+      "new_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+      "old_text_characters": 60,
+      "old_text_utf8_bytes": 60,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 130,
+      "subsequent_edit_event": 203,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "start": 0,
+          "end": 62,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "exclusive-members",
+      "episode_id": "6b8427e73d1e4ca9ba54fbedf6691d24",
+      "turn": 4,
+      "call_event": 203,
+      "observation_event": 204,
+      "path": "collections_ops.py",
+      "latest_source_observation": {
+        "call_event": 130,
+        "observation_event": 131,
+        "setup_intervention": false,
+        "content": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "truncated": false
+      },
+      "old_text": "def only_left(left, right):\n  return set(left) | set(right)\n",
+      "new_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+      "old_text_characters": 60,
+      "old_text_utf8_bytes": 60,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 228,
+      "subsequent_edit_event": 301,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "start": 0,
+          "end": 62,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "exclusive-members",
+      "episode_id": "6b8427e73d1e4ca9ba54fbedf6691d24",
+      "turn": 6,
+      "call_event": 301,
+      "observation_event": 302,
+      "path": "collections_ops.py",
+      "latest_source_observation": {
+        "call_event": 228,
+        "observation_event": 229,
+        "setup_intervention": false,
+        "content": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "truncated": false
+      },
+      "old_text": "def only_left(left, right):\n  return set(left) | set(right)\n",
+      "new_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+      "old_text_characters": 60,
+      "old_text_utf8_bytes": 60,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 326,
+      "subsequent_edit_event": 399,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "start": 0,
+          "end": 62,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "exclusive-members",
+      "episode_id": "6b8427e73d1e4ca9ba54fbedf6691d24",
+      "turn": 8,
+      "call_event": 399,
+      "observation_event": 400,
+      "path": "collections_ops.py",
+      "latest_source_observation": {
+        "call_event": 326,
+        "observation_event": 327,
+        "setup_intervention": false,
+        "content": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "truncated": false
+      },
+      "old_text": "def only_left(left, right):\n  return set(left) | set(right)\n",
+      "new_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+      "old_text_characters": 60,
+      "old_text_utf8_bytes": 60,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 424,
+      "subsequent_edit_event": 497,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "start": 0,
+          "end": 62,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "exclusive-members",
+      "episode_id": "6b8427e73d1e4ca9ba54fbedf6691d24",
+      "turn": 10,
+      "call_event": 497,
+      "observation_event": 498,
+      "path": "collections_ops.py",
+      "latest_source_observation": {
+        "call_event": 424,
+        "observation_event": 425,
+        "setup_intervention": false,
+        "content": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "truncated": false
+      },
+      "old_text": "def only_left(left, right):\n  return set(left) | set(right)\n",
+      "new_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+      "old_text_characters": 60,
+      "old_text_utf8_bytes": 60,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 522,
+      "subsequent_edit_event": 595,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "start": 0,
+          "end": 62,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "exclusive-members",
+      "episode_id": "6b8427e73d1e4ca9ba54fbedf6691d24",
+      "turn": 12,
+      "call_event": 595,
+      "observation_event": 596,
+      "path": "collections_ops.py",
+      "latest_source_observation": {
+        "call_event": 522,
+        "observation_event": 523,
+        "setup_intervention": false,
+        "content": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "truncated": false
+      },
+      "old_text": "def only_left(left, right):\n  return set(left) | set(right)\n",
+      "new_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+      "old_text_characters": 60,
+      "old_text_utf8_bytes": 60,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "budget_end",
+      "next_call_event": null,
+      "subsequent_edit_event": null,
+      "subsequent_edit_arguments_changed": null,
+      "meaningful_response": "No subsequent action: budget exhausted.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "start": 0,
+          "end": 62,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def only_left(left, right):\n    return set(left) | set(right)\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def only_left(left, right):\n    return set(left) | set(right)\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "version-numbers",
+      "episode_id": "c90ccb118a51415786a4fa4306fdf975",
+      "turn": 2,
+      "call_event": 102,
+      "observation_event": 103,
+      "path": "versions/parse.py",
+      "latest_source_observation": {
+        "call_event": 33,
+        "observation_event": 34,
+        "setup_intervention": false,
+        "content": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "truncated": false
+      },
+      "old_text": "def version_parts(text):\n    return tuple(text.split(\".\"))\n",
+      "new_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+      "old_text_characters": 59,
+      "old_text_utf8_bytes": 59,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "quoting",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 128,
+      "subsequent_edit_event": 197,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "start": 0,
+          "end": 59,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "version-numbers",
+      "episode_id": "c90ccb118a51415786a4fa4306fdf975",
+      "turn": 4,
+      "call_event": 197,
+      "observation_event": 198,
+      "path": "versions/parse.py",
+      "latest_source_observation": {
+        "call_event": 128,
+        "observation_event": 129,
+        "setup_intervention": false,
+        "content": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "truncated": false
+      },
+      "old_text": "def version_parts(text):\n    return tuple(text.split(\".\"))\n",
+      "new_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+      "old_text_characters": 59,
+      "old_text_utf8_bytes": 59,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "quoting",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 223,
+      "subsequent_edit_event": 292,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "start": 0,
+          "end": 59,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "version-numbers",
+      "episode_id": "c90ccb118a51415786a4fa4306fdf975",
+      "turn": 6,
+      "call_event": 292,
+      "observation_event": 293,
+      "path": "versions/parse.py",
+      "latest_source_observation": {
+        "call_event": 223,
+        "observation_event": 224,
+        "setup_intervention": false,
+        "content": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "truncated": false
+      },
+      "old_text": "def version_parts(text):\n    return tuple(text.split(\".\"))\n",
+      "new_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+      "old_text_characters": 59,
+      "old_text_utf8_bytes": 59,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "quoting",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 318,
+      "subsequent_edit_event": 387,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "start": 0,
+          "end": 59,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "version-numbers",
+      "episode_id": "c90ccb118a51415786a4fa4306fdf975",
+      "turn": 8,
+      "call_event": 387,
+      "observation_event": 388,
+      "path": "versions/parse.py",
+      "latest_source_observation": {
+        "call_event": 318,
+        "observation_event": 319,
+        "setup_intervention": false,
+        "content": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "truncated": false
+      },
+      "old_text": "def version_parts(text):\n    return tuple(text.split(\".\"))\n",
+      "new_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+      "old_text_characters": 59,
+      "old_text_utf8_bytes": 59,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "quoting",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 413,
+      "subsequent_edit_event": 482,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "start": 0,
+          "end": 59,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "version-numbers",
+      "episode_id": "c90ccb118a51415786a4fa4306fdf975",
+      "turn": 10,
+      "call_event": 482,
+      "observation_event": 483,
+      "path": "versions/parse.py",
+      "latest_source_observation": {
+        "call_event": 413,
+        "observation_event": 414,
+        "setup_intervention": false,
+        "content": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "truncated": false
+      },
+      "old_text": "def version_parts(text):\n    return tuple(text.split(\".\"))\n",
+      "new_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+      "old_text_characters": 59,
+      "old_text_utf8_bytes": 59,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "quoting",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 508,
+      "subsequent_edit_event": 577,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "start": 0,
+          "end": 59,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "version-numbers",
+      "episode_id": "c90ccb118a51415786a4fa4306fdf975",
+      "turn": 12,
+      "call_event": 577,
+      "observation_event": 578,
+      "path": "versions/parse.py",
+      "latest_source_observation": {
+        "call_event": 508,
+        "observation_event": 509,
+        "setup_intervention": false,
+        "content": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "truncated": false
+      },
+      "old_text": "def version_parts(text):\n    return tuple(text.split(\".\"))\n",
+      "new_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+      "old_text_characters": 59,
+      "old_text_utf8_bytes": 59,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "quoting",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "budget_end",
+      "next_call_event": null,
+      "subsequent_edit_event": null,
+      "subsequent_edit_arguments_changed": null,
+      "meaningful_response": "No subsequent action: budget exhausted.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "start": 0,
+          "end": 59,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "record-priority",
+      "episode_id": "128f083eb5214d27a30013d79d3bbc08",
+      "turn": 2,
+      "call_event": 109,
+      "observation_event": 110,
+      "path": "records.py",
+      "latest_source_observation": {
+        "call_event": 31,
+        "observation_event": 32,
+        "setup_intervention": false,
+        "content": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "truncated": false
+      },
+      "old_text": "def order_records(records):\n  return sorted(records, key=lambda row: row['name'])\n",
+      "new_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+      "old_text_characters": 82,
+      "old_text_utf8_bytes": 82,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 133,
+      "subsequent_edit_event": 211,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "start": 0,
+          "end": 84,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "record-priority",
+      "episode_id": "128f083eb5214d27a30013d79d3bbc08",
+      "turn": 4,
+      "call_event": 211,
+      "observation_event": 212,
+      "path": "records.py",
+      "latest_source_observation": {
+        "call_event": 133,
+        "observation_event": 134,
+        "setup_intervention": false,
+        "content": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "truncated": false
+      },
+      "old_text": "def order_records(records):\n  return sorted(records, key=lambda row: row['name'])\n",
+      "new_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+      "old_text_characters": 82,
+      "old_text_utf8_bytes": 82,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 235,
+      "subsequent_edit_event": 313,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "start": 0,
+          "end": 84,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "record-priority",
+      "episode_id": "128f083eb5214d27a30013d79d3bbc08",
+      "turn": 6,
+      "call_event": 313,
+      "observation_event": 314,
+      "path": "records.py",
+      "latest_source_observation": {
+        "call_event": 235,
+        "observation_event": 236,
+        "setup_intervention": false,
+        "content": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "truncated": false
+      },
+      "old_text": "def order_records(records):\n  return sorted(records, key=lambda row: row['name'])\n",
+      "new_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+      "old_text_characters": 82,
+      "old_text_utf8_bytes": 82,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 337,
+      "subsequent_edit_event": 415,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "start": 0,
+          "end": 84,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "record-priority",
+      "episode_id": "128f083eb5214d27a30013d79d3bbc08",
+      "turn": 8,
+      "call_event": 415,
+      "observation_event": 416,
+      "path": "records.py",
+      "latest_source_observation": {
+        "call_event": 337,
+        "observation_event": 338,
+        "setup_intervention": false,
+        "content": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "truncated": false
+      },
+      "old_text": "def order_records(records):\n  return sorted(records, key=lambda row: row['name'])\n",
+      "new_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+      "old_text_characters": 82,
+      "old_text_utf8_bytes": 82,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 439,
+      "subsequent_edit_event": 517,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "start": 0,
+          "end": 84,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "record-priority",
+      "episode_id": "128f083eb5214d27a30013d79d3bbc08",
+      "turn": 10,
+      "call_event": 517,
+      "observation_event": 518,
+      "path": "records.py",
+      "latest_source_observation": {
+        "call_event": 439,
+        "observation_event": 440,
+        "setup_intervention": false,
+        "content": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "truncated": false
+      },
+      "old_text": "def order_records(records):\n  return sorted(records, key=lambda row: row['name'])\n",
+      "new_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+      "old_text_characters": 82,
+      "old_text_utf8_bytes": 82,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 541,
+      "subsequent_edit_event": 619,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "start": 0,
+          "end": 84,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "record-priority",
+      "episode_id": "128f083eb5214d27a30013d79d3bbc08",
+      "turn": 12,
+      "call_event": 619,
+      "observation_event": 620,
+      "path": "records.py",
+      "latest_source_observation": {
+        "call_event": 541,
+        "observation_event": 542,
+        "setup_intervention": false,
+        "content": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "truncated": false
+      },
+      "old_text": "def order_records(records):\n  return sorted(records, key=lambda row: row['name'])\n",
+      "new_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+      "old_text_characters": 82,
+      "old_text_utf8_bytes": 82,
+      "old_text_lines": 2,
+      "occurrences": 0,
+      "cause": "indentation",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "budget_end",
+      "next_call_event": null,
+      "subsequent_edit_event": null,
+      "subsequent_edit_arguments_changed": null,
+      "meaningful_response": "No subsequent action: budget exhausted.",
+      "minimal_correction_definition": "Copy the observed full file, correcting only the identified indentation/quote mismatch.",
+      "minimal_correction_candidates": [
+        {
+          "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "start": 0,
+          "end": 84,
+          "executable_by_current_match_rule": true,
+          "changes_bytes": false,
+          "resulting_source": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+          "resulting_python_parseable": true
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "true-streak",
+      "episode_id": "be993b9204334c0594aea4aec06a23fd",
+      "turn": 2,
+      "call_event": 100,
+      "observation_event": 101,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 33,
+        "observation_event": 34,
+        "setup_intervention": false,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 126,
+      "subsequent_edit_event": 193,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "true-streak",
+      "episode_id": "be993b9204334c0594aea4aec06a23fd",
+      "turn": 4,
+      "call_event": 193,
+      "observation_event": 194,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 126,
+        "observation_event": 127,
+        "setup_intervention": false,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 219,
+      "subsequent_edit_event": 286,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "true-streak",
+      "episode_id": "be993b9204334c0594aea4aec06a23fd",
+      "turn": 6,
+      "call_event": 286,
+      "observation_event": 287,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 219,
+        "observation_event": 220,
+        "setup_intervention": false,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 312,
+      "subsequent_edit_event": 379,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "true-streak",
+      "episode_id": "be993b9204334c0594aea4aec06a23fd",
+      "turn": 8,
+      "call_event": 379,
+      "observation_event": 380,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 312,
+        "observation_event": 313,
+        "setup_intervention": false,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 405,
+      "subsequent_edit_event": 472,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "true-streak",
+      "episode_id": "be993b9204334c0594aea4aec06a23fd",
+      "turn": 10,
+      "call_event": 472,
+      "observation_event": 473,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 405,
+        "observation_event": 406,
+        "setup_intervention": false,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "reinspect_same_source",
+      "next_call_event": 498,
+      "subsequent_edit_event": 565,
+      "subsequent_edit_arguments_changed": false,
+      "meaningful_response": "Procedural reread, followed by unchanged rejected edit.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    },
+    {
+      "arm": "adapted",
+      "fixture": "true-streak",
+      "episode_id": "be993b9204334c0594aea4aec06a23fd",
+      "turn": 12,
+      "call_event": 565,
+      "observation_event": 566,
+      "path": "sequences/streak.py",
+      "latest_source_observation": {
+        "call_event": 498,
+        "observation_event": 499,
+        "setup_intervention": false,
+        "content": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "truncated": false
+      },
+      "old_text": "    return 0\n",
+      "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "old_text_characters": 13,
+      "old_text_utf8_bytes": 13,
+      "old_text_lines": 1,
+      "occurrences": 2,
+      "cause": "duplicated_span",
+      "rejection": {
+        "error": "ValueError",
+        "detail": "old_text must match exactly once"
+      },
+      "matches_injected_arguments": true,
+      "next_action": "budget_end",
+      "next_call_event": null,
+      "subsequent_edit_event": null,
+      "subsequent_edit_arguments_changed": null,
+      "meaningful_response": "No subsequent action: budget exhausted.",
+      "minimal_correction_definition": "Minimum added source-context characters per occurrence; target occurrence is not uniquely determined by this analysis.",
+      "minimal_correction_candidates": [
+        {
+          "occurrence_start": 29,
+          "start": 29,
+          "end": 43,
+          "added_characters": 1,
+          "old_text": "    return 0\n\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\ndef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        },
+        {
+          "occurrence_start": 67,
+          "start": 63,
+          "end": 80,
+          "added_characters": 4,
+          "old_text": "():\n    return 0\n",
+          "executable_by_current_match_rule": true,
+          "changes_bytes": true,
+          "resulting_source": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_markerdef longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+          "resulting_python_parseable": false
+        }
+      ],
+      "new_text_equals_complete_observed_file": true,
+      "whole_file_old_text_alternative": {
+        "old_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+        "unique": true,
+        "changes_bytes": false,
+        "caveat": "Whole-file target is an explicit counterfactual, not inferred model intent; not minimal for duplicated spans."
+      }
+    }
+  ],
+  "by_arm": {
+    "base": {
+      "rejected_edits": 30,
+      "causes": {
+        "indentation": 12,
+        "quoting": 6,
+        "duplicated_span": 12
+      },
+      "occurrence_counts": {
+        "0": 18,
+        "2": 12
+      },
+      "next_actions": {
+        "reinspect_same_source": 15,
+        "budget_end": 4,
+        "repeat_same_rejected_edit": 11
+      },
+      "subsequent_edits_with_changed_arguments": 0,
+      "old_text_lengths": {
+        "count": 30,
+        "min": 13,
+        "median": 59.0,
+        "mean": 45.4,
+        "max": 82,
+        "histogram": {
+          "13": 12,
+          "59": 6,
+          "60": 6,
+          "82": 6
+        }
+      }
+    },
+    "adapted": {
+      "rejected_edits": 24,
+      "causes": {
+        "indentation": 12,
+        "quoting": 6,
+        "duplicated_span": 6
+      },
+      "occurrence_counts": {
+        "0": 18,
+        "2": 6
+      },
+      "next_actions": {
+        "reinspect_same_source": 20,
+        "budget_end": 4
+      },
+      "subsequent_edits_with_changed_arguments": 0,
+      "old_text_lengths": {
+        "count": 24,
+        "min": 13,
+        "median": 59.5,
+        "mean": 53.5,
+        "max": 82,
+        "histogram": {
+          "13": 6,
+          "59": 6,
+          "60": 6,
+          "82": 6
+        }
+      }
+    }
+  },
+  "demonstration_edits": [
+    {
+      "episode": "minute-part",
+      "split": "train",
+      "step": 3,
+      "selected_target": false,
+      "characters": 49,
+      "utf8_bytes": 49,
+      "lines": 2,
+      "observed_occurrences": 0,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": "indentation"
+    },
+    {
+      "episode": "minute-part",
+      "split": "train",
+      "step": 5,
+      "selected_target": true,
+      "characters": 25,
+      "utf8_bytes": 25,
+      "lines": 1,
+      "observed_occurrences": 1,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "quote-wrap",
+      "split": "train",
+      "step": 5,
+      "selected_target": false,
+      "characters": 50,
+      "utf8_bytes": 50,
+      "lines": 2,
+      "observed_occurrences": 0,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": true,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": "quoting"
+    },
+    {
+      "episode": "quote-wrap",
+      "split": "train",
+      "step": 7,
+      "selected_target": true,
+      "characters": 50,
+      "utf8_bytes": 50,
+      "lines": 2,
+      "observed_occurrences": 1,
+      "full_observed_file": true,
+      "contains_indentation": true,
+      "contains_quotes": true,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "area-sign",
+      "split": "train",
+      "step": 3,
+      "selected_target": false,
+      "characters": 65,
+      "utf8_bytes": 65,
+      "lines": 2,
+      "observed_occurrences": 0,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": "wrong_content"
+    },
+    {
+      "episode": "area-sign",
+      "split": "train",
+      "step": 5,
+      "selected_target": true,
+      "characters": 26,
+      "utf8_bytes": 26,
+      "lines": 1,
+      "observed_occurrences": 1,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "power-zero",
+      "split": "train",
+      "step": 4,
+      "selected_target": false,
+      "characters": 53,
+      "utf8_bytes": 53,
+      "lines": 3,
+      "observed_occurrences": 0,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": "other_whitespace"
+    },
+    {
+      "episode": "power-zero",
+      "split": "train",
+      "step": 6,
+      "selected_target": false,
+      "characters": 53,
+      "utf8_bytes": 53,
+      "lines": 3,
+      "observed_occurrences": 0,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": "other_whitespace"
+    },
+    {
+      "episode": "power-zero",
+      "split": "train",
+      "step": 8,
+      "selected_target": true,
+      "characters": 52,
+      "utf8_bytes": 52,
+      "lines": 2,
+      "observed_occurrences": 1,
+      "full_observed_file": true,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "triangle-count",
+      "split": "train",
+      "step": 4,
+      "selected_target": true,
+      "characters": 51,
+      "utf8_bytes": 51,
+      "lines": 2,
+      "observed_occurrences": 1,
+      "full_observed_file": true,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "suffix-dot",
+      "split": "train",
+      "step": 6,
+      "selected_target": true,
+      "characters": 56,
+      "utf8_bytes": 56,
+      "lines": 2,
+      "observed_occurrences": 1,
+      "full_observed_file": true,
+      "contains_indentation": true,
+      "contains_quotes": true,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "suffix-dot",
+      "split": "train",
+      "step": 9,
+      "selected_target": true,
+      "characters": 61,
+      "utf8_bytes": 61,
+      "lines": 2,
+      "observed_occurrences": 1,
+      "full_observed_file": true,
+      "contains_indentation": true,
+      "contains_quotes": true,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "even-label",
+      "split": "train",
+      "step": 3,
+      "selected_target": false,
+      "characters": 78,
+      "utf8_bytes": 78,
+      "lines": 4,
+      "observed_occurrences": 0,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": true,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": "quoting"
+    },
+    {
+      "episode": "even-label",
+      "split": "train",
+      "step": 5,
+      "selected_target": true,
+      "characters": 78,
+      "utf8_bytes": 78,
+      "lines": 4,
+      "observed_occurrences": 1,
+      "full_observed_file": true,
+      "contains_indentation": true,
+      "contains_quotes": true,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "fahrenheit-zero",
+      "split": "train",
+      "step": 5,
+      "selected_target": false,
+      "characters": 47,
+      "utf8_bytes": 47,
+      "lines": 2,
+      "observed_occurrences": 0,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": "indentation"
+    },
+    {
+      "episode": "fahrenheit-zero",
+      "split": "train",
+      "step": 7,
+      "selected_target": true,
+      "characters": 49,
+      "utf8_bytes": 49,
+      "lines": 2,
+      "observed_occurrences": 1,
+      "full_observed_file": true,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "distance-origin",
+      "split": "train",
+      "step": 4,
+      "selected_target": false,
+      "characters": 13,
+      "utf8_bytes": 13,
+      "lines": 1,
+      "observed_occurrences": 2,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": "duplicated_span"
+    },
+    {
+      "episode": "distance-origin",
+      "split": "train",
+      "step": 6,
+      "selected_target": false,
+      "characters": 73,
+      "utf8_bytes": 73,
+      "lines": 6,
+      "observed_occurrences": 0,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": "other_whitespace"
+    },
+    {
+      "episode": "distance-origin",
+      "split": "train",
+      "step": 8,
+      "selected_target": true,
+      "characters": 72,
+      "utf8_bytes": 72,
+      "lines": 5,
+      "observed_occurrences": 1,
+      "full_observed_file": true,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "digit-total",
+      "split": "train",
+      "step": 5,
+      "selected_target": false,
+      "characters": 44,
+      "utf8_bytes": 44,
+      "lines": 3,
+      "observed_occurrences": 0,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": "other_whitespace"
+    },
+    {
+      "episode": "digit-total",
+      "split": "train",
+      "step": 7,
+      "selected_target": true,
+      "characters": 43,
+      "utf8_bytes": 43,
+      "lines": 2,
+      "observed_occurrences": 1,
+      "full_observed_file": true,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "empty-product",
+      "split": "train",
+      "step": 3,
+      "selected_target": true,
+      "characters": 15,
+      "utf8_bytes": 15,
+      "lines": 1,
+      "observed_occurrences": 1,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "ordinal-ending",
+      "split": "train",
+      "step": 6,
+      "selected_target": true,
+      "characters": 41,
+      "utf8_bytes": 41,
+      "lines": 2,
+      "observed_occurrences": 1,
+      "full_observed_file": true,
+      "contains_indentation": true,
+      "contains_quotes": true,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "ordinal-ending",
+      "split": "train",
+      "step": 9,
+      "selected_target": true,
+      "characters": 79,
+      "utf8_bytes": 79,
+      "lines": 2,
+      "observed_occurrences": 1,
+      "full_observed_file": true,
+      "contains_indentation": true,
+      "contains_quotes": true,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "reverse-pair",
+      "split": "valid",
+      "step": 3,
+      "selected_target": false,
+      "characters": 38,
+      "utf8_bytes": 38,
+      "lines": 2,
+      "observed_occurrences": 0,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": "indentation"
+    },
+    {
+      "episode": "reverse-pair",
+      "split": "valid",
+      "step": 5,
+      "selected_target": true,
+      "characters": 40,
+      "utf8_bytes": 40,
+      "lines": 2,
+      "observed_occurrences": 1,
+      "full_observed_file": true,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "word-initials",
+      "split": "valid",
+      "step": 4,
+      "selected_target": false,
+      "characters": 40,
+      "utf8_bytes": 40,
+      "lines": 3,
+      "observed_occurrences": 0,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": "other_whitespace"
+    },
+    {
+      "episode": "word-initials",
+      "split": "valid",
+      "step": 6,
+      "selected_target": false,
+      "characters": 40,
+      "utf8_bytes": 40,
+      "lines": 3,
+      "observed_occurrences": 0,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": "other_whitespace"
+    },
+    {
+      "episode": "word-initials",
+      "split": "valid",
+      "step": 8,
+      "selected_target": true,
+      "characters": 39,
+      "utf8_bytes": 39,
+      "lines": 2,
+      "observed_occurrences": 1,
+      "full_observed_file": true,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "right-padding",
+      "split": "valid",
+      "step": 5,
+      "selected_target": false,
+      "characters": 58,
+      "utf8_bytes": 58,
+      "lines": 2,
+      "observed_occurrences": 0,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": true,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": "quoting"
+    },
+    {
+      "episode": "right-padding",
+      "split": "valid",
+      "step": 7,
+      "selected_target": true,
+      "characters": 58,
+      "utf8_bytes": 58,
+      "lines": 2,
+      "observed_occurrences": 1,
+      "full_observed_file": true,
+      "contains_indentation": true,
+      "contains_quotes": true,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    },
+    {
+      "episode": "safe-reciprocal",
+      "split": "valid",
+      "step": 5,
+      "selected_target": false,
+      "characters": 30,
+      "utf8_bytes": 30,
+      "lines": 2,
+      "observed_occurrences": 0,
+      "full_observed_file": false,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": "indentation"
+    },
+    {
+      "episode": "safe-reciprocal",
+      "split": "valid",
+      "step": 7,
+      "selected_target": true,
+      "characters": 32,
+      "utf8_bytes": 32,
+      "lines": 2,
+      "observed_occurrences": 1,
+      "full_observed_file": true,
+      "contains_indentation": true,
+      "contains_quotes": false,
+      "ends_in_newline": true,
+      "new_text_equals_old_text": false,
+      "cause_if_rejected": null
+    }
+  ],
+  "demonstrations": {
+    "train": {
+      "positive_old_text_characters": {
+        "count": 14,
+        "min": 15,
+        "median": 50.5,
+        "mean": 49.857142857142854,
+        "max": 79,
+        "histogram": {
+          "15": 1,
+          "25": 1,
+          "26": 1,
+          "41": 1,
+          "43": 1,
+          "49": 1,
+          "50": 1,
+          "51": 1,
+          "52": 1,
+          "56": 1,
+          "61": 1,
+          "72": 1,
+          "78": 1,
+          "79": 1
+        }
+      },
+      "positive_old_text_lines": {
+        "count": 14,
+        "min": 1,
+        "median": 2.0,
+        "mean": 2.142857142857143,
+        "max": 5,
+        "histogram": {
+          "1": 3,
+          "2": 9,
+          "4": 1,
+          "5": 1
+        }
+      },
+      "whole_file_targets": 11,
+      "unique_observed_matches": 14,
+      "indented_targets": 14,
+      "quoted_targets": 6,
+      "newline_terminated_targets": 14,
+      "context_only_failed_edits": 10,
+      "context_failure_causes": {
+        "indentation": 2,
+        "quoting": 2,
+        "wrong_content": 1,
+        "other_whitespace": 4,
+        "duplicated_span": 1
+      }
+    },
+    "valid": {
+      "positive_old_text_characters": {
+        "count": 4,
+        "min": 32,
+        "median": 39.5,
+        "mean": 42.25,
+        "max": 58,
+        "histogram": {
+          "32": 1,
+          "39": 1,
+          "40": 1,
+          "58": 1
+        }
+      },
+      "positive_old_text_lines": {
+        "count": 4,
+        "min": 2,
+        "median": 2.0,
+        "mean": 2,
+        "max": 2,
+        "histogram": {
+          "2": 4
+        }
+      },
+      "whole_file_targets": 4,
+      "unique_observed_matches": 4,
+      "indented_targets": 4,
+      "quoted_targets": 1,
+      "newline_terminated_targets": 4,
+      "context_only_failed_edits": 5,
+      "context_failure_causes": {
+        "indentation": 2,
+        "other_whitespace": 2,
+        "quoting": 1
+      }
+    }
+  },
+  "inputs_sha256": {
+    "archive_manifest": "22e341c14042b3f7633ab1ab5fdf6a0243fad239be3dd4439c875fdce671f360",
+    "v3_demo_reviews": "6ed7ae09d30e109a3a17d0c905f817070ad345f1620eba5fcd2b4eacf5ebf8f0"
+  }
+}

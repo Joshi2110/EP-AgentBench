@@ -1,0 +1,29 @@
+{
+  "schema": "epagent.offline-forensics-verification.v1",
+  "time": "2026-09-24T20:48:15.735726+00:00",
+  "source_commit": "cd900043565a13fa10409ab755f6e1e1ca461f74",
+  "original_v3_files_unchanged": 138,
+  "protected_preexisting_files_unchanged": 2656,
+  "archived_evidence_files": 107,
+  "rejected_edits_analyzed": 54,
+  "model_calls": 0,
+  "training_updates": 0,
+  "scorer_calls": 0,
+  "new_editing_interfaces_implemented": 0,
+  "tests": {
+    "command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -p test_sft_v3_forensics.py -v",
+    "passed": 5,
+    "failed": 0
+  },
+  "commands": [
+    "PYTHONPATH=src .venv/bin/python scripts/archive_sft_v3.py --out artifacts/ep-agent/sft-v3",
+    "PYTHONPATH=src .venv/bin/python scripts/analyze_sft_v3_edits.py --archive artifacts/ep-agent/sft-v3"
+  ],
+  "derived_file_sha256": {
+    "artifacts/ep-agent/sft-v3/README.md": "73d8eed0a7e363076daa12e76e89d33db049f859bfa7a6fcab1f720f72df6904",
+    "artifacts/ep-agent/sft-v3/edit-failures.json": "423c9e7ce303d0f02069d19c95d8db6f4ad49824cb80f70c0a4095c0de2e6925",
+    "scripts/archive_sft_v3.py": "b53bdcbd46690da68d74ee8b65f46a14ab8180b2653f6e1746a624ee2950100d",
+    "scripts/analyze_sft_v3_edits.py": "c3b67498ade7a054876c9c92a8a5733b6a5e50e5ac0919a483904f2f022b6533",
+    "tests/test_sft_v3_forensics.py": "9022129c37032565920344ba16e437bb4728547c12db465919e6f4993ca7e4b9"
+  }
+}

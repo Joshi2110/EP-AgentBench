@@ -1,0 +1,30 @@
+[
+  {
+    "fixture": "exclusive-members",
+    "config_equal_except_adapter": true,
+    "initial_workspace_equal": true,
+    "initial_prompt_token_ids_equal": true,
+    "all_model_tool_calls_equal": true
+  },
+  {
+    "fixture": "version-numbers",
+    "config_equal_except_adapter": true,
+    "initial_workspace_equal": true,
+    "initial_prompt_token_ids_equal": true,
+    "all_model_tool_calls_equal": true
+  },
+  {
+    "fixture": "record-priority",
+    "config_equal_except_adapter": true,
+    "initial_workspace_equal": true,
+    "initial_prompt_token_ids_equal": true,
+    "all_model_tool_calls_equal": true
+  },
+  {
+    "fixture": "true-streak",
+    "config_equal_except_adapter": true,
+    "initial_workspace_equal": true,
+    "initial_prompt_token_ids_equal": true,
+    "all_model_tool_calls_equal": false
+  }
+]

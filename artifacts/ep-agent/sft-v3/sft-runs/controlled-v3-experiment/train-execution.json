@@ -1,0 +1,36 @@
+{
+  "stage": "train",
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "epagent.sft",
+    "train",
+    "--prepared",
+    "sft-runs/reviewed-prepared-v3",
+    "--model-dir",
+    ".epagent-models/qwen2.5-coder-1.5b-4bit",
+    "--out",
+    "sft-runs/tool-use-lora-v3"
+  ],
+  "cwd": "<REPOSITORY>",
+  "environment_overrides": {
+    "PYTHONPATH": "src"
+  },
+  "started": "2026-09-24T14:36:27.352715+00:00",
+  "wrapper_pid": 87208,
+  "status": "complete",
+  "pid": 87210,
+  "caffeinate_pid": 87211,
+  "caffeinate_command": [
+    "/usr/bin/caffeinate",
+    "-i",
+    "-s",
+    "-w",
+    "87210"
+  ],
+  "exit_code": 0,
+  "ended": "2026-09-24T14:43:26.404118+00:00",
+  "wall_seconds": 419.05819970800076,
+  "child_reaped": true,
+  "caffeinate_reaped": true
+}

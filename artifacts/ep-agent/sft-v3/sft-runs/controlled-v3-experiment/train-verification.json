@@ -1,0 +1,19 @@
+{
+  "status": "complete",
+  "updates_completed": 138,
+  "examples_processed": 138,
+  "examples_basis": "Native sampler: one batch-size-one training row per completed update, no gradient accumulation. Per-example IDs not logged.",
+  "trained_assistant_tokens": 5062,
+  "effective_passes": 2.0,
+  "checkpoint_sha256": {
+    "0000069_adapters.safetensors": "56522326905f73ebb08c4ce5f781368b3fe000b736779ac4df911e362ff5dded",
+    "adapters.safetensors": "4f0f3dde55d6486313f860eaf1f6fcdb2d1f1373b481553e8302cacdb6bc42ff",
+    "0000138_adapters.safetensors": "4f0f3dde55d6486313f860eaf1f6fcdb2d1f1373b481553e8302cacdb6bc42ff"
+  },
+  "adapter_config_sha256": "134bdad3e25e685963ee6bf1a660228981515b53d6bcf7d54efbdea7947de12e",
+  "stop_token_ids": [
+    151643,
+    151645
+  ],
+  "protected_files_unchanged": 2656
+}

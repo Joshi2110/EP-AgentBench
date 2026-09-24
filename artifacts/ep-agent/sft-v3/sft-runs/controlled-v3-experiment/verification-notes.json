@@ -1,0 +1,3 @@
+{
+  "post_baseline_helper_error": "Initial verification helper incorrectly expected base-weight sha256 in model_ready; it is recorded in the final model report. Corrected helper to verify report hashes and ready model ID/revision/adapter/stop IDs separately. No experiment code/input/output or scorer changed; no attempt restarted."
+}

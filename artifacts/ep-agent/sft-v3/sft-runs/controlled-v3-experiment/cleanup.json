@@ -1,0 +1,18 @@
+{
+  "time": "2026-09-24T20:27:43.192343+00:00",
+  "owned_pids": [
+    2992,
+    2994,
+    2995,
+    86901,
+    86903,
+    86904,
+    87208,
+    87210,
+    87211
+  ],
+  "owned_pids_alive": [],
+  "epagent_model_or_collector_processes": [],
+  "all_children_reaped": true,
+  "unrelated_processes": "No unrelated process was terminated."
+}

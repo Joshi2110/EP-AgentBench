@@ -1,0 +1,38 @@
+{
+  "stage": "base",
+  "command": [
+    ".venv/bin/epagent",
+    "synthetic",
+    "--arm",
+    "base",
+    "--fixtures",
+    "data/epagent-sft-v3/eval-fixtures.json",
+    "--protocol",
+    "data/epagent-sft-v3/eval-protocol.json",
+    "--model-dir",
+    ".epagent-models/qwen2.5-coder-1.5b-4bit",
+    "--out",
+    "attempts/tool-recovery-v3-base"
+  ],
+  "cwd": "<REPOSITORY>",
+  "environment_overrides": {
+    "PYTHONPATH": null
+  },
+  "started": "2026-09-24T14:32:46.648765+00:00",
+  "wrapper_pid": 86901,
+  "status": "complete",
+  "pid": 86903,
+  "caffeinate_pid": 86904,
+  "caffeinate_command": [
+    "/usr/bin/caffeinate",
+    "-i",
+    "-s",
+    "-w",
+    "86903"
+  ],
+  "exit_code": 0,
+  "ended": "2026-09-24T14:35:04.361838+00:00",
+  "wall_seconds": 137.71503737499006,
+  "child_reaped": true,
+  "caffeinate_reaped": true
+}
