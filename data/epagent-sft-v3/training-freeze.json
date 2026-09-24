@@ -1,0 +1,57 @@
+{
+  "schema": "epagent.sft-plan.v1",
+  "status": "configuration frozen for review; execution not authorized",
+  "frozen_at": "2026-09-24T13:25:37.666992+00:00",
+  "initial_model": "original pinned base; never initialize from v2 adapter",
+  "completed_dataset_passes": 2,
+  "examples_per_pass": 69,
+  "batch_size": 1,
+  "derived_updates": 138,
+  "checkpoint_selection": "final checkpoint only; no loss-based stopping or held-out selection",
+  "loss": "unchanged final-assistant-only masked loss; full preceding history retained",
+  "budget_rationale": "Two complete shuffled passes expose every selected recovery transition twice, within the existing <=200-update envelope. This is a hypothesis-driven pilot budget, not a convergence claim.",
+  "fixed_hyperparameters": "Original learning rate, rank/scale, Q/V layers 24\u201327, seed 0, gradient checkpointing and batch size. Report/evaluate/save at complete-pass boundaries except 5-update training reports.",
+  "training_examples": 69,
+  "validation_examples": 21,
+  "dataset_files_sha256": {
+    "data/epagent-sft-v3/fixtures.json": "f57fd9971faeab6549aaa939787060bd135a1dbab9df968d2bc0b498ddf6340e",
+    "data/epagent-sft-v3/lora-config.json": "774498bed79cd5a923bd55f145983c288be6d6e7a10c5573b05652332c830c10",
+    "data/epagent-sft-v3/trajectories/area-sign.jsonl": "af90a6ee782e3ad758619ccc019a1b1942f12e73eb828b37c3639fc85579d93c",
+    "data/epagent-sft-v3/trajectories/coverage.json": "faf8da3b34b60c224ba7c6293e0943af8a1159dd38412679ffe33edf7db4b0b2",
+    "data/epagent-sft-v3/trajectories/digit-total.jsonl": "0b51311b5b078075db4dbf9eb97e620970140d20c61bf6c2fa724d6391162eb1",
+    "data/epagent-sft-v3/trajectories/distance-origin.jsonl": "b3f972cd568da76e5d930297f6e1ac550493c015076dde22a7c5698f15a2cb59",
+    "data/epagent-sft-v3/trajectories/empty-product.jsonl": "acce48db145d2184ce7c2f11bf4e141b14ee336953862148f0eed9c657c31ee7",
+    "data/epagent-sft-v3/trajectories/even-label.jsonl": "d17e8feb5fbc4928156d036abcf7cec8dd435bd299adadddfc2486f9a509c823",
+    "data/epagent-sft-v3/trajectories/fahrenheit-zero.jsonl": "5350fa6acd434b491028cee0aaee6163f1ea1866b5f6aa8d0ca2b6eb7390f2e6",
+    "data/epagent-sft-v3/trajectories/minute-part.jsonl": "e589db782921a387b223a2271776cb2e818382c6ebc930628aeb7fc2af990aef",
+    "data/epagent-sft-v3/trajectories/ordinal-ending.jsonl": "8de20ae72904a686bf0697b53a7f434375a37c38c63f58d10d190d74d4de47f6",
+    "data/epagent-sft-v3/trajectories/power-zero.jsonl": "4c47e87d4ecb8c642fc0ba835dee5acc6a87a0c6d342f6d30eca352d9627d61a",
+    "data/epagent-sft-v3/trajectories/quote-wrap.jsonl": "c1fc511259929c445057c0238a258ec91918afa62bb3d042bf3c3b5de532a556",
+    "data/epagent-sft-v3/trajectories/reverse-pair.jsonl": "08ec1d510d3e409fb60cc892a802af1281c87f20d0496dbf86bd3cf0623eb839",
+    "data/epagent-sft-v3/trajectories/reviews.json": "6ed7ae09d30e109a3a17d0c905f817070ad345f1620eba5fcd2b4eacf5ebf8f0",
+    "data/epagent-sft-v3/trajectories/right-padding.jsonl": "a39b9b0b14e6fc17236bb3b1375f990a3a481966eb7c5cecdeb30cdc29cda0c3",
+    "data/epagent-sft-v3/trajectories/safe-reciprocal.jsonl": "f4af849d706016d781ee994fdc9c64efb78aa5c260d53d5a93db0e4c732897b3",
+    "data/epagent-sft-v3/trajectories/suffix-dot.jsonl": "e2bf7703c97bfc9e6b91634127453b9ab36b5fd18f67d975ba55ed873c14f490",
+    "data/epagent-sft-v3/trajectories/triangle-count.jsonl": "70c2a39863df640191f836c3a0d08ba0ec6c24d655bf5bb4c80911d8dac7c453",
+    "data/epagent-sft-v3/trajectories/word-initials.jsonl": "db06dc2d4a34d16abc75a68d54390ff2ed034caf408a536567f506da5d1602a8"
+  },
+  "implementation_sha256": {
+    "src/epagent/sft.py": "016d097d1651674d318634c9a3ad4d098c3b823ebc56aa79608d9ef3496abf46",
+    "src/epagent/sft_data.py": "da379220ac6da90035db77b0ae736651507e30ef686e5ac7303fb5b840d2ef5d",
+    "src/epagent/tools.py": "3052f2ab7a35e6e8812c0acfd1dd07d17ca74028a2d4f29c25a790474302d1a7",
+    "src/epagent/synthetic.py": "ee6f5a7f56739013fb01b2cc4468b04780bdb09cbb4694fbdaeb6193c48e193e",
+    "scripts/build_sft_v3.py": "b0474515c6969be8c3d887adc19b6b3675919dacc2c1a1fd6eb45628062f3d31"
+  },
+  "development": {
+    "fixtures": "data/epagent-sft-v2/eval-fixtures.json",
+    "sha256": "e15e687806b96b7b2d6d0b6a6f907867bf529af41b598a7228de52262d4a2147",
+    "use": "Previously observed four cases: development only, never training or held-out evidence."
+  },
+  "heldout_authoring_rule": "Author four new workspace families only after this configuration freeze; no training/validation/development names or source targets. Use the existing A/B/C scorer, four-turn primary window, seed 0, temperature 0 and unchanged budgets. Include indentation, quotation and ambiguous-span failures. No held-out model output may tune data or hyperparameters.",
+  "future_execution": "Separately authorize base first, exactly 138 updates, adapted final checkpoint; preserve failures without replacement. No real-model calls now.",
+  "limitations": [
+    "Both data and exposure budget change; v2-to-v3 differences cannot isolate either cause.",
+    "Authored by the task designer and reviewable in source: unseen by the learner until evaluation, not secret from repository readers.",
+    "No statistical or scientific-generalization inference from four synthetic cases."
+  ]
+}

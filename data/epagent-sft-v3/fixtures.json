@@ -1,0 +1,1866 @@
+[
+  {
+    "id": "minute-part",
+    "split": "train",
+    "family": "minute-part",
+    "source": "clockwork/parts.py",
+    "test": "checks/verify_minute_part.py",
+    "requirement": "Return the minute component of a nonnegative elapsed duration.",
+    "style": "recovery",
+    "failure_type": "indent",
+    "budget_steps": 9,
+    "outcome": "success",
+    "files": {
+      "README.md": "Return the minute component of a nonnegative elapsed duration.\nRun checks/verify_minute_part.py to check the repair.\n",
+      "clockwork/parts.py": "def minute_part(seconds):\n    return seconds // 60\n",
+      "checks/verify_minute_part.py": "from clockwork.parts import minute_part\nassert minute_part(3661) == 1\nassert minute_part(59) == 0\nprint('PASS minute-part')\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "expect": {
+          "content": "Return the minute component of a nonnegative elapsed duration.\nRun checks/verify_minute_part.py to check the repair.\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "clockwork/parts.py"
+        },
+        "expect": {
+          "content": "def minute_part(seconds):\n    return seconds // 60\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "clockwork/parts.py",
+          "old_text": "def minute_part(seconds):\n  return seconds // 60\n",
+          "new_text": "def minute_part(seconds):\n    return (seconds // 60) % 60\n"
+        },
+        "expect": {
+          "error": "ValueError",
+          "detail": "old_text must match exactly once"
+        },
+        "learn": false
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "clockwork/parts.py"
+        },
+        "expect": {
+          "content": "def minute_part(seconds):\n    return seconds // 60\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "clockwork/parts.py",
+          "old_text": "    return seconds // 60\n",
+          "new_text": "    return (seconds // 60) % 60\n"
+        },
+        "expect": {
+          "edited": "clockwork/parts.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_minute_part.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS minute-part\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Updated clockwork/parts.py. The last check printed PASS minute-part."
+        },
+        "expect": {
+          "finished": true,
+          "summary": "Updated clockwork/parts.py. The last check printed PASS minute-part."
+        }
+      }
+    ],
+    "final_files": {
+      "clockwork/parts.py": "def minute_part(seconds):\n    return (seconds // 60) % 60\n",
+      "checks/verify_minute_part.py": "from clockwork.parts import minute_part\nassert minute_part(3661) == 1\nassert minute_part(59) == 0\nprint('PASS minute-part')\n",
+      "README.md": "Return the minute component of a nonnegative elapsed duration.\nRun checks/verify_minute_part.py to check the repair.\n"
+    }
+  },
+  {
+    "id": "quote-wrap",
+    "split": "train",
+    "family": "quote-wrap",
+    "source": "rendering.py",
+    "test": "checks/verify_quote_wrap.py",
+    "requirement": "Enclose the supplied text in angle brackets.",
+    "style": "diagnostic",
+    "failure_type": "quotes",
+    "budget_steps": 11,
+    "outcome": "success",
+    "files": {
+      "README.md": "Enclose the supplied text in angle brackets.\nRun checks/verify_quote_wrap.py to check the repair.\n",
+      "rendering.py": "def wrap_quote(word):\n    return '[' + word + ']'\n",
+      "checks/verify_quote_wrap.py": "from rendering import wrap_quote\nassert wrap_quote('bird') == '<bird>'\nassert wrap_quote('') == '<>'\nprint('PASS quote-wrap')\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "expect": {
+          "content": "Enclose the supplied text in angle brackets.\nRun checks/verify_quote_wrap.py to check the repair.\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks/verify_quote_wrap.py"
+        },
+        "expect": {
+          "content": "from rendering import wrap_quote\nassert wrap_quote('bird') == '<bird>'\nassert wrap_quote('') == '<>'\nprint('PASS quote-wrap')\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_quote_wrap.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "rendering.py"
+        },
+        "expect": {
+          "content": "def wrap_quote(word):\n    return '[' + word + ']'\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "rendering.py",
+          "old_text": "def wrap_quote(word):\n    return \"[\" + word + \"]\"\n",
+          "new_text": "def wrap_quote(word):\n    return '<' + word + '>'\n"
+        },
+        "expect": {
+          "error": "ValueError",
+          "detail": "old_text must match exactly once"
+        },
+        "learn": false
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "rendering.py"
+        },
+        "expect": {
+          "content": "def wrap_quote(word):\n    return '[' + word + ']'\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "rendering.py",
+          "old_text": "def wrap_quote(word):\n    return '[' + word + ']'\n",
+          "new_text": "def wrap_quote(word):\n    return '<' + word + '>'\n"
+        },
+        "expect": {
+          "edited": "rendering.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_quote_wrap.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS quote-wrap\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Updated rendering.py. The last check printed PASS quote-wrap."
+        },
+        "expect": {
+          "finished": true,
+          "summary": "Updated rendering.py. The last check printed PASS quote-wrap."
+        }
+      }
+    ],
+    "final_files": {
+      "rendering.py": "def wrap_quote(word):\n    return '<' + word + '>'\n",
+      "checks/verify_quote_wrap.py": "from rendering import wrap_quote\nassert wrap_quote('bird') == '<bird>'\nassert wrap_quote('') == '<>'\nprint('PASS quote-wrap')\n",
+      "README.md": "Enclose the supplied text in angle brackets.\nRun checks/verify_quote_wrap.py to check the repair.\n"
+    }
+  },
+  {
+    "id": "area-sign",
+    "split": "train",
+    "family": "area-sign",
+    "source": "geometry/rect.py",
+    "test": "checks/verify_area_sign.py",
+    "requirement": "Compute rectangular area for nonnegative side lengths.",
+    "style": "recovery",
+    "failure_type": "comment",
+    "budget_steps": 9,
+    "outcome": "success",
+    "files": {
+      "README.md": "Compute rectangular area for nonnegative side lengths.\nRun checks/verify_area_sign.py to check the repair.\n",
+      "geometry/rect.py": "def rectangle_area(width, height):\n    # keep label\n    return width + height\n",
+      "checks/verify_area_sign.py": "from geometry.rect import rectangle_area\nassert rectangle_area(3, 4) == 12\nassert rectangle_area(0, 8) == 0\nprint('PASS area-sign')\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "expect": {
+          "content": "Compute rectangular area for nonnegative side lengths.\nRun checks/verify_area_sign.py to check the repair.\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "geometry/rect.py"
+        },
+        "expect": {
+          "content": "def rectangle_area(width, height):\n    # keep label\n    return width + height\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "geometry/rect.py",
+          "old_text": "def rectangle_area(width, height):\n        return width + height\n",
+          "new_text": "def rectangle_area(width, height):\n    # keep label\n    return width * height\n"
+        },
+        "expect": {
+          "error": "ValueError",
+          "detail": "old_text must match exactly once"
+        },
+        "learn": false
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "geometry/rect.py"
+        },
+        "expect": {
+          "content": "def rectangle_area(width, height):\n    # keep label\n    return width + height\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "geometry/rect.py",
+          "old_text": "    return width + height\n",
+          "new_text": "    return width * height\n"
+        },
+        "expect": {
+          "edited": "geometry/rect.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_area_sign.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS area-sign\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Updated geometry/rect.py. The last check printed PASS area-sign."
+        },
+        "expect": {
+          "finished": true,
+          "summary": "Updated geometry/rect.py. The last check printed PASS area-sign."
+        }
+      }
+    ],
+    "final_files": {
+      "geometry/rect.py": "def rectangle_area(width, height):\n    # keep label\n    return width * height\n",
+      "checks/verify_area_sign.py": "from geometry.rect import rectangle_area\nassert rectangle_area(3, 4) == 12\nassert rectangle_area(0, 8) == 0\nprint('PASS area-sign')\n",
+      "README.md": "Compute rectangular area for nonnegative side lengths.\nRun checks/verify_area_sign.py to check the repair.\n"
+    }
+  },
+  {
+    "id": "power-zero",
+    "split": "train",
+    "family": "power-zero",
+    "source": "powers.py",
+    "test": "checks/verify_power_zero.py",
+    "requirement": "Compute two to a nonnegative integer power.",
+    "style": "double",
+    "failure_type": "newline",
+    "budget_steps": 12,
+    "outcome": "success",
+    "files": {
+      "README.md": "Compute two to a nonnegative integer power.\nRun checks/verify_power_zero.py to check the repair.\n",
+      "powers.py": "def power_of_two(exponent):\n    return 2 * exponent\n",
+      "checks/verify_power_zero.py": "from powers import power_of_two\nassert power_of_two(0) == 1\nassert power_of_two(5) == 32\nprint('PASS power-zero')\n"
+    },
+    "actions": [
+      {
+        "tool": "list_files",
+        "arguments": {},
+        "expect": {
+          "files": [
+            "README.md",
+            "checks/verify_power_zero.py",
+            "powers.py"
+          ]
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "expect": {
+          "content": "Compute two to a nonnegative integer power.\nRun checks/verify_power_zero.py to check the repair.\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "powers.py"
+        },
+        "expect": {
+          "content": "def power_of_two(exponent):\n    return 2 * exponent\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "powers.py",
+          "old_text": "def power_of_two(exponent):\n    return 2 * exponent\n\n",
+          "new_text": "def power_of_two(exponent):\n    return 2 ** exponent\n"
+        },
+        "expect": {
+          "error": "ValueError",
+          "detail": "old_text must match exactly once"
+        },
+        "learn": false
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "powers.py"
+        },
+        "expect": {
+          "content": "def power_of_two(exponent):\n    return 2 * exponent\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "powers.py",
+          "old_text": "def power_of_two(exponent):\n    return 2 * exponent\n\n",
+          "new_text": "def power_of_two(exponent):\n    return 2 ** exponent\n"
+        },
+        "expect": {
+          "error": "ValueError",
+          "detail": "old_text must match exactly once"
+        },
+        "learn": false
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "powers.py"
+        },
+        "expect": {
+          "content": "def power_of_two(exponent):\n    return 2 * exponent\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "powers.py",
+          "old_text": "def power_of_two(exponent):\n    return 2 * exponent\n",
+          "new_text": "def power_of_two(exponent):\n    return 2 ** exponent\n"
+        },
+        "expect": {
+          "edited": "powers.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_power_zero.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS power-zero\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Updated powers.py. The last check printed PASS power-zero."
+        },
+        "expect": {
+          "finished": true,
+          "summary": "Updated powers.py. The last check printed PASS power-zero."
+        }
+      }
+    ],
+    "final_files": {
+      "powers.py": "def power_of_two(exponent):\n    return 2 ** exponent\n",
+      "checks/verify_power_zero.py": "from powers import power_of_two\nassert power_of_two(0) == 1\nassert power_of_two(5) == 32\nprint('PASS power-zero')\n",
+      "README.md": "Compute two to a nonnegative integer power.\nRun checks/verify_power_zero.py to check the repair.\n"
+    }
+  },
+  {
+    "id": "triangle-count",
+    "split": "train",
+    "family": "triangle-count",
+    "source": "arithmetic/triangle.py",
+    "test": "checks/verify_triangle_count.py",
+    "requirement": "Return the sum of integers from one through n, for nonnegative n.",
+    "style": "discovery",
+    "failure_type": null,
+    "budget_steps": 8,
+    "outcome": "success",
+    "files": {
+      "README.md": "Return the sum of integers from one through n, for nonnegative n.\nRun checks/verify_triangle_count.py to check the repair.\n",
+      "arithmetic/triangle.py": "def triangle_count(n):\n    return n * (n - 1) // 2\n",
+      "checks/verify_triangle_count.py": "from arithmetic.triangle import triangle_count\nassert triangle_count(4) == 10\nassert triangle_count(0) == 0\nprint('PASS triangle-count')\n"
+    },
+    "actions": [
+      {
+        "tool": "list_files",
+        "arguments": {},
+        "expect": {
+          "files": [
+            "README.md",
+            "arithmetic/triangle.py",
+            "checks/verify_triangle_count.py"
+          ]
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "expect": {
+          "content": "Return the sum of integers from one through n, for nonnegative n.\nRun checks/verify_triangle_count.py to check the repair.\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "arithmetic/triangle.py"
+        },
+        "expect": {
+          "content": "def triangle_count(n):\n    return n * (n - 1) // 2\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "arithmetic/triangle.py",
+          "old_text": "def triangle_count(n):\n    return n * (n - 1) // 2\n",
+          "new_text": "def triangle_count(n):\n    return n * (n + 1) // 2\n"
+        },
+        "expect": {
+          "edited": "arithmetic/triangle.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_triangle_count.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS triangle-count\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Updated arithmetic/triangle.py. The last check printed PASS triangle-count."
+        },
+        "expect": {
+          "finished": true,
+          "summary": "Updated arithmetic/triangle.py. The last check printed PASS triangle-count."
+        }
+      }
+    ],
+    "final_files": {
+      "arithmetic/triangle.py": "def triangle_count(n):\n    return n * (n + 1) // 2\n",
+      "checks/verify_triangle_count.py": "from arithmetic.triangle import triangle_count\nassert triangle_count(4) == 10\nassert triangle_count(0) == 0\nprint('PASS triangle-count')\n",
+      "README.md": "Return the sum of integers from one through n, for nonnegative n.\nRun checks/verify_triangle_count.py to check the repair.\n"
+    }
+  },
+  {
+    "id": "suffix-dot",
+    "split": "train",
+    "family": "suffix-dot",
+    "source": "paths/ext.py",
+    "test": "checks/verify_suffix_dot.py",
+    "requirement": "Return text after the final dot, or empty text when no dot occurs.",
+    "style": "partial",
+    "failure_type": null,
+    "budget_steps": 13,
+    "outcome": "success",
+    "files": {
+      "README.md": "Return text after the final dot, or empty text when no dot occurs.\nRun checks/verify_suffix_dot.py to check the repair.\n",
+      "paths/ext.py": "def file_extension(name):\n    return name.split('.')[0]\n",
+      "checks/verify_suffix_dot.py": "from paths.ext import file_extension\nassert file_extension('archive.tar.gz') == 'gz'\nassert file_extension('LICENSE') == ''\nprint('PASS suffix-dot')\n"
+    },
+    "actions": [
+      {
+        "tool": "list_files",
+        "arguments": {},
+        "expect": {
+          "files": [
+            "README.md",
+            "checks/verify_suffix_dot.py",
+            "paths/ext.py"
+          ]
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "expect": {
+          "content": "Return text after the final dot, or empty text when no dot occurs.\nRun checks/verify_suffix_dot.py to check the repair.\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks/verify_suffix_dot.py"
+        },
+        "expect": {
+          "content": "from paths.ext import file_extension\nassert file_extension('archive.tar.gz') == 'gz'\nassert file_extension('LICENSE') == ''\nprint('PASS suffix-dot')\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_suffix_dot.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "paths/ext.py"
+        },
+        "expect": {
+          "content": "def file_extension(name):\n    return name.split('.')[0]\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "paths/ext.py",
+          "old_text": "def file_extension(name):\n    return name.split('.')[0]\n",
+          "new_text": "def file_extension(name):\n    return name.rsplit('.', 1)[-1]\n"
+        },
+        "expect": {
+          "edited": "paths/ext.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_suffix_dot.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "paths/ext.py"
+        },
+        "expect": {
+          "content": "def file_extension(name):\n    return name.rsplit('.', 1)[-1]\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "paths/ext.py",
+          "old_text": "def file_extension(name):\n    return name.rsplit('.', 1)[-1]\n",
+          "new_text": "def file_extension(name):\n    return name.rsplit('.', 1)[-1] if '.' in name else ''\n"
+        },
+        "expect": {
+          "edited": "paths/ext.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_suffix_dot.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS suffix-dot\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Updated paths/ext.py. The last check printed PASS suffix-dot."
+        },
+        "expect": {
+          "finished": true,
+          "summary": "Updated paths/ext.py. The last check printed PASS suffix-dot."
+        }
+      }
+    ],
+    "final_files": {
+      "paths/ext.py": "def file_extension(name):\n    return name.rsplit('.', 1)[-1] if '.' in name else ''\n",
+      "checks/verify_suffix_dot.py": "from paths.ext import file_extension\nassert file_extension('archive.tar.gz') == 'gz'\nassert file_extension('LICENSE') == ''\nprint('PASS suffix-dot')\n",
+      "README.md": "Return text after the final dot, or empty text when no dot occurs.\nRun checks/verify_suffix_dot.py to check the repair.\n"
+    }
+  },
+  {
+    "id": "even-label",
+    "split": "train",
+    "family": "even-label",
+    "source": "labels/parity.py",
+    "test": "checks/verify_even_label.py",
+    "requirement": "Label integers even or odd.",
+    "style": "recovery",
+    "failure_type": "quotes",
+    "budget_steps": 9,
+    "outcome": "success",
+    "files": {
+      "README.md": "Label integers even or odd.\nRun checks/verify_even_label.py to check the repair.\n",
+      "labels/parity.py": "def parity_label(n):\n    if n % 2 == 0:\n        return 'odd'\n    return 'odd'\n",
+      "checks/verify_even_label.py": "from labels.parity import parity_label\nassert parity_label(8) == 'even'\nassert parity_label(3) == 'odd'\nprint('PASS even-label')\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "expect": {
+          "content": "Label integers even or odd.\nRun checks/verify_even_label.py to check the repair.\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "labels/parity.py"
+        },
+        "expect": {
+          "content": "def parity_label(n):\n    if n % 2 == 0:\n        return 'odd'\n    return 'odd'\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "labels/parity.py",
+          "old_text": "def parity_label(n):\n    if n % 2 == 0:\n        return \"odd\"\n    return \"odd\"\n",
+          "new_text": "def parity_label(n):\n    if n % 2 == 0:\n        return 'even'\n    return 'odd'\n"
+        },
+        "expect": {
+          "error": "ValueError",
+          "detail": "old_text must match exactly once"
+        },
+        "learn": false
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "labels/parity.py"
+        },
+        "expect": {
+          "content": "def parity_label(n):\n    if n % 2 == 0:\n        return 'odd'\n    return 'odd'\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "labels/parity.py",
+          "old_text": "def parity_label(n):\n    if n % 2 == 0:\n        return 'odd'\n    return 'odd'\n",
+          "new_text": "def parity_label(n):\n    if n % 2 == 0:\n        return 'even'\n    return 'odd'\n"
+        },
+        "expect": {
+          "edited": "labels/parity.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_even_label.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS even-label\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Updated labels/parity.py. The last check printed PASS even-label."
+        },
+        "expect": {
+          "finished": true,
+          "summary": "Updated labels/parity.py. The last check printed PASS even-label."
+        }
+      }
+    ],
+    "final_files": {
+      "labels/parity.py": "def parity_label(n):\n    if n % 2 == 0:\n        return 'even'\n    return 'odd'\n",
+      "checks/verify_even_label.py": "from labels.parity import parity_label\nassert parity_label(8) == 'even'\nassert parity_label(3) == 'odd'\nprint('PASS even-label')\n",
+      "README.md": "Label integers even or odd.\nRun checks/verify_even_label.py to check the repair.\n"
+    }
+  },
+  {
+    "id": "fahrenheit-zero",
+    "split": "train",
+    "family": "fahrenheit-zero",
+    "source": "weather.py",
+    "test": "checks/verify_fahrenheit_zero.py",
+    "requirement": "Convert Celsius to Fahrenheit using F = 9 C / 5 + 32.",
+    "style": "diagnostic",
+    "failure_type": "indent",
+    "budget_steps": 11,
+    "outcome": "success",
+    "files": {
+      "README.md": "Convert Celsius to Fahrenheit using F = 9 C / 5 + 32.\nRun checks/verify_fahrenheit_zero.py to check the repair.\n",
+      "weather.py": "def fahrenheit(celsius):\n    return celsius + 32\n",
+      "checks/verify_fahrenheit_zero.py": "from weather import fahrenheit\nassert fahrenheit(0) == 32\nassert fahrenheit(100) == 212\nprint('PASS fahrenheit-zero')\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "expect": {
+          "content": "Convert Celsius to Fahrenheit using F = 9 C / 5 + 32.\nRun checks/verify_fahrenheit_zero.py to check the repair.\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks/verify_fahrenheit_zero.py"
+        },
+        "expect": {
+          "content": "from weather import fahrenheit\nassert fahrenheit(0) == 32\nassert fahrenheit(100) == 212\nprint('PASS fahrenheit-zero')\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_fahrenheit_zero.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "weather.py"
+        },
+        "expect": {
+          "content": "def fahrenheit(celsius):\n    return celsius + 32\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "weather.py",
+          "old_text": "def fahrenheit(celsius):\n  return celsius + 32\n",
+          "new_text": "def fahrenheit(celsius):\n    return celsius * 9 / 5 + 32\n"
+        },
+        "expect": {
+          "error": "ValueError",
+          "detail": "old_text must match exactly once"
+        },
+        "learn": false
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "weather.py"
+        },
+        "expect": {
+          "content": "def fahrenheit(celsius):\n    return celsius + 32\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "weather.py",
+          "old_text": "def fahrenheit(celsius):\n    return celsius + 32\n",
+          "new_text": "def fahrenheit(celsius):\n    return celsius * 9 / 5 + 32\n"
+        },
+        "expect": {
+          "edited": "weather.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_fahrenheit_zero.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS fahrenheit-zero\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Updated weather.py. The last check printed PASS fahrenheit-zero."
+        },
+        "expect": {
+          "finished": true,
+          "summary": "Updated weather.py. The last check printed PASS fahrenheit-zero."
+        }
+      }
+    ],
+    "final_files": {
+      "weather.py": "def fahrenheit(celsius):\n    return celsius * 9 / 5 + 32\n",
+      "checks/verify_fahrenheit_zero.py": "from weather import fahrenheit\nassert fahrenheit(0) == 32\nassert fahrenheit(100) == 212\nprint('PASS fahrenheit-zero')\n",
+      "README.md": "Convert Celsius to Fahrenheit using F = 9 C / 5 + 32.\nRun checks/verify_fahrenheit_zero.py to check the repair.\n"
+    }
+  },
+  {
+    "id": "distance-origin",
+    "split": "train",
+    "family": "distance-origin",
+    "source": "vectors/norm.py",
+    "test": "checks/verify_distance_origin.py",
+    "requirement": "Compute squared distance from the origin; preserve the unrelated helper.",
+    "style": "double",
+    "failure_type": "ambiguous",
+    "budget_steps": 12,
+    "outcome": "success",
+    "files": {
+      "README.md": "Compute squared distance from the origin; preserve the unrelated helper.\nRun checks/verify_distance_origin.py to check the repair.\n",
+      "vectors/norm.py": "def squared_distance(x, y):\n    return 0\n\ndef untouched():\n    return 0\n",
+      "checks/verify_distance_origin.py": "from vectors.norm import squared_distance\nassert squared_distance(3, 4) == 25\nassert squared_distance(-2, 0) == 4\nprint('PASS distance-origin')\n"
+    },
+    "actions": [
+      {
+        "tool": "list_files",
+        "arguments": {},
+        "expect": {
+          "files": [
+            "README.md",
+            "checks/verify_distance_origin.py",
+            "vectors/norm.py"
+          ]
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "expect": {
+          "content": "Compute squared distance from the origin; preserve the unrelated helper.\nRun checks/verify_distance_origin.py to check the repair.\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "vectors/norm.py"
+        },
+        "expect": {
+          "content": "def squared_distance(x, y):\n    return 0\n\ndef untouched():\n    return 0\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "vectors/norm.py",
+          "old_text": "    return 0\n",
+          "new_text": "def squared_distance(x, y):\n    return x*x + y*y\n\ndef untouched():\n    return 0\n"
+        },
+        "expect": {
+          "error": "ValueError",
+          "detail": "old_text must match exactly once"
+        },
+        "learn": false
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "vectors/norm.py"
+        },
+        "expect": {
+          "content": "def squared_distance(x, y):\n    return 0\n\ndef untouched():\n    return 0\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "vectors/norm.py",
+          "old_text": "def squared_distance(x, y):\n    return 0\n\ndef untouched():\n    return 0\n\n",
+          "new_text": "def squared_distance(x, y):\n    return x*x + y*y\n\ndef untouched():\n    return 0\n"
+        },
+        "expect": {
+          "error": "ValueError",
+          "detail": "old_text must match exactly once"
+        },
+        "learn": false
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "vectors/norm.py"
+        },
+        "expect": {
+          "content": "def squared_distance(x, y):\n    return 0\n\ndef untouched():\n    return 0\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "vectors/norm.py",
+          "old_text": "def squared_distance(x, y):\n    return 0\n\ndef untouched():\n    return 0\n",
+          "new_text": "def squared_distance(x, y):\n    return x*x + y*y\n\ndef untouched():\n    return 0\n"
+        },
+        "expect": {
+          "edited": "vectors/norm.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_distance_origin.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS distance-origin\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Updated vectors/norm.py. The last check printed PASS distance-origin."
+        },
+        "expect": {
+          "finished": true,
+          "summary": "Updated vectors/norm.py. The last check printed PASS distance-origin."
+        }
+      }
+    ],
+    "final_files": {
+      "vectors/norm.py": "def squared_distance(x, y):\n    return x*x + y*y\n\ndef untouched():\n    return 0\n",
+      "checks/verify_distance_origin.py": "from vectors.norm import squared_distance\nassert squared_distance(3, 4) == 25\nassert squared_distance(-2, 0) == 4\nprint('PASS distance-origin')\n",
+      "README.md": "Compute squared distance from the origin; preserve the unrelated helper.\nRun checks/verify_distance_origin.py to check the repair.\n"
+    }
+  },
+  {
+    "id": "digit-total",
+    "split": "train",
+    "family": "digit-total",
+    "source": "digits.py",
+    "test": "checks/verify_digit_total.py",
+    "requirement": "Sum decimal digits of an integer, ignoring its sign.",
+    "style": "unresolved",
+    "failure_type": "newline",
+    "budget_steps": 11,
+    "outcome": "incomplete",
+    "files": {
+      "README.md": "Sum decimal digits of an integer, ignoring its sign.\nRun checks/verify_digit_total.py to check the repair.\n",
+      "digits.py": "def digit_total(n):\n    return len(str(n))\n",
+      "checks/verify_digit_total.py": "from digits import digit_total\nassert digit_total(42) == 6\nassert digit_total(-42) == 6\nprint('PASS digit-total')\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "expect": {
+          "content": "Sum decimal digits of an integer, ignoring its sign.\nRun checks/verify_digit_total.py to check the repair.\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks/verify_digit_total.py"
+        },
+        "expect": {
+          "content": "from digits import digit_total\nassert digit_total(42) == 6\nassert digit_total(-42) == 6\nprint('PASS digit-total')\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_digit_total.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "digits.py"
+        },
+        "expect": {
+          "content": "def digit_total(n):\n    return len(str(n))\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "digits.py",
+          "old_text": "def digit_total(n):\n    return len(str(n))\n\n",
+          "new_text": "def digit_total(n):\n    return sum(int(c) for c in str(abs(n)))\n"
+        },
+        "expect": {
+          "error": "ValueError",
+          "detail": "old_text must match exactly once"
+        },
+        "learn": false
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "digits.py"
+        },
+        "expect": {
+          "content": "def digit_total(n):\n    return len(str(n))\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "digits.py",
+          "old_text": "def digit_total(n):\n    return len(str(n))\n",
+          "new_text": "def digit_total(n):\n    return sum(int(c) for c in str(n)) if n >= 0 else 0\n"
+        },
+        "expect": {
+          "edited": "digits.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_digit_total.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Changed digits.py, but the last check failed with AssertionError. The repair is incomplete."
+        },
+        "expect": {
+          "finished": true,
+          "summary": "Changed digits.py, but the last check failed with AssertionError. The repair is incomplete."
+        }
+      }
+    ],
+    "final_files": {
+      "digits.py": "def digit_total(n):\n    return sum(int(c) for c in str(n)) if n >= 0 else 0\n",
+      "checks/verify_digit_total.py": "from digits import digit_total\nassert digit_total(42) == 6\nassert digit_total(-42) == 6\nprint('PASS digit-total')\n",
+      "README.md": "Sum decimal digits of an integer, ignoring its sign.\nRun checks/verify_digit_total.py to check the repair.\n"
+    }
+  },
+  {
+    "id": "empty-product",
+    "split": "train",
+    "family": "empty-product",
+    "source": "reducers/product.py",
+    "test": "checks/verify_empty_product.py",
+    "requirement": "Multiply all numeric values; an empty product is one.",
+    "style": "direct",
+    "failure_type": null,
+    "budget_steps": 7,
+    "outcome": "success",
+    "files": {
+      "README.md": "Multiply all numeric values; an empty product is one.\nRun checks/verify_empty_product.py to check the repair.\n",
+      "reducers/product.py": "def product(values):\n    answer = 0\n    for value in values:\n        answer *= value\n    return answer\n",
+      "checks/verify_empty_product.py": "from reducers.product import product\nassert product([]) == 1\nassert product([2, 3, 4]) == 24\nprint('PASS empty-product')\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "expect": {
+          "content": "Multiply all numeric values; an empty product is one.\nRun checks/verify_empty_product.py to check the repair.\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "reducers/product.py"
+        },
+        "expect": {
+          "content": "def product(values):\n    answer = 0\n    for value in values:\n        answer *= value\n    return answer\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "reducers/product.py",
+          "old_text": "    answer = 0\n",
+          "new_text": "    answer = 1\n"
+        },
+        "expect": {
+          "edited": "reducers/product.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_empty_product.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS empty-product\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Updated reducers/product.py. The last check printed PASS empty-product."
+        },
+        "expect": {
+          "finished": true,
+          "summary": "Updated reducers/product.py. The last check printed PASS empty-product."
+        }
+      }
+    ],
+    "final_files": {
+      "reducers/product.py": "def product(values):\n    answer = 1\n    for value in values:\n        answer *= value\n    return answer\n",
+      "checks/verify_empty_product.py": "from reducers.product import product\nassert product([]) == 1\nassert product([2, 3, 4]) == 24\nprint('PASS empty-product')\n",
+      "README.md": "Multiply all numeric values; an empty product is one.\nRun checks/verify_empty_product.py to check the repair.\n"
+    }
+  },
+  {
+    "id": "ordinal-ending",
+    "split": "train",
+    "family": "ordinal-ending",
+    "source": "text/ordinal.py",
+    "test": "checks/verify_ordinal_ending.py",
+    "requirement": "Render positive integers with English ordinal suffixes, including the teens exception.",
+    "style": "partial",
+    "failure_type": null,
+    "budget_steps": 13,
+    "outcome": "success",
+    "files": {
+      "README.md": "Render positive integers with English ordinal suffixes, including the teens exception.\nRun checks/verify_ordinal_ending.py to check the repair.\n",
+      "text/ordinal.py": "def ordinal(n):\n    return str(n) + 'th'\n",
+      "checks/verify_ordinal_ending.py": "from text.ordinal import ordinal\nassert ordinal(21) == '21st'\nassert ordinal(11) == '11th'\nprint('PASS ordinal-ending')\n"
+    },
+    "actions": [
+      {
+        "tool": "list_files",
+        "arguments": {},
+        "expect": {
+          "files": [
+            "README.md",
+            "checks/verify_ordinal_ending.py",
+            "text/ordinal.py"
+          ]
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "expect": {
+          "content": "Render positive integers with English ordinal suffixes, including the teens exception.\nRun checks/verify_ordinal_ending.py to check the repair.\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks/verify_ordinal_ending.py"
+        },
+        "expect": {
+          "content": "from text.ordinal import ordinal\nassert ordinal(21) == '21st'\nassert ordinal(11) == '11th'\nprint('PASS ordinal-ending')\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_ordinal_ending.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "text/ordinal.py"
+        },
+        "expect": {
+          "content": "def ordinal(n):\n    return str(n) + 'th'\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "text/ordinal.py",
+          "old_text": "def ordinal(n):\n    return str(n) + 'th'\n",
+          "new_text": "def ordinal(n):\n    return str(n) + {1:'st', 2:'nd', 3:'rd'}.get(n % 10, 'th')\n"
+        },
+        "expect": {
+          "edited": "text/ordinal.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_ordinal_ending.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "text/ordinal.py"
+        },
+        "expect": {
+          "content": "def ordinal(n):\n    return str(n) + {1:'st', 2:'nd', 3:'rd'}.get(n % 10, 'th')\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "text/ordinal.py",
+          "old_text": "def ordinal(n):\n    return str(n) + {1:'st', 2:'nd', 3:'rd'}.get(n % 10, 'th')\n",
+          "new_text": "def ordinal(n):\n    return str(n) + ('th' if 10 <= n % 100 <= 20 else {1:'st', 2:'nd', 3:'rd'}.get(n % 10, 'th'))\n"
+        },
+        "expect": {
+          "edited": "text/ordinal.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_ordinal_ending.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS ordinal-ending\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Updated text/ordinal.py. The last check printed PASS ordinal-ending."
+        },
+        "expect": {
+          "finished": true,
+          "summary": "Updated text/ordinal.py. The last check printed PASS ordinal-ending."
+        }
+      }
+    ],
+    "final_files": {
+      "text/ordinal.py": "def ordinal(n):\n    return str(n) + ('th' if 10 <= n % 100 <= 20 else {1:'st', 2:'nd', 3:'rd'}.get(n % 10, 'th'))\n",
+      "checks/verify_ordinal_ending.py": "from text.ordinal import ordinal\nassert ordinal(21) == '21st'\nassert ordinal(11) == '11th'\nprint('PASS ordinal-ending')\n",
+      "README.md": "Render positive integers with English ordinal suffixes, including the teens exception.\nRun checks/verify_ordinal_ending.py to check the repair.\n"
+    }
+  },
+  {
+    "id": "reverse-pair",
+    "split": "valid",
+    "family": "reverse-pair",
+    "source": "pairs/reverse.py",
+    "test": "checks/verify_reverse_pair.py",
+    "requirement": "Reverse a two-element tuple.",
+    "style": "recovery",
+    "failure_type": "indent",
+    "budget_steps": 9,
+    "outcome": "success",
+    "files": {
+      "README.md": "Reverse a two-element tuple.\nRun checks/verify_reverse_pair.py to check the repair.\n",
+      "pairs/reverse.py": "def reverse_pair(pair):\n    return pair\n",
+      "checks/verify_reverse_pair.py": "from pairs.reverse import reverse_pair\nassert reverse_pair((2, 7)) == (7, 2)\nprint('PASS reverse-pair')\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "expect": {
+          "content": "Reverse a two-element tuple.\nRun checks/verify_reverse_pair.py to check the repair.\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "pairs/reverse.py"
+        },
+        "expect": {
+          "content": "def reverse_pair(pair):\n    return pair\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "pairs/reverse.py",
+          "old_text": "def reverse_pair(pair):\n  return pair\n",
+          "new_text": "def reverse_pair(pair):\n    return (pair[1], pair[0])\n"
+        },
+        "expect": {
+          "error": "ValueError",
+          "detail": "old_text must match exactly once"
+        },
+        "learn": false
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "pairs/reverse.py"
+        },
+        "expect": {
+          "content": "def reverse_pair(pair):\n    return pair\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "pairs/reverse.py",
+          "old_text": "def reverse_pair(pair):\n    return pair\n",
+          "new_text": "def reverse_pair(pair):\n    return (pair[1], pair[0])\n"
+        },
+        "expect": {
+          "edited": "pairs/reverse.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_reverse_pair.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS reverse-pair\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Updated pairs/reverse.py. The last check printed PASS reverse-pair."
+        },
+        "expect": {
+          "finished": true,
+          "summary": "Updated pairs/reverse.py. The last check printed PASS reverse-pair."
+        }
+      }
+    ],
+    "final_files": {
+      "pairs/reverse.py": "def reverse_pair(pair):\n    return (pair[1], pair[0])\n",
+      "checks/verify_reverse_pair.py": "from pairs.reverse import reverse_pair\nassert reverse_pair((2, 7)) == (7, 2)\nprint('PASS reverse-pair')\n",
+      "README.md": "Reverse a two-element tuple.\nRun checks/verify_reverse_pair.py to check the repair.\n"
+    }
+  },
+  {
+    "id": "word-initials",
+    "split": "valid",
+    "family": "word-initials",
+    "source": "initials.py",
+    "test": "checks/verify_word_initials.py",
+    "requirement": "Return the initial character of each whitespace-separated word.",
+    "style": "double",
+    "failure_type": "newline",
+    "budget_steps": 12,
+    "outcome": "success",
+    "files": {
+      "README.md": "Return the initial character of each whitespace-separated word.\nRun checks/verify_word_initials.py to check the repair.\n",
+      "initials.py": "def initials(text):\n    return text[0]\n",
+      "checks/verify_word_initials.py": "from initials import initials\nassert initials('red green') == 'rg'\nassert initials('') == ''\nprint('PASS word-initials')\n"
+    },
+    "actions": [
+      {
+        "tool": "list_files",
+        "arguments": {},
+        "expect": {
+          "files": [
+            "README.md",
+            "checks/verify_word_initials.py",
+            "initials.py"
+          ]
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "expect": {
+          "content": "Return the initial character of each whitespace-separated word.\nRun checks/verify_word_initials.py to check the repair.\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "initials.py"
+        },
+        "expect": {
+          "content": "def initials(text):\n    return text[0]\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "initials.py",
+          "old_text": "def initials(text):\n    return text[0]\n\n",
+          "new_text": "def initials(text):\n    return ''.join(word[0] for word in text.split())\n"
+        },
+        "expect": {
+          "error": "ValueError",
+          "detail": "old_text must match exactly once"
+        },
+        "learn": false
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "initials.py"
+        },
+        "expect": {
+          "content": "def initials(text):\n    return text[0]\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "initials.py",
+          "old_text": "def initials(text):\n    return text[0]\n\n",
+          "new_text": "def initials(text):\n    return ''.join(word[0] for word in text.split())\n"
+        },
+        "expect": {
+          "error": "ValueError",
+          "detail": "old_text must match exactly once"
+        },
+        "learn": false
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "initials.py"
+        },
+        "expect": {
+          "content": "def initials(text):\n    return text[0]\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "initials.py",
+          "old_text": "def initials(text):\n    return text[0]\n",
+          "new_text": "def initials(text):\n    return ''.join(word[0] for word in text.split())\n"
+        },
+        "expect": {
+          "edited": "initials.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_word_initials.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS word-initials\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Updated initials.py. The last check printed PASS word-initials."
+        },
+        "expect": {
+          "finished": true,
+          "summary": "Updated initials.py. The last check printed PASS word-initials."
+        }
+      }
+    ],
+    "final_files": {
+      "initials.py": "def initials(text):\n    return ''.join(word[0] for word in text.split())\n",
+      "checks/verify_word_initials.py": "from initials import initials\nassert initials('red green') == 'rg'\nassert initials('') == ''\nprint('PASS word-initials')\n",
+      "README.md": "Return the initial character of each whitespace-separated word.\nRun checks/verify_word_initials.py to check the repair.\n"
+    }
+  },
+  {
+    "id": "right-padding",
+    "split": "valid",
+    "family": "right-padding",
+    "source": "formatting/pad.py",
+    "test": "checks/verify_right_padding.py",
+    "requirement": "Pad text on the right with spaces to a minimum width; never truncate.",
+    "style": "diagnostic",
+    "failure_type": "quotes",
+    "budget_steps": 11,
+    "outcome": "success",
+    "files": {
+      "README.md": "Pad text on the right with spaces to a minimum width; never truncate.\nRun checks/verify_right_padding.py to check the repair.\n",
+      "formatting/pad.py": "def right_pad(text, width):\n    return ' ' * width + text\n",
+      "checks/verify_right_padding.py": "from formatting.pad import right_pad\nassert right_pad('ab', 4) == 'ab  '\nassert right_pad('abc', 2) == 'abc'\nprint('PASS right-padding')\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "expect": {
+          "content": "Pad text on the right with spaces to a minimum width; never truncate.\nRun checks/verify_right_padding.py to check the repair.\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks/verify_right_padding.py"
+        },
+        "expect": {
+          "content": "from formatting.pad import right_pad\nassert right_pad('ab', 4) == 'ab  '\nassert right_pad('abc', 2) == 'abc'\nprint('PASS right-padding')\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_right_padding.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "formatting/pad.py"
+        },
+        "expect": {
+          "content": "def right_pad(text, width):\n    return ' ' * width + text\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "formatting/pad.py",
+          "old_text": "def right_pad(text, width):\n    return \" \" * width + text\n",
+          "new_text": "def right_pad(text, width):\n    return text + ' ' * max(0, width - len(text))\n"
+        },
+        "expect": {
+          "error": "ValueError",
+          "detail": "old_text must match exactly once"
+        },
+        "learn": false
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "formatting/pad.py"
+        },
+        "expect": {
+          "content": "def right_pad(text, width):\n    return ' ' * width + text\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "formatting/pad.py",
+          "old_text": "def right_pad(text, width):\n    return ' ' * width + text\n",
+          "new_text": "def right_pad(text, width):\n    return text + ' ' * max(0, width - len(text))\n"
+        },
+        "expect": {
+          "edited": "formatting/pad.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_right_padding.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS right-padding\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Updated formatting/pad.py. The last check printed PASS right-padding."
+        },
+        "expect": {
+          "finished": true,
+          "summary": "Updated formatting/pad.py. The last check printed PASS right-padding."
+        }
+      }
+    ],
+    "final_files": {
+      "formatting/pad.py": "def right_pad(text, width):\n    return text + ' ' * max(0, width - len(text))\n",
+      "checks/verify_right_padding.py": "from formatting.pad import right_pad\nassert right_pad('ab', 4) == 'ab  '\nassert right_pad('abc', 2) == 'abc'\nprint('PASS right-padding')\n",
+      "README.md": "Pad text on the right with spaces to a minimum width; never truncate.\nRun checks/verify_right_padding.py to check the repair.\n"
+    }
+  },
+  {
+    "id": "safe-reciprocal",
+    "split": "valid",
+    "family": "safe-reciprocal",
+    "source": "rates.py",
+    "test": "checks/verify_safe_reciprocal.py",
+    "requirement": "Return reciprocal or None for zero.",
+    "style": "unresolved",
+    "failure_type": "indent",
+    "budget_steps": 11,
+    "outcome": "incomplete",
+    "files": {
+      "README.md": "Return reciprocal or None for zero.\nRun checks/verify_safe_reciprocal.py to check the repair.\n",
+      "rates.py": "def reciprocal(n):\n    return n\n",
+      "checks/verify_safe_reciprocal.py": "from rates import reciprocal\nassert reciprocal(2) == 0.5\nassert reciprocal(0) is None\nprint('PASS safe-reciprocal')\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "expect": {
+          "content": "Return reciprocal or None for zero.\nRun checks/verify_safe_reciprocal.py to check the repair.\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks/verify_safe_reciprocal.py"
+        },
+        "expect": {
+          "content": "from rates import reciprocal\nassert reciprocal(2) == 0.5\nassert reciprocal(0) is None\nprint('PASS safe-reciprocal')\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_safe_reciprocal.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "rates.py"
+        },
+        "expect": {
+          "content": "def reciprocal(n):\n    return n\n",
+          "truncated": false
+        },
+        "learn": false,
+        "context_reason": "Setup inspection retained verbatim in history; supervise the recovery continuation instead of oversampling inspection."
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "rates.py",
+          "old_text": "def reciprocal(n):\n  return n\n",
+          "new_text": "def reciprocal(n):\n    return None if n == 0 else 1 / n\n"
+        },
+        "expect": {
+          "error": "ValueError",
+          "detail": "old_text must match exactly once"
+        },
+        "learn": false
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "rates.py"
+        },
+        "expect": {
+          "content": "def reciprocal(n):\n    return n\n",
+          "truncated": false
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "rates.py",
+          "old_text": "def reciprocal(n):\n    return n\n",
+          "new_text": "def reciprocal(n):\n    return 1 / n if n != 0 else 0\n"
+        },
+        "expect": {
+          "edited": "rates.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "import runpy; runpy.run_path('checks/verify_safe_reciprocal.py', run_name='__main__')"
+        },
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Changed rates.py, but the last check failed with AssertionError. The repair is incomplete."
+        },
+        "expect": {
+          "finished": true,
+          "summary": "Changed rates.py, but the last check failed with AssertionError. The repair is incomplete."
+        }
+      }
+    ],
+    "final_files": {
+      "rates.py": "def reciprocal(n):\n    return 1 / n if n != 0 else 0\n",
+      "checks/verify_safe_reciprocal.py": "from rates import reciprocal\nassert reciprocal(2) == 0.5\nassert reciprocal(0) is None\nprint('PASS safe-reciprocal')\n",
+      "README.md": "Return reciprocal or None for zero.\nRun checks/verify_safe_reciprocal.py to check the repair.\n"
+    }
+  }
+]

@@ -1,0 +1,194 @@
+{
+  "counts": {
+    "train": {
+      "read_file": 19,
+      "edit_file": 14,
+      "run_python": 19,
+      "finish": 12,
+      "list_files": 5
+    },
+    "valid": {
+      "read_file": 6,
+      "edit_file": 4,
+      "run_python": 6,
+      "finish": 4,
+      "list_files": 1
+    }
+  },
+  "examples": {
+    "train": 69,
+    "valid": 21
+  },
+  "patterns": {
+    "minute-part": [
+      "read_file (context only)",
+      "read_file (context only)",
+      "edit_file (context only)",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "finish"
+    ],
+    "quote-wrap": [
+      "read_file (context only)",
+      "read_file (context only)",
+      "run_python",
+      "read_file (context only)",
+      "edit_file (context only)",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "finish"
+    ],
+    "area-sign": [
+      "read_file (context only)",
+      "read_file (context only)",
+      "edit_file (context only)",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "finish"
+    ],
+    "power-zero": [
+      "list_files",
+      "read_file (context only)",
+      "read_file (context only)",
+      "edit_file (context only)",
+      "read_file",
+      "edit_file (context only)",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "finish"
+    ],
+    "triangle-count": [
+      "list_files",
+      "read_file",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "finish"
+    ],
+    "suffix-dot": [
+      "list_files",
+      "read_file (context only)",
+      "read_file (context only)",
+      "run_python",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "finish"
+    ],
+    "even-label": [
+      "read_file (context only)",
+      "read_file (context only)",
+      "edit_file (context only)",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "finish"
+    ],
+    "fahrenheit-zero": [
+      "read_file (context only)",
+      "read_file (context only)",
+      "run_python",
+      "read_file (context only)",
+      "edit_file (context only)",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "finish"
+    ],
+    "distance-origin": [
+      "list_files",
+      "read_file (context only)",
+      "read_file (context only)",
+      "edit_file (context only)",
+      "read_file",
+      "edit_file (context only)",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "finish"
+    ],
+    "digit-total": [
+      "read_file (context only)",
+      "read_file",
+      "run_python",
+      "read_file (context only)",
+      "edit_file (context only)",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "finish"
+    ],
+    "empty-product": [
+      "read_file",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "finish"
+    ],
+    "ordinal-ending": [
+      "list_files",
+      "read_file (context only)",
+      "read_file (context only)",
+      "run_python",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "finish"
+    ],
+    "reverse-pair": [
+      "read_file (context only)",
+      "read_file (context only)",
+      "edit_file (context only)",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "finish"
+    ],
+    "word-initials": [
+      "list_files",
+      "read_file (context only)",
+      "read_file (context only)",
+      "edit_file (context only)",
+      "read_file",
+      "edit_file (context only)",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "finish"
+    ],
+    "right-padding": [
+      "read_file (context only)",
+      "read_file (context only)",
+      "run_python",
+      "read_file (context only)",
+      "edit_file (context only)",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "finish"
+    ],
+    "safe-reciprocal": [
+      "read_file (context only)",
+      "read_file",
+      "run_python",
+      "read_file (context only)",
+      "edit_file (context only)",
+      "read_file",
+      "edit_file",
+      "run_python",
+      "finish"
+    ]
+  },
+  "training_performed": false,
+  "model_evaluation_performed": false
+}

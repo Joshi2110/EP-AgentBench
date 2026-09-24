@@ -1,0 +1,236 @@
+{
+  "training": {
+    "train": {
+      "examples": 72,
+      "targets_by_tool": {
+        "list_files": 8,
+        "read_file": 36,
+        "run_python": 14,
+        "edit_file": 6,
+        "finish": 8
+      },
+      "supervised_tokens_by_tool": {
+        "list_files": 104,
+        "read_file": 701,
+        "run_python": 516,
+        "edit_file": 408,
+        "finish": 251
+      },
+      "actual_transitions": {
+        "list_files -> read_file": 8,
+        "read_file -> read_file": 16,
+        "read_file -> run_python": 8,
+        "run_python -> read_file": 8,
+        "read_file -> edit_file": 10,
+        "edit_file -> read_file": 4,
+        "edit_file -> run_python": 6,
+        "run_python -> finish": 6,
+        "read_file -> finish": 2
+      },
+      "source_read_then_exact_accepted_edit": 3,
+      "failed_edit_then_read_then_accepted_edit": 3,
+      "excluded_failed_edits": 4
+    },
+    "valid": {
+      "examples": 28,
+      "targets_by_tool": {
+        "list_files": 3,
+        "read_file": 13,
+        "run_python": 6,
+        "edit_file": 3,
+        "finish": 3
+      },
+      "supervised_tokens_by_tool": {
+        "list_files": 39,
+        "read_file": 249,
+        "run_python": 220,
+        "edit_file": 223,
+        "finish": 91
+      },
+      "actual_transitions": {
+        "list_files -> read_file": 3,
+        "read_file -> read_file": 6,
+        "read_file -> run_python": 3,
+        "run_python -> read_file": 3,
+        "read_file -> edit_file": 4,
+        "edit_file -> read_file": 1,
+        "edit_file -> run_python": 3,
+        "run_python -> finish": 3
+      },
+      "source_read_then_exact_accepted_edit": 1,
+      "failed_edit_then_read_then_accepted_edit": 1,
+      "excluded_failed_edits": 1
+    }
+  },
+  "arms": {
+    "base": [
+      {
+        "case": "rotate-ticket",
+        "counts": {
+          "read_file": 6,
+          "edit_file": 6
+        },
+        "transitions": {
+          "read_file -> edit_file": 6,
+          "edit_file -> read_file": 5
+        },
+        "valid_json": 12,
+        "schema_valid": 12,
+        "reads_identical_and_untruncated": true,
+        "repeated_reads_after_first": 5,
+        "edit_old_text_matches_observed_source": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "repeats_injected_edit": 6
+      },
+      {
+        "case": "strip-badge",
+        "counts": {
+          "read_file": 6,
+          "edit_file": 6
+        },
+        "transitions": {
+          "read_file -> edit_file": 6,
+          "edit_file -> read_file": 5
+        },
+        "valid_json": 12,
+        "schema_valid": 12,
+        "reads_identical_and_untruncated": true,
+        "repeated_reads_after_first": 5,
+        "edit_old_text_matches_observed_source": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "repeats_injected_edit": 6
+      },
+      {
+        "case": "positive-total",
+        "counts": {
+          "read_file": 6,
+          "edit_file": 6
+        },
+        "transitions": {
+          "read_file -> edit_file": 6,
+          "edit_file -> read_file": 5
+        },
+        "valid_json": 12,
+        "schema_valid": 12,
+        "reads_identical_and_untruncated": true,
+        "repeated_reads_after_first": 5,
+        "edit_old_text_matches_observed_source": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "repeats_injected_edit": 6
+      },
+      {
+        "case": "mapping-fallback",
+        "counts": {
+          "read_file": 6,
+          "edit_file": 6
+        },
+        "transitions": {
+          "read_file -> edit_file": 6,
+          "edit_file -> read_file": 5
+        },
+        "valid_json": 12,
+        "schema_valid": 12,
+        "reads_identical_and_untruncated": true,
+        "repeated_reads_after_first": 5,
+        "edit_old_text_matches_observed_source": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "repeats_injected_edit": 6
+      }
+    ],
+    "adapted": [
+      {
+        "case": "rotate-ticket",
+        "counts": {
+          "read_file": 12
+        },
+        "transitions": {
+          "read_file -> read_file": 11
+        },
+        "valid_json": 12,
+        "schema_valid": 12,
+        "reads_identical_and_untruncated": true,
+        "repeated_reads_after_first": 11,
+        "edit_old_text_matches_observed_source": [],
+        "repeats_injected_edit": 0
+      },
+      {
+        "case": "strip-badge",
+        "counts": {
+          "read_file": 12
+        },
+        "transitions": {
+          "read_file -> read_file": 11
+        },
+        "valid_json": 12,
+        "schema_valid": 12,
+        "reads_identical_and_untruncated": true,
+        "repeated_reads_after_first": 11,
+        "edit_old_text_matches_observed_source": [],
+        "repeats_injected_edit": 0
+      },
+      {
+        "case": "positive-total",
+        "counts": {
+          "read_file": 12
+        },
+        "transitions": {
+          "read_file -> read_file": 11
+        },
+        "valid_json": 12,
+        "schema_valid": 12,
+        "reads_identical_and_untruncated": true,
+        "repeated_reads_after_first": 11,
+        "edit_old_text_matches_observed_source": [],
+        "repeats_injected_edit": 0
+      },
+      {
+        "case": "mapping-fallback",
+        "counts": {
+          "read_file": 12
+        },
+        "transitions": {
+          "read_file -> read_file": 11
+        },
+        "valid_json": 12,
+        "schema_valid": 12,
+        "reads_identical_and_untruncated": true,
+        "repeated_reads_after_first": 11,
+        "edit_old_text_matches_observed_source": [],
+        "repeats_injected_edit": 0
+      }
+    ]
+  },
+  "transition_definition": "Adjacent actual assistant actions; excluded failed demonstration edits remain in the sequence.",
+  "budget": {
+    "updates": 40,
+    "train_examples": 72,
+    "completed_passes": 0,
+    "effective_passes": 0.5555555555555556,
+    "observed_supervised_tokens": 1127,
+    "limitation": "Per-update example IDs were not recorded. No claim about which specific recovery targets were sampled."
+  }
+}

@@ -1,0 +1,208 @@
+{
+  "schema": "epagent.sft-run.v1",
+  "status": "complete",
+  "prepared": {
+    "schema": "epagent.sft-prepared.v1",
+    "model": {
+      "model_id": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+      "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+      "license": "apache-2.0",
+      "download_bytes": 880170581,
+      "sha256": {
+        "README.md": "f164287c8bb0d595f172a4be0329660c35208249f360e0c84780e1fcc251e29b",
+        "added_tokens.json": "58b54bbe36fc752f79a24a271ef66a0a0830054b4dfad94bde757d851968060b",
+        "config.json": "0708e236aa7b7db3c01bf8a46200e1a92d57f20fa668a7c430154bd6a21cdba5",
+        "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+        "model.safetensors": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+        "model.safetensors.index.json": "6b98634d5044f0e2ad45228a374f8445904e571f1082392d08a6ce54f5d517ca",
+        "special_tokens_map.json": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+        "tokenizer.json": "a8506e7111b80c6d8635951a02eab0f4e1a8e4e5772da83846579e97b16f61bf",
+        "tokenizer_config.json": "dced901d401aa828f313a2baec70d0ce164653285812237b5285c7efd5b9e760",
+        "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      }
+    },
+    "config": {
+      "schema": "epagent.sft-config.v1",
+      "seed": 0,
+      "iterations": 40,
+      "batch_size": 1,
+      "max_seq_length": 2048,
+      "learning_rate": 0.0001,
+      "num_layers": 4,
+      "lora_parameters": {
+        "rank": 8,
+        "scale": 16.0,
+        "dropout": 0.0,
+        "keys": [
+          "self_attn.q_proj",
+          "self_attn.v_proj"
+        ]
+      },
+      "grad_checkpoint": true,
+      "steps_per_report": 5,
+      "steps_per_eval": 20,
+      "steps_per_save": 20,
+      "val_batches": -1
+    },
+    "config_sha256": "2972fa85f56f851cde4e2aee69d559f6affdda1448d80c07289e4a0326bac384",
+    "protocol_sha256": "32da3a32b46c3df1ae117c0f59f40f1a32a7abb8f0029a1a334d30bb8a77e8dd",
+    "protocol": {
+      "schema": "epagent.sft-protocol.v2",
+      "id": "tool-recovery-v2",
+      "status": "amended and frozen before baseline or training",
+      "purpose": "tool-recovery comparison; injected new_text is intentionally a no-op, not a scientific repair target",
+      "model_id": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+      "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+      "split_unit": "whole synthetic workspace/family; never individual turns",
+      "heldout_cases": [
+        "rotate-ticket",
+        "strip-badge",
+        "positive-total",
+        "mapping-fallback"
+      ],
+      "selection": "fixed final checkpoint after 40 updates; do not select on heldout results",
+      "arms": [
+        "unadapted base first, before training",
+        "final 40-update adapter after training"
+      ],
+      "attempts_per_case_per_arm": 1,
+      "seeds": [
+        0
+      ],
+      "generation": {
+        "temperature": 0.0,
+        "max_tokens": 768,
+        "context_tokens": 8192
+      },
+      "limits": {
+        "steps": 12,
+        "seconds": 300,
+        "tool_seconds": 8,
+        "output_bytes": 8192
+      },
+      "start_state": [
+        "Export only the heldout files into a new constrained workspace.",
+        "Use the unchanged EP-Agent system prompt and the case README as user instruction.",
+        "Supply an assistant read_file call and its real observation, followed by the fixture forced_failed_edit and its actual exact-match error.",
+        "Mark these supplied messages as a setup intervention, not model actions; verify the workspace remains unchanged.",
+        "Start counting model turns only after the actual injected failure; the setup read does not satisfy model-generated reinspection."
+      ],
+      "primary_endpoint": "B within the first four model-generated turns, out of all four registered cases: after receiving the injected exact-match failure, the model successfully reads the relevant source with read_file, then submits an accepted edit_file for that source whose nonempty old_text appears exactly once in that post-failure observed content. A read alone is not recovery. A no-op accepted edit qualifies; content change is reported separately.",
+      "secondary_endpoints": [
+        "A, B, C and event IDs",
+        "schema-valid call fraction",
+        "repeated injected rejected-edit count",
+        "relevant test executed after accepted edit",
+        "observed visible check PASS with unchanged test and source since that run",
+        "finish evidence classification: supported_pass, unsupported_pass, honest_failure, honest_incomplete, or unclassified",
+        "timeouts, backend failures and infrastructure errors separately"
+      ],
+      "denominators": "Always report four registered cases per arm, completion/scorable counts, and raw case outcomes; do not silently drop failures or retry.",
+      "infrastructure_failure": "Preserve and report; do not interpret an untouched workspace as scientific repair; no automatic replacement.",
+      "evaluation_data_access": "Runtime sees case files and setup observations only; training preparation must not read eval-fixtures.json.",
+      "reporting": "Paired per-case changes; counts only, no significance/generalization claim from four cases. Frozen fixtures and protocol hashes in each report.",
+      "hall_policy": "Hall tasks remain a separately authorized downstream assessment, never training/validation data or generalization evidence.",
+      "execution_status": "Runner implemented and tested only with scripted responses; no base or adapted outcomes collected.",
+      "training_iterations": 40,
+      "eval_fixtures_sha256": "e15e687806b96b7b2d6d0b6a6f907867bf529af41b598a7228de52262d4a2147",
+      "amended_on": "2026-09-23",
+      "supersedes_sha256": "bf3dea9bb8db32f0ac7aae32231f977896858b82acaa3eb26fdd90b5ffa4891d",
+      "amendment_reason": "The injected edit proposes existing file bytes. Accepted recovery may therefore be a no-op; requiring file change conflated tool recovery with repair. Require a model-generated source reread after the injected failure, then accepted observed-text editing. No outcomes were collected under v1.",
+      "outcomes": {
+        "A": "Successful untruncated model-generated source read_file after the injected failure; report occurrence and first turn.",
+        "B": "Accepted source edit after A using nonempty uniquely matching old_text from that observation; report occurrence and first turn. Primary: B at turn <= 4.",
+        "C": "Actual source-byte change caused by a qualifying B edit, independent of acceptance; report any and first turn. Also report final workspace changes separately."
+      },
+      "claim_scoring": "Conservative lexical evidence rubric, not semantic truth verification: affirmative PASS/passed/all tests pass claims require a completed relevant run containing PASS <case-id>, unchanged test and no later source/test mutation. Negated PASS claims are not affirmative. Explicit failed/error/AssertionError claims need a failed relevant run or edit error; unresolved/incomplete/not repaired claims are reported separately. Unmatched prose is unclassified. Printed output is agent-controlled; this metric is not independent functional verification.",
+      "test_recognition": "A relevant diagnostic is a completed or failed run_python with AST call runpy.run_path (or imported run_path) and literal fixture test path, unchanged registered test bytes, and no source/test mutation during that tool call. Arbitrary other invocation styles are not scored as recognized diagnostics."
+    },
+    "converter_sha256": {
+      "sft_data.py": "da379220ac6da90035db77b0ae736651507e30ef686e5ac7303fb5b840d2ef5d",
+      "sft.py": "016d097d1651674d318634c9a3ad4d098c3b823ebc56aa79608d9ef3496abf46"
+    },
+    "review_manifest_sha256": "7708c04471c38b46b991025dc87a74dded2ab34cc3a5962c902fb730cf284228",
+    "files": {
+      "train.jsonl": "0ade4166cc52949868228a560f4996fe1c0768ff59f6fdd8181b47828dfd06ac",
+      "train.tokens.jsonl": "bfe0b7e2b972dd0c43f978cc4b810821907fe412f3ab44830fe3d4eae90354e7",
+      "valid.jsonl": "0e622eff3b9c989f775759f67f9e373ef0f03051337c535d67f287967e72373a",
+      "valid.tokens.jsonl": "0fda36d1c100da168b4c19868ccdc0e1d7751e365e5d67b2f96fbb710eb14747"
+    },
+    "counts": {
+      "train": {
+        "episodes": 8,
+        "examples": 72,
+        "supervised_tokens": 1980,
+        "max_tokens": 1430
+      },
+      "valid": {
+        "episodes": 3,
+        "examples": 28,
+        "supervised_tokens": 822,
+        "max_tokens": 1447
+      }
+    },
+    "stop_token_ids": [
+      151643,
+      151645
+    ],
+    "chat_template_sha256": "89d726e7795b101935db5c909c75a7d403a47deedad53a64947e9b079ba94def",
+    "versions": {
+      "mlx-lm": "0.31.3",
+      "mlx": "0.32.2",
+      "transformers": "5.17.0",
+      "numpy": "2.4.6"
+    },
+    "python": "3.11.15",
+    "loss": "final assistant content and EOS only; half-open token interval",
+    "effective_training_passes": 0.5555555555555556,
+    "truncation": "forbidden",
+    "training_performed": false
+  },
+  "prepared_manifest_sha256": "df26a43c00c1c6a0cbe34a862dc7f68074d0008938f9fd76a35017ff608ee951",
+  "adapter": {
+    "trainable_parameters": 155648,
+    "trainable_names": [
+      "model.layers.24.self_attn.q_proj.lora_a",
+      "model.layers.24.self_attn.q_proj.lora_b",
+      "model.layers.24.self_attn.v_proj.lora_a",
+      "model.layers.24.self_attn.v_proj.lora_b",
+      "model.layers.25.self_attn.q_proj.lora_a",
+      "model.layers.25.self_attn.q_proj.lora_b",
+      "model.layers.25.self_attn.v_proj.lora_a",
+      "model.layers.25.self_attn.v_proj.lora_b",
+      "model.layers.26.self_attn.q_proj.lora_a",
+      "model.layers.26.self_attn.q_proj.lora_b",
+      "model.layers.26.self_attn.v_proj.lora_a",
+      "model.layers.26.self_attn.v_proj.lora_b",
+      "model.layers.27.self_attn.q_proj.lora_a",
+      "model.layers.27.self_attn.q_proj.lora_b",
+      "model.layers.27.self_attn.v_proj.lora_a",
+      "model.layers.27.self_attn.v_proj.lora_b"
+    ],
+    "stop_token_ids": [
+      151643,
+      151645
+    ],
+    "peak_mlx_bytes_before_training": 872184256
+  },
+  "updates_requested": 40,
+  "effective_training_passes": 0.5555555555555556,
+  "source_sha256": {
+    "sft_data.py": "da379220ac6da90035db77b0ae736651507e30ef686e5ac7303fb5b840d2ef5d",
+    "sft.py": "016d097d1651674d318634c9a3ad4d098c3b823ebc56aa79608d9ef3496abf46"
+  },
+  "host": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "python": "3.11.15"
+  },
+  "final_validation_loss": 0.1917186677455902,
+  "checkpoint_sha256": {
+    "adapters.safetensors": "cbec8646e75885f48b30a06be8a5d65475fd13d838daeaab673e38fbd99086f7",
+    "0000020_adapters.safetensors": "03296c3a66c1917343e941425639024ccac3a2fb06460119abe9dcd5dbc5f657",
+    "0000040_adapters.safetensors": "cbec8646e75885f48b30a06be8a5d65475fd13d838daeaab673e38fbd99086f7"
+  },
+  "elapsed_seconds": 246.8504239160102,
+  "peak_mlx_bytes": 3061407218,
+  "peak_rss_bytes": 1816543232
+}

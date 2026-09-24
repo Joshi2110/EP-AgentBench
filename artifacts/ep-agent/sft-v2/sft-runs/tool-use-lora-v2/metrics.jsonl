@@ -1,0 +1,12 @@
+{"event": "validation_loss", "iteration": 0, "val_loss": 0.351334810256958, "val_time": 37.090932209044695}
+{"event": "train_loss", "iteration": 5, "train_loss": 0.3664158582687378, "learning_rate": 9.999999747378752e-05, "iterations_per_second": 0.3231403929548702, "tokens_per_second": 7.1090886450071435, "trained_tokens": 110, "peak_memory": 2.474598594}
+{"event": "train_loss", "iteration": 10, "train_loss": 0.530873441696167, "learning_rate": 9.999999747378752e-05, "iterations_per_second": 0.35720166682933185, "tokens_per_second": 11.64477433863622, "trained_tokens": 273, "peak_memory": 3.036290994}
+{"event": "train_loss", "iteration": 15, "train_loss": 0.1399194359779358, "learning_rate": 9.999999747378752e-05, "iterations_per_second": 0.4758885871509463, "tokens_per_second": 12.75381413564536, "trained_tokens": 407, "peak_memory": 3.036290994}
+{"event": "validation_loss", "iteration": 19, "val_loss": 0.26560044288635254, "val_time": 37.00782491709106}
+{"event": "train_loss", "iteration": 20, "train_loss": 0.465146541595459, "learning_rate": 9.999999747378752e-05, "iterations_per_second": 0.36148474946326276, "tokens_per_second": 9.543197385830137, "trained_tokens": 539, "peak_memory": 3.061407218}
+{"event": "train_loss", "iteration": 25, "train_loss": 0.10714436769485473, "learning_rate": 9.999999747378752e-05, "iterations_per_second": 0.4510308970618089, "tokens_per_second": 13.350514553029543, "trained_tokens": 687, "peak_memory": 3.061407218}
+{"event": "train_loss", "iteration": 30, "train_loss": 0.055592465400695804, "learning_rate": 9.999999747378752e-05, "iterations_per_second": 0.4918893956680577, "tokens_per_second": 8.755631242891427, "trained_tokens": 776, "peak_memory": 3.061407218}
+{"event": "train_loss", "iteration": 35, "train_loss": 0.13166040182113647, "learning_rate": 9.999999747378752e-05, "iterations_per_second": 0.4186296135998889, "tokens_per_second": 14.400858707836178, "trained_tokens": 948, "peak_memory": 3.061407218}
+{"event": "validation_loss", "iteration": 39, "val_loss": 0.19627518951892853, "val_time": 37.068399959011}
+{"event": "train_loss", "iteration": 40, "train_loss": 0.20578134059906006, "learning_rate": 9.999999747378752e-05, "iterations_per_second": 0.4400550130405209, "tokens_per_second": 15.753969466850648, "trained_tokens": 1127, "peak_memory": 3.061407218}
+{"event": "final_validation_loss", "iteration": 40, "val_loss": 0.1917186677455902}

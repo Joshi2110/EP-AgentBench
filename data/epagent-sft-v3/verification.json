@@ -1,0 +1,38 @@
+{
+  "schema": "epagent.sft-preparation-verification.v1",
+  "verified_at": "2026-09-24T13:33:55.265548+00:00",
+  "source_commit": "b5d99aec17362cc1ab4b459454efac90b3800488",
+  "training_performed": false,
+  "real_model_evaluation_performed": false,
+  "protected_original_files_unchanged": 2321,
+  "raw_experiment_inventory_files_unchanged": 132,
+  "test_suite": {
+    "command": "PYTHONPATH=src PATH=\"$PWD/.venv/bin:$PATH\" EPAGENT_TEST_MLX=1 .venv/bin/python -m unittest discover -s tests -v",
+    "passed": 167,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 100.155,
+    "log_sha256": "d45c1427d440e60d5df3c738c82d5ed78ec9ba5f3353c18ed18f768f6dba1a11"
+  },
+  "targeted_tests": "Initial targeted run exposed a test-only task identifier lookup error. Corrected before the full successful suite. No data or production code changed.",
+  "commands_executed": [
+    "PYTHONPATH=src .venv/bin/python scripts/archive_sft_v2.py --out artifacts/ep-agent/sft-v2",
+    "PYTHONPATH=src .venv/bin/python scripts/build_sft_v3.py --fixtures data/epagent-sft-v3/fixtures.json --out data/epagent-sft-v3/trajectories",
+    "PYTHONPATH=src .venv/bin/python -m epagent.sft prepare --trajectories data/epagent-sft-v3/trajectories --config data/epagent-sft-v3/lora-config.json --protocol data/epagent-sft-v3/eval-protocol.json --model-dir .epagent-models/qwen2.5-coder-1.5b-4bit --out sft-runs/reviewed-prepared-v3",
+    ".venv/bin/python -m pip wheel --no-deps --no-build-isolation . --wheel-dir /tmp/epagent-sft-v3-wheel",
+    ".venv/bin/python -m venv /tmp/epagent-sft-v3-install",
+    "/tmp/epagent-sft-v3-install/bin/python -m pip install --no-index --no-deps /tmp/epagent-sft-v3-wheel/ep_agentbench-0.5.0-py3-none-any.whl",
+    "/tmp/epagent-sft-v3-install/bin/epagent --help",
+    "/tmp/epagent-sft-v3-install/bin/epagent synthetic --help",
+    "/tmp/epagent-sft-v3-install/bin/python -m epagent.sft prepare --help",
+    "/tmp/epagent-sft-v3-install/bin/epbench list"
+  ],
+  "packaging": {
+    "outside_checkout_cwd": "/tmp",
+    "isolated_venv": true,
+    "private_artifacts_in_wheel": false,
+    "wheel_sha256": "ebbaa2be3a82ba9e4caca7acb43a47dff33efdfb9b83b508d1acceed6ee74c06",
+    "generated_source_manifest": "Restored generated egg-info SOURCES.txt to hash-verified original bytes after packaging."
+  },
+  "preparation_manifest_sha256": "bd36a12cff52b68612c05f2f075dac2acfea1e9a2b8700e1493b42f6f40c69c9"
+}

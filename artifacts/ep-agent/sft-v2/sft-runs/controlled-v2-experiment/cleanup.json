@@ -1,0 +1,32 @@
+{
+  "commands": [
+    [
+      "ps",
+      "-axo",
+      "pid=,ppid=,comm="
+    ],
+    [
+      "ps",
+      "-p",
+      "<python-pid>",
+      "-o",
+      "args="
+    ]
+  ],
+  "owned_pids": [
+    73336,
+    73338,
+    73339,
+    73591,
+    73593,
+    73594,
+    73833,
+    73835,
+    73836
+  ],
+  "owned_processes_remaining": [],
+  "epagent_workers_remaining": [],
+  "all_stage_children_reaped": true,
+  "preexisting_unrelated_caffeinate_pid": 84856,
+  "preexisting_caffeinate_left_untouched": true
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "exclusive-members",
+    "family": "set-difference",
+    "source": "collections_ops.py",
+    "test": "checks/exclusive_members.py",
+    "files": {
+      "README.md": "Return the set of values in left that do not occur in right.\n",
+      "collections_ops.py": "def only_left(left, right):\n    return set(left) | set(right)\n",
+      "checks/exclusive_members.py": "from collections_ops import only_left\nassert only_left([1,2,2], [2,3]) == {1}\nassert only_left([], [1]) == set()\nprint('PASS exclusive-members')\n"
+    },
+    "forced_failed_edit": {
+      "tool": "edit_file",
+      "arguments": {
+        "path": "collections_ops.py",
+        "old_text": "def only_left(left, right):\n  return set(left) | set(right)\n",
+        "new_text": "def only_left(left, right):\n    return set(left) | set(right)\n"
+      }
+    },
+    "expected_failure": "old_text must match exactly once"
+  },
+  {
+    "id": "version-numbers",
+    "family": "version-parsing",
+    "source": "versions/parse.py",
+    "test": "checks/version_numbers.py",
+    "files": {
+      "README.md": "Convert a dot-separated sequence of nonnegative decimal components to a tuple of integers.\n",
+      "versions/parse.py": "def version_parts(text):\n    return tuple(text.split('.'))\n",
+      "checks/version_numbers.py": "from versions.parse import version_parts\nassert version_parts('2.10.3') == (2,10,3)\nassert version_parts('0') == (0,)\nprint('PASS version-numbers')\n"
+    },
+    "forced_failed_edit": {
+      "tool": "edit_file",
+      "arguments": {
+        "path": "versions/parse.py",
+        "old_text": "def version_parts(text):\n    return tuple(text.split(\".\"))\n",
+        "new_text": "def version_parts(text):\n    return tuple(text.split('.'))\n"
+      }
+    },
+    "expected_failure": "old_text must match exactly once"
+  },
+  {
+    "id": "record-priority",
+    "family": "stable-record-order",
+    "source": "records.py",
+    "test": "checks/record_priority.py",
+    "files": {
+      "README.md": "Sort records by ascending priority while preserving original order among ties.\n",
+      "records.py": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n",
+      "checks/record_priority.py": "from records import order_records\na={'name':'b','priority':1}\nb={'name':'a','priority':2}\nc={'name':'c','priority':1}\nassert order_records([a,b,c]) == [a,c,b]\nassert order_records([]) == []\nprint('PASS record-priority')\n"
+    },
+    "forced_failed_edit": {
+      "tool": "edit_file",
+      "arguments": {
+        "path": "records.py",
+        "old_text": "def order_records(records):\n  return sorted(records, key=lambda row: row['name'])\n",
+        "new_text": "def order_records(records):\n    return sorted(records, key=lambda row: row['name'])\n"
+      }
+    },
+    "expected_failure": "old_text must match exactly once"
+  },
+  {
+    "id": "true-streak",
+    "family": "consecutive-run-length",
+    "source": "sequences/streak.py",
+    "test": "checks/true_streak.py",
+    "files": {
+      "README.md": "Return the length of the longest consecutive run of true values. Preserve the unrelated helper.\n",
+      "sequences/streak.py": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n",
+      "checks/true_streak.py": "from sequences.streak import longest_true_run\nassert longest_true_run([True,True,False,True]) == 2\nassert longest_true_run([]) == 0\nprint('PASS true-streak')\n"
+    },
+    "forced_failed_edit": {
+      "tool": "edit_file",
+      "arguments": {
+        "path": "sequences/streak.py",
+        "old_text": "    return 0\n",
+        "new_text": "def longest_true_run(flags):\n    return 0\n\ndef unrelated_marker():\n    return 0\n"
+      }
+    },
+    "expected_failure": "old_text must match exactly once"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "frozen_files_unchanged": 2321,
+  "base_model_files_unchanged": true,
+  "baseline_records_unchanged_during_training_and_adapted_evaluation": true,
+  "same_protocol_fixtures_limits_generation_verified": true,
+  "adapter_loaded_in_all_four_adapted_cases": true,
+  "adapter_hashes": {
+    "adapter_config.json": "134bdad3e25e685963ee6bf1a660228981515b53d6bcf7d54efbdea7947de12e",
+    "adapters.safetensors": "cbec8646e75885f48b30a06be8a5d65475fd13d838daeaab673e38fbd99086f7"
+  },
+  "public_snapshot_unchanged": true,
+  "earlier_episodes_and_experiments_unchanged": true,
+  "commit": "b5d99aec17362cc1ab4b459454efac90b3800488",
+  "git_status": "",
+  "additional_training_or_evaluations": 0
+}

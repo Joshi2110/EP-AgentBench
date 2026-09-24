@@ -1,0 +1,16 @@
+{
+  "status": "complete",
+  "updates_requested": 40,
+  "elapsed_seconds": 246.8504239160102,
+  "peak_mlx_bytes": 3061407218,
+  "peak_rss_bytes": 1816543232,
+  "final_validation_loss": 0.1917186677455902,
+  "checkpoint_sha256": {
+    "adapters.safetensors": "cbec8646e75885f48b30a06be8a5d65475fd13d838daeaab673e38fbd99086f7",
+    "0000020_adapters.safetensors": "03296c3a66c1917343e941425639024ccac3a2fb06460119abe9dcd5dbc5f657",
+    "0000040_adapters.safetensors": "cbec8646e75885f48b30a06be8a5d65475fd13d838daeaab673e38fbd99086f7"
+  },
+  "updates_completed": 40,
+  "trained_assistant_tokens": 1127,
+  "adapter_config_sha256": "134bdad3e25e685963ee6bf1a660228981515b53d6bcf7d54efbdea7947de12e"
+}

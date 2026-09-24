@@ -1,0 +1,425 @@
+{
+  "schema": "epagent.sft-review.v1",
+  "observation_normalization": "Omit elapsed_seconds; temporary workspace prefixes in stdout/stderr become <workspace>/",
+  "fixtures_sha256": "f57fd9971faeab6549aaa939787060bd135a1dbab9df968d2bc0b498ddf6340e",
+  "episodes": [
+    {
+      "episode_id": "minute-part",
+      "split": "train",
+      "family": "minute-part",
+      "trace": "minute-part.jsonl",
+      "trace_sha256": "e589db782921a387b223a2271776cb2e818382c6ebc930628aeb7fc2af990aef",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored synthetic plans; no provider trajectory or benchmark reference targets",
+      "review": "Action plans inspected; exact observed edit spans, actual tool results and final bytes checked. Independent maintainer review pending.",
+      "outcome": "success",
+      "budget_steps": 9,
+      "selected_assistant_steps": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "excluded_failed_edit_steps": [
+        3
+      ],
+      "excluded_setup_read_steps": [
+        1,
+        2
+      ]
+    },
+    {
+      "episode_id": "quote-wrap",
+      "split": "train",
+      "family": "quote-wrap",
+      "trace": "quote-wrap.jsonl",
+      "trace_sha256": "c1fc511259929c445057c0238a258ec91918afa62bb3d042bf3c3b5de532a556",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored synthetic plans; no provider trajectory or benchmark reference targets",
+      "review": "Action plans inspected; exact observed edit spans, actual tool results and final bytes checked. Independent maintainer review pending.",
+      "outcome": "success",
+      "budget_steps": 11,
+      "selected_assistant_steps": [
+        3,
+        6,
+        7,
+        8,
+        9
+      ],
+      "excluded_failed_edit_steps": [
+        5
+      ],
+      "excluded_setup_read_steps": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "episode_id": "area-sign",
+      "split": "train",
+      "family": "area-sign",
+      "trace": "area-sign.jsonl",
+      "trace_sha256": "af90a6ee782e3ad758619ccc019a1b1942f12e73eb828b37c3639fc85579d93c",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored synthetic plans; no provider trajectory or benchmark reference targets",
+      "review": "Action plans inspected; exact observed edit spans, actual tool results and final bytes checked. Independent maintainer review pending.",
+      "outcome": "success",
+      "budget_steps": 9,
+      "selected_assistant_steps": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "excluded_failed_edit_steps": [
+        3
+      ],
+      "excluded_setup_read_steps": [
+        1,
+        2
+      ]
+    },
+    {
+      "episode_id": "power-zero",
+      "split": "train",
+      "family": "power-zero",
+      "trace": "power-zero.jsonl",
+      "trace_sha256": "4c47e87d4ecb8c642fc0ba835dee5acc6a87a0c6d342f6d30eca352d9627d61a",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored synthetic plans; no provider trajectory or benchmark reference targets",
+      "review": "Action plans inspected; exact observed edit spans, actual tool results and final bytes checked. Independent maintainer review pending.",
+      "outcome": "success",
+      "budget_steps": 12,
+      "selected_assistant_steps": [
+        1,
+        5,
+        7,
+        8,
+        9,
+        10
+      ],
+      "excluded_failed_edit_steps": [
+        4,
+        6
+      ],
+      "excluded_setup_read_steps": [
+        2,
+        3
+      ]
+    },
+    {
+      "episode_id": "triangle-count",
+      "split": "train",
+      "family": "triangle-count",
+      "trace": "triangle-count.jsonl",
+      "trace_sha256": "70c2a39863df640191f836c3a0d08ba0ec6c24d655bf5bb4c80911d8dac7c453",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored synthetic plans; no provider trajectory or benchmark reference targets",
+      "review": "Action plans inspected; exact observed edit spans, actual tool results and final bytes checked. Independent maintainer review pending.",
+      "outcome": "success",
+      "budget_steps": 8,
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "excluded_failed_edit_steps": [],
+      "excluded_setup_read_steps": []
+    },
+    {
+      "episode_id": "suffix-dot",
+      "split": "train",
+      "family": "suffix-dot",
+      "trace": "suffix-dot.jsonl",
+      "trace_sha256": "e2bf7703c97bfc9e6b91634127453b9ab36b5fd18f67d975ba55ed873c14f490",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored synthetic plans; no provider trajectory or benchmark reference targets",
+      "review": "Action plans inspected; exact observed edit spans, actual tool results and final bytes checked. Independent maintainer review pending.",
+      "outcome": "success",
+      "budget_steps": 13,
+      "selected_assistant_steps": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "excluded_failed_edit_steps": [],
+      "excluded_setup_read_steps": [
+        2,
+        3
+      ]
+    },
+    {
+      "episode_id": "even-label",
+      "split": "train",
+      "family": "even-label",
+      "trace": "even-label.jsonl",
+      "trace_sha256": "d17e8feb5fbc4928156d036abcf7cec8dd435bd299adadddfc2486f9a509c823",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored synthetic plans; no provider trajectory or benchmark reference targets",
+      "review": "Action plans inspected; exact observed edit spans, actual tool results and final bytes checked. Independent maintainer review pending.",
+      "outcome": "success",
+      "budget_steps": 9,
+      "selected_assistant_steps": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "excluded_failed_edit_steps": [
+        3
+      ],
+      "excluded_setup_read_steps": [
+        1,
+        2
+      ]
+    },
+    {
+      "episode_id": "fahrenheit-zero",
+      "split": "train",
+      "family": "fahrenheit-zero",
+      "trace": "fahrenheit-zero.jsonl",
+      "trace_sha256": "5350fa6acd434b491028cee0aaee6163f1ea1866b5f6aa8d0ca2b6eb7390f2e6",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored synthetic plans; no provider trajectory or benchmark reference targets",
+      "review": "Action plans inspected; exact observed edit spans, actual tool results and final bytes checked. Independent maintainer review pending.",
+      "outcome": "success",
+      "budget_steps": 11,
+      "selected_assistant_steps": [
+        3,
+        6,
+        7,
+        8,
+        9
+      ],
+      "excluded_failed_edit_steps": [
+        5
+      ],
+      "excluded_setup_read_steps": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "episode_id": "distance-origin",
+      "split": "train",
+      "family": "distance-origin",
+      "trace": "distance-origin.jsonl",
+      "trace_sha256": "b3f972cd568da76e5d930297f6e1ac550493c015076dde22a7c5698f15a2cb59",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored synthetic plans; no provider trajectory or benchmark reference targets",
+      "review": "Action plans inspected; exact observed edit spans, actual tool results and final bytes checked. Independent maintainer review pending.",
+      "outcome": "success",
+      "budget_steps": 12,
+      "selected_assistant_steps": [
+        1,
+        5,
+        7,
+        8,
+        9,
+        10
+      ],
+      "excluded_failed_edit_steps": [
+        4,
+        6
+      ],
+      "excluded_setup_read_steps": [
+        2,
+        3
+      ]
+    },
+    {
+      "episode_id": "digit-total",
+      "split": "train",
+      "family": "digit-total",
+      "trace": "digit-total.jsonl",
+      "trace_sha256": "0b51311b5b078075db4dbf9eb97e620970140d20c61bf6c2fa724d6391162eb1",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored synthetic plans; no provider trajectory or benchmark reference targets",
+      "review": "Action plans inspected; exact observed edit spans, actual tool results and final bytes checked. Independent maintainer review pending.",
+      "outcome": "incomplete",
+      "budget_steps": 11,
+      "selected_assistant_steps": [
+        2,
+        3,
+        6,
+        7,
+        8,
+        9
+      ],
+      "excluded_failed_edit_steps": [
+        5
+      ],
+      "excluded_setup_read_steps": [
+        1,
+        4
+      ]
+    },
+    {
+      "episode_id": "empty-product",
+      "split": "train",
+      "family": "empty-product",
+      "trace": "empty-product.jsonl",
+      "trace_sha256": "acce48db145d2184ce7c2f11bf4e141b14ee336953862148f0eed9c657c31ee7",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored synthetic plans; no provider trajectory or benchmark reference targets",
+      "review": "Action plans inspected; exact observed edit spans, actual tool results and final bytes checked. Independent maintainer review pending.",
+      "outcome": "success",
+      "budget_steps": 7,
+      "selected_assistant_steps": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "excluded_failed_edit_steps": [],
+      "excluded_setup_read_steps": []
+    },
+    {
+      "episode_id": "ordinal-ending",
+      "split": "train",
+      "family": "ordinal-ending",
+      "trace": "ordinal-ending.jsonl",
+      "trace_sha256": "8de20ae72904a686bf0697b53a7f434375a37c38c63f58d10d190d74d4de47f6",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored synthetic plans; no provider trajectory or benchmark reference targets",
+      "review": "Action plans inspected; exact observed edit spans, actual tool results and final bytes checked. Independent maintainer review pending.",
+      "outcome": "success",
+      "budget_steps": 13,
+      "selected_assistant_steps": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "excluded_failed_edit_steps": [],
+      "excluded_setup_read_steps": [
+        2,
+        3
+      ]
+    },
+    {
+      "episode_id": "reverse-pair",
+      "split": "valid",
+      "family": "reverse-pair",
+      "trace": "reverse-pair.jsonl",
+      "trace_sha256": "08ec1d510d3e409fb60cc892a802af1281c87f20d0496dbf86bd3cf0623eb839",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored synthetic plans; no provider trajectory or benchmark reference targets",
+      "review": "Action plans inspected; exact observed edit spans, actual tool results and final bytes checked. Independent maintainer review pending.",
+      "outcome": "success",
+      "budget_steps": 9,
+      "selected_assistant_steps": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "excluded_failed_edit_steps": [
+        3
+      ],
+      "excluded_setup_read_steps": [
+        1,
+        2
+      ]
+    },
+    {
+      "episode_id": "word-initials",
+      "split": "valid",
+      "family": "word-initials",
+      "trace": "word-initials.jsonl",
+      "trace_sha256": "db06dc2d4a34d16abc75a68d54390ff2ed034caf408a536567f506da5d1602a8",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored synthetic plans; no provider trajectory or benchmark reference targets",
+      "review": "Action plans inspected; exact observed edit spans, actual tool results and final bytes checked. Independent maintainer review pending.",
+      "outcome": "success",
+      "budget_steps": 12,
+      "selected_assistant_steps": [
+        1,
+        5,
+        7,
+        8,
+        9,
+        10
+      ],
+      "excluded_failed_edit_steps": [
+        4,
+        6
+      ],
+      "excluded_setup_read_steps": [
+        2,
+        3
+      ]
+    },
+    {
+      "episode_id": "right-padding",
+      "split": "valid",
+      "family": "right-padding",
+      "trace": "right-padding.jsonl",
+      "trace_sha256": "a39b9b0b14e6fc17236bb3b1375f990a3a481966eb7c5cecdeb30cdc29cda0c3",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored synthetic plans; no provider trajectory or benchmark reference targets",
+      "review": "Action plans inspected; exact observed edit spans, actual tool results and final bytes checked. Independent maintainer review pending.",
+      "outcome": "success",
+      "budget_steps": 11,
+      "selected_assistant_steps": [
+        3,
+        6,
+        7,
+        8,
+        9
+      ],
+      "excluded_failed_edit_steps": [
+        5
+      ],
+      "excluded_setup_read_steps": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "episode_id": "safe-reciprocal",
+      "split": "valid",
+      "family": "safe-reciprocal",
+      "trace": "safe-reciprocal.jsonl",
+      "trace_sha256": "f4af849d706016d781ee994fdc9c64efb78aa5c260d53d5a93db0e4c732897b3",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored synthetic plans; no provider trajectory or benchmark reference targets",
+      "review": "Action plans inspected; exact observed edit spans, actual tool results and final bytes checked. Independent maintainer review pending.",
+      "outcome": "incomplete",
+      "budget_steps": 11,
+      "selected_assistant_steps": [
+        2,
+        3,
+        6,
+        7,
+        8,
+        9
+      ],
+      "excluded_failed_edit_steps": [
+        5
+      ],
+      "excluded_setup_read_steps": [
+        1,
+        4
+      ]
+    }
+  ]
+}
