@@ -1,0 +1,10 @@
+{
+  "id": "cart-total",
+  "source": "cart.py",
+  "pass_marker": "PASS cart-total",
+  "files": {
+    "README.md": "Repair cart_total in cart.py. Each row is (unit_price, quantity); compute the total charge for all rows. Empty carts and zero quantities must work. Preserve the unrelated label function and checks.py. Read the source, make the code change, execute checks.py with the Python tool, and finish with only claims supported by its actual output.\n",
+    "cart.py": "\"\"\"Small cart helpers.\"\"\"\n\ndef cart_total(rows):\n    return sum(price for price, quantity in rows)\n\ndef label():\n    return \"cart\"\n",
+    "checks.py": "from cart import cart_total, label\nassert cart_total([(7, 3), (2, 4)]) == 29\nassert cart_total([(5, 0)]) == 0\nassert cart_total([]) == 0\nassert cart_total([(3, 1)]) == 3\nassert label() == \"cart\"\nprint(\"PASS cart-total\")\n"
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "schema": "epagent.envelope-failure-analysis.v1",
+  "episode": "b9217bc1630c49ddb1db8196202ed68b",
+  "method": "Static reading of recorded events plus one offline counterfactual clearly marked below. No re-run, no re-grading, no claim about model intent.",
+  "outcome": {
+    "status": "unfinished",
+    "termination_reason": "step_limit",
+    "steps": 12,
+    "accepted_tool_calls": 9,
+    "rejected_calls": 3,
+    "source_changed": false,
+    "repair_passed": false,
+    "workspace_unchanged": true
+  },
+  "action_sequence": [
+    {
+      "step": 1,
+      "tool": "list_files",
+      "accepted": true,
+      "error": null
+    },
+    {
+      "step": 2,
+      "tool": "read_file",
+      "accepted": true,
+      "error": null
+    },
+    {
+      "step": 3,
+      "tool": "read_file",
+      "accepted": true,
+      "error": null
+    },
+    {
+      "step": 4,
+      "tool": null,
+      "accepted": false,
+      "error": "missing_arguments"
+    },
+    {
+      "step": 5,
+      "tool": "list_files",
+      "accepted": true,
+      "error": null
+    },
+    {
+      "step": 6,
+      "tool": "read_file",
+      "accepted": true,
+      "error": null
+    },
+    {
+      "step": 7,
+      "tool": null,
+      "accepted": false,
+      "error": "missing_arguments"
+    },
+    {
+      "step": 8,
+      "tool": "list_files",
+      "accepted": true,
+      "error": null
+    },
+    {
+      "step": 9,
+      "tool": "read_file",
+      "accepted": true,
+      "error": null
+    },
+    {
+      "step": 10,
+      "tool": null,
+      "accepted": false,
+      "error": "missing_arguments"
+    },
+    {
+      "step": 11,
+      "tool": "list_files",
+      "accepted": true,
+      "error": null
+    },
+    {
+      "step": 12,
+      "tool": "read_file",
+      "accepted": true,
+      "error": null
+    }
+  ],
+  "envelope_error": {
+    "rejected_steps": [
+      4,
+      7,
+      10
+    ],
+    "all_rejected_calls_identical": true,
+    "category": "missing_arguments",
+    "message_received": "Missing arguments object; use an empty object for list_files. Return one JSON object with exactly tool and arguments, bare or inside one complete ```json or unlabelled ``` fence, with no outside text.",
+    "attempted_tool": "edit_file",
+    "top_level_keys_supplied": [
+      "new_text",
+      "old_text",
+      "path"
+    ],
+    "registered_arguments_for_tool": [
+      "new_text",
+      "old_text",
+      "path"
+    ],
+    "defect": "The parameters were correct but sat at the top level instead of inside the required \"arguments\" object. Only the envelope shape was wrong.",
+    "message_defect": "The rejection text was a fixed string naming list_files whatever tool was attempted, and never said to nest the parameters under \"arguments\".",
+    "observed_next_action": {
+      "4": "list_files",
+      "7": "list_files",
+      "10": "list_files"
+    },
+    "attribution": "The message names list_files and the next recorded action was list_files in all three cases. This records co-occurrence only, not model intent."
+  },
+  "intended_edit": {
+    "old_text": "def cart_total(rows):\n    return sum(price for price, quantity in rows)",
+    "new_text": "def cart_total(rows):\n    return sum(price * quantity for price, quantity in rows)",
+    "preserves_required_name": true,
+    "preserves_tuple_representation": true,
+    "never_applied": true
+  },
+  "offline_counterfactual": {
+    "applicable": true,
+    "method": "The rejected call's own old_text/new_text placed in a valid envelope and applied to a fresh copy of the original fixture, outside the episode, in the existing bounded runner.",
+    "repaired_source": "\"\"\"Small cart helpers.\"\"\"\n\ndef cart_total(rows):\n    return sum(price * quantity for price, quantity in rows)\n\ndef label():\n    return \"cart\"\n",
+    "checks_result": {
+      "status": "completed",
+      "returncode": 0,
+      "stdout": "PASS cart-total\n",
+      "stderr": ""
+    },
+    "checks_passed": true,
+    "not_an_agent_repair": "The agent never applied this edit and never executed checks.py. The episode workspace was returned unchanged and the independent grader failed."
+  },
+  "verification_feedback_v2": {
+    "protocol": "epagent.verification-feedback.v2",
+    "discovered_workspace_tests": [
+      "checks.py"
+    ],
+    "removed_definition_feedback_exercised": false,
+    "syntax_feedback_exercised": false,
+    "finish_deferral_exercised": false,
+    "reason": "No edit was ever applied and finish was never requested, so no file changed and no finish evidence was produced. The episode failed upstream of every v2 path.",
+    "emitted_events": 0
+  },
+  "workspace_reads": {
+    "readme": 0,
+    "checks": 1,
+    "source": 4,
+    "checks_executed": false
+  },
+  "resources": {
+    "agent_seconds": 125.05509145895485,
+    "total_seconds": 125.1976124169305,
+    "completed_generations": 12,
+    "prompt_tokens": 15296,
+    "generation_tokens": 443,
+    "scope": "completed generations; prompt includes repeated history",
+    "peak_mlx_bytes": 5068720192,
+    "peak_rss_bytes": 985677824,
+    "token_logprobs_recorded": false,
+    "cost": null
+  },
+  "model": {
+    "model_id": "mlx-community/Qwen2.5-Coder-7B-Instruct-4bit",
+    "revision": "019cc73c45c770444708a6dd8690c66243cc5c80",
+    "backend": "mlx-lm"
+  },
+  "grader": {
+    "independent": true,
+    "runs_after_backend_close": true,
+    "fed_back_to_model": false,
+    "result": "AssertionError",
+    "repair_passed": false
+  },
+  "limitations": "One episode at temperature zero. Not a causal estimate of any intervention and not a model-size comparison. The third distinct failure mode across three 7B episodes."
+}

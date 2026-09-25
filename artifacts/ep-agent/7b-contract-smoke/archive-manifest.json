@@ -1,0 +1,125 @@
+{
+  "schema": "epagent.archive-manifest.v1",
+  "source_head": "cf421bbc294b3b50b7b42d72a3b3c3c6d52ab54d",
+  "run_directory": "attempts/replace-lines-7b-contract-smoke",
+  "episode_id": "b9217bc1630c49ddb1db8196202ed68b",
+  "normalization": "Repository prefixes in metadata and terminal tracebacks become <REPOSITORY>. Model-visible events, generated responses, source bytes and the conversation are byte-identical to the raw records.",
+  "raw_evidence_retained_locally": true,
+  "files": {
+    "attempts/replace-lines-7b-contract-smoke/registration.json": {
+      "raw_sha256": "12b374dc26a792cef8d6805a41bded145dd5e35b35beb5a44c7a18b3c869a36e",
+      "archived_sha256": "363c097a0d19218300270ac5dae596e58c8a2e7a25a12fdaac35a9b2398c1007",
+      "repository_prefix_replacements": 1
+    },
+    "attempts/replace-lines-7b-contract-smoke/result.json": {
+      "raw_sha256": "b3efaf4dd19c583a769809816c3a7c3f2e6845019ad68741adacb208bc6c9007",
+      "archived_sha256": "e12af8d9f371a7bbe7ed33c7502f9728eba0d64ea497b90d5a930819c1e647aa",
+      "repository_prefix_replacements": 7
+    },
+    "attempts/replace-lines-7b-contract-smoke/cleanup.json": {
+      "raw_sha256": "5278e2fee93b5b73772224e301aa676a6eb3be0faf46aa07c8f82280990e16d0",
+      "archived_sha256": "5278e2fee93b5b73772224e301aa676a6eb3be0faf46aa07c8f82280990e16d0",
+      "repository_prefix_replacements": 0
+    },
+    "attempts/replace-lines-7b-contract-smoke/episodes/b9217bc1630c49ddb1db8196202ed68b/report.json": {
+      "raw_sha256": "b3efaf4dd19c583a769809816c3a7c3f2e6845019ad68741adacb208bc6c9007",
+      "archived_sha256": "e12af8d9f371a7bbe7ed33c7502f9728eba0d64ea497b90d5a930819c1e647aa",
+      "repository_prefix_replacements": 7
+    },
+    "attempts/replace-lines-7b-contract-smoke/episodes/b9217bc1630c49ddb1db8196202ed68b/trajectory.jsonl": {
+      "raw_sha256": "602c3153a19e2ee34d7b3e58bb373043d4e4789f931a532dbae8d28ed8ce9742",
+      "archived_sha256": "916817ec2ea2da1384efb7f38a7ea762eb855e2393a30388abe1dd714d0d4273",
+      "repository_prefix_replacements": 7
+    },
+    "attempts/replace-lines-7b-contract-smoke/episodes/b9217bc1630c49ddb1db8196202ed68b/conversation.json": {
+      "raw_sha256": "c1edd16ffef5c0656ba8a6551d76af779b82a8c7b1b736497fc57d45cc7b7d57",
+      "archived_sha256": "c1edd16ffef5c0656ba8a6551d76af779b82a8c7b1b736497fc57d45cc7b7d57",
+      "repository_prefix_replacements": 0
+    },
+    "attempts/replace-lines-7b-contract-smoke/episodes/b9217bc1630c49ddb1db8196202ed68b/changes.diff": {
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "repository_prefix_replacements": 0
+    },
+    "attempts/replace-lines-7b-contract-smoke/episodes/b9217bc1630c49ddb1db8196202ed68b/initial/README.md": {
+      "raw_sha256": "b6c491f6dea743f1d4e18ff8e83bee128d0b50d169b2531b270c33c32d6f9958",
+      "archived_sha256": "b6c491f6dea743f1d4e18ff8e83bee128d0b50d169b2531b270c33c32d6f9958",
+      "repository_prefix_replacements": 0
+    },
+    "attempts/replace-lines-7b-contract-smoke/episodes/b9217bc1630c49ddb1db8196202ed68b/initial/cart.py": {
+      "raw_sha256": "a3861d98b29faf7d762241e5c0e059f66f57e3015a31928073006bf74b709fbc",
+      "archived_sha256": "a3861d98b29faf7d762241e5c0e059f66f57e3015a31928073006bf74b709fbc",
+      "repository_prefix_replacements": 0
+    },
+    "attempts/replace-lines-7b-contract-smoke/episodes/b9217bc1630c49ddb1db8196202ed68b/initial/checks.py": {
+      "raw_sha256": "58783e70e753467b1c89b75f2928737f688554db96d13f0905d62182961734dc",
+      "archived_sha256": "58783e70e753467b1c89b75f2928737f688554db96d13f0905d62182961734dc",
+      "repository_prefix_replacements": 0
+    },
+    "attempts/replace-lines-7b-contract-smoke/episodes/b9217bc1630c49ddb1db8196202ed68b/workspace/README.md": {
+      "raw_sha256": "b6c491f6dea743f1d4e18ff8e83bee128d0b50d169b2531b270c33c32d6f9958",
+      "archived_sha256": "b6c491f6dea743f1d4e18ff8e83bee128d0b50d169b2531b270c33c32d6f9958",
+      "repository_prefix_replacements": 0
+    },
+    "attempts/replace-lines-7b-contract-smoke/episodes/b9217bc1630c49ddb1db8196202ed68b/workspace/cart.py": {
+      "raw_sha256": "a3861d98b29faf7d762241e5c0e059f66f57e3015a31928073006bf74b709fbc",
+      "archived_sha256": "a3861d98b29faf7d762241e5c0e059f66f57e3015a31928073006bf74b709fbc",
+      "repository_prefix_replacements": 0
+    },
+    "attempts/replace-lines-7b-contract-smoke/episodes/b9217bc1630c49ddb1db8196202ed68b/workspace/checks.py": {
+      "raw_sha256": "58783e70e753467b1c89b75f2928737f688554db96d13f0905d62182961734dc",
+      "archived_sha256": "58783e70e753467b1c89b75f2928737f688554db96d13f0905d62182961734dc",
+      "repository_prefix_replacements": 0
+    },
+    ".epagent-models/qwen2.5-coder-7b-4bit/epagent-model.json": {
+      "raw_sha256": "7ba384b44c21d60b5f910474174d893354119eaaa19e1b71de9059806d1a9926",
+      "archived_sha256": "7ba384b44c21d60b5f910474174d893354119eaaa19e1b71de9059806d1a9926",
+      "repository_prefix_replacements": 0
+    },
+    "data/epagent-development/cart-total.json": {
+      "raw_sha256": "ad9bcea2e517f852bb154d0125f43e0f1265046a68b1c3d46add4a733d2e35cb",
+      "archived_sha256": "ad9bcea2e517f852bb154d0125f43e0f1265046a68b1c3d46add4a733d2e35cb",
+      "repository_prefix_replacements": 0
+    },
+    "scripts/run_development_smoke.py": {
+      "raw_sha256": "25d478e0957501ec4af3d9ba636b9a42aa5d22803dfd176916024508bc36f87a",
+      "archived_sha256": "25d478e0957501ec4af3d9ba636b9a42aa5d22803dfd176916024508bc36f87a",
+      "repository_prefix_replacements": 0
+    },
+    "tests/test_verification_feedback.py": {
+      "raw_sha256": "4d5a194cb3e8bf9d892ca925b06f3c00817bd4eef47222f1ed2c3f2893b55a44",
+      "archived_sha256": "4d5a194cb3e8bf9d892ca925b06f3c00817bd4eef47222f1ed2c3f2893b55a44",
+      "repository_prefix_replacements": 0
+    },
+    "src/epagent/verification.py": {
+      "raw_sha256": "b1f3fe60afeb9ef521183aecd51cfef97efba8b948fb125d982972b9a71d17de",
+      "archived_sha256": "b1f3fe60afeb9ef521183aecd51cfef97efba8b948fb125d982972b9a71d17de",
+      "repository_prefix_replacements": 0
+    },
+    "src/epagent/episode.py": {
+      "raw_sha256": "75f50bb42062b2e68a29e915577dc1062c071f0422175b1623afc52a2c7721ec",
+      "archived_sha256": "75f50bb42062b2e68a29e915577dc1062c071f0422175b1623afc52a2c7721ec",
+      "repository_prefix_replacements": 0
+    },
+    "src/epagent/development.py": {
+      "raw_sha256": "258e95ea424d1c9c15ab4851be0a5032a65c743610f87444274e24ff29a1dd7e",
+      "archived_sha256": "258e95ea424d1c9c15ab4851be0a5032a65c743610f87444274e24ff29a1dd7e",
+      "repository_prefix_replacements": 0
+    },
+    "src/epagent/tools.py": {
+      "raw_sha256": "a2322587a0c11ff9ae5d18e7ca8f18e11df671437cffa78f2925ff85e1d194fe",
+      "archived_sha256": "a2322587a0c11ff9ae5d18e7ca8f18e11df671437cffa78f2925ff85e1d194fe",
+      "repository_prefix_replacements": 0
+    },
+    "src/epagent/mlx_backend.py": {
+      "raw_sha256": "831c8cd0116e6a998dc13e05ce030cfbe7572dd0bb7f398755c7f3acad85ac76",
+      "archived_sha256": "831c8cd0116e6a998dc13e05ce030cfbe7572dd0bb7f398755c7f3acad85ac76",
+      "repository_prefix_replacements": 0
+    }
+  },
+  "episodes_run": 1,
+  "retries": 0,
+  "no_inference_or_rescoring": true,
+  "earlier_7b_episodes_unchanged": true,
+  "limitations": "The episode applied no edit, so verification-feedback v2 was never exercised."
+}
