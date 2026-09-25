@@ -1,0 +1,10 @@
+{
+  "id": "sorted-unique",
+  "source": "catalog.py",
+  "pass_marker": "PASS sorted-unique",
+  "files": {
+    "README.md": "Repair ordered_codes in catalog.py to return each integer code once, in ascending order, without modifying the input list. Preserve the unrelated name function and checks.py. Read source, repair, run checks.py and report observed results.\n",
+    "catalog.py": "\"\"\"Catalog utilities.\"\"\"\n\ndef ordered_codes(values):\n    return sorted(values)\n\ndef name():\n    return \"catalog\"\n",
+    "checks.py": "from catalog import ordered_codes, name\nvalues = [4, 2, 4, -1, 2]\nassert ordered_codes(values) == [-1, 2, 4]\nassert values == [4, 2, 4, -1, 2]\nassert ordered_codes([]) == []\nassert name() == \"catalog\"\nprint(\"PASS sorted-unique\")\n"
+  }
+}

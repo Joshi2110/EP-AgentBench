@@ -1,8 +1,10 @@
-"""Five workspace tools; model text is never passed to a shell."""
+"""Bounded workspace tools; model text is never passed to a shell."""
 
 import difflib
 import json
+import hashlib
 from pathlib import Path
+import re
 import stat
 
 from .execution import run_python
@@ -15,10 +17,17 @@ reference solutions, graders, prior attempts, or the network.
 Return one JSON object with exactly two keys: tool (a name below) and arguments
 (an object). Bare JSON or one complete Markdown fence labelled json or unlabelled
 is accepted. No text outside the object/fence and no additional blocks.
-All listed arguments are required strings; additional keys are not allowed.
+All listed arguments are required; additional keys are not allowed. Values are
+strings except start_line and end_line, which must be integers, not strings.
 Available tools and argument fields:
 list_files: no arguments -- list workspace files.
-read_file: path -- read a UTF-8 file at a relative workspace path.
+read_file: path -- read a UTF-8 file at a relative workspace path. A complete read
+  supplies a version token and line_count. Lines are numbered from 1.
+replace_lines: path, version, start_line, end_line, new_text -- replace the complete
+  inclusive line range with new_text. Use the version from the latest read_file.
+  Supply the intended replacement code, including indentation. Other lines stay
+  unchanged. Newline convention and the replaced block's final newline are retained.
+  Read again after an edit. Stale versions, invalid ranges and no-ops are rejected.
 edit_file: path, old_text, new_text -- replace exactly one occurrence of old_text
   with new_text. Copy old_text from an observed file; choose new_text for your
   intended edit. Empty old_text creates a new file only.
@@ -31,6 +40,7 @@ checks passed without observing their output. Finish within budget.
 '''
 
 ARGUMENTS = {"list_files": set(), "read_file": {"path"},
+             "replace_lines": {"path", "version", "start_line", "end_line", "new_text"},
              "edit_file": {"path", "old_text", "new_text"}, "run_python": {"code"},
              "finish": {"summary"}}
 
@@ -94,8 +104,12 @@ def parse_call(text):
     missing = ARGUMENTS[name] - args.keys()
     if missing:
         raise CallError('missing_arguments', f'Missing required arguments for {name}: ' + ', '.join(sorted(missing)) + '.')
-    if set(args) != ARGUMENTS[name] or any(not isinstance(v, str) for v in args.values()):
-        raise CallError('schema_violation', f'Arguments for {name} must be strings with exactly these keys: '
+    integer_fields = {'start_line', 'end_line'} if name == 'replace_lines' else set()
+    if set(args) != ARGUMENTS[name] or any(
+            type(v) is not (int if k in integer_fields else str) for k, v in args.items()):
+        raise CallError('schema_violation', f'Arguments for {name} must be strings '
+                        + ('except integer start_line/end_line, ' if integer_fields else '')
+                        + 'with exactly these keys: '
                         + ', '.join(sorted(ARGUMENTS[name])) + '.')
     return name, args
 
@@ -150,12 +164,19 @@ def changes(before, after):
     return ''.join(patch)
 
 
-def execute(workspace, name, args, seconds, output_bytes):
+def execute(workspace, name, args, seconds, output_bytes, *, session=None):
+    if name == 'replace_lines':
+        if session is None or session.workspace.resolve() != workspace.resolve():
+            raise ValueError('replace_lines requires a tool session and a preceding read_file')
+        return session.replace_lines(args)
     if name == 'list_files':
         return {"files": sorted(snapshot(workspace))}
     if name == 'read_file':
         data = safe_path(workspace, args['path']).read_bytes()
-        return {"content": data[:output_bytes].decode(errors='replace'), "truncated": len(data) > output_bytes}
+        result = {"content": data[:output_bytes].decode(errors='replace'), "truncated": len(data) > output_bytes}
+        if session is not None:
+            result.update(session.observe(args['path'], data, result['truncated']))
+        return result
     if name == 'edit_file':
         p = safe_path(workspace, args['path'])
         old, new = args['old_text'], args['new_text']
@@ -178,3 +199,63 @@ def execute(workspace, name, args, seconds, output_bytes):
             raise ValueError("Python input exceeds 32768 bytes")
         return run_python(workspace, args['code'], seconds, output_bytes)
     return {"finished": True, "summary": args['summary']}
+
+
+def source_lines(data):
+    """Only CR, LF and CRLF delimit lines; other Unicode whitespace is content."""
+    return [s for s in re.findall(r'[^\r\n]*(?:\r\n|\r|\n|$)', data.decode('utf-8')) if s]
+
+
+class ToolSession:
+    """Versions belong to one workspace and require a complete UTF-8 observation."""
+    def __init__(self, workspace):
+        self.workspace = Path(workspace)
+        self.observed = {}
+        self.counter = 0
+
+    def observe(self, path, data, truncated):
+        key = safe_path(self.workspace, path).resolve()
+        self.observed.pop(key, None)
+        if truncated:
+            return {'version': None, 'edit_hint': 'File exceeds the complete-read limit; no edit version issued.'}
+        lines = source_lines(data)
+        self.counter += 1
+        token = f'v{self.counter}'
+        self.observed[key] = (token, hashlib.sha256(data).hexdigest())
+        return {'version': token, 'line_count': len(lines)}
+
+    def replace_lines(self, args):
+        path = safe_path(self.workspace, args['path'])
+        key = path.resolve()
+        data = path.read_bytes()
+        expected = self.observed.get(key)
+        if expected != (args['version'], hashlib.sha256(data).hexdigest()):
+            raise ValueError('Stale or unobserved file version; read_file again and use its version.')
+        lines = source_lines(data)
+        start, end = args['start_line'], args['end_line']
+        if type(start) is not int or type(end) is not int or not 1 <= start <= end <= len(lines):
+            raise ValueError(f'Use an inclusive integer range within lines 1..{len(lines)}.')
+        replacement = args['new_text']
+        if len(replacement.encode('utf-8')) > 256_000:
+            raise ValueError('Replacement exceeds 256000 UTF-8 bytes; use a smaller change.')
+        endings = set(re.findall(r'\r\n|\r|\n', data.decode('utf-8')))
+        if len(endings) > 1:
+            raise ValueError('Mixed newline conventions; replace_lines requires uniform LF, CRLF or CR.')
+        newline = next(iter(endings), '\n')
+        replacement = re.sub(r'\r\n|\r|\n', '\n', replacement).replace('\n', newline)
+        if replacement:
+            terminated = lines[end - 1].endswith(('\r', '\n'))
+            if terminated and not replacement.endswith(newline):
+                replacement += newline
+            elif not terminated and replacement.endswith(newline):
+                replacement = replacement[:-len(newline)]
+        updated = (''.join(lines[:start - 1]) + replacement + ''.join(lines[end:])).encode('utf-8')
+        if len(updated) > 256_000:
+            raise ValueError('Result exceeds 256000 UTF-8 bytes; use a smaller change.')
+        if updated == data:
+            raise ValueError('No bytes changed: replacement equals the selected lines. '
+                             'Choose a content-changing replacement or finish honestly.')
+        path.write_bytes(updated)
+        self.observed.pop(key)
+        return {'edited': args['path'], 'changed': True, 'bytes_before': len(data),
+                'bytes_after': len(updated), 'read_required': True}

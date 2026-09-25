@@ -86,7 +86,11 @@ class V3DataTests(unittest.TestCase):
         protocol = read(DATA / 'eval-protocol.json')
         config = config_at(DATA / 'lora-config.json')
         for name, sha in {**freeze['dataset_files_sha256'], **freeze['implementation_sha256']}.items():
-            self.assertEqual(digest(ROOT / name), sha, name)
+            # The production tool protocol has advanced; verify the original
+            # frozen tool implementation preserved with the diagnostic archive.
+            path = (ROOT / 'artifacts/ep-agent/edit-history-v1' / name
+                    if name == 'src/epagent/tools.py' else ROOT / name)
+            self.assertEqual(digest(path), sha, name)
         self.assertEqual(protocol['training_freeze_sha256'], digest(DATA / 'training-freeze.json'))
         self.assertGreater(protocol['authored_after_training_freeze'], freeze['frozen_at'])
         rows = reviewed_examples(DATA / 'trajectories')
@@ -155,6 +159,11 @@ class V3DataTests(unittest.TestCase):
         spec = importlib.util.spec_from_file_location('build_v3', ROOT / 'scripts/build_sft_v3.py')
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
+        # Replay the original demonstration prompt, never rewrite old training data
+        # to adopt today's tool protocol.
+        first = events(next((DATA / 'trajectories').glob('*.jsonl')))
+        module.SYSTEM_PROMPT = next(e['data']['messages'][0]['content'] for e in first
+                                    if e['event'] == 'model_request')
         with tempfile.TemporaryDirectory() as directory:
             out = Path(directory) / 'traces'
             module.build(DATA / 'fixtures.json', out)

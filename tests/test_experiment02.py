@@ -149,7 +149,7 @@ class TestEvidenceAttribution(unittest.TestCase):
         self.assertEqual(result["verdicts"], 1)
 
     def test_parser_tracks_the_manual_construct_on_archived_traces(self):
-        traces = sorted(glob.glob(str(ROOT / "attempts/*/*/trace.jsonl")))
+        traces = sorted(glob.glob(str(ROOT / "attempts/experiment-*/*/trace.jsonl")))
         if len(traces) < 20:
             self.skipTest("insufficient archived traces")
         means = {}
@@ -164,7 +164,7 @@ class TestEvidenceAttribution(unittest.TestCase):
                            "baseline must be reachable without the intervention")
 
     def test_archived_traces_parse_without_ambiguity(self):
-        traces = sorted(glob.glob(str(ROOT / "attempts/*/*/trace.jsonl")))
+        traces = sorted(glob.glob(str(ROOT / "attempts/experiment-*/*/trace.jsonl")))
         if not traces:
             self.skipTest("no archived traces")
         baseline, structured = [], []

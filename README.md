@@ -61,8 +61,10 @@ diff, and terminal grading result. This uses constrained macOS Python execution
 and local MLX inference; it is not production-grade isolation. Installation,
 limits, trajectory/reward semantics, and the next SFT step are documented in
 [docs/ep-agent.md](docs/ep-agent.md). A small, reviewed synthetic-data SFT
-pipeline is now implemented in [docs/ep-agent-sft.md](docs/ep-agent-sft.md); no
-training has been run.
+pipeline is documented in [docs/ep-agent-sft.md](docs/ep-agent-sft.md). The
+preserved v2 and v3 experiments both yielded 0/4 recovery. Practical versioned
+line editing and the development smoke workflow are documented in
+[docs/epagent-line-editing.md](docs/epagent-line-editing.md).
 
 ### Three things that are easy to confuse
 
