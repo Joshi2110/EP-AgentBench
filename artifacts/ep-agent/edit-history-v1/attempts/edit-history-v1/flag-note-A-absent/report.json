@@ -1,0 +1,122 @@
+{
+  "cell": "flag-note-A-absent",
+  "status": "complete",
+  "generation_calls": 1,
+  "boundary": {
+    "mode": "macos-constrained-development",
+    "verified": true,
+    "private_reads": "denied",
+    "network": "denied",
+    "fork": "denied",
+    "limitations": "System runtime reads and file metadata remain available; not a production security boundary."
+  },
+  "completion": {
+    "event": "done",
+    "text": "{\"tool\": \"replace\", \"arguments\": \"markers.py\", \"old_text\": \"\", \"new_text\": \"# diagnostic note\"}",
+    "generated_token_ids": [
+      4913,
+      14172,
+      788,
+      330,
+      8156,
+      497,
+      330,
+      16370,
+      788,
+      330,
+      60773,
+      7197,
+      497,
+      330,
+      813,
+      4326,
+      788,
+      7342,
+      330,
+      931,
+      4326,
+      788,
+      5869,
+      15089,
+      5185,
+      9207,
+      151645
+    ],
+    "prompt_tokens": 284,
+    "generation_tokens": 27,
+    "finish_reason": "stop",
+    "elapsed_seconds": 0.637451707967557,
+    "peak_mlx_bytes": 1237976384,
+    "peak_rss_bytes": 1165475840,
+    "token_logprobs": null,
+    "backend_exposes_logprobs": true,
+    "logprobs_recorded": false,
+    "logprobs_note": "Adapter does not record log-probabilities; none inferred."
+  },
+  "model": {
+    "model_id": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+    "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+    "license": "apache-2.0",
+    "download_bytes": 880170581,
+    "sha256": {
+      "README.md": "f164287c8bb0d595f172a4be0329660c35208249f360e0c84780e1fcc251e29b",
+      "added_tokens.json": "58b54bbe36fc752f79a24a271ef66a0a0830054b4dfad94bde757d851968060b",
+      "config.json": "0708e236aa7b7db3c01bf8a46200e1a92d57f20fa668a7c430154bd6a21cdba5",
+      "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "model.safetensors": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+      "model.safetensors.index.json": "6b98634d5044f0e2ad45228a374f8445904e571f1082392d08a6ce54f5d517ca",
+      "special_tokens_map.json": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+      "tokenizer.json": "a8506e7111b80c6d8635951a02eab0f4e1a8e4e5772da83846579e97b16f61bf",
+      "tokenizer_config.json": "dced901d401aa828f313a2baec70d0ce164653285812237b5285c7efd5b9e760",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "backend": "mlx-lm",
+    "adapter": {
+      "requested": true,
+      "loaded": true,
+      "path": "<REPOSITORY>/sft-runs/tool-use-lora-v3",
+      "id": "e43356b12cc8a736f05dc2ef942d6c4ba47ff76a794a3f91bb6c4a50955781c1",
+      "config": {
+        "fine_tune_type": "lora",
+        "num_layers": 4,
+        "lora_parameters": {
+          "rank": 8,
+          "scale": 16.0,
+          "dropout": 0.0,
+          "keys": [
+            "self_attn.q_proj",
+            "self_attn.v_proj"
+          ]
+        }
+      },
+      "sha256": {
+        "adapter_config.json": "134bdad3e25e685963ee6bf1a660228981515b53d6bcf7d54efbdea7947de12e",
+        "adapters.safetensors": "4f0f3dde55d6486313f860eaf1f6fcdb2d1f1373b481553e8302cacdb6bc42ff"
+      }
+    },
+    "mlx_lm_version": "0.31.3",
+    "mlx_version": "0.32.2",
+    "transformers_version": "5.17.0",
+    "chat_template_sha256": "89d726e7795b101935db5c909c75a7d403a47deedad53a64947e9b079ba94def",
+    "stop_token_ids": [
+      151643,
+      151645
+    ],
+    "inference": "local MLX; offline; no proprietary model"
+  },
+  "schema_accepted": false,
+  "tool_call": null,
+  "tool_result": {
+    "error": "schema_rejection",
+    "detail": "Unknown or non-string tool name. Allowed tools: list_files, read_file, edit_file, run_python, finish. Return one JSON object with exactly tool and arguments, bare or inside one complete ```json or unlabelled ``` fence, with no outside text."
+  },
+  "source_changed": false,
+  "source_before_sha256": "3c9b376259f1f9ebfef956356c71f6948e5f73b773e1635c27af51eb8b9c89f0",
+  "source_after_sha256": "3c9b376259f1f9ebfef956356c71f6948e5f73b773e1635c27af51eb8b9c89f0",
+  "resulting_source_base64": "ZGVmIHN0YXJ0X2ZsYWcoKToKICAgIHJldHVybiBGYWxzZQoKZGVmIGVuZF9mbGFnKCk6CiAgICByZXR1cm4gRmFsc2UK",
+  "resulting_source_utf8": "def start_flag():\n    return False\n\ndef end_flag():\n    return False\n",
+  "exact_target": false,
+  "repeated_misleading_call": false,
+  "repeated_historical_new_text": false,
+  "wall_seconds": 2.119327292079106
+}

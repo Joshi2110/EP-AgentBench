@@ -1,0 +1,12 @@
+{
+  "time": "2026-09-24T21:11:18.223328+00:00",
+  "owned_pids": [
+    5381,
+    5384,
+    5385
+  ],
+  "owned_pids_alive": [],
+  "diagnostic_or_model_workers": [],
+  "child_reaped": true,
+  "caffeinate_reaped": true
+}

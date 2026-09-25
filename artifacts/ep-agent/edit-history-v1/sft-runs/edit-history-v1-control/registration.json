@@ -1,0 +1,8 @@
+{
+  "time": "2026-09-24T21:08:38.392108+00:00",
+  "manifest_sha256": "e85e2b18ad4f9d631b366adf2340907fdebfc76ca59e156e1e479fb34fe83c5d",
+  "expected_real_responses": 8,
+  "tests_passed": 8,
+  "test_command": "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -p test_edit_history_diagnostic.py -v",
+  "real_generation_started": false
+}

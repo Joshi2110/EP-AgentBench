@@ -1,0 +1,28 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "diagnostics/edit_history.py",
+    "run",
+    "--manifest-dir",
+    "data/epagent-edit-history-v1",
+    "--model-dir",
+    ".epagent-models/qwen2.5-coder-1.5b-4bit",
+    "--adapter-dir",
+    "sft-runs/tool-use-lora-v3",
+    "--out",
+    "attempts/edit-history-v1"
+  ],
+  "environment_overrides": {
+    "PYTHONPATH": "src"
+  },
+  "start": "2026-09-24T21:09:33.445095+00:00",
+  "status": "complete",
+  "wrapper_pid": 5381,
+  "pid": 5384,
+  "caffeinate_pid": 5385,
+  "exit_code": 0,
+  "end": "2026-09-24T21:09:53.524851+00:00",
+  "wall_seconds": 20.079513582983054,
+  "child_reaped": true,
+  "caffeinate_reaped": true
+}
