@@ -1,0 +1,69 @@
+{
+  "schema": "epagent.reference-baseline.v1",
+  "status": "frozen reference configuration for the learning phase",
+  "frozen_at": "2026-09-25",
+  "configuration": {
+    "model_id": "mlx-community/Qwen2.5-Coder-7B-Instruct-4bit",
+    "revision": "019cc73c45c770444708a6dd8690c66243cc5c80",
+    "adapter": null,
+    "verification_feedback": "DISABLED",
+    "tools": [
+      "list_files",
+      "read_file",
+      "replace_lines",
+      "edit_file",
+      "run_python",
+      "finish"
+    ],
+    "steps": 12,
+    "seconds": 300,
+    "tool_seconds": 8,
+    "output_bytes": 8192,
+    "context_tokens": 8192,
+    "max_tokens": 768,
+    "temperature": 0.0,
+    "seed": 0,
+    "adapter_dir": null
+  },
+  "implementation_commit": "9c58aff837f1be3caa3b990c1c843ebb1c695a69",
+  "measured_on": "Evaluation 01, ten fixtures, one attempt each",
+  "measured_performance": {
+    "independent_repair": "3/10",
+    "repaired_fixtures": [
+      "matrix-transpose",
+      "histogram-buckets",
+      "retry-backoff"
+    ],
+    "evidence_supported_finish": "0/10",
+    "agent_initiated_test_runs": 3,
+    "fixtures_with_agent_initiated_tests": "1/10",
+    "visible_test_passed": "4/10",
+    "finish_called": "10/10",
+    "reached_step_limit": "0/10",
+    "schema_rejections": 0,
+    "tool_failures": 0,
+    "agent_seconds_total": 736.6,
+    "prompt_tokens": 61258,
+    "generation_tokens": 3874,
+    "peak_mlx_bytes": 5105716524,
+    "peak_rss_bytes": 1444773888
+  },
+  "frozen_sha256": {
+    "src/epagent/tools.py": "002917745bf245a1c42ad4bded827614ca449330359a14dc2301efeeeba2b13c",
+    "src/epagent/episode.py": "75f50bb42062b2e68a29e915577dc1062c071f0422175b1623afc52a2c7721ec",
+    "src/epagent/mlx_backend.py": "831c8cd0116e6a998dc13e05ce030cfbe7572dd0bb7f398755c7f3acad85ac76",
+    "src/epagent/development.py": "258e95ea424d1c9c15ab4851be0a5032a65c743610f87444274e24ff29a1dd7e",
+    "src/epagent/assessment.py": "aa3415a62ae2df12e85a7376418fb3706b7e8ea98f27c5b5cd77bdb4097f072f",
+    "src/epagent/verification.py": "a9a54dce588160f20ad846c38410c31e6a76f0cdea3671bf465494974bb44c12",
+    "data/epagent-evaluation-01/fixtures.json": "59bf2b25195391836165375e19d523a68cfb755be8202c46357392a12ef3211a",
+    "data/epagent-evaluation-01/protocol.json": "8ae87b3b0846dfc1b84fc757972e06374aa504e6d05a81f529374013bbf17fb0"
+  },
+  "rules": [
+    "This configuration is the comparison point for the next learning phase.",
+    "Verification feedback v3 is preserved, not deleted or rewritten. Its implementation stays in src/epagent/verification.py and its negative evaluation stays in artifacts/ep-agent/evaluation-01.",
+    "Evaluation 01 is not altered or rescored.",
+    "Evaluation 01 outcomes have now been observed, so its ten fixtures are development and validation data from this point on, never fresh held-out evidence.",
+    "Any learning result must be reported against this measured baseline, and must report functional repair and tool-compliance measures separately rather than as one score."
+  ],
+  "limitations": "Ten synthetic fixtures, one attempt each, temperature zero. No uncertainty estimate. The architecture was developed across four prior cart-total episodes and is not independently pre-registered."
+}
