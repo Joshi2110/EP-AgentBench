@@ -1,0 +1,12 @@
+Processing ./.
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: ep-agentbench
+  Building wheel for ep-agentbench (pyproject.toml): started
+  Building wheel for ep-agentbench (pyproject.toml): finished with status 'done'
+  Created wheel for ep-agentbench: filename=ep_agentbench-0.5.0-py3-none-any.whl size=94862 sha256=545bb32fad8f3c4a94553ae4de6212c0ecdfce863b734226b330e8aeed14c8f6
+  Stored in directory: <home>/Library/Caches/pip/wheels/12/8c/9a/e276a3c96d390f9cd9ad1d88f7f9abf5c8719cd685e4df6416
+Successfully built ep-agentbench
+
+[notice] A new release of pip is available: 26.0.1 -> 26.2.1
+[notice] To update, run: <repo>/.venv/bin/python -m pip install --upgrade pip

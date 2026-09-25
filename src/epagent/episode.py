@@ -18,6 +18,7 @@ from .execution import preflight
 from .mlx_backend import BackendError, ContextLimit
 from .reward import grade_submission
 from .tools import CallError, SYSTEM_PROMPT, ToolSession, changes, execute, parse_call, snapshot
+from .verification import PROTOCOL, VerificationFeedback, system_prompt
 
 SCHEMA = 'epagent.episode.v1'
 
@@ -65,8 +66,12 @@ def hashes(files):
     return {name: hashlib.sha256(data).hexdigest() for name, data in sorted(files.items())}
 
 
-def run_episode(task, out, backend, config=Config(), *, synthetic=None, development=None):
+def run_episode(task, out, backend, config=Config(), *, synthetic=None, development=None,
+                verification_feedback=False):
     config.validate()
+    if synthetic is not None and verification_feedback:
+        raise ValueError('Frozen synthetic protocols cannot enable verification feedback')
+    verification = VerificationFeedback() if verification_feedback else None
     if development is not None:
         from .development import export_development, check_development
         if synthetic is not None or task != 'development:' + development['id']:
@@ -97,8 +102,10 @@ def run_episode(task, out, backend, config=Config(), *, synthetic=None, developm
                         'workspace': str(workspace), 'initial_workspace': str(directory / 'initial'),
                         'patch': str(directory / 'changes.diff'),
                         'conversation': str(directory / 'conversation.json'), 'control': str(control)}}
+    if verification is not None:
+        report['verification_feedback'] = PROTOCOL
     save(report_path, report)
-    messages = [{'role': 'system', 'content': SYSTEM_PROMPT},
+    messages = [{'role': 'system', 'content': system_prompt(verification_feedback)},
                 {'role': 'user', 'content': f'Repair task {task}. Start by inspecting the workspace. '
                  f'You have at most {config.steps} tool turns and {config.seconds:g} seconds, '
                  f'including local model loading. Each Python run has at most {config.tool_seconds:g} seconds. '
@@ -124,6 +131,8 @@ def run_episode(task, out, backend, config=Config(), *, synthetic=None, developm
             trace.flush()
 
         emit('episode_start', {'task_id': task, 'config': asdict(config), 'model': backend.metadata})
+        if verification is not None:
+            emit('verification_protocol', {'protocol': PROTOCOL})
         try:
             if development is not None:
                 export_development(development, workspace)
@@ -187,6 +196,12 @@ def run_episode(task, out, backend, config=Config(), *, synthetic=None, developm
                     report['errors'].append({'step': step, **observation})
                 after = snapshot(workspace)
                 patch = changes(before, after)
+                if verification is not None:
+                    feedback = verification.observe(workspace, step, name, before, after, observation,
+                        min(config.tool_seconds, deadline - time.monotonic()), config.output_bytes)
+                    if feedback:
+                        observation['verification'] = feedback
+                        emit('verification_feedback', {'step': step, **feedback})
                 result = {'step': step, 'observation': observation, 'patch': patch}
                 if synthetic is not None:
                     result['workspace_sha256'] = hashes(after)

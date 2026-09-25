@@ -65,6 +65,8 @@ pipeline is documented in [docs/ep-agent-sft.md](docs/ep-agent-sft.md). The
 preserved v2 and v3 experiments both yielded 0/4 recovery. Practical versioned
 line editing and the development smoke workflow are documented in
 [docs/epagent-line-editing.md](docs/epagent-line-editing.md).
+The failed 7B episode and opt-in syntax/test-observability improvements are
+documented in [docs/epagent-verification-feedback.md](docs/epagent-verification-feedback.md).
 
 ### Three things that are easy to confuse
 

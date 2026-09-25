@@ -1,0 +1,88 @@
+{
+  "schema": "epagent.verification-feedback-checks.v1",
+  "verified_at": "2026-09-25",
+  "verified_by": "Takeover review after the authoring session ended mid-suite; results re-measured, not inherited.",
+  "implementation_commit_at_verification": "d6832b4a80ee2ce20cc0bed0bd06bded61b5ac29",
+  "protocol": "epagent.verification-feedback.v1",
+  "real_model_inference_performed": false,
+  "training_performed": false,
+  "test_suite": {
+    "command": "EPAGENT_TEST_MLX=1 PATH=\"$PWD/.venv/bin:$PATH\" PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v",
+    "passed": 203,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 105.138,
+    "log": "full-tests.log",
+    "log_sha256": "a135c1cfd4e36afd90442c238f63ba0c7c62da4df019e0f8c22a90907aaa506c",
+    "verification_feedback_tests_executed": 9,
+    "note": "Re-run after the documentation link fix; identical outcome."
+  },
+  "behavioral_acceptance": {
+    "method": "Scripted FakeModel decisions through the real episode loop and real tools; no generation.",
+    "syntax_error_reaches_agent": {
+      "observed": true,
+      "detail": "After a replace_lines write that deleted the function header, the next model request carried verification.write_status applied_with_syntax_errors and IndentationError at line 3."
+    },
+    "invalid_write_not_reverted": {
+      "observed": true,
+      "detail": "The following read_file observation still showed the invalid bytes; no rollback or repair."
+    },
+    "valid_edits_remain_possible": {
+      "observed": true,
+      "detail": "A corrected replace_lines applied, final source compiled, independent grader repair_passed true."
+    },
+    "syntax_check_does_not_replace_grader": {
+      "observed": true,
+      "detail": "Syntactically valid but behaviorally wrong edit plus a fabricated printed PASS: syntax valid, independent repair_passed false, original_visible_tests_passed false."
+    },
+    "grader_independence": {
+      "observed": true,
+      "detail": "check_development ran only after backend close; no grading result entered any model request."
+    },
+    "default_path_unchanged": {
+      "observed": true,
+      "detail": "With the flag off the syntax checker is never invoked, the report carries no verification_feedback key, and independent grading is unaffected."
+    }
+  },
+  "packaging": {
+    "wheel": "ep_agentbench-0.5.0-py3-none-any.whl",
+    "wheel_sha256": "545bb32fad8f3c4a94553ae4de6212c0ecdfce863b734226b330e8aeed14c8f6",
+    "wheel_sha256_note": "Observed locally; wheel builds are not byte-reproducible across runs.",
+    "new_module_shipped": "epagent/verification.py",
+    "private_artifacts_in_wheel": false,
+    "clean_venv_install": true,
+    "clean_venv_checks": [
+      "import epagent.verification",
+      "epbench list",
+      "epagent --help"
+    ],
+    "logs": [
+      "wheel.log",
+      "install.log"
+    ]
+  },
+  "protected_paths_unchanged_in_working_tree": [
+    "src/epbench",
+    "examples/solutions",
+    "data/epagent-sft-v1",
+    "data/epagent-sft-v2",
+    "data/epagent-sft-v3",
+    "attempts",
+    "artifacts (pre-existing)",
+    "docs/experiment-01.md",
+    "docs/experiment-02.md"
+  ],
+  "preserved_7b_evidence": {
+    "path": "artifacts/ep-agent/7b-development-smoke",
+    "files": 62,
+    "modified": 0
+  },
+  "public_snapshot": {
+    "repository": "../ep-agentbench-public",
+    "head": "a955541",
+    "modified": 0
+  },
+  "limitations": "Engineering acceptance only. No model output, and no measurement of whether this feedback changes real agent behavior. The next development episode remains separately authorized.",
+  "log_normalization": "Absolute scratch, repository, home and temporary-directory paths in the committed logs are replaced with <scratch>, <repo>, <home> and <tmp>. No command, count or outcome was altered."
+}

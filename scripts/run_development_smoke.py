@@ -12,7 +12,7 @@ import sys
 
 from epagent.episode import Config, run_episode, save
 from epagent.mlx_backend import MLXBackend
-from epagent.tools import SYSTEM_PROMPT
+from epagent.verification import PROTOCOL, system_prompt
 
 
 def main():
@@ -20,6 +20,8 @@ def main():
     parser.add_argument('--fixture', type=Path, required=True)
     parser.add_argument('--model-dir', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--verification-feedback', action='store_true',
+                        help='Enable explicitly recorded syntax feedback and test reminders')
     args = parser.parse_args()
     fixture = json.loads(args.fixture.read_text())
     args.out.mkdir(parents=True, exist_ok=False)
@@ -30,7 +32,8 @@ def main():
         'kind': 'one development episode; no recovery/replacement run',
         'command': [sys.executable, *sys.argv], 'config': asdict(config),
         'fixture': fixture, 'fixture_sha256': hashlib.sha256(args.fixture.read_bytes()).hexdigest(),
-        'system_prompt': SYSTEM_PROMPT, 'model': backend.metadata,
+        'system_prompt': system_prompt(args.verification_feedback), 'model': backend.metadata,
+        'verification_feedback': PROTOCOL if args.verification_feedback else None,
         'implementation_commit': subprocess.check_output(
             ['git', 'rev-parse', 'HEAD'], cwd=Path(__file__).resolve().parents[1], text=True).strip(),
         'python': platform.python_version(),
@@ -40,7 +43,7 @@ def main():
     inhibitor = subprocess.Popen(['/usr/bin/caffeinate', '-i', '-w', str(os.getpid())])
     try:
         report = run_episode('development:' + fixture['id'], args.out / 'episodes', backend,
-                             config, development=fixture)
+                             config, development=fixture, verification_feedback=args.verification_feedback)
         save(args.out / 'result.json', report)
         print(json.dumps({'status': report['status'], 'report': report['paths']['report'],
                           'development': report.get('development')}), flush=True)
