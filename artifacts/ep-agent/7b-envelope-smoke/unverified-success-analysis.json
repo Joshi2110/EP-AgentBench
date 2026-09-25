@@ -1,0 +1,165 @@
+{
+  "schema": "epagent.unverified-success-analysis.v1",
+  "episode": "e23a8aadf47049ef979afaed460075f0",
+  "headline": "The agent-produced repair passed the independent grader, but the agent did not execute the shipped tests, did not recognize its own success, and did not complete the workflow. The episode ended on the step limit with no summary.",
+  "method": "Static reading of recorded events and fixture bytes only.",
+  "outcome": {
+    "status": "unfinished",
+    "termination_reason": "step_limit",
+    "steps": 12,
+    "finish_calls": 0,
+    "schema_valid_calls": 11,
+    "schema_rejected": 1,
+    "tool_rejected": 6,
+    "source_changed": true,
+    "repair_passed": true
+  },
+  "schema_rejection_and_recovery": {
+    "rejected_step": 4,
+    "attempted_tool": "edit_file",
+    "top_level_keys_supplied": [
+      "new_text",
+      "old_text",
+      "path"
+    ],
+    "corrected_message_received": "Missing arguments object for edit_file. \"arguments\" is required and must be a JSON object containing new_text, old_text, path. Found new_text, old_text, path at the top level; move them inside \"arguments\" and keep the same values. Shape: {\"tool\": \"edit_file\", \"arguments\": {\"new_text\": \"<new_text>\", \"old_text\": \"<old_text>\", \"path\": \"<path>\"}} Return one JSON object with exactly tool and arguments, bare or inside one complete ```json or unlabelled ``` fence, with no outside text.",
+    "message_names_attempted_tool": true,
+    "message_mentions_list_files": false,
+    "recovery_step": 5,
+    "recovery_nested_under_arguments": true,
+    "parameter_values_preserved_exactly": true,
+    "note": "One rejection, corrected on the next turn. This is the behavior the corrected schema message targeted; one episode does not establish a causal effect."
+  },
+  "accepted_edit": {
+    "step": 5,
+    "tool": "edit_file",
+    "arguments": {
+      "new_text": "def cart_total(rows):\n    return sum(price * quantity for price, quantity in rows)",
+      "old_text": "def cart_total(rows):\n    return sum(price for price, quantity in rows)",
+      "path": "cart.py"
+    },
+    "observation": {
+      "edited": "cart.py",
+      "verification": {
+        "syntax": {
+          "status": "valid",
+          "files": {
+            "cart.py": {
+              "status": "valid"
+            }
+          },
+          "seconds": 0.0548
+        },
+        "write_status": "applied",
+        "reminder": "Bytes changed; inspect any syntax errors, then run relevant tests. An applied edit or valid syntax is not a verified repair."
+      }
+    },
+    "verification_feedback": {
+      "syntax": {
+        "status": "valid",
+        "files": {
+          "cart.py": {
+            "status": "valid"
+          }
+        },
+        "seconds": 0.0548
+      },
+      "write_status": "applied",
+      "reminder": "Bytes changed; inspect any syntax errors, then run relevant tests. An applied edit or valid syntax is not a verified repair."
+    },
+    "source_before": "\"\"\"Small cart helpers.\"\"\"\n\ndef cart_total(rows):\n    return sum(price for price, quantity in rows)\n\ndef label():\n    return \"cart\"\n",
+    "source_after": "\"\"\"Small cart helpers.\"\"\"\n\ndef cart_total(rows):\n    return sum(price * quantity for price, quantity in rows)\n\ndef label():\n    return \"cart\"\n",
+    "patch": "--- before/cart.py\n+++ after/cart.py\n@@ -1,7 +1,7 @@\n \"\"\"Small cart helpers.\"\"\"\n \n def cart_total(rows):\n-    return sum(price for price, quantity in rows)\n+    return sum(price * quantity for price, quantity in rows)\n \n def label():\n     return \"cart\"\n",
+    "public_definitions_preserved": [
+      "cart_total",
+      "label"
+    ],
+    "tuple_representation_preserved": true
+  },
+  "agent_authored_test": {
+    "step": 6,
+    "code": "from cart import cart_total, label\nassert cart_total([(7, 3), (2, 4)]) == 28\nassert cart_total([(5, 0)]) == 0\nassert cart_total([]) == 0\nassert cart_total([(3, 1)]) == 3\nassert label() == \"cart\"\nprint(\"PASS cart-total\")",
+    "observation": {
+      "status": "python_error",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n  File \"<agent-python>\", line 2, in <module>\nAssertionError\n",
+      "elapsed_seconds": 0.0561
+    },
+    "shipped_test_executed": false,
+    "names_shipped_file": false,
+    "imports_shipped_module": false,
+    "difference_from_shipped_test": [
+      "-assert cart_total([(7, 3), (2, 4)]) == 29",
+      "+assert cart_total([(7, 3), (2, 4)]) == 28"
+    ],
+    "incorrect_assertion": "The agent retyped the shipped test and asserted 28 for [(7, 3), (2, 4)]. The specified total is 7*3 + 2*4 = 29, so the agent-authored assertion was wrong and its correct code failed it.",
+    "consequence": "The only execution in the episode reported failure for a repair that the independent grader later passed."
+  },
+  "stale_repeated_edits": {
+    "steps": [
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "count": 6,
+    "all_identical": true,
+    "error": "old_text must match exactly once",
+    "cause": "The accepted edit at step 5 replaced that exact text, so old_text occurred 0 times afterwards. These calls were schema-valid but stale.",
+    "source_rereads_after_the_accepted_edit": 0,
+    "note": "The workspace was never re-read after the edit landed, so the already-applied change was not observed."
+  },
+  "verification_feedback_v2": {
+    "protocol": "epagent.verification-feedback.v2",
+    "discovered_workspace_tests": [
+      "checks.py"
+    ],
+    "syntax_feedback_fired": true,
+    "removed_definition_feedback_fired": false,
+    "removed_definition_reason": "The edit preserved both public definitions, so nothing was removed.",
+    "finish_deferral_fired": false,
+    "finish_deferral_reason": "finish was never requested, so the reminder could not apply.",
+    "gap": "No mechanism covers an agent that edits correctly, tests with a faulty transcription of the shipped test, and never finishes."
+  },
+  "independent_grader": {
+    "runs_after_backend_close": true,
+    "fed_back_to_model": false,
+    "command": "the original checks.py bytes, irrespective of any edit to checks.py",
+    "result": {
+      "status": "completed",
+      "returncode": 0,
+      "stdout": "PASS cart-total\n",
+      "stderr": "",
+      "elapsed_seconds": 0.0571
+    },
+    "original_visible_tests_passed": true,
+    "repair_passed": true,
+    "caveat": "Functional success by the independent grader only. The agent neither observed nor claimed it, so this is not an agent-verified repair."
+  },
+  "workspace_reads": {
+    "readme": 0,
+    "checks": 1,
+    "source": 1
+  },
+  "resources": {
+    "agent_seconds": 159.36951879202388,
+    "total_seconds": 159.51081829098985,
+    "completed_generations": 12,
+    "prompt_tokens": 17475,
+    "generation_tokens": 802,
+    "scope": "completed generations; prompt includes repeated history",
+    "peak_mlx_bytes": 5105716888,
+    "peak_rss_bytes": 1317847040,
+    "token_logprobs_recorded": false,
+    "cost": null
+  },
+  "model": {
+    "model_id": "mlx-community/Qwen2.5-Coder-7B-Instruct-4bit",
+    "revision": "019cc73c45c770444708a6dd8690c66243cc5c80",
+    "backend": "mlx-lm"
+  },
+  "limitations": "One episode at temperature zero on one fixture, run after a fix made in response to the previous failure. Not a causal estimate and not generalization evidence. Across all four cart-total episodes the shipped test was never executed."
+}

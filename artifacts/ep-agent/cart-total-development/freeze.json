@@ -1,0 +1,84 @@
+{
+  "schema": "epagent.fixture-freeze.v1",
+  "fixture": "data/epagent-development/cart-total.json",
+  "fixture_sha256": "ad9bcea2e517f852bb154d0125f43e0f1265046a68b1c3d46add4a733d2e35cb",
+  "status": "frozen: cart-total is closed for development episodes",
+  "frozen_at": "2026-09-25",
+  "classification": "All four episodes are DEVELOPMENT EVIDENCE. They are engineering smoke tests on one fixture, each run after a fix made in response to the previous failure. They are not a benchmark, not a controlled comparison, and not generalization evidence.",
+  "episodes_run": 4,
+  "episodes": [
+    {
+      "ordinal": 1,
+      "archive": "artifacts/ep-agent/7b-development-smoke",
+      "raw_run_directory": "attempts/replace-lines-7b-smoke",
+      "episode_id": null,
+      "source_head": "967e8517728c68a97487f931a0ec25a4ffece9d8",
+      "status": "unfinished",
+      "termination_reason": "step_limit",
+      "source_changed": true,
+      "shipped_checks_executed": false,
+      "repair_passed": false,
+      "agent_verified_its_own_repair": false,
+      "archive_manifest_sha256": "d7e78e347bc4cf2f25f3a7f53df653b887784be393e7a4ddd732463ad99a3b35",
+      "archived_files": 58
+    },
+    {
+      "ordinal": 2,
+      "archive": "artifacts/ep-agent/7b-verification-smoke",
+      "raw_run_directory": "attempts/replace-lines-7b-verification-smoke",
+      "episode_id": "c2e1e8992bd5461eac3eed8c2144231d",
+      "source_head": "48c0c690d5b4e5284243005f3e596437f2134dc4",
+      "status": "finished",
+      "termination_reason": "finish_tool",
+      "source_changed": true,
+      "shipped_checks_executed": false,
+      "repair_passed": false,
+      "agent_verified_its_own_repair": false,
+      "archive_manifest_sha256": "ac764719830c06e0a5c3e0c7e81171f8370def56d57dd8fb36467931f34b4835",
+      "archived_files": 22
+    },
+    {
+      "ordinal": 3,
+      "archive": "artifacts/ep-agent/7b-contract-smoke",
+      "raw_run_directory": "attempts/replace-lines-7b-contract-smoke",
+      "episode_id": "b9217bc1630c49ddb1db8196202ed68b",
+      "source_head": "cf421bbc294b3b50b7b42d72a3b3c3c6d52ab54d",
+      "status": "unfinished",
+      "termination_reason": "step_limit",
+      "source_changed": false,
+      "shipped_checks_executed": false,
+      "repair_passed": false,
+      "agent_verified_its_own_repair": false,
+      "archive_manifest_sha256": "1d9f66a58069312f8bcc41d91b723b047cdb95cd06c4d580166224c9a02653e8",
+      "archived_files": 22
+    },
+    {
+      "ordinal": 4,
+      "archive": "artifacts/ep-agent/7b-envelope-smoke",
+      "raw_run_directory": "attempts/replace-lines-7b-envelope-smoke",
+      "episode_id": "e23a8aadf47049ef979afaed460075f0",
+      "source_head": "4252ebf9b3c9da0470a2507a2e5735593af7f5f8",
+      "status": "unfinished",
+      "termination_reason": "step_limit",
+      "source_changed": true,
+      "shipped_checks_executed": false,
+      "repair_passed": true,
+      "agent_verified_its_own_repair": false,
+      "archive_manifest_sha256": "2e6f9f93dc69be6aab8c795ec17e417c3cd21f8153dcb88784d7d9c4e5bb3fd9",
+      "archived_files": 23
+    }
+  ],
+  "grader_passing_episodes": [
+    4
+  ],
+  "agent_verified_episodes": [],
+  "shipped_test_executions_across_all_episodes": 0,
+  "rules": [
+    "Do not run another episode on this fixture.",
+    "Do not alter or rescore these four episodes.",
+    "Do not report episode 4 as a completed agent workflow: the grader passed, the agent did not execute the shipped test, recognize success, or finish.",
+    "Do not count the episode 3 offline counterfactual as an agent-completed repair.",
+    "Any future verification mechanism stays disabled for these frozen experiments."
+  ],
+  "no_inference_or_rescoring": true
+}

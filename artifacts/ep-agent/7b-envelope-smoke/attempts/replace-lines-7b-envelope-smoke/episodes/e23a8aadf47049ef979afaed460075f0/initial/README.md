@@ -1,0 +1,1 @@
+Repair cart_total in cart.py. Each row is (unit_price, quantity); compute the total charge for all rows. Empty carts and zero quantities must work. Preserve the unrelated label function and checks.py. Read the source, make the code change, execute checks.py with the Python tool, and finish with only claims supported by its actual output.
