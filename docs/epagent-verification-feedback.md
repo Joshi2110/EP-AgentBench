@@ -11,7 +11,7 @@ The exact five-edit reconstruction is in the archive's `edit-analysis.json`.
 ## Minimal change
 
 `run_episode(..., verification_feedback=True)` explicitly enables protocol
-`epagent.verification-feedback.v1`. The development runner exposes the same
+`epagent.verification-feedback.v2`. The development runner exposes the same
 option as `--verification-feedback` and records the full resulting prompt in
 its registration. It is off by default and rejected for frozen synthetic recovery
 protocols. Historical prompts, parser, tools, versions, edit results, sampling
@@ -50,6 +50,54 @@ Honest unresolved finishes remain possible; this feature does not classify prose
 or refuse submission. The independent original-test/physics verifier still runs
 only after the backend has closed and supplies no feedback to the agent.
 
+## v2: contract feedback after the second 7B failure
+
+The [second preserved episode](../artifacts/ep-agent/7b-verification-smoke/README.md)
+failed differently. The model wrote valid Python, so the syntax path never fired.
+Its one edit renamed `cart_total` to `calculate_total` and changed the input
+representation, it ran an ad-hoc command against its own replacement, and it
+finished claiming success. The protocol identifier moved to `v2` so episodes
+before and after this change stay distinguishable.
+
+**Removed definitions.** After an action changes Python files, the top-level
+public `def`/`class` names present before it are compared with those present
+after. Names that disappeared are reported as `removed_definitions`, with a note
+that removal can be intended and that callers may need updating. It never claims
+the edit is wrong: renaming back reports the temporary name as removed too.
+Nested and method definitions and underscore-prefixed names are out of scope.
+When either side does not parse, the comparison is skipped and recorded as
+`definitions_not_compared`, leaving the existing syntax feedback to describe it.
+Everything is computed from workspace source; no grader expectation is consulted.
+
+**Workspace tests.** Test files are discovered from the original exported
+workspace by naming convention only: a path component or filename token in
+`test`, `check`, `verify`, `validate`, `validation` or `spec`. No task-specific
+filename is built in, and files the agent creates later never qualify. Reads and
+executions are tracked from recorded tool actions. Execution is recognized only
+by importing the test module or by naming it inside an executing call such as
+`exec` or `runpy.run_path`. An arbitrary command that merely prints, including
+one that prints a pass marker, is not execution. The finish inventory separates
+existence, reads, executions, the observed status of each execution, and whether
+the test bytes were still unmodified when it ran.
+
+**Finish semantics.** A warning that arrives only after termination cannot change
+anything, so the reminder is nonterminal and bounded. If the feature is enabled,
+the workspace ships a discoverable test, no recorded action has run it, no
+reminder has been issued yet, at least two turns remain and wall time remains,
+then `finish` is not accepted: the observation reports `finished: false` with a
+`finish_deferred` block naming the discovered tests and the action to take, the
+episode continues, and the agent keeps its remaining budget. Each of those
+conditions is required, so at most one reminder is ever issued and the next
+`finish` is always accepted whatever the agent did in between. There is no
+rejection loop. A task with no discoverable test is never deferred. When the
+budget cannot absorb a reminder the finish proceeds and the honest terminal
+status stands, with the missing verification recorded rather than success
+invented. With the feature disabled, `finish` behaves exactly as before.
+
+The workspace is never modified by any of this, no code is repaired or rolled
+back, and the independent grader is unchanged and still runs only after the
+backend closes.
+
 ## Offline acceptance
 
 `tests/test_verification_feedback.py` uses scripted decisions only. It covers:
@@ -64,6 +112,12 @@ only after the backend has closed and supplies no feedback to the agent.
 - Compile-only behavior despite workspace import shadows and executable source
   side effects, deleted/empty/null-byte files, time/output limits, and unchanged
   default prompts and observations.
+- Removed-definition reporting for function removal, rename, class removal,
+  unrelated edits, private names and unparseable source, plus delivery of the
+  removal to the next model request and a scripted restoration afterwards.
+- Convention-based test discovery, rejection of ad-hoc commands as execution,
+  agent-created files failing to qualify, one bounded nonterminal reminder, an
+  immediately accepted second finish, and no reminder when turns run out.
 
 The full suite and packaging commands/results are recorded in
 [verification-feedback-checks.json](../artifacts/ep-agent/verification-feedback-v1/verification-feedback-checks.json),

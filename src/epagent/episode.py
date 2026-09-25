@@ -141,6 +141,8 @@ def run_episode(task, out, backend, config=Config(), *, synthetic=None, developm
             else:
                 export_fixture(synthetic, workspace)
             initial = snapshot(workspace)
+            if verification is not None:
+                report['workspace_tests'] = verification.register_workspace(initial)
             shutil.copytree(workspace, directory / 'initial')
             report['initial_sha256'] = hashes(initial)
             export_hash = hashlib.sha256(json.dumps(report['initial_sha256'], sort_keys=True).encode()).hexdigest()
@@ -192,13 +194,23 @@ def run_episode(task, out, backend, config=Config(), *, synthetic=None, developm
                                    'detail': str(exc)[:1000]}
                     if name == 'replace_lines':
                         observation['changed'] = snapshot(workspace) != before
-                    name = None
+                    name, arguments = None, None
                     report['errors'].append({'step': step, **observation})
                 after = snapshot(workspace)
                 patch = changes(before, after)
+                deferred = None
                 if verification is not None:
                     feedback = verification.observe(workspace, step, name, before, after, observation,
-                        min(config.tool_seconds, deadline - time.monotonic()), config.output_bytes)
+                        min(config.tool_seconds, deadline - time.monotonic()), config.output_bytes,
+                        arguments=arguments)
+                    if name == 'finish':
+                        deferred = verification.consider_finish(step, config.steps,
+                                                                deadline - time.monotonic())
+                        if deferred is not None:
+                            # The episode continues; the workspace and the agent's code are untouched.
+                            observation['finished'] = False
+                            feedback['finish_deferred'] = deferred
+                            report['finish_reminders'] = verification.finish_reminders
                     if feedback:
                         observation['verification'] = feedback
                         emit('verification_feedback', {'step': step, **feedback})
@@ -208,7 +220,7 @@ def run_episode(task, out, backend, config=Config(), *, synthetic=None, developm
                 emit('tool_result', result)
                 messages.append({'role': 'user', 'content': json.dumps({'tool_result': observation,
                                  'steps_remaining': config.steps - step}, ensure_ascii=False)})
-                if name == 'finish':
+                if name == 'finish' and deferred is None:
                     report['status'], report['termination_reason'] = 'finished', 'finish_tool'
                     break
         except ContextLimit as exc:
