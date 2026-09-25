@@ -49,6 +49,22 @@ FORMAT_HELP = ('Return one JSON object with exactly tool and arguments, bare or 
                'one complete ```json or unlabelled ``` fence, with no outside text.')
 
 
+def envelope_shape(name):
+    """A structural example built from the registered schema; placeholders only."""
+    integers = {'start_line', 'end_line'} if name == 'replace_lines' else set()
+    fields = ', '.join(f'"{f}": ' + ('<integer>' if f in integers else f'"<{f}>"')
+                       for f in sorted(ARGUMENTS[name]))
+    return '{"tool": "%s", "arguments": {%s}}' % (name, fields)
+
+
+def argument_help(name):
+    """Describe the arguments object this tool actually registers."""
+    if not ARGUMENTS[name]:
+        return f'"arguments" is required; {name} takes no parameters, so use an empty object.'
+    return ('"arguments" is required and must be a JSON object containing '
+            + ', '.join(sorted(ARGUMENTS[name])) + '.')
+
+
 class CallError(ValueError):
     """An agent-facing protocol error, without internal execution details."""
     def __init__(self, category, problem):
@@ -95,15 +111,26 @@ def parse_call(text):
     if not isinstance(name, str) or name not in ARGUMENTS:
         raise CallError('invalid_tool', 'Unknown or non-string tool name. Allowed tools: ' + ', '.join(ARGUMENTS) + '.')
     if 'arguments' not in call:
-        raise CallError('missing_arguments', 'Missing arguments object; use an empty object for list_files.')
+        # Name the attempted tool and the real defect. Never move the values here:
+        # validation stays strict and the rejected call is not executed.
+        misplaced = sorted(k for k in call if k != 'tool' and k in ARGUMENTS[name])
+        detail = f'Missing arguments object for {name}. ' + argument_help(name)
+        if misplaced:
+            detail += (' Found ' + ', '.join(misplaced) + ' at the top level; move '
+                       + ('it' if len(misplaced) == 1 else 'them')
+                       + ' inside "arguments" and keep the same values.')
+        raise CallError('missing_arguments', detail + ' Shape: ' + envelope_shape(name))
     if set(call) != {'tool', 'arguments'}:
         raise CallError('schema_violation', 'Extra top-level keys are not allowed.')
     args = call['arguments']
     if not isinstance(args, dict):
-        raise CallError('schema_violation', 'arguments must be a JSON object.')
+        raise CallError('schema_violation', f'arguments for {name} must be a JSON object, not '
+                        f'{type(args).__name__}. ' + argument_help(name)
+                        + ' Shape: ' + envelope_shape(name))
     missing = ARGUMENTS[name] - args.keys()
     if missing:
-        raise CallError('missing_arguments', f'Missing required arguments for {name}: ' + ', '.join(sorted(missing)) + '.')
+        raise CallError('missing_arguments', f'Missing required arguments for {name}: '
+                        + ', '.join(sorted(missing)) + '. Shape: ' + envelope_shape(name))
     integer_fields = {'start_line', 'end_line'} if name == 'replace_lines' else set()
     if set(args) != ARGUMENTS[name] or any(
             type(v) is not (int if k in integer_fields else str) for k, v in args.items()):
