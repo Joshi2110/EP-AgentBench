@@ -1,0 +1,2 @@
+def strategy():
+    return "exponential"

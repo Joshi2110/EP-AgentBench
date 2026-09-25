@@ -1,0 +1,2 @@
+def separator():
+    return "/"

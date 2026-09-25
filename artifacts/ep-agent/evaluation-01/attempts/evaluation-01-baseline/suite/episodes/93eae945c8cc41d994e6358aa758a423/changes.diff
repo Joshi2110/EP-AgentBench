@@ -1,0 +1,13 @@
+--- before/checks.py
++++ after/checks.py
+@@ -3,4 +3,4 @@
+ assert F(5, 1, 4) == [1, 2, 4, 4, 4]
+ assert F(0, 1, 100) == []
+ assert strategy() == "exponential"
+-print('PASS retry-backoff')
++print('PASS retry-backoff')--- before/net/backoff.py
++++ after/net/backoff.py
+@@ -1,2 +1,2 @@
+ def delays(attempts, base, cap):
+-    return [base * 2 ** i for i in range(attempts)]
++    return [min(base * 2 ** i, cap) for i in range(attempts)]

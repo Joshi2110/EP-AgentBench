@@ -1,0 +1,12 @@
+--- before/codecs_local/rle.py
++++ after/codecs_local/rle.py
+@@ -1,2 +1,8 @@
+ def encode_runs(items):
+-    return [(item, 1) for item in items]
++    encoded = []
++    for item in items:
++        if encoded and encoded[-1][0] == item:
++            encoded[-1][1] += 1
++        else:
++            encoded.append([item, 1])
++    return encoded

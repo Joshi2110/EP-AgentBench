@@ -1,0 +1,15 @@
+--- before/syntax/brackets.py
++++ after/syntax/brackets.py
+@@ -1,4 +1,11 @@
+ PAIRS = {")": "(", "]": "[", "}": "{"}
+ 
+ def is_balanced(text):
+-    return len([c for c in text if c in "([{"]) == len([c for c in text if c in ")]}"])
++    stack = []
++    for char in text:
++        if char in PAIRS:
++            stack.append(char)
++        elif char in PAIRS.values():
++            if not stack or Pairs[stack.pop()] != char:
++                return False
++    return not stack

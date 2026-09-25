@@ -1,0 +1,7 @@
+--- before/grids/matrix.py
++++ after/grids/matrix.py
+@@ -1,2 +1,2 @@
+-def transpose(rows):
+-    return [list(row) for row in rows]
++def transpose(matrix):
++    return [list(row) for row in zip(*matrix)]

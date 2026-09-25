@@ -1,0 +1,2 @@
+def closed():
+    return False

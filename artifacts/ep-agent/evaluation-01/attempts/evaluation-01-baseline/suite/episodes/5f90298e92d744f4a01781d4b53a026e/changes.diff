@@ -1,0 +1,11 @@
+--- before/numerals/convert.py
++++ after/numerals/convert.py
+@@ -4,6 +4,6 @@
+     out = ""
+     for value, sign in VALUES:
+         while number >= value:
+-            out += sign
+-            number -= value
++            out += sign * (number // value)
++            number %= value
+     return out

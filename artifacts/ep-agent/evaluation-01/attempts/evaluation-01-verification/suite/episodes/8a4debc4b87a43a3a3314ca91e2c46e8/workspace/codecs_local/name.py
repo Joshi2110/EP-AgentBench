@@ -1,0 +1,2 @@
+def codec():
+    return "rle"

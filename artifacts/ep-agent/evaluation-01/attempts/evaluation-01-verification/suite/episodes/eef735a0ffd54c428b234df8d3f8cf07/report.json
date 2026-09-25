@@ -1,0 +1,155 @@
+{
+  "schema": "epagent.episode.v1",
+  "epagent_version": "0.1.0",
+  "benchmark_version": "0.5.0",
+  "episode_id": "eef735a0ffd54c428b234df8d3f8cf07",
+  "task_id": "development:bracket-balance",
+  "instance_id": "development:bracket-balance:default:e5ebfae5da8764c4b4eabfedf85781cb40d28da80fb424397eaab6dfa6e24ee9",
+  "start_time": "2026-09-25T17:27:10.801139+00:00",
+  "end_time": "2026-09-25T17:32:03.725748+00:00",
+  "config": {
+    "steps": 12,
+    "seconds": 300,
+    "tool_seconds": 8,
+    "output_bytes": 8192,
+    "context_tokens": 8192,
+    "max_tokens": 768,
+    "temperature": 0.0,
+    "seed": 0,
+    "adapter_dir": null
+  },
+  "model": {
+    "model_id": "mlx-community/Qwen2.5-Coder-7B-Instruct-4bit",
+    "revision": "019cc73c45c770444708a6dd8690c66243cc5c80",
+    "license": "apache-2.0",
+    "download_bytes": 4295888485,
+    "sha256": {
+      "README.md": "900637f68349b42803bd0779765ef87bd8ad54e4eba57991336911b3b1655e97",
+      "added_tokens.json": "58b54bbe36fc752f79a24a271ef66a0a0830054b4dfad94bde757d851968060b",
+      "config.json": "08762352ba9fded858f24bdd7b8d2fe61aabe7bce1dfdb663db242d574c3e678",
+      "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "model.safetensors": "56a3d94706833f753e6c6b47ea57af8ef638cd8cc1d74eca1142ba640b26060e",
+      "model.safetensors.index.json": "23cd562592dd96686d2e799eb02e4b578a4038b6045eaefe860d270cc060e24f",
+      "special_tokens_map.json": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+      "tokenizer.json": "a8506e7111b80c6d8635951a02eab0f4e1a8e4e5772da83846579e97b16f61bf",
+      "tokenizer_config.json": "f7c61e32b7a17d19bf8e7037dcb74079a833e53ea9801f24008cac68458f03b7",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "backend": "mlx-lm",
+    "adapter": {
+      "requested": false,
+      "loaded": false,
+      "path": null,
+      "id": null,
+      "config": null,
+      "sha256": {}
+    },
+    "mlx_lm_version": "0.31.3",
+    "mlx_version": "0.32.2",
+    "transformers_version": "5.17.0",
+    "chat_template_sha256": "d5495a1e5db0611132a97e46a65dbb64a642a499421228b9c8b93229097fa9a4",
+    "stop_token_ids": [
+      151643,
+      151645
+    ],
+    "mlx_memory_limit_bytes": 7516192768,
+    "inference": "local MLX; offline; no proprietary model"
+  },
+  "host": {
+    "system": "Darwin",
+    "release": "25.6.0",
+    "machine": "arm64",
+    "python": "3.11.15"
+  },
+  "runner_sha256": {
+    "__init__.py": "86469b89bdeea855e0a3cc6fcd833ea042097e798629d9006ddf4dda67398fff",
+    "assessment.py": "aa3415a62ae2df12e85a7376418fb3706b7e8ea98f27c5b5cd77bdb4097f072f",
+    "cli.py": "f2bc4649266de97e7771b70e1692a533eb9976fff4e29b35e5d9bee45ab40ba7",
+    "development.py": "258e95ea424d1c9c15ab4851be0a5032a65c743610f87444274e24ff29a1dd7e",
+    "episode.py": "75f50bb42062b2e68a29e915577dc1062c071f0422175b1623afc52a2c7721ec",
+    "execution.py": "0520b515605afcd86365d8a4704764bbcd077018ad48e4be9098271cb0433ad6",
+    "mlx_backend.py": "831c8cd0116e6a998dc13e05ce030cfbe7572dd0bb7f398755c7f3acad85ac76",
+    "reward.py": "f961dbc3d8ff0cb09e94e8929ca975e0902c568cb6e59fed01f07d8b185d2b57",
+    "sft.py": "016d097d1651674d318634c9a3ad4d098c3b823ebc56aa79608d9ef3496abf46",
+    "sft_data.py": "da379220ac6da90035db77b0ae736651507e30ef686e5ac7303fb5b840d2ef5d",
+    "synthetic.py": "ee6f5a7f56739013fb01b2cc4468b04780bdb09cbb4694fbdaeb6193c48e193e",
+    "tools.py": "002917745bf245a1c42ad4bded827614ca449330359a14dc2301efeeeba2b13c",
+    "verification.py": "a9a54dce588160f20ad846c38410c31e6a76f0cdea3671bf465494974bb44c12"
+  },
+  "status": "unfinished",
+  "termination_reason": "step_limit",
+  "steps": 12,
+  "tool_calls": 12,
+  "errors": [],
+  "reward": null,
+  "grading": null,
+  "scored": true,
+  "paths": {
+    "report": "<REPOSITORY>/attempts/evaluation-01-verification/suite/episodes/eef735a0ffd54c428b234df8d3f8cf07/report.json",
+    "trace": "<REPOSITORY>/attempts/evaluation-01-verification/suite/episodes/eef735a0ffd54c428b234df8d3f8cf07/trajectory.jsonl",
+    "workspace": "<REPOSITORY>/attempts/evaluation-01-verification/suite/episodes/eef735a0ffd54c428b234df8d3f8cf07/workspace",
+    "initial_workspace": "<REPOSITORY>/attempts/evaluation-01-verification/suite/episodes/eef735a0ffd54c428b234df8d3f8cf07/initial",
+    "patch": "<REPOSITORY>/attempts/evaluation-01-verification/suite/episodes/eef735a0ffd54c428b234df8d3f8cf07/changes.diff",
+    "conversation": "<REPOSITORY>/attempts/evaluation-01-verification/suite/episodes/eef735a0ffd54c428b234df8d3f8cf07/conversation.json",
+    "control": "<REPOSITORY>/attempts/evaluation-01-verification/suite/episodes/eef735a0ffd54c428b234df8d3f8cf07/control"
+  },
+  "verification_feedback": "epagent.verification-feedback.v3",
+  "evaluation_kind": "engineering_development_smoke",
+  "workspace_tests": [
+    "checks.py"
+  ],
+  "initial_sha256": {
+    "README.md": "b66f5ce9a71a4330bf1b0dcbff926e45a5f9420dee617de6944003b764440c8c",
+    "checks.py": "aabf43a9d2c175f58402c4dc6bff7a09bf77dd66004f166adeac79a745e9ff58",
+    "syntax/brackets.py": "0dffb8f0bfd3b63986b206211df5693cfe9b3621361a57e9b0e789e428865116",
+    "syntax/tokens.py": "a8c56d567fc4181cb1c6705547b8afeb72e9f8ae27d1754eecad9c623b4be089"
+  },
+  "execution_boundary": {
+    "mode": "macos-constrained-development",
+    "verified": true,
+    "private_reads": "denied",
+    "network": "denied",
+    "fork": "denied",
+    "limitations": "System runtime reads and file metadata remain available; not a production security boundary."
+  },
+  "agent_seconds": 292.81431875005364,
+  "final_sha256": {
+    "README.md": "b66f5ce9a71a4330bf1b0dcbff926e45a5f9420dee617de6944003b764440c8c",
+    "checks.py": "aabf43a9d2c175f58402c4dc6bff7a09bf77dd66004f166adeac79a745e9ff58",
+    "syntax/brackets.py": "5f2939d1a84fd7ca5dbf604d0d13f8233f346ea0e52bcc546dd7f05c42bc6c9d",
+    "syntax/tokens.py": "a8c56d567fc4181cb1c6705547b8afeb72e9f8ae27d1754eecad9c623b4be089"
+  },
+  "modified_files": [
+    "syntax/brackets.py"
+  ],
+  "development": {
+    "source_changed": true,
+    "unrelated_original_files_preserved": true,
+    "original_visible_tests": {
+      "status": "python_error",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n  File \"<agent-python>\", line 3, in <module>\nAssertionError\n",
+      "elapsed_seconds": 0.0363
+    },
+    "original_visible_tests_passed": false,
+    "repair_passed": false,
+    "agent_python_runs": [],
+    "final_summaries": [],
+    "summary_substantiation": "Manual review against recorded observations required",
+    "scope": "Engineering smoke test; not scientific repair or generalization evidence"
+  },
+  "grading_seconds": 0.045520000043325126,
+  "usage": {
+    "completed_generations": 12,
+    "prompt_tokens": 34510,
+    "generation_tokens": 831,
+    "scope": "completed generations; prompt includes repeated history",
+    "peak_mlx_bytes": 5248363560,
+    "peak_rss_bytes": 1652523008,
+    "token_logprobs_recorded": false,
+    "cost": null
+  },
+  "total_seconds": 292.9348527500406,
+  "evaluation_status": "scored"
+}

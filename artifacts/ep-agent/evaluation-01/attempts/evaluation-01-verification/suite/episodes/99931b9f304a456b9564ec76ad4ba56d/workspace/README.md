@@ -1,0 +1,2 @@
+Normalize a relative POSIX path by collapsing repeated separators, dropping "." segments and resolving ".." against the preceding segment. Leading ".." segments that cannot be resolved are kept. An empty result is ".".
+Repair normalize in fsutil/paths.py. Keep the other modules and checks.py unchanged. Read the source, make the change, run checks.py with the Python tool and report only what you observed.

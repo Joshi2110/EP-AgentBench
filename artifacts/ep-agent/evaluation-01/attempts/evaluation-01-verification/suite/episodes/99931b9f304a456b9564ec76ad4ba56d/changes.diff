@@ -1,0 +1,11 @@
+--- before/fsutil/paths.py
++++ after/fsutil/paths.py
+@@ -1,2 +1,7 @@
+ def normalize(path):
+-    return "/".join(part for part in path.split("/") if part)
++    import os
++
++os.path
++
++def normalize(path):
++    return "/".join(part for part in path.split(os.sep) if part)

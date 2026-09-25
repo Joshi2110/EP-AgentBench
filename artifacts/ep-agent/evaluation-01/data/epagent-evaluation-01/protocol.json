@@ -1,0 +1,87 @@
+{
+  "schema": "epagent.evaluation-01.v1",
+  "id": "ep-agent-evaluation-01",
+  "status": "frozen for review; no model generation performed",
+  "frozen_at": "2026-09-25",
+  "purpose": "Fixed ten-fixture, two-arm assessment of the pinned base agent. Engineering assessment, not a benchmark result and not a scientific generalization claim.",
+  "model_id": "mlx-community/Qwen2.5-Coder-7B-Instruct-4bit",
+  "revision": "019cc73c45c770444708a6dd8690c66243cc5c80",
+  "adapter": null,
+  "arms": {
+    "baseline": "verification feedback disabled",
+    "verification": "verification feedback enabled at epagent.verification-feedback.v3"
+  },
+  "intended_difference": "Only the registered feedback condition, including its observation stream and its system-prompt extension. Workspace, task text, tools, model, revision, temperature, seed, budgets, generation settings and the independent grader are identical across arms.",
+  "fixtures": [
+    "interval-merge",
+    "roman-numeral",
+    "bracket-balance",
+    "run-length",
+    "caesar-shift",
+    "matrix-transpose",
+    "banker-rounding",
+    "path-normalize",
+    "histogram-buckets",
+    "retry-backoff"
+  ],
+  "families": [
+    "interval-merging",
+    "roman-numeral-encoding",
+    "bracket-matching",
+    "run-length-encoding",
+    "alphabet-rotation",
+    "grid-transposition",
+    "half-even-rounding",
+    "path-normalisation",
+    "half-open-bucketing",
+    "capped-exponential-backoff"
+  ],
+  "attempts_per_fixture_per_arm": 1,
+  "seeds": [
+    0
+  ],
+  "generation": {
+    "temperature": 0.0,
+    "max_tokens": 768,
+    "context_tokens": 8192
+  },
+  "limits": {
+    "steps": 12,
+    "seconds": 300,
+    "tool_seconds": 8,
+    "output_bytes": 8192
+  },
+  "primary_endpoint": "Independent functional repair success out of ten per arm. The hidden test is executed after the backend closes, against the final workspace source, and is never present in the workspace nor shown to the agent.",
+  "secondary_endpoints": [
+    "source changed",
+    "unrelated visible files preserved",
+    "final source syntax valid",
+    "agent-initiated test executions",
+    "agent-initiated observed passes",
+    "runner-initiated test executions",
+    "visible test outcome after the episode",
+    "finish called",
+    "evidence-supported finish",
+    "schema errors",
+    "tool errors",
+    "steps, accepted tool calls, runtime and tokens"
+  ],
+  "separation": "Agent-initiated and runner-initiated test executions are recorded and reported separately and are never summed. A passing runner observation is not an agent-initiated test.",
+  "visible_versus_independent": "Every fixture ships a small visible test and a strictly larger hidden test. The hidden test is never a copy of the visible one, so passing the visible test does not imply functional success.",
+  "denominators": "Always report ten fixtures per arm. Preserve failures; do not repair a fixture, change the prompt, or rerun an episode after observing any model output.",
+  "reporting": "Paired per-fixture outcomes and counts only. Twenty episodes at temperature zero give no uncertainty estimate and support no significance or generalization claim.",
+  "pre_registration_limits": "This campaign follows four rounds of development on the cart-total fixture, and the agent architecture, tools, feedback mechanisms and graders were all shaped by those rounds. The ten fixtures and this protocol are frozen before any generation, but the overall architecture is NOT independently pre-registered and must not be described as such.",
+  "frozen_sha256": {
+    "data/epagent-evaluation-01/fixtures.json": "59bf2b25195391836165375e19d523a68cfb755be8202c46357392a12ef3211a",
+    "data/epagent-evaluation-01/validation.json": "f7b865476c36666122633c21283f831e62981b24435be43f914eb45cbe91cd04",
+    "scripts/build_evaluation_01.py": "03753104ad2b6738fb4fc8d65f603688cc6e4e0fcd58faa89e5f9506806c22e1",
+    "scripts/run_evaluation_01.py": "9c2105112ec0c02233225a81b2821640bab5c784d687058d667d8ea8b1385e1a",
+    "src/epagent/assessment.py": "aa3415a62ae2df12e85a7376418fb3706b7e8ea98f27c5b5cd77bdb4097f072f",
+    "src/epagent/verification.py": "a9a54dce588160f20ad846c38410c31e6a76f0cdea3671bf465494974bb44c12",
+    "src/epagent/episode.py": "75f50bb42062b2e68a29e915577dc1062c071f0422175b1623afc52a2c7721ec",
+    "src/epagent/development.py": "258e95ea424d1c9c15ab4851be0a5032a65c743610f87444274e24ff29a1dd7e",
+    "src/epagent/tools.py": "002917745bf245a1c42ad4bded827614ca449330359a14dc2301efeeeba2b13c"
+  },
+  "fixtures_sha256": "59bf2b25195391836165375e19d523a68cfb755be8202c46357392a12ef3211a",
+  "execution_status": "No base or verification arm has been generated. Twenty episodes remain separately authorized."
+}

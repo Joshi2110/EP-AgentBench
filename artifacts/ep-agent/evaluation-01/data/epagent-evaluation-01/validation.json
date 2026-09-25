@@ -1,0 +1,262 @@
+{
+  "schema": "epagent.evaluation-01-validation.v1",
+  "method": "Offline scripted execution in the existing bounded runner. No model, no network.",
+  "fixtures": [
+    {
+      "id": "interval-merge",
+      "family": "interval-merging",
+      "source": "ranges/merge.py",
+      "files": [
+        "README.md",
+        "checks.py",
+        "ranges/labels.py",
+        "ranges/merge.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 5,
+      "assertions_only_in_independent": 3,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "roman-numeral",
+      "family": "roman-numeral-encoding",
+      "source": "numerals/convert.py",
+      "files": [
+        "README.md",
+        "checks.py",
+        "numerals/convert.py",
+        "numerals/meta.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 6,
+      "assertions_only_in_independent": 4,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "bracket-balance",
+      "family": "bracket-matching",
+      "source": "syntax/brackets.py",
+      "files": [
+        "README.md",
+        "checks.py",
+        "syntax/brackets.py",
+        "syntax/tokens.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 6,
+      "assertions_only_in_independent": 4,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "run-length",
+      "family": "run-length-encoding",
+      "source": "codecs_local/rle.py",
+      "files": [
+        "README.md",
+        "checks.py",
+        "codecs_local/name.py",
+        "codecs_local/rle.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 5,
+      "assertions_only_in_independent": 3,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "caesar-shift",
+      "family": "alphabet-rotation",
+      "source": "cipher/shift.py",
+      "files": [
+        "README.md",
+        "checks.py",
+        "cipher/alphabet.py",
+        "cipher/shift.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 5,
+      "assertions_only_in_independent": 3,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "matrix-transpose",
+      "family": "grid-transposition",
+      "source": "grids/matrix.py",
+      "files": [
+        "README.md",
+        "checks.py",
+        "grids/matrix.py",
+        "grids/shape.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 5,
+      "assertions_only_in_independent": 3,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "banker-rounding",
+      "family": "half-even-rounding",
+      "source": "money/rounding.py",
+      "files": [
+        "README.md",
+        "checks.py",
+        "money/currency.py",
+        "money/rounding.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 6,
+      "assertions_only_in_independent": 4,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "path-normalize",
+      "family": "path-normalisation",
+      "source": "fsutil/paths.py",
+      "files": [
+        "README.md",
+        "checks.py",
+        "fsutil/paths.py",
+        "fsutil/sep.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 6,
+      "assertions_only_in_independent": 4,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "histogram-buckets",
+      "family": "half-open-bucketing",
+      "source": "stats/buckets.py",
+      "files": [
+        "README.md",
+        "checks.py",
+        "stats/buckets.py",
+        "stats/edge.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 6,
+      "assertions_only_in_independent": 4,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "retry-backoff",
+      "family": "capped-exponential-backoff",
+      "source": "net/backoff.py",
+      "files": [
+        "README.md",
+        "checks.py",
+        "net/backoff.py",
+        "net/policy.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 5,
+      "assertions_only_in_independent": 3,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    }
+  ],
+  "sandbox_isolation": {
+    "preflight": {
+      "mode": "macos-constrained-development",
+      "verified": true,
+      "private_reads": "denied",
+      "network": "denied",
+      "fork": "denied",
+      "limitations": "System runtime reads and file metadata remain available; not a production security boundary."
+    },
+    "direct_read_status": "python_error",
+    "direct_read_blocked": true,
+    "stderr_tail": "PermissionError: [Errno 1] Operation not permitted: '<REPOSITORY>/data/epagent-evaluation-01/fixtures.json'"
+  },
+  "hidden_material_absent_from_workspace": true,
+  "fixtures_sha256": "59bf2b25195391836165375e19d523a68cfb755be8202c46357392a12ef3211a",
+  "model_inference_performed": false
+}

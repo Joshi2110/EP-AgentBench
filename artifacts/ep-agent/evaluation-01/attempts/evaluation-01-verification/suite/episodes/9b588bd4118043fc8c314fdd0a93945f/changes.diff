@@ -1,0 +1,9 @@
+--- before/cipher/shift.py
++++ after/cipher/shift.py
+@@ -1,2 +1,5 @@
+ def shift_letters(text, amount):
+-    return "".join(chr(ord(c) + amount) for c in text)
++    shifted_text = []
++    for c in text:
++        shifted_text.append(chr((ord(c) - ord('a') + amount) % 26 + ord('a')))
++    return ''.join(shifted_text)

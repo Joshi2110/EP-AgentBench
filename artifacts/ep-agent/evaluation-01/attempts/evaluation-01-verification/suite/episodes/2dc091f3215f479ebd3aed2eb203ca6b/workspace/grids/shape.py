@@ -1,0 +1,2 @@
+def kind():
+    return "grid"

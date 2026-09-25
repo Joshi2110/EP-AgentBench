@@ -1,0 +1,6 @@
+--- before/ranges/merge.py
++++ after/ranges/merge.py
+@@ -1,2 +1,2 @@
+ def merge_spans(spans):
+-    return sorted(spans)
++    return sorted(spans, key=lambda x: x[1])

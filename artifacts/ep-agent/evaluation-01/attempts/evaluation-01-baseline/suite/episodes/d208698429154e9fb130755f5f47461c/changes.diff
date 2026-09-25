@@ -1,0 +1,6 @@
+--- before/money/rounding.py
++++ after/money/rounding.py
+@@ -1,2 +1,2 @@
+ def round_cents(text):
+-    return "%.2f" % (int(float(text) * 1000 + 5) / 1000)
++    return round(float(text), 2)
