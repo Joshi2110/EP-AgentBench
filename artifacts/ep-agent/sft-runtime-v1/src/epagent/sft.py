@@ -10,7 +10,7 @@ import platform
 import sys
 import time
 
-from .mlx_backend import MODEL_7B, PINNED_MODELS, configure_stop_tokens
+from .mlx_backend import MODEL_ID, REVISION, configure_stop_tokens
 from .sft_data import assistant_loss, digest, reviewed_examples, tokenize_example, write_json
 
 
@@ -19,17 +19,10 @@ def local_model(path):
     os.environ['TRANSFORMERS_OFFLINE'] = '1'
     path = Path(path).resolve()
     manifest = json.loads((path / 'epagent-model.json').read_text())
-    selected = PINNED_MODELS.get(manifest['model_id'])
-    if selected is None or manifest['revision'] != selected[0]:
+    if manifest['model_id'] != MODEL_ID or manifest['revision'] != REVISION:
         raise ValueError('Use the reviewed pinned local Qwen model')
     for name, expected in manifest['sha256'].items():
-        if Path(name).name != name or (path / name).is_symlink():
-            raise ValueError('Local model file/hash mismatch: ' + name)
-        hashed = hashlib.sha256()
-        with (path / name).open('rb') as source:
-            while block := source.read(1024 * 1024):
-                hashed.update(block)
-        if hashed.hexdigest() != expected:
+        if Path(name).name != name or digest(path / name) != expected:
             raise ValueError('Local model file/hash mismatch: ' + name)
     return manifest
 
@@ -60,11 +53,11 @@ def prepare(trajectories, model_dir, config_file, protocol_file, out):
     from mlx_lm.utils import load_tokenizer
     config = config_at(config_file)
     protocol = json.loads(Path(protocol_file).read_text())
-    model = local_model(model_dir)
     if (protocol.get('schema') not in ('epagent.sft-protocol.v1', 'epagent.sft-protocol.v2')
             or protocol['training_iterations'] != config['iterations']
-            or protocol['model_id'] != model['model_id'] or protocol['revision'] != model['revision']):
+            or protocol['model_id'] != MODEL_ID or protocol['revision'] != REVISION):
         raise ValueError('Training configuration and registered evaluation protocol disagree')
+    model = local_model(model_dir)
     examples = reviewed_examples(trajectories)
     eos = json.loads((Path(model_dir) / 'config.json').read_text())['eos_token_id']
     tokenizer = load_tokenizer(Path(model_dir), {'trust_remote_code': False}, eos_token_ids=eos)
@@ -122,10 +115,6 @@ def adapt(model_dir, config):
     from mlx_lm import load
     from mlx_lm.tuner.utils import linear_to_lora_layers
     from mlx.utils import tree_flatten
-    plan = lora_plan(model_dir, config)
-    manifest = json.loads((Path(model_dir) / 'epagent-model.json').read_text())
-    if manifest['model_id'] == MODEL_7B:
-        mx.set_memory_limit(7 * 1024**3)
     mx.random.seed(config['seed'])
     model, tokenizer = load(str(model_dir), tokenizer_config={'trust_remote_code': False})
     stops = configure_stop_tokens(tokenizer)
@@ -134,31 +123,11 @@ def adapt(model_dir, config):
     trainable = tree_flatten(model.trainable_parameters())
     if not trainable or any(not name.endswith(('.lora_a', '.lora_b')) for name, _ in trainable):
         raise ValueError('Only LoRA adapter matrices may be trainable')
-    if ({name for name, _ in trainable} != set(plan['trainable_names'])
-            or sum(value.size for _, value in trainable) != plan['trainable_parameters']):
-        raise ValueError('Actual LoRA layers/count differ from model-specific plan')
     mx.eval(model.parameters())
     mx.set_cache_limit(256 * 1024 * 1024)
     return model, {'trainable_parameters': sum(value.size for _, value in trainable),
                    'trainable_names': [name for name, _ in trainable], 'stop_token_ids': stops,
                    'peak_mlx_bytes_before_training': mx.get_peak_memory()}
-
-
-def lora_plan(model_dir, config):
-    """Derive Q/V adapter dimensions from the actual Qwen architecture, without loading weights."""
-    shape = json.loads((Path(model_dir) / 'config.json').read_text())
-    if shape['model_type'] != 'qwen2' or config['num_layers'] > shape['num_hidden_layers']:
-        raise ValueError('Unsupported LoRA architecture or layer count')
-    hidden = shape['hidden_size']
-    head_dim = shape.get('head_dim', hidden // shape['num_attention_heads'])
-    outputs = {'q_proj': shape['num_attention_heads'] * head_dim,
-               'v_proj': shape['num_key_value_heads'] * head_dim}
-    layers = list(range(shape['num_hidden_layers'] - config['num_layers'], shape['num_hidden_layers']))
-    names = [f'model.layers.{i}.self_attn.{projection}.lora_{matrix}'
-             for i in layers for projection in outputs for matrix in ('a', 'b')]
-    return {'layers': layers, 'input_dimension': hidden, 'output_dimensions': outputs,
-            'trainable_names': names, 'trainable_parameters':
-            len(layers) * config['lora_parameters']['rank'] * sum(hidden + n for n in outputs.values())}
 
 
 def train(prepared, model_dir, out):

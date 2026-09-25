@@ -1,0 +1,1436 @@
+[
+  {
+    "id": "leap-calendar",
+    "family": "gregorian-leap-year",
+    "split": "train",
+    "source": "logic.py",
+    "files": {
+      "README.md": "Return whether a positive Gregorian year is leap. Preserve leap(year). Fix logic.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "logic.py": "def leap(year):\n    return year % 4 == 0\n",
+      "checks.py": "from logic import leap as F\nassert F(1900) is False\nassert F(2000) is True\nassert F(2023) is False\nprint(\"PASS leap-calendar\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "learn": false,
+        "expect": {
+          "content": "Return whether a positive Gregorian year is leap. Preserve leap(year). Fix logic.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks.py"
+        },
+        "learn": false,
+        "expect": {
+          "content": "from logic import leap as F\nassert F(1900) is False\nassert F(2000) is True\nassert F(2023) is False\nprint(\"PASS leap-calendar\")\n"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "logic.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def leap(year):\n    return year % 4 == 0\n"
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "logic.py",
+          "version": "v3",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)"
+        },
+        "learn": true,
+        "expect": {
+          "changed": true
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS leap-calendar\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Preserved leap(year) and repaired logic.py. Ran checks.py; observed PASS leap-calendar."
+        },
+        "learn": true,
+        "expect": {}
+      }
+    ],
+    "budget_steps": 12,
+    "pattern": "test-first",
+    "outcome": "success",
+    "final_files": {
+      "README.md": "Return whether a positive Gregorian year is leap. Preserve leap(year). Fix logic.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "logic.py": "def leap(year):\n    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)\n",
+      "checks.py": "from logic import leap as F\nassert F(1900) is False\nassert F(2000) is True\nassert F(2023) is False\nprint(\"PASS leap-calendar\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    }
+  },
+  {
+    "id": "xml-attribute",
+    "family": "xml-attribute-escaping",
+    "split": "train",
+    "source": "core/operation.py",
+    "files": {
+      "README.md": "Escape XML &, <, > and both quotes using html.escape. Preserve escape(text). Fix core/operation.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "core/operation.py": "def escape(text):\n    return text\n",
+      "checks.py": "from core.operation import escape as F\nassert F(\"<a&\") == \"&lt;a&amp;\"\nassert F('\"') == \"&quot;\"\nprint(\"PASS xml-attribute\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    },
+    "actions": [
+      {
+        "tool": "list_files",
+        "arguments": {},
+        "learn": true,
+        "expect": {}
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "learn": false,
+        "expect": {
+          "content": "Escape XML &, <, > and both quotes using html.escape. Preserve escape(text). Fix core/operation.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks.py"
+        },
+        "learn": false,
+        "expect": {
+          "content": "from core.operation import escape as F\nassert F(\"<a&\") == \"&lt;a&amp;\"\nassert F('\"') == \"&quot;\"\nprint(\"PASS xml-attribute\")\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "core/operation.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def escape(text):\n    return text\n"
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "core/operation.py",
+          "old_text": "    return text",
+          "new_text": "    import html\n    return html.escape(text, quote=True)"
+        },
+        "learn": true,
+        "expect": {
+          "edited": "core/operation.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS xml-attribute\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Preserved escape(text) and repaired core/operation.py. Ran checks.py; observed PASS xml-attribute."
+        },
+        "learn": true,
+        "expect": {}
+      }
+    ],
+    "budget_steps": 12,
+    "pattern": "straight",
+    "outcome": "success",
+    "final_files": {
+      "README.md": "Escape XML &, <, > and both quotes using html.escape. Preserve escape(text). Fix core/operation.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "core/operation.py": "def escape(text):\n    import html\n    return html.escape(text, quote=True)\n",
+      "checks.py": "from core.operation import escape as F\nassert F(\"<a&\") == \"&lt;a&amp;\"\nassert F('\"') == \"&quot;\"\nprint(\"PASS xml-attribute\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    }
+  },
+  {
+    "id": "csv-field",
+    "family": "quoted-csv-decoding",
+    "split": "train",
+    "source": "lib/transform.py",
+    "files": {
+      "README.md": "Parse one comma-separated CSV record, including quoted commas. Preserve fields(line). Fix lib/transform.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "lib/transform.py": "def fields(line):\n    return line.split(\",\")\n",
+      "checks.py": "from lib.transform import fields as F\nassert F('a,\"b,c\"') == [\"a\", \"b,c\"]\nassert F(\"x,y\") == [\"x\", \"y\"]\nprint(\"PASS csv-field\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "learn": false,
+        "expect": {
+          "content": "Parse one comma-separated CSV record, including quoted commas. Preserve fields(line). Fix lib/transform.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks.py"
+        },
+        "learn": false,
+        "expect": {
+          "content": "from lib.transform import fields as F\nassert F('a,\"b,c\"') == [\"a\", \"b,c\"]\nassert F(\"x,y\") == [\"x\", \"y\"]\nprint(\"PASS csv-field\")\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "lib/transform.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def fields(line):\n    return line.split(\",\")\n"
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "lib/transform.py",
+          "version": "v3",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    return [line]"
+        },
+        "learn": false,
+        "expect": {
+          "changed": true
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "lib/transform.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def fields(line):\n    return [line]\n"
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "lib/transform.py",
+          "version": "v4",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    import csv\n    return next(csv.reader([line]))"
+        },
+        "learn": true,
+        "expect": {
+          "changed": true
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS csv-field\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Preserved fields(line) and repaired lib/transform.py. Ran checks.py; observed PASS csv-field."
+        },
+        "learn": true,
+        "expect": {}
+      }
+    ],
+    "budget_steps": 12,
+    "pattern": "repair",
+    "outcome": "success",
+    "final_files": {
+      "README.md": "Parse one comma-separated CSV record, including quoted commas. Preserve fields(line). Fix lib/transform.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "lib/transform.py": "def fields(line):\n    import csv\n    return next(csv.reader([line]))\n",
+      "checks.py": "from lib.transform import fields as F\nassert F('a,\"b,c\"') == [\"a\", \"b,c\"]\nassert F(\"x,y\") == [\"x\", \"y\"]\nprint(\"PASS csv-field\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    }
+  },
+  {
+    "id": "integer-bytes",
+    "family": "signed-integer-serialization",
+    "split": "train",
+    "source": "logic.py",
+    "files": {
+      "README.md": "Encode a signed integer as exactly two big-endian bytes. Preserve encode(value). Fix logic.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "logic.py": "def encode(value):\n    return value.to_bytes(2, \"little\", signed=True)\n",
+      "checks.py": "from logic import encode as F\nassert F(256) == b\"\\x01\\x00\"\nassert F(-2) == b\"\\xff\\xfe\"\nprint(\"PASS integer-bytes\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "learn": false,
+        "expect": {
+          "content": "Encode a signed integer as exactly two big-endian bytes. Preserve encode(value). Fix logic.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks.py"
+        },
+        "learn": false,
+        "expect": {
+          "content": "from logic import encode as F\nassert F(256) == b\"\\x01\\x00\"\nassert F(-2) == b\"\\xff\\xfe\"\nprint(\"PASS integer-bytes\")\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "logic.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def encode(value):\n    return value.to_bytes(2, \"little\", signed=True)\n"
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "logic.py",
+          "version": "v3",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    return value.to_bytes(2, \"big\")"
+        },
+        "learn": false,
+        "expect": {
+          "changed": true
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "logic.py",
+          "version": "v3",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    return value.to_bytes(2, \"big\", signed=True)"
+        },
+        "learn": false,
+        "expect": {
+          "error": "ValueError"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "logic.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def encode(value):\n    return value.to_bytes(2, \"big\")\n"
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "logic.py",
+          "version": "v4",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    return value.to_bytes(2, \"big\", signed=True)"
+        },
+        "learn": true,
+        "expect": {
+          "changed": true
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS integer-bytes\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Preserved encode(value) and repaired logic.py. Ran checks.py; observed PASS integer-bytes."
+        },
+        "learn": true,
+        "expect": {}
+      }
+    ],
+    "budget_steps": 12,
+    "pattern": "stale",
+    "outcome": "success",
+    "final_files": {
+      "README.md": "Encode a signed integer as exactly two big-endian bytes. Preserve encode(value). Fix logic.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "logic.py": "def encode(value):\n    return value.to_bytes(2, \"big\", signed=True)\n",
+      "checks.py": "from logic import encode as F\nassert F(256) == b\"\\x01\\x00\"\nassert F(-2) == b\"\\xff\\xfe\"\nprint(\"PASS integer-bytes\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    }
+  },
+  {
+    "id": "polynomial",
+    "family": "polynomial-evaluation",
+    "split": "train",
+    "source": "core/operation.py",
+    "files": {
+      "README.md": "Coefficients are in ascending power order; return the polynomial value. Preserve evaluate(coeffs, x). Fix core/operation.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "core/operation.py": "def evaluate(coeffs, x):\n    return sum(coeffs)\n",
+      "checks.py": "from core.operation import evaluate as F\nassert F([2, 3, 4], 2) == 24\nassert F([], 5) == 0\nprint(\"PASS polynomial\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    },
+    "actions": [
+      {
+        "tool": "list_files",
+        "arguments": {},
+        "learn": true,
+        "expect": {}
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "learn": false,
+        "expect": {
+          "content": "Coefficients are in ascending power order; return the polynomial value. Preserve evaluate(coeffs, x). Fix core/operation.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks.py"
+        },
+        "learn": false,
+        "expect": {
+          "content": "from core.operation import evaluate as F\nassert F([2, 3, 4], 2) == 24\nassert F([], 5) == 0\nprint(\"PASS polynomial\")\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "core/operation.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def evaluate(coeffs, x):\n    return sum(coeffs)\n"
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "core/operation.py",
+          "version": "v3",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    return sum(c * x ** i for i, c in enumerate(coeffs))"
+        },
+        "learn": true,
+        "expect": {
+          "changed": true
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS polynomial\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Preserved evaluate(coeffs, x) and repaired core/operation.py. Ran checks.py; observed PASS polynomial."
+        },
+        "learn": true,
+        "expect": {}
+      }
+    ],
+    "budget_steps": 12,
+    "pattern": "straight",
+    "outcome": "success",
+    "final_files": {
+      "README.md": "Coefficients are in ascending power order; return the polynomial value. Preserve evaluate(coeffs, x). Fix core/operation.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "core/operation.py": "def evaluate(coeffs, x):\n    return sum(c * x ** i for i, c in enumerate(coeffs))\n",
+      "checks.py": "from core.operation import evaluate as F\nassert F([2, 3, 4], 2) == 24\nassert F([], 5) == 0\nprint(\"PASS polynomial\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    }
+  },
+  {
+    "id": "inverse-index",
+    "family": "inverse-multimap",
+    "split": "train",
+    "source": "lib/transform.py",
+    "files": {
+      "README.md": "Map each value to its keys in insertion order. Preserve invert(mapping). Fix lib/transform.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "lib/transform.py": "def invert(mapping):\n    return {v: k for k, v in mapping.items()}\n",
+      "checks.py": "from lib.transform import invert as F\nassert F({\"a\": 1, \"b\": 1}) == {1: [\"a\", \"b\"]}\nassert F({}) == {}\nprint(\"PASS inverse-index\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "learn": false,
+        "expect": {
+          "content": "Map each value to its keys in insertion order. Preserve invert(mapping). Fix lib/transform.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks.py"
+        },
+        "learn": false,
+        "expect": {
+          "content": "from lib.transform import invert as F\nassert F({\"a\": 1, \"b\": 1}) == {1: [\"a\", \"b\"]}\nassert F({}) == {}\nprint(\"PASS inverse-index\")\n"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "lib/transform.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def invert(mapping):\n    return {v: k for k, v in mapping.items()}\n"
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "lib/transform.py",
+          "old_text": "    return {v: k for k, v in mapping.items()}",
+          "new_text": "    out = {}\n    for key, value in mapping.items():\n        out.setdefault(value, []).append(key)\n    return out"
+        },
+        "learn": true,
+        "expect": {
+          "edited": "lib/transform.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS inverse-index\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Preserved invert(mapping) and repaired lib/transform.py. Ran checks.py; observed PASS inverse-index."
+        },
+        "learn": true,
+        "expect": {}
+      }
+    ],
+    "budget_steps": 12,
+    "pattern": "test-first",
+    "outcome": "success",
+    "final_files": {
+      "README.md": "Map each value to its keys in insertion order. Preserve invert(mapping). Fix lib/transform.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "lib/transform.py": "def invert(mapping):\n    out = {}\n    for key, value in mapping.items():\n        out.setdefault(value, []).append(key)\n    return out\n",
+      "checks.py": "from lib.transform import invert as F\nassert F({\"a\": 1, \"b\": 1}) == {1: [\"a\", \"b\"]}\nassert F({}) == {}\nprint(\"PASS inverse-index\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    }
+  },
+  {
+    "id": "interpolation",
+    "family": "linear-interpolation",
+    "split": "train",
+    "source": "logic.py",
+    "files": {
+      "README.md": "Linearly interpolate; x0 and x1 differ. Preserve between(x, x0, y0, x1, y1). Fix logic.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "logic.py": "def between(x, x0, y0, x1, y1):\n    return y0 + (y1 - y0) * x\n",
+      "checks.py": "from logic import between as F\nassert F(3, 2, 10, 4, 20) == 15\nassert F(2, 2, 10, 4, 20) == 10\nprint(\"PASS interpolation\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "learn": false,
+        "expect": {
+          "content": "Linearly interpolate; x0 and x1 differ. Preserve between(x, x0, y0, x1, y1). Fix logic.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks.py"
+        },
+        "learn": false,
+        "expect": {
+          "content": "from logic import between as F\nassert F(3, 2, 10, 4, 20) == 15\nassert F(2, 2, 10, 4, 20) == 10\nprint(\"PASS interpolation\")\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "logic.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def between(x, x0, y0, x1, y1):\n    return y0 + (y1 - y0) * x\n"
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "logic.py",
+          "version": "v3",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    return y0"
+        },
+        "learn": false,
+        "expect": {
+          "changed": true
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "logic.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def between(x, x0, y0, x1, y1):\n    return y0\n"
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "logic.py",
+          "version": "v4",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    return y0 + (y1 - y0) * (x - x0) / (x1 - x0)"
+        },
+        "learn": true,
+        "expect": {
+          "changed": true
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS interpolation\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Preserved between(x, x0, y0, x1, y1) and repaired logic.py. Ran checks.py; observed PASS interpolation."
+        },
+        "learn": true,
+        "expect": {}
+      }
+    ],
+    "budget_steps": 12,
+    "pattern": "repair",
+    "outcome": "success",
+    "final_files": {
+      "README.md": "Linearly interpolate; x0 and x1 differ. Preserve between(x, x0, y0, x1, y1). Fix logic.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "logic.py": "def between(x, x0, y0, x1, y1):\n    return y0 + (y1 - y0) * (x - x0) / (x1 - x0)\n",
+      "checks.py": "from logic import between as F\nassert F(3, 2, 10, 4, 20) == 15\nassert F(2, 2, 10, 4, 20) == 10\nprint(\"PASS interpolation\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    }
+  },
+  {
+    "id": "address-number",
+    "family": "ipv4-integer-conversion",
+    "split": "train",
+    "source": "core/operation.py",
+    "files": {
+      "README.md": "Convert a valid dotted IPv4 address to its unsigned integer. Preserve address(text). Fix core/operation.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "core/operation.py": "def address(text):\n    return sum(map(int, text.split(\".\")))\n",
+      "checks.py": "from core.operation import address as F\nassert F(\"1.0.0.0\") == 16777216\nassert F(\"0.0.0.1\") == 1\nprint(\"PASS address-number\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    },
+    "actions": [
+      {
+        "tool": "list_files",
+        "arguments": {},
+        "learn": true,
+        "expect": {}
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "learn": false,
+        "expect": {
+          "content": "Convert a valid dotted IPv4 address to its unsigned integer. Preserve address(text). Fix core/operation.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks.py"
+        },
+        "learn": false,
+        "expect": {
+          "content": "from core.operation import address as F\nassert F(\"1.0.0.0\") == 16777216\nassert F(\"0.0.0.1\") == 1\nprint(\"PASS address-number\")\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "core/operation.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def address(text):\n    return sum(map(int, text.split(\".\")))\n"
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "core/operation.py",
+          "version": "v3",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    return int(text.split(\".\")[0])"
+        },
+        "learn": false,
+        "expect": {
+          "changed": true
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "core/operation.py",
+          "version": "v3",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    import ipaddress\n    return int(ipaddress.IPv4Address(text))"
+        },
+        "learn": false,
+        "expect": {
+          "error": "ValueError"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "core/operation.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def address(text):\n    return int(text.split(\".\")[0])\n"
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "core/operation.py",
+          "version": "v4",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    import ipaddress\n    return int(ipaddress.IPv4Address(text))"
+        },
+        "learn": true,
+        "expect": {
+          "changed": true
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS address-number\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Preserved address(text) and repaired core/operation.py. Ran checks.py; observed PASS address-number."
+        },
+        "learn": true,
+        "expect": {}
+      }
+    ],
+    "budget_steps": 12,
+    "pattern": "stale",
+    "outcome": "success",
+    "final_files": {
+      "README.md": "Convert a valid dotted IPv4 address to its unsigned integer. Preserve address(text). Fix core/operation.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "core/operation.py": "def address(text):\n    import ipaddress\n    return int(ipaddress.IPv4Address(text))\n",
+      "checks.py": "from core.operation import address as F\nassert F(\"1.0.0.0\") == 16777216\nassert F(\"0.0.0.1\") == 1\nprint(\"PASS address-number\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    }
+  },
+  {
+    "id": "window-sums",
+    "family": "sliding-window-sums",
+    "split": "train",
+    "source": "lib/transform.py",
+    "files": {
+      "README.md": "Return sums of consecutive full windows; width is positive. Preserve windows(values, width). Fix lib/transform.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "lib/transform.py": "def windows(values, width):\n    return [sum(values)]\n",
+      "checks.py": "from lib.transform import windows as F\nassert F([1, 2, 4], 2) == [3, 6]\nassert F([1], 2) == []\nprint(\"PASS window-sums\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "learn": false,
+        "expect": {
+          "content": "Return sums of consecutive full windows; width is positive. Preserve windows(values, width). Fix lib/transform.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks.py"
+        },
+        "learn": false,
+        "expect": {
+          "content": "from lib.transform import windows as F\nassert F([1, 2, 4], 2) == [3, 6]\nassert F([1], 2) == []\nprint(\"PASS window-sums\")\n"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "lib/transform.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def windows(values, width):\n    return [sum(values)]\n"
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "lib/transform.py",
+          "version": "v3",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    return [sum(values[i:i + width]) for i in range(len(values) - width + 1)]"
+        },
+        "learn": true,
+        "expect": {
+          "changed": true
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS window-sums\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Preserved windows(values, width) and repaired lib/transform.py. Ran checks.py; observed PASS window-sums."
+        },
+        "learn": true,
+        "expect": {}
+      }
+    ],
+    "budget_steps": 12,
+    "pattern": "test-first",
+    "outcome": "success",
+    "final_files": {
+      "README.md": "Return sums of consecutive full windows; width is positive. Preserve windows(values, width). Fix lib/transform.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "lib/transform.py": "def windows(values, width):\n    return [sum(values[i:i + width]) for i in range(len(values) - width + 1)]\n",
+      "checks.py": "from lib.transform import windows as F\nassert F([1, 2, 4], 2) == [3, 6]\nassert F([1], 2) == []\nprint(\"PASS window-sums\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    }
+  },
+  {
+    "id": "insertion-index",
+    "family": "lower-bound-search",
+    "split": "train",
+    "source": "logic.py",
+    "files": {
+      "README.md": "Sorted values: return the first insertion index, before equal items. Preserve position(values, item). Fix logic.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "logic.py": "def position(values, item):\n    return len(values)\n",
+      "checks.py": "from logic import position as F\nassert F([1, 3, 3], 3) == 1\nassert F([], 2) == 0\nprint(\"PASS insertion-index\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "learn": false,
+        "expect": {
+          "content": "Sorted values: return the first insertion index, before equal items. Preserve position(values, item). Fix logic.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks.py"
+        },
+        "learn": false,
+        "expect": {
+          "content": "from logic import position as F\nassert F([1, 3, 3], 3) == 1\nassert F([], 2) == 0\nprint(\"PASS insertion-index\")\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "logic.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def position(values, item):\n    return len(values)\n"
+        }
+      },
+      {
+        "tool": "edit_file",
+        "arguments": {
+          "path": "logic.py",
+          "old_text": "    return len(values)",
+          "new_text": "    import bisect\n    return bisect.bisect_left(values, item)"
+        },
+        "learn": true,
+        "expect": {
+          "edited": "logic.py"
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS insertion-index\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Preserved position(values, item) and repaired logic.py. Ran checks.py; observed PASS insertion-index."
+        },
+        "learn": true,
+        "expect": {}
+      }
+    ],
+    "budget_steps": 12,
+    "pattern": "straight",
+    "outcome": "success",
+    "final_files": {
+      "README.md": "Sorted values: return the first insertion index, before equal items. Preserve position(values, item). Fix logic.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "logic.py": "def position(values, item):\n    import bisect\n    return bisect.bisect_left(values, item)\n",
+      "checks.py": "from logic import position as F\nassert F([1, 3, 3], 3) == 1\nassert F([], 2) == 0\nprint(\"PASS insertion-index\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    }
+  },
+  {
+    "id": "nested-copy",
+    "family": "recursive-copy-independence",
+    "split": "train",
+    "source": "core/operation.py",
+    "files": {
+      "README.md": "Deep-copy nested lists so changing a clone does not alter its input. Preserve clone(rows). Fix core/operation.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "core/operation.py": "def clone(rows):\n    return list(rows)\n",
+      "checks.py": "from core.operation import clone as F\nx = [[1]]\ny = F(x)\ny[0].append(2)\nassert x == [[1]]\nassert F([]) == []\nprint(\"PASS nested-copy\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    },
+    "actions": [
+      {
+        "tool": "list_files",
+        "arguments": {},
+        "learn": true,
+        "expect": {}
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "learn": false,
+        "expect": {
+          "content": "Deep-copy nested lists so changing a clone does not alter its input. Preserve clone(rows). Fix core/operation.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks.py"
+        },
+        "learn": false,
+        "expect": {
+          "content": "from core.operation import clone as F\nx = [[1]]\ny = F(x)\ny[0].append(2)\nassert x == [[1]]\nassert F([]) == []\nprint(\"PASS nested-copy\")\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "core/operation.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def clone(rows):\n    return list(rows)\n"
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "core/operation.py",
+          "version": "v3",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    return rows[:]"
+        },
+        "learn": false,
+        "expect": {
+          "changed": true
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "core/operation.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def clone(rows):\n    return rows[:]\n"
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "core/operation.py",
+          "version": "v4",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    import copy\n    return copy.deepcopy(rows)"
+        },
+        "learn": true,
+        "expect": {
+          "changed": true
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS nested-copy\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Preserved clone(rows) and repaired core/operation.py. Ran checks.py; observed PASS nested-copy."
+        },
+        "learn": true,
+        "expect": {}
+      }
+    ],
+    "budget_steps": 12,
+    "pattern": "repair",
+    "outcome": "success",
+    "final_files": {
+      "README.md": "Deep-copy nested lists so changing a clone does not alter its input. Preserve clone(rows). Fix core/operation.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "core/operation.py": "def clone(rows):\n    import copy\n    return copy.deepcopy(rows)\n",
+      "checks.py": "from core.operation import clone as F\nx = [[1]]\ny = F(x)\ny[0].append(2)\nassert x == [[1]]\nassert F([]) == []\nprint(\"PASS nested-copy\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    }
+  },
+  {
+    "id": "query-decode",
+    "family": "url-query-unquoting",
+    "split": "train",
+    "source": "lib/transform.py",
+    "files": {
+      "README.md": "Decode percent escapes and plus-as-space in a URL query component. Preserve decode(text). Fix lib/transform.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "lib/transform.py": "def decode(text):\n    return text\n",
+      "checks.py": "from lib.transform import decode as F\nassert F(\"a+b%21\") == \"a b!\"\nassert F(\"x%2By\") == \"x+y\"\nprint(\"PASS query-decode\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "learn": false,
+        "expect": {
+          "content": "Decode percent escapes and plus-as-space in a URL query component. Preserve decode(text). Fix lib/transform.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks.py"
+        },
+        "learn": false,
+        "expect": {
+          "content": "from lib.transform import decode as F\nassert F(\"a+b%21\") == \"a b!\"\nassert F(\"x%2By\") == \"x+y\"\nprint(\"PASS query-decode\")\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "lib/transform.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def decode(text):\n    return text\n"
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "lib/transform.py",
+          "version": "v3",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    return text.replace(\"+\", \" \")"
+        },
+        "learn": false,
+        "expect": {
+          "changed": true
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Incomplete: checks.py failed with AssertionError. lib/transform.py is not repaired; no passing test observed."
+        },
+        "learn": true,
+        "expect": {}
+      }
+    ],
+    "budget_steps": 12,
+    "pattern": "unresolved",
+    "outcome": "unresolved",
+    "final_files": {
+      "README.md": "Decode percent escapes and plus-as-space in a URL query component. Preserve decode(text). Fix lib/transform.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "lib/transform.py": "def decode(text):\n    return text.replace(\"+\", \" \")\n",
+      "checks.py": "from lib.transform import decode as F\nassert F(\"a+b%21\") == \"a b!\"\nassert F(\"x%2By\") == \"x+y\"\nprint(\"PASS query-decode\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    }
+  },
+  {
+    "id": "json-pointer",
+    "family": "json-pointer-token-decoding",
+    "split": "valid",
+    "source": "logic.py",
+    "files": {
+      "README.md": "Decode a nonempty JSON Pointer into segments: ~1 is /, ~0 is ~. Preserve tokens(pointer). Fix logic.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "logic.py": "def tokens(pointer):\n    return pointer[1:].split(\"/\")\n",
+      "checks.py": "from logic import tokens as F\nassert F(\"/a~1b/~0\") == [\"a/b\", \"~\"]\nassert F(\"/x\") == [\"x\"]\nprint(\"PASS json-pointer\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    },
+    "actions": [
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "learn": false,
+        "expect": {
+          "content": "Decode a nonempty JSON Pointer into segments: ~1 is /, ~0 is ~. Preserve tokens(pointer). Fix logic.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks.py"
+        },
+        "learn": false,
+        "expect": {
+          "content": "from logic import tokens as F\nassert F(\"/a~1b/~0\") == [\"a/b\", \"~\"]\nassert F(\"/x\") == [\"x\"]\nprint(\"PASS json-pointer\")\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "logic.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def tokens(pointer):\n    return pointer[1:].split(\"/\")\n"
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "logic.py",
+          "version": "v3",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    return [s.replace(\"~1\", \"/\").replace(\"~0\", \"~\") for s in pointer[1:].split(\"/\")]"
+        },
+        "learn": true,
+        "expect": {
+          "changed": true
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "completed",
+          "stdout": "PASS json-pointer\n"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Preserved tokens(pointer) and repaired logic.py. Ran checks.py; observed PASS json-pointer."
+        },
+        "learn": true,
+        "expect": {}
+      }
+    ],
+    "budget_steps": 12,
+    "pattern": "straight",
+    "outcome": "success",
+    "final_files": {
+      "README.md": "Decode a nonempty JSON Pointer into segments: ~1 is /, ~0 is ~. Preserve tokens(pointer). Fix logic.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "logic.py": "def tokens(pointer):\n    return [s.replace(\"~1\", \"/\").replace(\"~0\", \"~\") for s in pointer[1:].split(\"/\")]\n",
+      "checks.py": "from logic import tokens as F\nassert F(\"/a~1b/~0\") == [\"a/b\", \"~\"]\nassert F(\"/x\") == [\"x\"]\nprint(\"PASS json-pointer\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    }
+  },
+  {
+    "id": "greatest-divisor",
+    "family": "euclidean-gcd",
+    "split": "valid",
+    "source": "core/operation.py",
+    "files": {
+      "README.md": "Return nonnegative greatest common divisor of integers, including gcd(0,0)=0. Preserve divisor(a, b). Fix core/operation.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "core/operation.py": "def divisor(a, b):\n    return min(a, b)\n",
+      "checks.py": "from core.operation import divisor as F\nassert F(12, 8) == 4\nassert F(0, 0) == 0\nassert F(-6, 9) == 3\nprint(\"PASS greatest-divisor\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    },
+    "actions": [
+      {
+        "tool": "list_files",
+        "arguments": {},
+        "learn": true,
+        "expect": {}
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "README.md"
+        },
+        "learn": false,
+        "expect": {
+          "content": "Return nonnegative greatest common divisor of integers, including gcd(0,0)=0. Preserve divisor(a, b). Fix core/operation.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "checks.py"
+        },
+        "learn": false,
+        "expect": {
+          "content": "from core.operation import divisor as F\nassert F(12, 8) == 4\nassert F(0, 0) == 0\nassert F(-6, 9) == 3\nprint(\"PASS greatest-divisor\")\n"
+        }
+      },
+      {
+        "tool": "read_file",
+        "arguments": {
+          "path": "core/operation.py"
+        },
+        "learn": true,
+        "expect": {
+          "content": "def divisor(a, b):\n    return min(a, b)\n"
+        }
+      },
+      {
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "core/operation.py",
+          "version": "v3",
+          "start_line": 2,
+          "end_line": 2,
+          "new_text": "    return abs(min(a, b))"
+        },
+        "learn": false,
+        "expect": {
+          "changed": true
+        }
+      },
+      {
+        "tool": "run_python",
+        "arguments": {
+          "code": "exec(open('checks.py').read())"
+        },
+        "learn": true,
+        "expect": {
+          "status": "python_error"
+        }
+      },
+      {
+        "tool": "finish",
+        "arguments": {
+          "summary": "Incomplete: checks.py failed with AssertionError. core/operation.py is not repaired; no passing test observed."
+        },
+        "learn": true,
+        "expect": {}
+      }
+    ],
+    "budget_steps": 12,
+    "pattern": "unresolved",
+    "outcome": "unresolved",
+    "final_files": {
+      "README.md": "Return nonnegative greatest common divisor of integers, including gcd(0,0)=0. Preserve divisor(a, b). Fix core/operation.py; keep checks.py unchanged. Run checks.py and report the observed outcome.\n",
+      "core/operation.py": "def divisor(a, b):\n    return abs(min(a, b))\n",
+      "checks.py": "from core.operation import divisor as F\nassert F(12, 8) == 4\nassert F(0, 0) == 0\nassert F(-6, 9) == 3\nprint(\"PASS greatest-divisor\")\n",
+      "notes.txt": "Unrelated file; preserve.\n"
+    }
+  }
+]

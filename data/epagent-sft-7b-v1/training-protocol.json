@@ -1,0 +1,17 @@
+{
+  "schema": "epagent.sft-protocol.v2",
+  "id": "7b-workflow-sft-v1",
+  "model_id": "mlx-community/Qwen2.5-Coder-7B-Instruct-4bit",
+  "revision": "019cc73c45c770444708a6dd8690c66243cc5c80",
+  "training_iterations": 124,
+  "training_targets": 62,
+  "dataset_passes": 2,
+  "validation_targets": 8,
+  "sequence_length": 1536,
+  "starting_adapter": null,
+  "evaluation": "Evaluation 02; original base and adapted arms; verification feedback OFF",
+  "primary": "Existing assessment.measure evidence_supported_finish; separate independent_result repair endpoint",
+  "memory_check": "One longest-example real forward/backward, zero optimizer updates; authorization required before execution",
+  "decision_rule": "Fixed budget; no tuning or restarts after baseline/loss inspection; failed memory check blocks training",
+  "training_performed": false
+}

@@ -1,0 +1,100 @@
+{
+  "schema": "epagent.7b-sft-preparation-verification.v1",
+  "verified_at": "2026-09-25T20:00:55.902501+00:00",
+  "source_parent": "e54001b7150a1ad1b8550c16cd638900dd6baa8d",
+  "full_suite": {
+    "tests": 258,
+    "passed": 258,
+    "skipped": 0,
+    "seconds": 67.387,
+    "command": "PYTHONPATH=src PATH=\"$PWD/.venv/bin:$PATH\" EPAGENT_TEST_MLX=1 .venv/bin/python -m unittest discover -s tests -v"
+  },
+  "initial_full_suite": {
+    "tests": 257,
+    "failures": 1,
+    "reason": "Historical SFT v3 source hash test pointed at evolving live SFT runtime",
+    "resolution": "Preserved exact original sft.py under artifacts/ep-agent/sft-runtime-v1; historical expected hash unchanged. Final suite passes."
+  },
+  "focused_preparation_tests": {
+    "initial_tests": 10,
+    "initial_passed": 10,
+    "final_added_regression": "Memory-probe supervisor preserves missing-result failure and cleans up; included in final 258-test suite"
+  },
+  "packaging": {
+    "wheel": "ep_agentbench-0.5.0-py3-none-any.whl",
+    "sha256": "cef358563747ca8df7092fb8e3cf14a891b7dd878a9402d71b83730b5af4d864",
+    "commands": [
+      ".venv/bin/python -m pip wheel --no-deps --no-build-isolation --wheel-dir /tmp/epagent-7b-prep-wheel .",
+      ".venv/bin/python -m venv /tmp/epagent-7b-prep-install",
+      "/tmp/epagent-7b-prep-install/bin/python -m pip install --no-index --no-deps /tmp/epagent-7b-prep-wheel/ep_agentbench-0.5.0-py3-none-any.whl"
+    ],
+    "outside_checkout_cwd": "/private/tmp",
+    "outside_commands": [
+      "/tmp/epagent-7b-prep-install/bin/epagent --help",
+      "/tmp/epagent-7b-prep-install/bin/epbench list",
+      "/tmp/epagent-7b-prep-install/bin/python <REPOSITORY>/scripts/run_evaluation_02.py --help",
+      "/tmp/epagent-7b-prep-install/bin/python <REPOSITORY>/scripts/check_7b_training_memory.py --help",
+      "PYTHONPATH=<REPOSITORY>/tests /tmp/epagent-7b-prep-install/bin/python -m unittest test_sft_7b_preparation -v"
+    ],
+    "normalization": "Repository path replaced by <REPOSITORY>; no private paths archived",
+    "status": "Wheel/install, both CLI checks, both new script help commands and outside tests passed",
+    "outside_tests": {
+      "tests": 11,
+      "passed": 10,
+      "skipped": 1,
+      "reason": "Dependency-free wheel venv intentionally skips optional native-tokenizer test; actual tokenizer passed in full suite."
+    }
+  },
+  "preparation_commands": [
+    "PYTHONPATH=src .venv/bin/python scripts/build_sft_7b.py --out /tmp/epagent-7b-demo-review",
+    "PYTHONPATH=src .venv/bin/python scripts/build_sft_7b.py --out /tmp/epagent-7b-demo-final",
+    "PYTHONPATH=src .venv/bin/python -m epagent.sft prepare --trajectories data/epagent-sft-7b-v1/trajectories --config data/epagent-sft-7b-v1/lora-config.json --protocol data/epagent-sft-7b-v1/training-protocol.json --model-dir .epagent-models/qwen2.5-coder-7b-4bit --out sft-runs/7b-workflow-prepared-v1",
+    "PYTHONPATH=src .venv/bin/python -m epagent.sft prepare --trajectories data/epagent-sft-7b-v1/trajectories --config data/epagent-sft-7b-v1/lora-config.json --protocol data/epagent-sft-7b-v1/training-protocol.json --model-dir .epagent-models/qwen2.5-coder-7b-4bit --out /tmp/epagent-7b-prepared-final",
+    "PYTHONPATH=src .venv/bin/python scripts/build_evaluation_02.py --out data/epagent-evaluation-02",
+    "/usr/sbin/sysctl hw.memsize vm.swapusage kern.memorystatus_vm_pressure_level",
+    "/usr/bin/memory_pressure -Q",
+    "/usr/bin/vm_stat"
+  ],
+  "preparation_replay_note": "Final token/example JSONL matched first preparation byte for byte; refreshed manifest records the streamed-hash SFT source. No experimental output existed or was overwritten.",
+  "software": {
+    "mlx-lm": "0.31.3",
+    "mlx": "0.32.2",
+    "transformers": "5.17.0",
+    "numpy": "2.4.6"
+  },
+  "preserved_identities": {
+    "qwen2.5-coder-1.5b-4bit": {
+      "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+      "files_verified": 10
+    },
+    "qwen2.5-coder-7b-4bit": {
+      "revision": "019cc73c45c770444708a6dd8690c66243cc5c80",
+      "files_verified": 10
+    },
+    "tool-use-lora-v2": {
+      "checkpoints_verified": {
+        "adapters.safetensors": "cbec8646e75885f48b30a06be8a5d65475fd13d838daeaab673e38fbd99086f7",
+        "0000020_adapters.safetensors": "03296c3a66c1917343e941425639024ccac3a2fb06460119abe9dcd5dbc5f657",
+        "0000040_adapters.safetensors": "cbec8646e75885f48b30a06be8a5d65475fd13d838daeaab673e38fbd99086f7"
+      }
+    },
+    "tool-use-lora-v3": {
+      "checkpoints_verified": {
+        "0000069_adapters.safetensors": "56522326905f73ebb08c4ce5f781368b3fe000b736779ac4df911e362ff5dded",
+        "adapters.safetensors": "4f0f3dde55d6486313f860eaf1f6fcdb2d1f1373b481553e8302cacdb6bc42ff",
+        "0000138_adapters.safetensors": "4f0f3dde55d6486313f860eaf1f6fcdb2d1f1373b481553e8302cacdb6bc42ff"
+      }
+    }
+  },
+  "real_model_load": false,
+  "real_model_inference": false,
+  "real_backward_probe": false,
+  "optimizer_updates": 0,
+  "new_adapter": false,
+  "fixture_validation": {
+    "cases": 10,
+    "starters_fail_visible_and_independent": 10,
+    "references_pass_visible_and_independent": 10
+  },
+  "protocol_sha256": "a544d87b9b5c10bf0b567e4fc454dce02942b9298b5e9a03e5c46fd4f1bca203"
+}

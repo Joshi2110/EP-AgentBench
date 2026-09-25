@@ -1,0 +1,44 @@
+{
+  "frozen_at": "2026-09-25T19:41:19.963753+00:00",
+  "chronology": "Training dataset/model/configuration frozen before authoring Evaluation 02 fixtures; designed after inspecting Evaluation 01. No outputs collected.",
+  "sha256": {
+    "data/epagent-sft-7b-v1/fixtures.json": "18ccfb9eaebcb97719f6502a72a23a8fb952c4254d17a3a71dd92eb5cf0e006c",
+    "data/epagent-sft-7b-v1/lora-config.json": "0bd46f21c90549e25b5efa978abd7309b1f2dfee4f21ca0191428b2bcec78f4e",
+    "data/epagent-sft-7b-v1/training-protocol.json": "8bbe580165242729a908b850b34f3c46b928e5bfbed09786b336499004ada33c",
+    "data/epagent-sft-7b-v1/model-plan.json": "049dd3dc58507f48877200f99b0a1e83c1837bda7d5262d1d3721eff9f723282",
+    "data/epagent-sft-7b-v1/trajectories/address-number.jsonl": "6fae01eaf57de04dc7492f36f823b4fcf658c2a13222e5b48c925bc7dac628a9",
+    "data/epagent-sft-7b-v1/trajectories/coverage.json": "69a6d6a5aa75bee5e1faccae3429bb9597883c27c2f8da7ffb4e90147a1613b5",
+    "data/epagent-sft-7b-v1/trajectories/csv-field.jsonl": "f8133440b0c1dd3e0d573677b88e12fe1b8c3251da306647c7246df3b4aa4b9d",
+    "data/epagent-sft-7b-v1/trajectories/greatest-divisor.jsonl": "62fc92a792f9c6506afec0239c52ca9f4a536dea6d13d98a60243d9a4ec643b3",
+    "data/epagent-sft-7b-v1/trajectories/insertion-index.jsonl": "c0aad0f38ccba30e6ccf0b6b11089c9383ffb6770fdcf6d09a497108ed481e1f",
+    "data/epagent-sft-7b-v1/trajectories/integer-bytes.jsonl": "3e147798f38e78a72880ade560f066edc7db15d6bc2c36520bf0778ec64328d1",
+    "data/epagent-sft-7b-v1/trajectories/interpolation.jsonl": "df3ccd1f87871f1f2254993d5dea789a6b97d399d955b1208ab38cca68a48339",
+    "data/epagent-sft-7b-v1/trajectories/inverse-index.jsonl": "b62967591e9a28502dc04209df24774c0cd9349421d55108250a0b6052f356fe",
+    "data/epagent-sft-7b-v1/trajectories/json-pointer.jsonl": "aaf92df6adad1aa6498f88261cef99c6da3584aa1d10cb7f1b0df6e542a1cfbd",
+    "data/epagent-sft-7b-v1/trajectories/leap-calendar.jsonl": "ace9ef0402c205de91c6aa204472bb5c4317b75f024f49d95478d17b0d8422ee",
+    "data/epagent-sft-7b-v1/trajectories/nested-copy.jsonl": "a8f17e3536e056d5499ba5df483d8914cb3d41af863e1e9b48c00a757b36ffb2",
+    "data/epagent-sft-7b-v1/trajectories/polynomial.jsonl": "e94bdfb4267e2a4176027a8448a3d9be29d8163c5982ca51886ef908651d92cd",
+    "data/epagent-sft-7b-v1/trajectories/query-decode.jsonl": "956035e61e0cbefe8d3e0c6765ac4ff5b6c928a422a7e34bf62ed02b667fa4e6",
+    "data/epagent-sft-7b-v1/trajectories/reviews.json": "e52412843ce9f8e6b9b2abd57810a87d763f17e9bab4217c365ae5209d3e6c48",
+    "data/epagent-sft-7b-v1/trajectories/window-sums.jsonl": "6a506ea2de5bdc22eae7fb0695cf19935f9a83c979d772d3b84f3463194fa2a2",
+    "data/epagent-sft-7b-v1/trajectories/xml-attribute.jsonl": "cd880cdea26b7bf900ffb1dde776faa9c8493b627a69b5425539d50d4aa6bcb7"
+  },
+  "examples": {
+    "train": {
+      "episodes": 12,
+      "examples": 62,
+      "supervised_tokens": 1948,
+      "max_tokens": 1382
+    },
+    "valid": {
+      "episodes": 2,
+      "examples": 8,
+      "supervised_tokens": 247,
+      "max_tokens": 1127
+    }
+  },
+  "iterations": 124,
+  "dataset_passes": 2,
+  "feedback": false,
+  "adapter_initialization": null
+}

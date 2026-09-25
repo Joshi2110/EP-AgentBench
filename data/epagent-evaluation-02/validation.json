@@ -1,0 +1,248 @@
+{
+  "fixtures": [
+    {
+      "id": "reachable-nodes",
+      "family": "directed-reachability",
+      "source": "case_0/logic.py",
+      "files": [
+        "README.md",
+        "case_0/label.py",
+        "case_0/logic.py",
+        "checks.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 5,
+      "assertions_only_in_independent": 3,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "tree-depth",
+      "family": "binary-tree-height",
+      "source": "case_1/logic.py",
+      "files": [
+        "README.md",
+        "case_1/label.py",
+        "case_1/logic.py",
+        "checks.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 5,
+      "assertions_only_in_independent": 3,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "prime-factors",
+      "family": "prime-factorization",
+      "source": "case_2/logic.py",
+      "files": [
+        "README.md",
+        "case_2/label.py",
+        "case_2/logic.py",
+        "checks.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 5,
+      "assertions_only_in_independent": 3,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "sparse-product",
+      "family": "sparse-vector-dot-product",
+      "source": "case_3/logic.py",
+      "files": [
+        "README.md",
+        "case_3/label.py",
+        "case_3/logic.py",
+        "checks.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 5,
+      "assertions_only_in_independent": 3,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "varint-bytes",
+      "family": "unsigned-leb128",
+      "source": "case_4/logic.py",
+      "files": [
+        "README.md",
+        "case_4/label.py",
+        "case_4/logic.py",
+        "checks.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 5,
+      "assertions_only_in_independent": 3,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "wildcard-text",
+      "family": "whole-string-wildcards",
+      "source": "case_5/logic.py",
+      "files": [
+        "README.md",
+        "case_5/label.py",
+        "case_5/logic.py",
+        "checks.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 5,
+      "assertions_only_in_independent": 3,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "recent-keys",
+      "family": "lru-recency-update",
+      "source": "case_6/logic.py",
+      "files": [
+        "README.md",
+        "case_6/label.py",
+        "case_6/logic.py",
+        "checks.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 5,
+      "assertions_only_in_independent": 3,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "adler-checksum",
+      "family": "adler32-checksum",
+      "source": "case_7/logic.py",
+      "files": [
+        "README.md",
+        "case_7/label.py",
+        "case_7/logic.py",
+        "checks.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 5,
+      "assertions_only_in_independent": 3,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "utc-clock",
+      "family": "timezone-normalized-timestamp",
+      "source": "case_8/logic.py",
+      "files": [
+        "README.md",
+        "case_8/label.py",
+        "case_8/logic.py",
+        "checks.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 5,
+      "assertions_only_in_independent": 3,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    },
+    {
+      "id": "tab-columns",
+      "family": "tab-stop-expansion",
+      "source": "case_9/logic.py",
+      "files": [
+        "README.md",
+        "case_9/label.py",
+        "case_9/logic.py",
+        "checks.py"
+      ],
+      "workspace_files": 4,
+      "discovered_visible_tests": [
+        "checks.py"
+      ],
+      "visible_assertions": 2,
+      "independent_assertions": 5,
+      "assertions_only_in_independent": 3,
+      "visible_equals_independent": false,
+      "starter_fails_independent": true,
+      "starter_fails_visible": true,
+      "reference_passes_independent": true,
+      "reference_passes_visible": true,
+      "starter_independent_stderr_tail": "AssertionError"
+    }
+  ],
+  "fixtures_sha256": "80e29f3a7a38fe0209f46309903f1c4ba52feb0cc16e3aa23abcf0cd873154df",
+  "training_freeze_sha256": "0676035c6f5026949515db38c4854fb03ba5c076c5bdb39c0944c03e5cb3761d",
+  "model_inference_performed": false,
+  "hidden_material_absent_from_workspace": true
+}

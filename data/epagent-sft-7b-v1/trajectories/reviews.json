@@ -1,0 +1,337 @@
+{
+  "schema": "epagent.sft-review.v1",
+  "episodes": [
+    {
+      "episode_id": "leap-calendar",
+      "split": "train",
+      "family": "gregorian-leap-year",
+      "trace": "leap-calendar.jsonl",
+      "trace_sha256": "ace9ef0402c205de91c6aa204472bb5c4317b75f024f49d95478d17b0d8422ee",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored; no proprietary trajectories or benchmark references",
+      "review": "Authored action plans inspected and replayed against real tools; expected observations, preserved API and final bytes checked. Maintainer review pending.",
+      "selected_assistant_steps": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "outcome": "success",
+      "excluded_steps": [
+        1,
+        2
+      ],
+      "exclusion_reason": "Setup README/test reads and deliberately unsuccessful edits remain context only"
+    },
+    {
+      "episode_id": "xml-attribute",
+      "split": "train",
+      "family": "xml-attribute-escaping",
+      "trace": "xml-attribute.jsonl",
+      "trace_sha256": "cd880cdea26b7bf900ffb1dde776faa9c8493b627a69b5425539d50d4aa6bcb7",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored; no proprietary trajectories or benchmark references",
+      "review": "Authored action plans inspected and replayed against real tools; expected observations, preserved API and final bytes checked. Maintainer review pending.",
+      "selected_assistant_steps": [
+        1,
+        4,
+        5,
+        6,
+        7
+      ],
+      "outcome": "success",
+      "excluded_steps": [
+        2,
+        3
+      ],
+      "exclusion_reason": "Setup README/test reads and deliberately unsuccessful edits remain context only"
+    },
+    {
+      "episode_id": "csv-field",
+      "split": "train",
+      "family": "quoted-csv-decoding",
+      "trace": "csv-field.jsonl",
+      "trace_sha256": "f8133440b0c1dd3e0d573677b88e12fe1b8c3251da306647c7246df3b4aa4b9d",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored; no proprietary trajectories or benchmark references",
+      "review": "Authored action plans inspected and replayed against real tools; expected observations, preserved API and final bytes checked. Maintainer review pending.",
+      "selected_assistant_steps": [
+        3,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "outcome": "success",
+      "excluded_steps": [
+        1,
+        2,
+        4
+      ],
+      "exclusion_reason": "Setup README/test reads and deliberately unsuccessful edits remain context only"
+    },
+    {
+      "episode_id": "integer-bytes",
+      "split": "train",
+      "family": "signed-integer-serialization",
+      "trace": "integer-bytes.jsonl",
+      "trace_sha256": "3e147798f38e78a72880ade560f066edc7db15d6bc2c36520bf0778ec64328d1",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored; no proprietary trajectories or benchmark references",
+      "review": "Authored action plans inspected and replayed against real tools; expected observations, preserved API and final bytes checked. Maintainer review pending.",
+      "selected_assistant_steps": [
+        3,
+        6,
+        7,
+        8,
+        9
+      ],
+      "outcome": "success",
+      "excluded_steps": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "exclusion_reason": "Setup README/test reads and deliberately unsuccessful edits remain context only"
+    },
+    {
+      "episode_id": "polynomial",
+      "split": "train",
+      "family": "polynomial-evaluation",
+      "trace": "polynomial.jsonl",
+      "trace_sha256": "e94bdfb4267e2a4176027a8448a3d9be29d8163c5982ca51886ef908651d92cd",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored; no proprietary trajectories or benchmark references",
+      "review": "Authored action plans inspected and replayed against real tools; expected observations, preserved API and final bytes checked. Maintainer review pending.",
+      "selected_assistant_steps": [
+        1,
+        4,
+        5,
+        6,
+        7
+      ],
+      "outcome": "success",
+      "excluded_steps": [
+        2,
+        3
+      ],
+      "exclusion_reason": "Setup README/test reads and deliberately unsuccessful edits remain context only"
+    },
+    {
+      "episode_id": "inverse-index",
+      "split": "train",
+      "family": "inverse-multimap",
+      "trace": "inverse-index.jsonl",
+      "trace_sha256": "b62967591e9a28502dc04209df24774c0cd9349421d55108250a0b6052f356fe",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored; no proprietary trajectories or benchmark references",
+      "review": "Authored action plans inspected and replayed against real tools; expected observations, preserved API and final bytes checked. Maintainer review pending.",
+      "selected_assistant_steps": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "outcome": "success",
+      "excluded_steps": [
+        1,
+        2
+      ],
+      "exclusion_reason": "Setup README/test reads and deliberately unsuccessful edits remain context only"
+    },
+    {
+      "episode_id": "interpolation",
+      "split": "train",
+      "family": "linear-interpolation",
+      "trace": "interpolation.jsonl",
+      "trace_sha256": "df3ccd1f87871f1f2254993d5dea789a6b97d399d955b1208ab38cca68a48339",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored; no proprietary trajectories or benchmark references",
+      "review": "Authored action plans inspected and replayed against real tools; expected observations, preserved API and final bytes checked. Maintainer review pending.",
+      "selected_assistant_steps": [
+        3,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "outcome": "success",
+      "excluded_steps": [
+        1,
+        2,
+        4
+      ],
+      "exclusion_reason": "Setup README/test reads and deliberately unsuccessful edits remain context only"
+    },
+    {
+      "episode_id": "address-number",
+      "split": "train",
+      "family": "ipv4-integer-conversion",
+      "trace": "address-number.jsonl",
+      "trace_sha256": "6fae01eaf57de04dc7492f36f823b4fcf658c2a13222e5b48c925bc7dac628a9",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored; no proprietary trajectories or benchmark references",
+      "review": "Authored action plans inspected and replayed against real tools; expected observations, preserved API and final bytes checked. Maintainer review pending.",
+      "selected_assistant_steps": [
+        1,
+        4,
+        7,
+        8,
+        9,
+        10
+      ],
+      "outcome": "success",
+      "excluded_steps": [
+        2,
+        3,
+        5,
+        6
+      ],
+      "exclusion_reason": "Setup README/test reads and deliberately unsuccessful edits remain context only"
+    },
+    {
+      "episode_id": "window-sums",
+      "split": "train",
+      "family": "sliding-window-sums",
+      "trace": "window-sums.jsonl",
+      "trace_sha256": "6a506ea2de5bdc22eae7fb0695cf19935f9a83c979d772d3b84f3463194fa2a2",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored; no proprietary trajectories or benchmark references",
+      "review": "Authored action plans inspected and replayed against real tools; expected observations, preserved API and final bytes checked. Maintainer review pending.",
+      "selected_assistant_steps": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "outcome": "success",
+      "excluded_steps": [
+        1,
+        2
+      ],
+      "exclusion_reason": "Setup README/test reads and deliberately unsuccessful edits remain context only"
+    },
+    {
+      "episode_id": "insertion-index",
+      "split": "train",
+      "family": "lower-bound-search",
+      "trace": "insertion-index.jsonl",
+      "trace_sha256": "c0aad0f38ccba30e6ccf0b6b11089c9383ffb6770fdcf6d09a497108ed481e1f",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored; no proprietary trajectories or benchmark references",
+      "review": "Authored action plans inspected and replayed against real tools; expected observations, preserved API and final bytes checked. Maintainer review pending.",
+      "selected_assistant_steps": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "outcome": "success",
+      "excluded_steps": [
+        1,
+        2
+      ],
+      "exclusion_reason": "Setup README/test reads and deliberately unsuccessful edits remain context only"
+    },
+    {
+      "episode_id": "nested-copy",
+      "split": "train",
+      "family": "recursive-copy-independence",
+      "trace": "nested-copy.jsonl",
+      "trace_sha256": "a8f17e3536e056d5499ba5df483d8914cb3d41af863e1e9b48c00a757b36ffb2",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored; no proprietary trajectories or benchmark references",
+      "review": "Authored action plans inspected and replayed against real tools; expected observations, preserved API and final bytes checked. Maintainer review pending.",
+      "selected_assistant_steps": [
+        1,
+        4,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "outcome": "success",
+      "excluded_steps": [
+        2,
+        3,
+        5
+      ],
+      "exclusion_reason": "Setup README/test reads and deliberately unsuccessful edits remain context only"
+    },
+    {
+      "episode_id": "query-decode",
+      "split": "train",
+      "family": "url-query-unquoting",
+      "trace": "query-decode.jsonl",
+      "trace_sha256": "956035e61e0cbefe8d3e0c6765ac4ff5b6c928a422a7e34bf62ed02b667fa4e6",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored; no proprietary trajectories or benchmark references",
+      "review": "Authored action plans inspected and replayed against real tools; expected observations, preserved API and final bytes checked. Maintainer review pending.",
+      "selected_assistant_steps": [
+        3,
+        5,
+        6
+      ],
+      "outcome": "unresolved",
+      "excluded_steps": [
+        1,
+        2,
+        4
+      ],
+      "exclusion_reason": "Setup README/test reads and deliberately unsuccessful edits remain context only"
+    },
+    {
+      "episode_id": "json-pointer",
+      "split": "valid",
+      "family": "json-pointer-token-decoding",
+      "trace": "json-pointer.jsonl",
+      "trace_sha256": "aaf92df6adad1aa6498f88261cef99c6da3584aa1d10cb7f1b0df6e542a1cfbd",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored; no proprietary trajectories or benchmark references",
+      "review": "Authored action plans inspected and replayed against real tools; expected observations, preserved API and final bytes checked. Maintainer review pending.",
+      "selected_assistant_steps": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "outcome": "success",
+      "excluded_steps": [
+        1,
+        2
+      ],
+      "exclusion_reason": "Setup README/test reads and deliberately unsuccessful edits remain context only"
+    },
+    {
+      "episode_id": "greatest-divisor",
+      "split": "valid",
+      "family": "euclidean-gcd",
+      "trace": "greatest-divisor.jsonl",
+      "trace_sha256": "62fc92a792f9c6506afec0239c52ca9f4a536dea6d13d98a60243d9a4ec643b3",
+      "origin": "authored-synthetic-fixture",
+      "rights": "Project-authored; no proprietary trajectories or benchmark references",
+      "review": "Authored action plans inspected and replayed against real tools; expected observations, preserved API and final bytes checked. Maintainer review pending.",
+      "selected_assistant_steps": [
+        1,
+        4,
+        6,
+        7
+      ],
+      "outcome": "unresolved",
+      "excluded_steps": [
+        2,
+        3,
+        5
+      ],
+      "exclusion_reason": "Setup README/test reads and deliberately unsuccessful edits remain context only"
+    }
+  ],
+  "normalization": "Only elapsed time omitted and temporary traceback path replaced by <workspace>/"
+}

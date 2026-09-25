@@ -1,0 +1,63 @@
+{
+  "targets": {
+    "train": {
+      "run_python": 18,
+      "read_file": 17,
+      "replace_lines": 8,
+      "finish": 12,
+      "list_files": 4,
+      "edit_file": 3
+    },
+    "valid": {
+      "read_file": 2,
+      "replace_lines": 1,
+      "run_python": 2,
+      "finish": 2,
+      "list_files": 1
+    }
+  },
+  "transitions_all_actions": {
+    "train": {
+      "read_file -> read_file": 21,
+      "read_file -> run_python": 3,
+      "run_python -> read_file": 6,
+      "read_file -> replace_lines": 14,
+      "replace_lines -> run_python": 12,
+      "run_python -> finish": 12,
+      "list_files -> read_file": 4,
+      "read_file -> edit_file": 3,
+      "edit_file -> run_python": 3,
+      "replace_lines -> replace_lines": 2,
+      "replace_lines -> read_file": 2
+    },
+    "valid": {
+      "read_file -> read_file": 4,
+      "read_file -> replace_lines": 2,
+      "replace_lines -> run_python": 2,
+      "run_python -> finish": 2,
+      "list_files -> read_file": 1
+    }
+  },
+  "episode_lengths": {
+    "leap-calendar": 7,
+    "xml-attribute": 7,
+    "csv-field": 9,
+    "integer-bytes": 9,
+    "polynomial": 7,
+    "inverse-index": 7,
+    "interpolation": 9,
+    "address-number": 10,
+    "window-sums": 7,
+    "insertion-index": 6,
+    "nested-copy": 10,
+    "query-decode": 6,
+    "json-pointer": 6,
+    "greatest-divisor": 7
+  },
+  "examples": {
+    "train": 62,
+    "valid": 8
+  },
+  "model_inference": false,
+  "training": false
+}

@@ -86,10 +86,11 @@ class V3DataTests(unittest.TestCase):
         protocol = read(DATA / 'eval-protocol.json')
         config = config_at(DATA / 'lora-config.json')
         for name, sha in {**freeze['dataset_files_sha256'], **freeze['implementation_sha256']}.items():
-            # The production tool protocol has advanced; verify the original
-            # frozen tool implementation preserved with the diagnostic archive.
-            path = (ROOT / 'artifacts/ep-agent/edit-history-v1' / name
-                    if name == 'src/epagent/tools.py' else ROOT / name)
+            # Runtime code can advance; compare historical freezes to preserved
+            # exact source, without rewriting their expected hashes or evidence.
+            archive = {'src/epagent/tools.py': 'artifacts/ep-agent/edit-history-v1',
+                       'src/epagent/sft.py': 'artifacts/ep-agent/sft-runtime-v1'}
+            path = ROOT / archive.get(name, '') / name
             self.assertEqual(digest(path), sha, name)
         self.assertEqual(protocol['training_freeze_sha256'], digest(DATA / 'training-freeze.json'))
         self.assertGreater(protocol['authored_after_training_freeze'], freeze['frozen_at'])

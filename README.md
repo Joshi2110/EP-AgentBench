@@ -67,6 +67,8 @@ line editing and the development smoke workflow are documented in
 [docs/epagent-line-editing.md](docs/epagent-line-editing.md).
 The failed 7B episode and opt-in syntax/test-observability improvements are
 documented in [docs/epagent-verification-feedback.md](docs/epagent-verification-feedback.md).
+The first 7B LoRA workflow experiment and Evaluation 02 are
+[prepared for review](docs/epagent-7b-sft-plan.md); training and evaluation have not run.
 
 ### Three things that are easy to confuse
 
