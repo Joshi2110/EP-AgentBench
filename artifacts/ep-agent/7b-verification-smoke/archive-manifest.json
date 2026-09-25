@@ -1,0 +1,125 @@
+{
+  "schema": "epagent.archive-manifest.v1",
+  "source_head": "48c0c690d5b4e5284243005f3e596437f2134dc4",
+  "run_directory": "attempts/replace-lines-7b-verification-smoke",
+  "episode_id": "c2e1e8992bd5461eac3eed8c2144231d",
+  "normalization": "Repository prefixes in metadata and terminal tracebacks become <REPOSITORY>. Model-visible events, generated responses, source bytes and the conversation are byte-identical to the raw records.",
+  "raw_evidence_retained_locally": true,
+  "files": {
+    "attempts/replace-lines-7b-verification-smoke/registration.json": {
+      "raw_sha256": "0c68056bf4e206fd6e098ab61eff972e265e8962b2d99e63b263c97a61a05c2a",
+      "archived_sha256": "216ca1cef83df59004bec0498f15444b4215f7819521bb387d49e366a6f95027",
+      "repository_prefix_replacements": 1
+    },
+    "attempts/replace-lines-7b-verification-smoke/result.json": {
+      "raw_sha256": "6dace9a905b5b5927e2aca31c068dbc9f62e3deaaf9a759ca4752c62a40cafd6",
+      "archived_sha256": "a379b1f6e2b0c3296b1a968f93d38dff0988b4295b246a3de8784145dafbe662",
+      "repository_prefix_replacements": 8
+    },
+    "attempts/replace-lines-7b-verification-smoke/cleanup.json": {
+      "raw_sha256": "ad7be677587f898596fb06b1d95a5d2e7ff40811b2ee96d515eab99c9351b613",
+      "archived_sha256": "ad7be677587f898596fb06b1d95a5d2e7ff40811b2ee96d515eab99c9351b613",
+      "repository_prefix_replacements": 0
+    },
+    "attempts/replace-lines-7b-verification-smoke/episodes/c2e1e8992bd5461eac3eed8c2144231d/report.json": {
+      "raw_sha256": "6dace9a905b5b5927e2aca31c068dbc9f62e3deaaf9a759ca4752c62a40cafd6",
+      "archived_sha256": "a379b1f6e2b0c3296b1a968f93d38dff0988b4295b246a3de8784145dafbe662",
+      "repository_prefix_replacements": 8
+    },
+    "attempts/replace-lines-7b-verification-smoke/episodes/c2e1e8992bd5461eac3eed8c2144231d/trajectory.jsonl": {
+      "raw_sha256": "be3f06cd26c83a74e37edfcd1795614856178244ca80194a2b257862ed410ae9",
+      "archived_sha256": "9c630e104844ede4acfa42d4fec5e748c838f2ef4880321ea43eb19ffe6c62c4",
+      "repository_prefix_replacements": 9
+    },
+    "attempts/replace-lines-7b-verification-smoke/episodes/c2e1e8992bd5461eac3eed8c2144231d/conversation.json": {
+      "raw_sha256": "b5b1f2e17c665365298cc05936d0c6998c95035da49497685c2875d88df4e8aa",
+      "archived_sha256": "b5b1f2e17c665365298cc05936d0c6998c95035da49497685c2875d88df4e8aa",
+      "repository_prefix_replacements": 0
+    },
+    "attempts/replace-lines-7b-verification-smoke/episodes/c2e1e8992bd5461eac3eed8c2144231d/changes.diff": {
+      "raw_sha256": "f0dcfc583db043292506f896cf8680d58751702dffec30d7deb053e53fc30205",
+      "archived_sha256": "f0dcfc583db043292506f896cf8680d58751702dffec30d7deb053e53fc30205",
+      "repository_prefix_replacements": 0
+    },
+    "attempts/replace-lines-7b-verification-smoke/episodes/c2e1e8992bd5461eac3eed8c2144231d/initial/README.md": {
+      "raw_sha256": "b6c491f6dea743f1d4e18ff8e83bee128d0b50d169b2531b270c33c32d6f9958",
+      "archived_sha256": "b6c491f6dea743f1d4e18ff8e83bee128d0b50d169b2531b270c33c32d6f9958",
+      "repository_prefix_replacements": 0
+    },
+    "attempts/replace-lines-7b-verification-smoke/episodes/c2e1e8992bd5461eac3eed8c2144231d/initial/cart.py": {
+      "raw_sha256": "a3861d98b29faf7d762241e5c0e059f66f57e3015a31928073006bf74b709fbc",
+      "archived_sha256": "a3861d98b29faf7d762241e5c0e059f66f57e3015a31928073006bf74b709fbc",
+      "repository_prefix_replacements": 0
+    },
+    "attempts/replace-lines-7b-verification-smoke/episodes/c2e1e8992bd5461eac3eed8c2144231d/initial/checks.py": {
+      "raw_sha256": "58783e70e753467b1c89b75f2928737f688554db96d13f0905d62182961734dc",
+      "archived_sha256": "58783e70e753467b1c89b75f2928737f688554db96d13f0905d62182961734dc",
+      "repository_prefix_replacements": 0
+    },
+    "attempts/replace-lines-7b-verification-smoke/episodes/c2e1e8992bd5461eac3eed8c2144231d/workspace/README.md": {
+      "raw_sha256": "b6c491f6dea743f1d4e18ff8e83bee128d0b50d169b2531b270c33c32d6f9958",
+      "archived_sha256": "b6c491f6dea743f1d4e18ff8e83bee128d0b50d169b2531b270c33c32d6f9958",
+      "repository_prefix_replacements": 0
+    },
+    "attempts/replace-lines-7b-verification-smoke/episodes/c2e1e8992bd5461eac3eed8c2144231d/workspace/cart.py": {
+      "raw_sha256": "80ecfe3abcec4e6b9e42bec1e1cb31a1934c9087980990d0546ff3807bc14e0f",
+      "archived_sha256": "80ecfe3abcec4e6b9e42bec1e1cb31a1934c9087980990d0546ff3807bc14e0f",
+      "repository_prefix_replacements": 0
+    },
+    "attempts/replace-lines-7b-verification-smoke/episodes/c2e1e8992bd5461eac3eed8c2144231d/workspace/checks.py": {
+      "raw_sha256": "58783e70e753467b1c89b75f2928737f688554db96d13f0905d62182961734dc",
+      "archived_sha256": "58783e70e753467b1c89b75f2928737f688554db96d13f0905d62182961734dc",
+      "repository_prefix_replacements": 0
+    },
+    ".epagent-models/qwen2.5-coder-7b-4bit/epagent-model.json": {
+      "raw_sha256": "7ba384b44c21d60b5f910474174d893354119eaaa19e1b71de9059806d1a9926",
+      "archived_sha256": "7ba384b44c21d60b5f910474174d893354119eaaa19e1b71de9059806d1a9926",
+      "repository_prefix_replacements": 0
+    },
+    "data/epagent-development/cart-total.json": {
+      "raw_sha256": "ad9bcea2e517f852bb154d0125f43e0f1265046a68b1c3d46add4a733d2e35cb",
+      "archived_sha256": "ad9bcea2e517f852bb154d0125f43e0f1265046a68b1c3d46add4a733d2e35cb",
+      "repository_prefix_replacements": 0
+    },
+    "scripts/run_development_smoke.py": {
+      "raw_sha256": "25d478e0957501ec4af3d9ba636b9a42aa5d22803dfd176916024508bc36f87a",
+      "archived_sha256": "25d478e0957501ec4af3d9ba636b9a42aa5d22803dfd176916024508bc36f87a",
+      "repository_prefix_replacements": 0
+    },
+    "tests/test_verification_feedback.py": {
+      "raw_sha256": "5f2765eac4624ad2eb7f40b500cffc0cc9cf239be8c58976d196b4b9c195ad8f",
+      "archived_sha256": "5f2765eac4624ad2eb7f40b500cffc0cc9cf239be8c58976d196b4b9c195ad8f",
+      "repository_prefix_replacements": 0
+    },
+    "src/epagent/verification.py": {
+      "raw_sha256": "03d3bcd139853792aa30fe1fe2fc678fffe46150c84962f9af71795c093607f0",
+      "archived_sha256": "03d3bcd139853792aa30fe1fe2fc678fffe46150c84962f9af71795c093607f0",
+      "repository_prefix_replacements": 0
+    },
+    "src/epagent/episode.py": {
+      "raw_sha256": "24727f150f43d8457496cb10a38deec40cc521a87bb3d2f838687d328155508d",
+      "archived_sha256": "24727f150f43d8457496cb10a38deec40cc521a87bb3d2f838687d328155508d",
+      "repository_prefix_replacements": 0
+    },
+    "src/epagent/development.py": {
+      "raw_sha256": "258e95ea424d1c9c15ab4851be0a5032a65c743610f87444274e24ff29a1dd7e",
+      "archived_sha256": "258e95ea424d1c9c15ab4851be0a5032a65c743610f87444274e24ff29a1dd7e",
+      "repository_prefix_replacements": 0
+    },
+    "src/epagent/tools.py": {
+      "raw_sha256": "a2322587a0c11ff9ae5d18e7ca8f18e11df671437cffa78f2925ff85e1d194fe",
+      "archived_sha256": "a2322587a0c11ff9ae5d18e7ca8f18e11df671437cffa78f2925ff85e1d194fe",
+      "repository_prefix_replacements": 0
+    },
+    "src/epagent/mlx_backend.py": {
+      "raw_sha256": "831c8cd0116e6a998dc13e05ce030cfbe7572dd0bb7f398755c7f3acad85ac76",
+      "archived_sha256": "831c8cd0116e6a998dc13e05ce030cfbe7572dd0bb7f398755c7f3acad85ac76",
+      "repository_prefix_replacements": 0
+    }
+  },
+  "episodes_run": 1,
+  "retries": 0,
+  "no_inference_or_rescoring": true,
+  "previous_7b_episode_unchanged": true,
+  "limitations": "One development episode. The syntax-error path was never exercised because the model wrote no invalid Python."
+}
