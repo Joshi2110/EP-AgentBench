@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "<REPOSITORY>/sft-runs/replace-lines-7b-engineering/check_compatibility.py", line 33, in <module>
+    assert before['pressure_level']['stdout'].strip()=='1', 'System memory pressure is not normal; no load.'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: System memory pressure is not normal; no load.

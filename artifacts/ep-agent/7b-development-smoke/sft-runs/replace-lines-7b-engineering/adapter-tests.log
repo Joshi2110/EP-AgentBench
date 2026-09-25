@@ -1,0 +1,9 @@
+test_cli_config_selection_and_base_default (test_adapters.AdapterTests.test_cli_config_selection_and_base_default) ... ok
+test_manifest_distinguishes_requested_base_and_changed_weights (test_adapters.AdapterTests.test_manifest_distinguishes_requested_base_and_changed_weights) ... ok
+test_ready_event_metadata_survives_final_report (test_adapters.AdapterTests.test_ready_event_metadata_survives_final_report) ... ok
+test_cli_backend_worker_native_load_selects_surrogate_and_records_hashes (test_adapters.SurrogateTests.test_cli_backend_worker_native_load_selects_surrogate_and_records_hashes) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.122s
+
+OK

@@ -1,0 +1,9 @@
+{
+  "all_config_fields_identical": true,
+  "system_prompt_byte_identical": true,
+  "fixture_byte_identical": true,
+  "expected_model": "mlx-community/Qwen2.5-Coder-7B-Instruct-4bit",
+  "adapter": null,
+  "attempts_authorized": 1,
+  "source_head": "967e8517728c68a97487f931a0ec25a4ffece9d8"
+}

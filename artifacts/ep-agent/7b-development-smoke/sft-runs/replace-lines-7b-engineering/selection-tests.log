@@ -1,0 +1,8 @@
+test_both_exact_revisions_without_adapter_and_unchanged_budgets (test_model_selection.ModelSelectionTests.test_both_exact_revisions_without_adapter_and_unchanged_budgets) ... ok
+test_unknown_download_rejected_without_network_or_directory (test_model_selection.ModelSelectionTests.test_unknown_download_rejected_without_network_or_directory) ... ok
+test_unknown_or_changed_revision_rejected_before_loading (test_model_selection.ModelSelectionTests.test_unknown_or_changed_revision_rejected_before_loading) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+OK

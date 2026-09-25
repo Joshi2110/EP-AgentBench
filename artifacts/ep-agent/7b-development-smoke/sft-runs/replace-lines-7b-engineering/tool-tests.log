@@ -1,0 +1,12 @@
+test_bounds_types_size_truncation_and_mixed_newlines (test_replace_lines.ReplaceLinesTests.test_bounds_types_size_truncation_and_mixed_newlines) ... ok
+test_confinement_symlinks_hardlinks_and_version_path_binding (test_replace_lines.ReplaceLinesTests.test_confinement_symlinks_hardlinks_and_version_path_binding) ... ok
+test_preserves_unrelated_bytes_and_newline_conventions (test_replace_lines.ReplaceLinesTests.test_preserves_unrelated_bytes_and_newline_conventions) ... ok
+test_result_limit_deletion_unicode_and_schema (test_replace_lines.ReplaceLinesTests.test_result_limit_deletion_unicode_and_schema) ... ok
+test_stale_unobserved_noop_and_failure_then_corrected_edit (test_replace_lines.ReplaceLinesTests.test_stale_unobserved_noop_and_failure_then_corrected_edit) ... ok
+test_noop_and_changed_test_cannot_claim_repair (test_replace_lines.ScriptedRepairTests.test_noop_and_changed_test_cannot_claim_repair) ... ok
+test_two_complete_repairs_with_failure_recovery_and_real_tests (test_replace_lines.ScriptedRepairTests.test_two_complete_repairs_with_failure_recovery_and_real_tests) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.254s
+
+OK

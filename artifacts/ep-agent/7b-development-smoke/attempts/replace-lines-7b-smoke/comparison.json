@@ -1,0 +1,346 @@
+{
+  "kind": "One-episode development comparison, not a controlled parameter-count estimate.",
+  "base_1_5b": {
+    "model_id": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+    "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+    "episode_id": "a82459aac2b942a38cd4c32ccbbf523a",
+    "responses": 12,
+    "schema_valid_calls": 1,
+    "schema_rejected_calls": 11,
+    "execution_rejected_calls": 0,
+    "calls_by_tool": {
+      "list_files": 1
+    },
+    "successful_reads": [],
+    "attempted_edits": 0,
+    "accepted_edits": 0,
+    "content_changing_edits": 0,
+    "edits": [],
+    "modified_files": [],
+    "initial_bytes": "\"\"\"Small cart helpers.\"\"\"\n\ndef cart_total(rows):\n    return sum(price for price, quantity in rows)\n\ndef label():\n    return \"cart\"\n",
+    "final_bytes": "\"\"\"Small cart helpers.\"\"\"\n\ndef cart_total(rows):\n    return sum(price for price, quantity in rows)\n\ndef label():\n    return \"cart\"\n",
+    "initial_source_sha256": "a3861d98b29faf7d762241e5c0e059f66f57e3015a31928073006bf74b709fbc",
+    "final_source_sha256": "a3861d98b29faf7d762241e5c0e059f66f57e3015a31928073006bf74b709fbc",
+    "initial_source_byte_count": 131,
+    "final_source_byte_count": 131,
+    "python_test_runs_by_agent": 0,
+    "final_summaries": [],
+    "final_summary_support": "No summary produced; no supported finish.",
+    "independent_visible_test_outcome": {
+      "status": "python_error",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n  File \"<agent-python>\", line 2, in <module>\nAssertionError\n",
+      "elapsed_seconds": 0.0418
+    },
+    "repair_passed": false,
+    "runtime_seconds": 28.134309291956015,
+    "usage": {
+      "completed_generations": 12,
+      "prompt_tokens": 13215,
+      "generation_tokens": 515,
+      "scope": "completed generations; prompt includes repeated history",
+      "peak_mlx_bytes": 1664106152,
+      "peak_rss_bytes": 764133376,
+      "token_logprobs_recorded": false,
+      "cost": null
+    },
+    "termination": "step_limit",
+    "adapter": {
+      "requested": false,
+      "loaded": false,
+      "path": null,
+      "id": null,
+      "config": null,
+      "sha256": {}
+    },
+    "stop_token_ids": [
+      151643,
+      151645
+    ],
+    "paths": {
+      "report": "<REPOSITORY>/attempts/replace-lines-base-smoke/episodes/a82459aac2b942a38cd4c32ccbbf523a/report.json",
+      "trace": "<REPOSITORY>/attempts/replace-lines-base-smoke/episodes/a82459aac2b942a38cd4c32ccbbf523a/trajectory.jsonl",
+      "workspace": "<REPOSITORY>/attempts/replace-lines-base-smoke/episodes/a82459aac2b942a38cd4c32ccbbf523a/workspace",
+      "initial_workspace": "<REPOSITORY>/attempts/replace-lines-base-smoke/episodes/a82459aac2b942a38cd4c32ccbbf523a/initial",
+      "patch": "<REPOSITORY>/attempts/replace-lines-base-smoke/episodes/a82459aac2b942a38cd4c32ccbbf523a/changes.diff",
+      "conversation": "<REPOSITORY>/attempts/replace-lines-base-smoke/episodes/a82459aac2b942a38cd4c32ccbbf523a/conversation.json",
+      "control": "<REPOSITORY>/attempts/replace-lines-base-smoke/episodes/a82459aac2b942a38cd4c32ccbbf523a/control"
+    }
+  },
+  "base_7b": {
+    "model_id": "mlx-community/Qwen2.5-Coder-7B-Instruct-4bit",
+    "revision": "019cc73c45c770444708a6dd8690c66243cc5c80",
+    "episode_id": "95eb3af15ec44c8caae710da1139383a",
+    "responses": 12,
+    "schema_valid_calls": 12,
+    "schema_rejected_calls": 0,
+    "execution_rejected_calls": 0,
+    "calls_by_tool": {
+      "list_files": 1,
+      "read_file": 6,
+      "edit_file": 1,
+      "replace_lines": 4
+    },
+    "successful_reads": [
+      {
+        "step": 2,
+        "call_event": 64,
+        "result_event": 65,
+        "path": "cart.py",
+        "version": "v1"
+      },
+      {
+        "step": 4,
+        "call_event": 178,
+        "result_event": 179,
+        "path": "cart.py",
+        "version": "v2"
+      },
+      {
+        "step": 6,
+        "call_event": 297,
+        "result_event": 298,
+        "path": "cart.py",
+        "version": "v3"
+      },
+      {
+        "step": 8,
+        "call_event": 432,
+        "result_event": 433,
+        "path": "cart.py",
+        "version": "v4"
+      },
+      {
+        "step": 10,
+        "call_event": 551,
+        "result_event": 552,
+        "path": "cart.py",
+        "version": "v5"
+      },
+      {
+        "step": 12,
+        "call_event": 670,
+        "result_event": 671,
+        "path": "cart.py",
+        "version": "v6"
+      }
+    ],
+    "attempted_edits": 5,
+    "accepted_edits": 5,
+    "content_changing_edits": 5,
+    "edits": [
+      {
+        "step": 3,
+        "call_event": 142,
+        "result_event": 143,
+        "tool": "edit_file",
+        "arguments": {
+          "path": "cart.py",
+          "old_text": "def cart_total(rows):",
+          "new_text": "def calculate_total(items):\n    return sum(item['price'] * item['quantity'] for item in items)"
+        },
+        "observation": {
+          "edited": "cart.py"
+        },
+        "accepted": true,
+        "changed": true,
+        "patch": "--- before/cart.py\n+++ after/cart.py\n@@ -1,6 +1,7 @@\n \"\"\"Small cart helpers.\"\"\"\n \n-def cart_total(rows):\n+def calculate_total(items):\n+    return sum(item['price'] * item['quantity'] for item in items)\n     return sum(price for price, quantity in rows)\n \n def label():\n"
+      },
+      {
+        "step": 5,
+        "call_event": 261,
+        "result_event": 262,
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "cart.py",
+          "version": "v2",
+          "start_line": 3,
+          "end_line": 4,
+          "new_text": "    return sum(item['price'] * item['quantity'] for item in items)"
+        },
+        "observation": {
+          "edited": "cart.py",
+          "changed": true,
+          "bytes_before": 204,
+          "bytes_after": 176,
+          "read_required": true
+        },
+        "accepted": true,
+        "changed": true,
+        "patch": "--- before/cart.py\n+++ after/cart.py\n@@ -1,6 +1,5 @@\n \"\"\"Small cart helpers.\"\"\"\n \n-def calculate_total(items):\n     return sum(item['price'] * item['quantity'] for item in items)\n     return sum(price for price, quantity in rows)\n \n"
+      },
+      {
+        "step": 7,
+        "call_event": 396,
+        "result_event": 397,
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "cart.py",
+          "version": "v3",
+          "start_line": 1,
+          "end_line": 2,
+          "new_text": "\"\"\"Calculate the total cost of items in the cart.\"\"\"\n\n    return sum(item['price'] * item['quantity'] for item in items)"
+        },
+        "observation": {
+          "edited": "cart.py",
+          "changed": true,
+          "bytes_before": 176,
+          "bytes_after": 270,
+          "read_required": true
+        },
+        "accepted": true,
+        "changed": true,
+        "patch": "--- before/cart.py\n+++ after/cart.py\n@@ -1,5 +1,6 @@\n-\"\"\"Small cart helpers.\"\"\"\n+\"\"\"Calculate the total cost of items in the cart.\"\"\"\n \n+    return sum(item['price'] * item['quantity'] for item in items)\n     return sum(item['price'] * item['quantity'] for item in items)\n     return sum(price for price, quantity in rows)\n \n"
+      },
+      {
+        "step": 9,
+        "call_event": 515,
+        "result_event": 516,
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "cart.py",
+          "version": "v4",
+          "start_line": 3,
+          "end_line": 4,
+          "new_text": "    return sum(item['price'] * item['quantity'] for item in items)"
+        },
+        "observation": {
+          "edited": "cart.py",
+          "changed": true,
+          "bytes_before": 270,
+          "bytes_after": 203,
+          "read_required": true
+        },
+        "accepted": true,
+        "changed": true,
+        "patch": "--- before/cart.py\n+++ after/cart.py\n@@ -1,6 +1,5 @@\n \"\"\"Calculate the total cost of items in the cart.\"\"\"\n \n-    return sum(item['price'] * item['quantity'] for item in items)\n     return sum(item['price'] * item['quantity'] for item in items)\n     return sum(price for price, quantity in rows)\n \n"
+      },
+      {
+        "step": 11,
+        "call_event": 634,
+        "result_event": 635,
+        "tool": "replace_lines",
+        "arguments": {
+          "path": "cart.py",
+          "version": "v5",
+          "start_line": 3,
+          "end_line": 4,
+          "new_text": "    return sum(item['price'] * item['quantity'] for item in items)"
+        },
+        "observation": {
+          "edited": "cart.py",
+          "changed": true,
+          "bytes_before": 203,
+          "bytes_after": 153,
+          "read_required": true
+        },
+        "accepted": true,
+        "changed": true,
+        "patch": "--- before/cart.py\n+++ after/cart.py\n@@ -1,7 +1,6 @@\n \"\"\"Calculate the total cost of items in the cart.\"\"\"\n \n     return sum(item['price'] * item['quantity'] for item in items)\n-    return sum(price for price, quantity in rows)\n \n def label():\n     return \"cart\"\n"
+      }
+    ],
+    "modified_files": [
+      "cart.py"
+    ],
+    "initial_bytes": "\"\"\"Small cart helpers.\"\"\"\n\ndef cart_total(rows):\n    return sum(price for price, quantity in rows)\n\ndef label():\n    return \"cart\"\n",
+    "final_bytes": "\"\"\"Calculate the total cost of items in the cart.\"\"\"\n\n    return sum(item['price'] * item['quantity'] for item in items)\n\ndef label():\n    return \"cart\"\n",
+    "initial_source_sha256": "a3861d98b29faf7d762241e5c0e059f66f57e3015a31928073006bf74b709fbc",
+    "final_source_sha256": "1fd3db9e0b25a62ccfcdeff5bd95b57501a84f7d4a5bea1e7b382f04c1d3c473",
+    "initial_source_byte_count": 131,
+    "final_source_byte_count": 153,
+    "python_test_runs_by_agent": 0,
+    "final_summaries": [],
+    "final_summary_support": "No summary produced; no supported finish.",
+    "independent_visible_test_outcome": {
+      "status": "python_error",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n  File \"<agent-python>\", line 1, in <module>\n  File \"<REPOSITORY>/attempts/replace-lines-7b-smoke/episodes/95eb3af15ec44c8caae710da1139383a/workspace/cart.py\", line 3\n    return sum(item['price'] * item['quantity'] for item in items)\nIndentationError: unexpected indent\n",
+      "elapsed_seconds": 0.0363
+    },
+    "repair_passed": false,
+    "runtime_seconds": 128.01558183296584,
+    "usage": {
+      "completed_generations": 12,
+      "prompt_tokens": 13441,
+      "generation_tokens": 596,
+      "scope": "completed generations; prompt includes repeated history",
+      "peak_mlx_bytes": 5054105664,
+      "peak_rss_bytes": 2070511616,
+      "token_logprobs_recorded": false,
+      "cost": null
+    },
+    "termination": "step_limit",
+    "adapter": {
+      "requested": false,
+      "loaded": false,
+      "path": null,
+      "id": null,
+      "config": null,
+      "sha256": {}
+    },
+    "stop_token_ids": [
+      151643,
+      151645
+    ],
+    "paths": {
+      "report": "<REPOSITORY>/attempts/replace-lines-7b-smoke/episodes/95eb3af15ec44c8caae710da1139383a/report.json",
+      "trace": "<REPOSITORY>/attempts/replace-lines-7b-smoke/episodes/95eb3af15ec44c8caae710da1139383a/trajectory.jsonl",
+      "workspace": "<REPOSITORY>/attempts/replace-lines-7b-smoke/episodes/95eb3af15ec44c8caae710da1139383a/workspace",
+      "initial_workspace": "<REPOSITORY>/attempts/replace-lines-7b-smoke/episodes/95eb3af15ec44c8caae710da1139383a/initial",
+      "patch": "<REPOSITORY>/attempts/replace-lines-7b-smoke/episodes/95eb3af15ec44c8caae710da1139383a/changes.diff",
+      "conversation": "<REPOSITORY>/attempts/replace-lines-7b-smoke/episodes/95eb3af15ec44c8caae710da1139383a/conversation.json",
+      "control": "<REPOSITORY>/attempts/replace-lines-7b-smoke/episodes/95eb3af15ec44c8caae710da1139383a/control"
+    }
+  },
+  "comparability": {
+    "configuration": {
+      "steps": 12,
+      "seconds": 300.0,
+      "tool_seconds": 8.0,
+      "output_bytes": 8192,
+      "context_tokens": 8192,
+      "max_tokens": 768,
+      "temperature": 0.0,
+      "seed": 0,
+      "adapter_dir": null
+    },
+    "all_config_fields_equal": true,
+    "fixture_and_initial_bytes_equal": true,
+    "initial_messages_and_token_ids_equal": true,
+    "tool_and_episode_source_hashes_equal": true,
+    "software_versions_equal": true,
+    "native_templates_differ_only_in_unused_fallback_system_text": true,
+    "compatibility_adjustments": [
+      "Allowlist exact 7B revision and its download size.",
+      "7 GiB MLX allocation ceiling for 7B; cache precision, sampling and budgets unchanged."
+    ],
+    "memory_environment": "Applications were closed before the 7B episode. Normal memory pressure verified with model loaded, during episode and after cleanup."
+  },
+  "manual_evidence": {
+    "schema_and_source_read_events": [
+      64,
+      65
+    ],
+    "observed_header_then_legacy_edit_events": [
+      65,
+      142,
+      143
+    ],
+    "observed_version_then_line_edit_events": [
+      179,
+      261,
+      262
+    ],
+    "function_definition_removed_by_line_edit_event": 261,
+    "final_source_observation_event": 671,
+    "independent_failed_test_event": 673
+  },
+  "interpretation": "7B followed the tool schema, copied an observed header and used observed version tokens. It did not read README.md or checks.py. It changed cart_total(rows) to calculate_total(items) with dictionary inputs, then deleted the function definition with a line-range replacement. Later edits changed return statements without executing Python. The final file has an indented top-level return and fails import. This is unsuccessful repair despite working tool invocation and real byte changes. It does not demonstrate scientific competence or broad superiority.",
+  "primary_repair_result": {
+    "1.5B": false,
+    "7B": false
+  },
+  "additional_episodes": 0
+}

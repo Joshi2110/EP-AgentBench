@@ -1,0 +1,11 @@
+{
+  "historical_files_verified_unchanged": 2896,
+  "prior_1_5b_evidence_inventory_files_unchanged": 27,
+  "new_model_files_hash_verified": 10,
+  "same_initial_messages_and_token_ids": true,
+  "all_12_responses_preserved": true,
+  "all_5_edits_change_bytes": true,
+  "repair_passed": false,
+  "episode_owned_processes_exited": true,
+  "preexisting_caffeinate_left_untouched": true
+}

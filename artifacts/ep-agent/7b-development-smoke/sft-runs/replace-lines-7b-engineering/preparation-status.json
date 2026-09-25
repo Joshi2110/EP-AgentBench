@@ -1,0 +1,18 @@
+{
+  "download_hashes_verified": 10,
+  "model_revision": "019cc73c45c770444708a6dd8690c66243cc5c80",
+  "weights_sha256": "56a3d94706833f753e6c6b47ea57af8ef638cd8cc1d74eca1142ba640b26060e",
+  "historical_smoke_and_interface_unchanged": true,
+  "installed_worker_matches_source": true,
+  "offline_tests_passed": 14,
+  "tokenizer_verified": true,
+  "native_weight_loading_verified": true,
+  "real_model_responses": 12,
+  "episode_started": true,
+  "blocking_condition": null,
+  "architecture": "mlx_lm.models.qwen2.Model",
+  "active_mlx_bytes": 4287507464,
+  "loaded_memory_pressure_level": 1,
+  "load_only_checks_generated_no_responses": true,
+  "episode_complete": true
+}

@@ -1,0 +1,13 @@
+{
+  "compatibility_and_scripted_tool_tests_passed": 14,
+  "archive_and_reconstruction_tests_passed": 3,
+  "real_model_inference": false,
+  "training": false,
+  "model_weights_loaded": "Only tiny untrained surrogate in adapter regression; no real weights loaded.",
+  "commands": [
+    "PYTHONPATH=src EPAGENT_TEST_MLX=1 .venv/bin/python -m unittest discover -s tests -p test_adapters.py -v",
+    "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -p test_model_selection.py -v",
+    "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -p test_replace_lines.py -v",
+    "PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -p test_7b_evidence.py -v"
+  ]
+}

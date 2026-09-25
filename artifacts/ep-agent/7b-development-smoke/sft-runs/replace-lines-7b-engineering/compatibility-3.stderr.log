@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "<REPOSITORY>/sft-runs/replace-lines-7b-engineering/check_compatibility.py", line 75, in <module>
+    assert after['pressure_level']['stdout'].strip()=='1', 'Loaded model leaves non-normal pressure; no episode.'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Loaded model leaves non-normal pressure; no episode.

@@ -1,0 +1,1 @@
+{"model_id": "mlx-community/Qwen2.5-Coder-7B-Instruct-4bit", "native_model_class": "mlx_lm.models.qwen2.Model", "query_layer_class": "QuantizedLinear", "configured_stop_ids": [151643, 151645], "initial_prompt_tokens": 489, "active_mlx_bytes": 4287507464, "peak_mlx_bytes": 4287507464, "peak_rss_bytes": 3105538048, "load_inspect_seconds": 2.2218150830594823}

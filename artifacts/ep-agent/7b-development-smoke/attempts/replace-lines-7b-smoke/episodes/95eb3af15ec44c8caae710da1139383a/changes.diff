@@ -1,0 +1,12 @@
+--- before/cart.py
++++ after/cart.py
+@@ -1,7 +1,6 @@
+-"""Small cart helpers."""
++"""Calculate the total cost of items in the cart."""
+ 
+-def cart_total(rows):
+-    return sum(price for price, quantity in rows)
++    return sum(item['price'] * item['quantity'] for item in items)
+ 
+ def label():
+     return "cart"
