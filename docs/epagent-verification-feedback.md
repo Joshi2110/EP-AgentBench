@@ -11,7 +11,7 @@ The exact five-edit reconstruction is in the archive's `edit-analysis.json`.
 ## Minimal change
 
 `run_episode(..., verification_feedback=True)` explicitly enables protocol
-`epagent.verification-feedback.v2`. The development runner exposes the same
+`epagent.verification-feedback.v3`. The development runner exposes the same
 option as `--verification-feedback` and records the full resulting prompt in
 its registration. It is off by default and rejected for frozen synthetic recovery
 protocols. Historical prompts, parser, tools, versions, edit results, sampling
@@ -98,6 +98,44 @@ The workspace is never modified by any of this, no code is repaired or rolled
 back, and the independent grader is unchanged and still runs only after the
 backend closes.
 
+## v3: runner-executed workspace tests
+
+Across four frozen `cart-total` episodes the shipped test was executed zero
+times. In the fourth the agent retyped it into a Python command, changed one
+expected value, and its correct repair failed its own incorrect assertion.
+Retyping is the failure, so v3 removes the need to retype.
+
+When an accepted action changes Python bytes and the original workspace ships a
+discoverable test, the runner executes **the original test bytes** against the
+current source, in the existing bounded subprocess, and attaches the result to
+the same observation. The preserved bytes are used even when the agent has since
+edited the test on disk, and the difference is reported rather than corrected.
+Nothing is written to the workspace and no code is repaired or rolled back.
+
+Each result carries the test path, the execution method, a hash of the executed
+bytes, whether the on-disk file still matches them, the exit status, the process
+return code and bounded stdout and stderr, and whether execution completed or
+timed out. When the remaining budget is gone the entry reads `not_checked` with
+no status, return code or output: a passing result is never assumed.
+
+Every execution records who started it. Runner-initiated runs are listed in
+`runner_executed` and `runner_executions` and are **never** credited to the
+agent-initiated endpoint, so `executed` and `claim_support` keep their v2
+meaning and the finish reminder still fires when the agent has not run the test
+itself, however many times the runner has.
+
+The independent grader is untouched and still runs only after the backend
+closes, and no grader verdict or metadata reaches the model. There is an
+important consequence to state plainly: where a discovered workspace test is the
+same file the grader executes, as on `cart-total`, this feedback exposes the
+functional evaluation signal during the episode. Episodes run with it must be
+analyzed separately and never pooled with episodes run without it. Exit status
+zero, a printed marker and verified correctness remain three different things.
+
+The protocol identifier moved to v3. The feature stays off by default and
+rejected for frozen synthetic protocols, and the agent prompt, editing tools,
+grader, training pipeline and reward function are unchanged.
+
 ## Offline acceptance
 
 `tests/test_verification_feedback.py` uses scripted decisions only. It covers:
@@ -115,6 +153,10 @@ backend closes.
 - Removed-definition reporting for function removal, rename, class removal,
   unrelated edits, private names and unparseable source, plus delivery of the
   removal to the next model request and a scripted restoration afterwards.
+- Runner-executed workspace tests for a correct and an incorrect edit, delivery
+  to the next model request, preserved bytes running after the agent rewrites
+  the test on disk, honest `not_checked` and `timed_out` reporting, runner and
+  agent executions staying distinguishable, and absence when disabled.
 - Convention-based test discovery, rejection of ad-hoc commands as execution,
   agent-created files failing to qualify, one bounded nonterminal reminder, an
   immediately accepted second finish, and no reminder when turns run out.
