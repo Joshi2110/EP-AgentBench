@@ -1,0 +1,17 @@
+{
+  "status": "INCONCLUSIVE",
+  "reason": "preflight_blocked_system_memory_pressure",
+  "time_utc": "2026-10-05T15:47:38.980827+00:00",
+  "pressure_level": 2,
+  "swap_used_mib": 10619.44,
+  "swap_total_mib": 12288,
+  "probe_launched": false,
+  "model_loaded": false,
+  "forward_completed": false,
+  "backward_completed": false,
+  "peak_mlx_bytes": null,
+  "peak_rss_bytes": null,
+  "runtime_seconds": null,
+  "numerical_validity": null,
+  "optimizer_updates": 0
+}

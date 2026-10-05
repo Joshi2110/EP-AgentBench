@@ -1,0 +1,23 @@
+{
+  "status": "prepared_plan_not_executable_registration",
+  "model_id": "mlx-community/Qwen2.5-Coder-3B-Instruct-4bit",
+  "revision": "3dd939c621c08e5753d5b89f35a2642cd83b98ca",
+  "architecture": "qwen2",
+  "hidden_size": 2048,
+  "num_layers": 36,
+  "lora_layers": [
+    32,
+    33,
+    34,
+    35
+  ],
+  "expected_trainable_parameters": 204800,
+  "source_examples": "artifacts/ep-agent/short-context-preparation",
+  "train_targets": 62,
+  "validation_targets": 8,
+  "training_passes": 2,
+  "updates": 124,
+  "requires_actual_tokenizer_preparation": true,
+  "evaluation_02_eligible": false,
+  "training_authorized": false
+}
